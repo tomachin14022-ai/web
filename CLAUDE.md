@@ -14,7 +14,6 @@
   - `valparaiso-motors-blanco.png`: blanco cálido #F2EFE8, para fondos oscuros.
   - `-recortado.png` (831x110): las mismas versiones sin margen, para ubicarlas exacto en la zona segura. Las originales (980x284) tienen más margen abajo que arriba.
 - **Otros proyectos:** este repositorio también tiene la web de **Fit & Fun** (`index_1.html`, `index_2.html`, `fitfun3d.html`), que es de otro cliente, y skills de animación en `.claude/skills/`. Las reglas de este archivo valen **solo para Valparaiso Motors**: no las apliques a Fit & Fun.
-- Los dos PDF de guiones (MOF y "4 videos") todavía no están en el repo.
 
 ---
 
