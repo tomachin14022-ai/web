@@ -1,12 +1,13 @@
 # Reel · Haval H6 en Brasil
 
-Reel 1080x1920 (HyperFrames) sobre la nota de Motor1 Brasil: la Haval H6, un híbrido, pasa a ser la SUV mediana más vendida de Brasil en 2026 (datos parciales de octubre). No nombra a la rival; el nombre del auto aparece recién en la revelación (dibujo de líneas → foto real).
+Reel 1080x1920 (HyperFrames) sobre la nota de Motor1 Brasil: la Haval H6, un híbrido, pasa a ser la SUV mediana más vendida de Brasil en 2026 (datos parciales de octubre). Habla de la noticia y cierra con "Pedinos precio y financiación de la H6 PRO HEV". No nombra a la rival; el nombre del auto aparece recién en la revelación (dibujo de líneas → foto real).
 
 ## Archivos
 - `guion/guion-pantalla.txt`: texto correcto (subtítulos).
 - `guion/guion-voz-elevenlabs.txt`: lo que se pega en ElevenLabs (números y siglas escritos como se dicen).
 - `guion/descripcion-y-comentario.md`: descripción, comentario fijado y lista para verificar.
 - `revision/hoja-de-cuadros.jpg`: cuadros de prueba (con voz temporal).
+- `render/borrador-voz-temporal.mp4`: borrador para ver el movimiento (no se sube al repositorio).
 - `tools/index.template.html`: la composición. Todas las animaciones se anclan a palabras del guion, así que cambiar la voz no rompe nada.
 - `CREDITOS.md`: fuentes de datos, foto, música, efectos y tipografías.
 

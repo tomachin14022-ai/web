@@ -18,7 +18,7 @@
   Revisar la licencia antes de usarla en un anuncio pago.
 
 ## Efectos de sonido
-- whoosh, pop, ping, click, riser, impact-bass-1: biblioteca de `media-use` (HyperFrames), originales de Pixabay, Pixabay Content License (uso comercial, sin atribución obligatoria).
+- whoosh, pop, ping, click, riser, impact-bass-1 (el "whoosh-short" de la biblioteca es el mismo archivo que "whoosh"): biblioteca de `media-use` (HyperFrames), originales de Pixabay, Pixabay Content License (uso comercial, sin atribución obligatoria).
 
 ## Tipografías
 - Anton (Vernon Adams) e Inter (Rasmus Andersson), SIL Open Font License, vía Google Fonts.

@@ -40,7 +40,7 @@ def num_es(n: int) -> str:
     return str(n)
 
 
-SPECIAL = {"h6": "hache seis", "suv": "suv"}
+SPECIAL = {"h6": "hache seis", "suv": "suv", "hev": "hache e ve"}
 
 
 def strip_accents(s: str) -> str:

@@ -112,26 +112,30 @@ def main(voice_path):
     out = np.zeros((n, 2), dtype=np.float32)
     fr = 1 / 30  # "whoosh 2 cuadros antes"
     plan = [
-        ("whoosh", W("perdió") - 2 * fr - 0.08, -15),
-        ("pop", W("quién"), -17),
-        ("whoosh", S(2) - 0.05 - 2 * fr, -14),
-        ("pop", W("híbrido", 1), -17),
+        ("pop", W("Brasil", 1), -15),                       # sello BRASIL 2026
+        ("whoosh", S(1) - 0.2 - 2 * fr, -13),               # el auto sale disparado / entran las tarjetas
+        ("click", W("2026", 1), -17),
+        ("whoosh", W("perdió") - 2 * fr, -14),              # las tarjetas se dan vuelta
+        ("impact-bass-1", W("perdió") + 0.45, -15),
+        ("pop", W("cuál", 1), -16),
+        ("whoosh", S(2) - 0.08 - 2 * fr, -14),              # zoom al auto
+        ("pop", W("híbrido", 1), -16),
         ("pop", W("china"), -17),
-        ("whoosh", S(3) - 0.08 - 2 * fr, -16),
+        ("whoosh", S(3) - 0.1 - 2 * fr, -15),
         ("ping", W("patentamientos", end=True) - 0.15, -19),
         ("pop", W("486"), -15),
-        ("whoosh", S(4) - 0.08 - 2 * fr, -14),
+        ("whoosh", S(4) - 0.12 - 2 * fr, -14),
         ("click", W("octubre"), -16),
         ("ping", W("2.000"), -18),
-        ("whoosh", S(5) - 0.1 - 2 * fr, -16),
+        ("whoosh", S(5) - 0.14 - 2 * fr, -15),
         ("pop", W("versiones"), -18),
-        ("pop", W("fabrica") - 0.1, -18),
-        ("whoosh", S(6) - 0.05 - 2 * fr, -15),
-        ("ping", W("vendida"), -17),
+        ("pop", W("desde"), -18),
+        ("whoosh", S(6) - 2 * fr, -14),                     # el auto vuelve
+        ("ping", W("vendida", 2), -16),
         ("riser", W("Haval") - 3.2, -16, (10.03 - 3.2, 10.03)),
         ("impact-bass-1", W("Haval") - 0.04, -9),
-        ("pop", S(8), -16),
-        ("click", W("Comentá"), -16),
+        ("pop", S(8), -15),                                 # boton
+        ("pop", W("PRO"), -15),
     ]
     for item in plan:
         sfx(*item)
