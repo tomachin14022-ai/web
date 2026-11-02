@@ -1,0 +1,6 @@
+.hyperframes/
+render/
+audio/mix.wav
+audio/mix-pre.wav
+audio/temp/*.wav
+audio/voz/*.wav

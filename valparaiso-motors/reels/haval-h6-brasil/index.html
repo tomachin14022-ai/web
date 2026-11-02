@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Haval H6 en Brasil · Valparaiso Motors</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Anton";
+        src: url("assets/fonts/Anton-latin.woff2") format("woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/Inter-latin-var.woff2") format("woff2");
+        font-weight: 100 900;
+        font-display: block;
+      }
+      :root {
+        --paper: #faf9f6;
+        --ink: #151415;
+        --bordo: #801628;
+        --gris: #77716a;
+        --gris-claro: #c9c4bb;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--paper); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Inter", sans-serif; color: var(--ink); }
+      .clip { position: absolute; inset: 0; }
+
+      /* Estudio blanco: degradé gris muy suave -> blanco, piso con sombra suave */
+      #bg { position: absolute; inset: 0; background: radial-gradient(120% 70% at 45% 38%, #ffffff 0%, #f6f4f0 55%, #e9e6e0 100%); }
+      #floor { position: absolute; left: 0; right: 0; top: 1060px; height: 860px; background: linear-gradient(180deg, rgba(232,229,223,0) 0%, rgba(226,222,215,0.65) 35%, rgba(220,216,208,0.9) 100%); }
+      #grain { position: absolute; inset: 0; opacity: 0.07; mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 80% at 45% 45%, rgba(0,0,0,0) 60%, rgba(40,30,30,0.10) 100%); }
+      #flash { position: absolute; inset: 0; background: #ffffff; opacity: 0; }
+
+      /* Zona segura de Reels: x 60-900, y 260-1440 */
+      #stage { position: absolute; left: 60px; top: 260px; width: 840px; height: 1180px; }
+
+      .hd { position: absolute; left: 0; top: 0; width: 840px; opacity: 0; }
+      .anton { font-family: "Anton", sans-serif; font-weight: 400; text-transform: uppercase; line-height: 0.98; letter-spacing: 0.005em; }
+      .acc { color: var(--bordo); }
+      .kicker { font-weight: 800; font-size: 30px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bordo); }
+      .kicker-ink { color: var(--ink); }
+
+      #hook { opacity: 1; }
+      #hook .l1 { font-size: 112px; }
+      #hook .l2 { font-size: 62px; margin-top: 14px; }
+      #hdA .t { font-size: 96px; margin-top: 10px; }
+      #hdA .t2 { position: absolute; left: 0; top: 46px; font-size: 84px; opacity: 0; }
+      #hdB .t { font-size: 90px; }
+      #hdC .t { font-size: 62px; margin-top: 8px; max-width: 580px; }
+      #hdD .t { font-size: 92px; }
+      #hdE .t { font-size: 170px; }
+      #hdF .t { font-size: 84px; margin-top: 10px; }
+      #hdG .t { font-size: 150px; }
+      #hdH .t { font-size: 190px; }
+      #hdH .k { margin-bottom: 6px; }
+      .sheen { position: absolute; top: -10px; bottom: -10px; width: 140px; left: 0; opacity: 0;
+        background: linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 100%); }
+
+      /* Carrera */
+      .lane { position: absolute; left: 0; height: 66px; border-radius: 0 33px 33px 0; display: flex; align-items: center; overflow: hidden; }
+      #laneR { top: 420px; width: 500px; background: var(--gris); }
+      #laneH { top: 800px; width: 400px; background: var(--bordo); }
+      .lane span { font-weight: 800; font-size: 28px; letter-spacing: 0.06em; color: #fff; padding-left: 22px; white-space: nowrap; text-transform: uppercase; opacity: 0; }
+      .track { position: absolute; left: 0; width: 840px; height: 66px; border-radius: 33px; background: rgba(21,20,21,0.06); }
+      #trackR { top: 420px; }
+      #trackH { top: 800px; }
+      #rank { position: absolute; left: 0; top: 406px; width: 94px; height: 94px; border-radius: 50%; background: var(--ink); color: #fff;
+        display: flex; align-items: center; justify-content: center; font-family: "Anton"; font-size: 46px; }
+      #rank .r2 { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; background: var(--gris-claro); color: var(--ink); border-radius: 50%; }
+      #laneLabelR, #laneLabelH { position: absolute; left: 0; font-weight: 800; font-size: 28px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0; }
+      #laneLabelR { top: 350px; color: var(--gris); }
+      #laneLabelH { top: 880px; color: var(--bordo); }
+      .speed { position: absolute; height: 8px; border-radius: 4px; background: var(--ink); opacity: 0; }
+
+      /* Auto: caja base = posicion grande centrada; se mueve con x/y/scale */
+      #car { position: absolute; left: 20px; top: 380px; width: 800px; height: 479px; }
+      #car img { position: absolute; inset: 0; width: 100%; height: 100%; }
+      #carPhoto { opacity: 0; clip-path: inset(0% 100% 0% 0%); }
+      #shadow { position: absolute; left: 70px; top: 820px; width: 700px; height: 70px; border-radius: 50%;
+        background: radial-gradient(50% 50% at 50% 50%, rgba(20,15,15,0.38) 0%, rgba(20,15,15,0) 100%); opacity: 0; }
+      #qmark { position: absolute; left: 640px; top: -40px; width: 150px; height: 150px; border-radius: 50%; background: var(--bordo); color: #fff;
+        display: flex; align-items: center; justify-content: center; font-family: "Anton"; font-size: 104px; opacity: 0; box-shadow: 0 10px 30px rgba(128,22,40,0.35); }
+
+      /* Etiquetas */
+      .tag { position: absolute; display: flex; align-items: center; gap: 14px; padding: 14px 26px 14px 18px; border-radius: 999px;
+        font-weight: 900; font-size: 38px; letter-spacing: 0.03em; text-transform: uppercase; opacity: 0; white-space: nowrap; }
+      .tag svg { width: 46px; height: 46px; flex: none; }
+      .tag-b { background: var(--bordo); color: #fff; }
+      .tag-i { background: var(--ink); color: #fff; }
+      .tag-o { background: #fff; color: var(--ink); border: 4px solid var(--ink); }
+
+      /* Numeros */
+      .num { position: absolute; left: 0; font-family: "Anton"; white-space: nowrap; opacity: 0; }
+      #n1 { top: 170px; font-size: 250px; color: var(--bordo); line-height: 1; }
+      #n1l { position: absolute; left: 4px; top: 432px; font-weight: 800; font-size: 30px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0; }
+      #n2 { top: 520px; font-size: 150px; color: var(--gris); line-height: 1; }
+      #n2l { position: absolute; left: 4px; top: 682px; font-weight: 800; font-size: 28px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gris); opacity: 0; }
+      #d486 { left: 470px; top: 548px; font-family: "Anton"; font-size: 96px; padding: 6px 30px 10px; }
+      #bracket { position: absolute; left: 440px; top: 330px; width: 30px; height: 330px; border: 8px solid var(--bordo); border-left: none; border-radius: 0 18px 18px 0; opacity: 0; }
+
+      /* Octubre */
+      #cal { position: absolute; left: 640px; top: 0px; width: 190px; height: 200px; border-radius: 22px; background: #fff; box-shadow: 0 14px 34px rgba(21,20,21,0.14); overflow: hidden; opacity: 0; }
+      #cal .top { height: 58px; background: var(--bordo); color: #fff; font-weight: 900; font-size: 28px; letter-spacing: 0.12em; display: flex; align-items: center; justify-content: center; }
+      #cal .mid { font-family: "Anton"; font-size: 92px; text-align: center; line-height: 1.05; }
+      #cal .bot { font-weight: 800; font-size: 28px; text-align: center; letter-spacing: 0.1em; color: var(--gris); }
+      .vbar { position: absolute; bottom: 320px; width: 230px; height: 480px; border-radius: 24px 24px 0 0; overflow: hidden; opacity: 0; }
+      #vbH { left: 110px; background: var(--bordo); }
+      #vbR { left: 400px; background: var(--gris); height: 290px; }
+      .vbar .v { position: absolute; left: 0; right: 0; top: 18px; text-align: center; font-family: "Anton"; font-size: 70px; color: #fff; }
+      .vlab { position: absolute; top: 870px; width: 280px; text-align: center; font-weight: 800; font-size: 28px; line-height: 1.08; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0; }
+      #vlH { left: 85px; color: var(--bordo); }
+      #vlR { left: 375px; color: var(--gris); }
+      #baseline { position: absolute; left: 70px; top: 858px; width: 600px; height: 6px; border-radius: 3px; background: var(--ink); opacity: 0; }
+      #dOct { left: 610px; top: 440px; font-family: "Anton"; font-size: 64px; padding: 6px 22px 10px; }
+      #octLine { position: absolute; left: 340px; top: 378px; width: 300px; height: 0; border-top: 6px dashed var(--bordo); opacity: 0; }
+
+      /* Como */
+      #trend { position: absolute; left: 0; top: 300px; width: 840px; height: 600px; overflow: visible; }
+      .card { position: absolute; left: 0; width: 840px; height: 170px; border-radius: 24px; background: #fff; box-shadow: 0 16px 40px rgba(21,20,21,0.12);
+        display: flex; align-items: center; gap: 26px; padding: 0 30px 0 0; overflow: hidden; opacity: 0; }
+      .card .bar { width: 16px; align-self: stretch; background: var(--bordo); }
+      .card svg { width: 92px; height: 92px; flex: none; }
+      .card .tt { font-weight: 900; font-size: 42px; letter-spacing: 0.01em; text-transform: uppercase; line-height: 1.05; }
+      .card .ss { font-weight: 600; font-size: 28px; color: var(--gris); margin-top: 6px; }
+      #card1 { top: 330px; }
+      #card2 { top: 560px; }
+
+      /* Veredicto */
+      #n1badge { position: absolute; left: 0px; top: 300px; width: 230px; height: 230px; border-radius: 50%; background: var(--bordo); color: #fff;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; box-shadow: 0 18px 40px rgba(128,22,40,0.35); }
+      #n1badge .a { font-weight: 900; font-size: 34px; letter-spacing: 0.1em; }
+      #n1badge .b { font-family: "Anton"; font-size: 130px; line-height: 0.95; }
+      #n1badge .c { font-weight: 800; font-size: 20px; letter-spacing: 0.08em; }
+      #porAhora { left: 0; top: 248px; font-size: 30px; padding: 8px 20px; }
+
+      /* Revelacion y CTA */
+      #pillHev { left: 0; top: 250px; font-size: 32px; padding: 10px 22px; }
+      #cta { overflow: hidden; position: absolute; left: 20px; top: 800px; width: 800px; height: 104px; border-radius: 999px; background: var(--bordo); color: #fff;
+        display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 36px; letter-spacing: 0.02em; text-transform: uppercase; opacity: 0;
+        box-shadow: 0 16px 36px rgba(128,22,40,0.32); }
+      #comenta { left: 520px; top: 300px; font-size: 34px; padding: 12px 24px 12px 16px; }
+      #logo { position: absolute; left: 230px; top: 1090px; width: 380px; opacity: 0; }
+      #share { position: absolute; left: 0; top: 1146px; width: 840px; text-align: center; font-weight: 600; font-size: 26px; color: #57524c; opacity: 0;
+        display: flex; align-items: center; justify-content: center; gap: 10px; }
+      #share svg { width: 28px; height: 28px; }
+      #credit { position: absolute; right: 24px; top: 866px; font-weight: 600; font-size: 20px; color: #57524c; opacity: 0; }
+
+      /* Fuente */
+      .foot { position: absolute; left: 0; top: 1146px; width: 840px; text-align: center; font-weight: 600; font-size: 24px; color: #57524c; opacity: 0; }
+
+      /* Subtitulos palabra por palabra */
+      #subs { position: absolute; left: 0; top: 950px; width: 840px; height: 140px; }
+      .page { position: absolute; left: 0; top: 0; width: 840px; text-align: center; font-weight: 900; font-size: 60px; line-height: 1.08;
+        text-transform: uppercase; letter-spacing: 0.01em; opacity: 0; }
+      .w .ul { position: absolute; left: 2px; right: 2px; bottom: -2px; height: 7px; border-radius: 4px; background: var(--bordo); transform-origin: 0 50%; opacity: 0; }
+      .sweep { position: absolute; top: -20%; height: 140%; width: 180px; left: 0; opacity: 0;
+        background: linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 100%); }
+      #carSheenBox { position: absolute; inset: 0; overflow: hidden; -webkit-mask-image: url("assets/img/h6-foto-recorte.webp"); mask-image: url("assets/img/h6-foto-recorte.webp");
+        -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+      .w { position: relative; display: inline-block; color: var(--ink); paint-order: stroke fill; -webkit-text-stroke: 12px var(--paper); opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="38.32" data-width="1080" data-height="1920">
+      <audio id="mix" src="audio/mix.wav" data-start="0" data-duration="38.32" data-track-index="2"></audio>
+
+      <div id="scene" class="clip" data-start="0" data-duration="38.32" data-track-index="0">
+        <div id="bg"></div>
+        <div id="floor"></div>
+
+        <div id="stage">
+          <!-- Encabezados -->
+          <div id="hook" class="hd anton">
+            <div class="l1">¿Vas a comprar</div>
+            <div class="l1">una <span class="acc">SUV</span>?</div>
+            <div class="l2">Mirá lo que pasó en <span class="acc">Brasil</span></div>
+          </div>
+          <div id="hdA" class="hd">
+            <div class="kicker">Brasil · SUV medianas · 2026</div>
+            <div class="t anton" id="hdA1">Ventas del año</div>
+            <div class="t2 anton" id="hdA2">Cambió el<br /><span class="acc">primer puesto</span></div>
+          </div>
+          <div id="hdB" class="hd anton"><div class="t">Pero no la pasó</div><div class="t">cualquiera</div></div>
+          <div id="hdC" class="hd">
+            <div class="kicker">Patentamientos 2026 · Brasil</div>
+            <div class="t anton">En lo que va del año</div>
+          </div>
+          <div id="hdD" class="hd anton"><div class="t">Lo más fuerte:</div><div class="t acc">octubre</div></div>
+          <div id="hdE" class="hd anton"><div class="t">¿Cómo?</div></div>
+          <div id="hdF" class="hd">
+            <div class="kicker">Brasil · enero a octubre 2026</div>
+            <div class="t anton">La SUV mediana</div>
+            <div class="t anton" style="margin-top:0">más <span class="acc">vendida</span></div>
+          </div>
+          <div id="hdG" class="hd anton"><div class="t">¿Cuál es?</div></div>
+          <div id="hdH" class="hd"><div class="kicker k">Es la</div><div class="t anton">Haval <span class="acc">H6</span></div></div>
+          <div id="sheenBox" style="position:absolute;left:0;top:0;width:840px;height:330px;overflow:hidden;pointer-events:none"><div class="sheen" id="sheen"></div></div>
+
+          <!-- Carrera -->
+          <div id="trackR" class="track"></div>
+          <div id="trackH" class="track"></div>
+          <div id="laneR" class="lane"><span id="laneRtxt">La que venía primera</span></div>
+          <div id="laneH" class="lane"></div>
+          <div id="rank">#1<div class="r2">#2</div></div>
+          <div id="laneLabelH">La que la pasó</div>
+          <div id="sp1" class="speed" style="top:640px;width:110px"></div>
+          <div id="sp2" class="speed" style="top:690px;width:150px"></div>
+          <div id="sp3" class="speed" style="top:740px;width:90px"></div>
+
+          <!-- Numeros -->
+          <div id="n1" class="num">0</div>
+          <div id="n1l">Su total en 2026</div>
+          <div id="d486" class="tag tag-b">+486</div>
+          <div id="n2" class="num">43.534</div>
+          <div id="n2l">La que venía primera</div>
+
+          <!-- Octubre -->
+          <div id="cal"><div class="top">OCT</div><div class="mid">2026</div><div class="bot">PARCIAL</div></div>
+          <div id="vbH" class="vbar"><div class="v" id="vH">0</div></div>
+          <div id="vbR" class="vbar"><div class="v" id="vR">0</div></div>
+          <div id="baseline"></div>
+          <div id="octLine"></div>
+          <div id="vlH" class="vlab">La que la pasó</div>
+          <div id="vlR" class="vlab">La que venía primera</div>
+          <div id="dOct" class="tag tag-b">+2.108</div>
+
+          <!-- Como -->
+          <svg id="trend" viewBox="0 0 840 600">
+            <path id="trendPath" d="M 20 560 C 220 540, 330 470, 450 360 S 690 120, 800 50" fill="none" stroke="#801628" stroke-width="12" stroke-linecap="round" opacity="0" />
+            <path id="trendHead" d="M 760 40 L 812 44 L 792 92" fill="none" stroke="#801628" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
+          </svg>
+          <div id="card1" class="card"><div class="bar"></div>
+            <svg viewBox="0 0 92 92"><rect x="10" y="26" width="52" height="40" rx="7" fill="none" stroke="#151415" stroke-width="7"/><rect x="62" y="38" width="8" height="16" rx="2" fill="#151415"/><path d="M33 32 L24 48 H36 L29 62" fill="none" stroke="#801628" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M80 18 C 86 30, 90 36, 84 44 C 79 50, 70 46, 72 38 C 73 32, 78 26, 80 18 Z" fill="#801628"/></svg>
+            <div><div class="tt">Versiones híbridas flex</div><div class="ss">Motor flex + motor eléctrico</div></div></div>
+          <div id="card2" class="card"><div class="bar"></div>
+            <svg viewBox="0 0 92 92"><path d="M8 80 V44 L30 56 V44 L52 56 V24 H66 V80 Z" fill="none" stroke="#151415" stroke-width="7" stroke-linejoin="round"/><path d="M72 80 V34 H84 V80" fill="none" stroke="#151415" stroke-width="7"/><path d="M4 82 H88" stroke="#801628" stroke-width="7" stroke-linecap="round"/></svg>
+            <div><div class="tt">Se fabrica en Brasil</div><div class="ss">Planta de Iracemápolis, San Pablo</div></div></div>
+
+          <!-- Veredicto -->
+          <div id="porAhora" class="tag tag-o">Por ahora*</div>
+
+          <!-- Auto (dibujo -> foto) -->
+          <div id="shadow"></div>
+          <div id="car">
+            <img id="carLines" src="assets/img/h6-lineas.png" alt="" />
+            <img id="carPhoto" src="assets/img/h6-foto-recorte.webp" alt="" />
+            <div id="carSheenBox"><div class="sweep" id="carSheen"></div></div>
+            <div id="qmark">?</div>
+          </div>
+          <div id="n1badge"><div class="a">N.º</div><div class="b">1</div></div>
+
+          <div id="tagHib" class="tag tag-b" style="left:0;top:250px">
+            <svg viewBox="0 0 46 46"><rect x="3" y="12" width="30" height="22" rx="4" fill="none" stroke="#fff" stroke-width="4"/><rect x="33" y="18" width="5" height="10" rx="1.5" fill="#fff"/><path d="M19 15 L13 24 H21 L16 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+            Híbrido</div>
+          <div id="tagChina" class="tag tag-i" style="left:340px;top:250px">Marca china</div>
+          <div id="pillHev" class="tag tag-b">Versión híbrida</div>
+          <div id="credit" data-layout-ignore>Foto: Chanokchon · CC BY-SA 4.0</div>
+          <div id="comenta" class="tag tag-i">
+            <svg viewBox="0 0 46 46"><path d="M6 10 H40 V32 H20 L11 40 V32 H6 Z" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>
+            Comentá H6</div>
+          <div id="cta"><div class="sweep" id="ctaSheen" style="width:220px"></div>Pedinos precio y financiación</div>
+          <img id="logo" src="assets/img/logo-negro.png" alt="Valparaiso Motors" />
+
+          <!-- Fuentes -->
+          <div id="foot1" class="foot" data-layout-ignore>Fuente: Fenabrave, datos preliminares al 29/10/2026, vía Motor1 Brasil</div>
+          <div id="foot2" class="foot" data-layout-ignore>Octubre: datos parciales al 29/10/2026 · Fuente: Fenabrave vía Motor1 Brasil</div>
+          <div id="foot3" class="foot" data-layout-ignore>*Datos parciales al 29/10: la ventaja todavía es provisoria</div>
+          <div id="share"><svg viewBox="0 0 28 28"><path d="M3 13 L25 3 L18 25 L13 16 Z M13 16 L25 3" fill="none" stroke="#77716a" stroke-width="2.4" stroke-linejoin="round"/></svg>Mandáselo a alguien que está por comprar una SUV</div>
+
+          <div id="subs"></div>
+        </div>
+
+        <div id="grain"></div>
+        <div id="vignette"></div>
+        <div id="flash"></div>
+      </div>
+    </div>
+
+    <script id="timing" type="application/json">{"tokens": [{"text": "Si", "sentence": 0, "start": 0.03, "end": 0.1}, {"text": "estás", "sentence": 0, "start": 0.1, "end": 0.3}, {"text": "por", "sentence": 0, "start": 0.39, "end": 0.53}, {"text": "comprar", "sentence": 0, "start": 0.53, "end": 0.91}, {"text": "una", "sentence": 0, "start": 0.91, "end": 1.07}, {"text": "SUV,", "sentence": 0, "start": 1.07, "end": 1.33}, {"text": "mirá", "sentence": 0, "start": 1.33, "end": 1.54}, {"text": "lo", "sentence": 0, "start": 1.54, "end": 1.64}, {"text": "que", "sentence": 0, "start": 1.64, "end": 1.8}, {"text": "acaba", "sentence": 0, "start": 1.8, "end": 2.07}, {"text": "de", "sentence": 0, "start": 2.07, "end": 2.17}, {"text": "pasar", "sentence": 0, "start": 2.17, "end": 2.43}, {"text": "en", "sentence": 0, "start": 2.43, "end": 2.53}, {"text": "Brasil.", "sentence": 0, "start": 2.53, "end": 3.1}, {"text": "La", "sentence": 1, "start": 3.13, "end": 3.2}, {"text": "SUV", "sentence": 1, "start": 3.2, "end": 3.36}, {"text": "mediana", "sentence": 1, "start": 3.36, "end": 3.71}, {"text": "que", "sentence": 1, "start": 3.75, "end": 3.89}, {"text": "venía", "sentence": 1, "start": 3.89, "end": 4.15}, {"text": "primera", "sentence": 1, "start": 4.15, "end": 4.52}, {"text": "en", "sentence": 1, "start": 4.52, "end": 4.61}, {"text": "ventas", "sentence": 1, "start": 4.62, "end": 4.9}, {"text": "este", "sentence": 1, "start": 4.96, "end": 5.14}, {"text": "año", "sentence": 1, "start": 5.14, "end": 5.27}, {"text": "perdió", "sentence": 1, "start": 5.35, "end": 5.63}, {"text": "el", "sentence": 1, "start": 5.65, "end": 5.74}, {"text": "primer", "sentence": 1, "start": 5.74, "end": 5.91}, {"text": "puesto.", "sentence": 1, "start": 6.28, "end": 6.56}, {"text": "Al", "sentence": 1, "start": 6.59, "end": 6.67}, {"text": "final", "sentence": 1, "start": 6.67, "end": 6.86}, {"text": "te", "sentence": 1, "start": 6.95, "end": 7.01}, {"text": "digo", "sentence": 1, "start": 7.07, "end": 7.28}, {"text": "quién", "sentence": 1, "start": 7.28, "end": 7.55}, {"text": "la", "sentence": 1, "start": 7.56, "end": 7.67}, {"text": "pasó.", "sentence": 1, "start": 7.67, "end": 8.04}, {"text": "Pero", "sentence": 2, "start": 8.04, "end": 8.2}, {"text": "no", "sentence": 2, "start": 8.2, "end": 8.23}, {"text": "la", "sentence": 2, "start": 8.28, "end": 8.36}, {"text": "pasó", "sentence": 2, "start": 8.36, "end": 8.51}, {"text": "cualquiera:", "sentence": 2, "start": 8.52, "end": 9.03}, {"text": "la", "sentence": 2, "start": 9.04, "end": 9.13}, {"text": "pasó", "sentence": 2, "start": 9.13, "end": 9.36}, {"text": "un", "sentence": 2, "start": 9.36, "end": 9.52}, {"text": "híbrido.", "sentence": 2, "start": 9.52, "end": 9.96}, {"text": "Y", "sentence": 2, "start": 9.96, "end": 10.02}, {"text": "de", "sentence": 2, "start": 10.02, "end": 10.14}, {"text": "una", "sentence": 2, "start": 10.14, "end": 10.32}, {"text": "marca", "sentence": 2, "start": 10.32, "end": 10.63}, {"text": "china.", "sentence": 2, "start": 10.63, "end": 11.14}, {"text": "En", "sentence": 3, "start": 11.17, "end": 11.25}, {"text": "lo", "sentence": 3, "start": 11.25, "end": 11.36}, {"text": "que", "sentence": 3, "start": 11.36, "end": 11.44}, {"text": "va", "sentence": 3, "start": 11.53, "end": 11.59}, {"text": "de", "sentence": 3, "start": 11.65, "end": 11.74}, {"text": "2026", "sentence": 3, "start": 11.75, "end": 12.44}, {"text": "ya", "sentence": 3, "start": 12.44, "end": 12.5}, {"text": "suma", "sentence": 3, "start": 12.55, "end": 12.77}, {"text": "44.020", "sentence": 3, "start": 12.77, "end": 13.86}, {"text": "patentamientos:", "sentence": 3, "start": 13.86, "end": 14.88}, {"text": "486", "sentence": 3, "start": 14.88, "end": 15.54}, {"text": "más", "sentence": 3, "start": 15.54, "end": 15.76}, {"text": "que", "sentence": 3, "start": 15.76, "end": 15.96}, {"text": "la", "sentence": 3, "start": 16.0, "end": 16.11}, {"text": "que", "sentence": 3, "start": 16.12, "end": 16.34}, {"text": "venía", "sentence": 3, "start": 16.34, "end": 16.67}, {"text": "primera.", "sentence": 3, "start": 16.69, "end": 17.47}, {"text": "Pero", "sentence": 4, "start": 17.51, "end": 17.62}, {"text": "lo", "sentence": 4, "start": 17.68, "end": 17.78}, {"text": "más", "sentence": 4, "start": 17.78, "end": 17.92}, {"text": "fuerte", "sentence": 4, "start": 17.99, "end": 18.23}, {"text": "fue", "sentence": 4, "start": 18.23, "end": 18.38}, {"text": "octubre:", "sentence": 4, "start": 18.38, "end": 18.83}, {"text": "le", "sentence": 4, "start": 18.83, "end": 18.93}, {"text": "sacó", "sentence": 4, "start": 18.93, "end": 19.13}, {"text": "más", "sentence": 4, "start": 19.13, "end": 19.28}, {"text": "de", "sentence": 4, "start": 19.28, "end": 19.38}, {"text": "2.000", "sentence": 4, "start": 19.38, "end": 19.98}, {"text": "autos", "sentence": 4, "start": 19.98, "end": 20.23}, {"text": "en", "sentence": 4, "start": 20.23, "end": 20.29}, {"text": "un", "sentence": 4, "start": 20.29, "end": 20.48}, {"text": "solo", "sentence": 4, "start": 20.48, "end": 20.67}, {"text": "mes.", "sentence": 4, "start": 20.67, "end": 20.974}, {"text": "¿Cómo?", "sentence": 5, "start": 20.974, "end": 21.38}, {"text": "Tomó", "sentence": 5, "start": 21.45, "end": 21.61}, {"text": "fuerza", "sentence": 5, "start": 21.61, "end": 21.86}, {"text": "con", "sentence": 5, "start": 21.88, "end": 22.01}, {"text": "sus", "sentence": 5, "start": 22.01, "end": 22.14}, {"text": "nuevas", "sentence": 5, "start": 22.14, "end": 22.41}, {"text": "versiones", "sentence": 5, "start": 22.41, "end": 22.82}, {"text": "híbridas", "sentence": 5, "start": 22.82, "end": 23.11}, {"text": "flex,", "sentence": 5, "start": 23.19, "end": 23.41}, {"text": "y", "sentence": 5, "start": 23.42, "end": 23.47}, {"text": "desde", "sentence": 5, "start": 23.47, "end": 23.72}, {"text": "que", "sentence": 5, "start": 23.72, "end": 23.75}, {"text": "se", "sentence": 5, "start": 23.82, "end": 23.98}, {"text": "fabrica", "sentence": 5, "start": 24.12, "end": 24.34}, {"text": "en", "sentence": 5, "start": 24.34, "end": 24.41}, {"text": "Brasil.", "sentence": 5, "start": 24.44, "end": 24.82}, {"text": "Entonces,", "sentence": 6, "start": 24.85, "end": 25.25}, {"text": "por", "sentence": 6, "start": 25.25, "end": 25.41}, {"text": "ahora,", "sentence": 6, "start": 25.41, "end": 25.68}, {"text": "la", "sentence": 6, "start": 25.68, "end": 25.76}, {"text": "SUV", "sentence": 6, "start": 25.78, "end": 25.94}, {"text": "mediana", "sentence": 6, "start": 25.94, "end": 26.31}, {"text": "más", "sentence": 6, "start": 26.31, "end": 26.47}, {"text": "vendida", "sentence": 6, "start": 26.47, "end": 26.84}, {"text": "de", "sentence": 6, "start": 26.84, "end": 26.89}, {"text": "Brasil", "sentence": 6, "start": 26.94, "end": 27.25}, {"text": "en", "sentence": 6, "start": 27.25, "end": 27.35}, {"text": "2026", "sentence": 6, "start": 27.35, "end": 28.0}, {"text": "es", "sentence": 6, "start": 28.01, "end": 28.1}, {"text": "un", "sentence": 6, "start": 28.1, "end": 28.2}, {"text": "híbrido.", "sentence": 6, "start": 28.2, "end": 28.811}, {"text": "¿Cuál", "sentence": 7, "start": 28.811, "end": 29.16}, {"text": "es?", "sentence": 7, "start": 29.25, "end": 29.3}, {"text": "La", "sentence": 7, "start": 29.37, "end": 29.46}, {"text": "Haval", "sentence": 7, "start": 29.46, "end": 29.7}, {"text": "H6.", "sentence": 7, "start": 29.7, "end": 30.22}, {"text": "Y", "sentence": 7, "start": 30.22, "end": 30.31}, {"text": "la", "sentence": 7, "start": 30.31, "end": 30.4}, {"text": "versión", "sentence": 7, "start": 30.4, "end": 30.79}, {"text": "híbrida", "sentence": 7, "start": 30.79, "end": 31.16}, {"text": "la", "sentence": 7, "start": 31.16, "end": 31.27}, {"text": "tenés", "sentence": 7, "start": 31.27, "end": 31.54}, {"text": "en", "sentence": 7, "start": 31.54, "end": 31.65}, {"text": "Valparaiso", "sentence": 7, "start": 31.65, "end": 32.16}, {"text": "Motors.", "sentence": 7, "start": 32.2, "end": 32.76}, {"text": "Pedinos", "sentence": 8, "start": 32.76, "end": 33.17}, {"text": "precio", "sentence": 8, "start": 33.17, "end": 33.39}, {"text": "y", "sentence": 8, "start": 33.43, "end": 33.47}, {"text": "financiación", "sentence": 8, "start": 33.47, "end": 34.01}, {"text": "de", "sentence": 8, "start": 34.04, "end": 34.11}, {"text": "cualquiera", "sentence": 8, "start": 34.11, "end": 34.57}, {"text": "de", "sentence": 8, "start": 34.57, "end": 34.66}, {"text": "nuestros", "sentence": 8, "start": 34.66, "end": 34.95}, {"text": "autos.", "sentence": 8, "start": 35.03, "end": 35.46}, {"text": "Comentá", "sentence": 8, "start": 35.46, "end": 35.86}, {"text": "H6", "sentence": 8, "start": 35.91, "end": 36.08}, {"text": "y", "sentence": 8, "start": 36.08, "end": 36.12}, {"text": "te", "sentence": 8, "start": 36.14, "end": 36.24}, {"text": "escribimos.", "sentence": 8, "start": 36.24, "end": 37.02}], "voiceEnd": 37.02}</script>
+    <script>
+      (function () {
+        const DUR = 38.32;
+        const D = JSON.parse(document.getElementById("timing").textContent);
+        const toks = D.tokens;
+        const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+        function find(word, n) {
+          let c = 0;
+          for (const t of toks) if (norm(t.text) === norm(word) && ++c === (n || 1)) return t;
+          throw new Error("ancla no encontrada: " + word + " #" + (n || 1));
+        }
+        const W = (w, n) => find(w, n).start;
+        const WE = (w, n) => find(w, n).end;
+        const SENT = (i) => toks.find((t) => t.sentence === i).start; // inicio de la frase i del guion
+        const $ = (id) => document.getElementById(id);
+        const events = (window.__hfEvents = []);
+        const ev = (t, label) => events.push({ t: +t.toFixed(3), label });
+
+        // Formato argentino de miles: 44.020
+        const fmt = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+        function build() {
+          const tl = gsap.timeline({ paused: true });
+          const pop = (el, t, label, extra) => {
+            tl.fromTo(el, Object.assign({ opacity: 0, scale: 0.92 }, (extra && extra.from) || {}),
+              Object.assign({ opacity: 1, scale: 1, duration: 0.32, ease: "back.out(2.2)" }, (extra && extra.to) || {}), t);
+            ev(t, label);
+          };
+          const fadeIn = (el, t, label, dur, from) => {
+            tl.fromTo(el, Object.assign({ opacity: 0, y: 18 }, from || {}), { opacity: 1, y: 0, x: 0, duration: dur || 0.3, ease: "power3.out" }, t);
+            ev(t, label);
+          };
+          const out = (el, t, dur, to) => tl.to(el, Object.assign({ opacity: 0, duration: dur || 0.2, ease: "power2.in" }, to || {}), t);
+          const counter = (el, from, to, t, dur, label) => {
+            const o = { v: from };
+            tl.fromTo(o, { v: from }, { v: to, duration: dur, ease: "power2.out", onUpdate: () => (el.textContent = fmt(o.v)) }, t);
+            tl.set(el, { textContent: fmt(from) }, Math.max(0, t - 0.001));
+            ev(t, label + " (cuenta)");
+            // cada 0,1 s cambia el numero mientras cuenta
+            for (let k = 0.1; k < dur - 0.05; k += 0.1) ev(t + k, label + " cambia");
+          };
+
+          // ---- Anclas (de la voz) ----
+          const tLa = W("La", 1), tPrimera = W("primera", 1), tPerdio = W("perdió"), tQuien = W("quién"), tPaso = W("pasó", 1);
+          const tPero1 = SENT(2), tHib1 = W("híbrido", 1), tChina = W("china");
+          const tEn = SENT(3), t2026a = W("2026", 1), tSuma = W("suma"), tPat = W("patentamientos"), tPatE = WE("patentamientos"), t486 = W("486");
+          const tVenia2 = W("venía", 2), tPrimera2 = W("primera", 2);
+          const tPero2 = SENT(4), tOct = W("octubre"), tSaco = W("sacó"), t2000 = W("2.000"), tSolo = W("solo"), tMes = W("mes");
+          const tComo = SENT(5), tTomo = W("Tomó"), tVers = W("versiones"), tFab = W("fabrica"), tBrasil2 = W("Brasil", 2);
+          const tEntonces = SENT(6), tAhora = W("ahora"), tVendida = W("vendida"), tHib2 = W("híbrido", 2);
+          const tCual = SENT(7), tHaval = W("Haval"), tHibrida = W("híbrida"), tValpa = W("Valparaiso");
+          const tPedinos = SENT(8), tDesde = W("desde"), tAutos = W("autos", 2), tComenta = W("Comentá"), tFin = toks[toks.length - 1].end;
+
+          // ---- Fondo y estado inicial ----
+          tl.set("#car", { transformOrigin: "0 0", x: 0, y: 0, scale: 1 }, 0);
+          ev(0, "cuadro 0: gancho escrito + carrera andando");
+
+          // ================= ESCENA A: la carrera (cuadro 0) =================
+          // Pantalla llena desde el cuadro 0: las dos barras ya vienen corriendo.
+          const raceEnd = tPerdio + 0.9;
+          // posicion del auto en la carrera: escala 0.36 sobre la barra bordo
+          const carS = 0.5, carH = 479 * carS;
+          const carY = 800 + 10 - carH - 380; // ruedas apoyadas sobre la barra
+          const carXfor = (barW) => barW - 410;
+          const R0 = 500, R1 = 540, H0 = 400;
+          const H1 = H0 + (R0 + (R1 - R0) * (tPerdio / raceEnd) - H0) / Math.pow(tPerdio / raceEnd, 3); // se cruzan en "perdio"
+          tl.set("#car", { scale: carS, y: carY, x: carXfor(H0) }, 0);
+          tl.set("#laneR", { width: R0 }, 0);
+          tl.set("#laneH", { width: H0 }, 0);
+          tl.set("#rank", { x: R0 - 60 }, 0);
+          tl.set(["#trackR", "#trackH", "#laneR", "#laneH", "#rank"], { opacity: 1 }, 0);
+          tl.set("#laneRtxt", { opacity: 1 }, 0);
+          // la que venia primera avanza parejo; la otra acelera y la pasa justo en "perdio"
+          tl.to("#laneR", { width: R1, duration: raceEnd, ease: "none" }, 0);
+          tl.to("#rank", { x: R1 - 60, duration: raceEnd, ease: "none" }, 0);
+          tl.to("#laneH", { width: H1, duration: raceEnd, ease: "power2.in" }, 0);
+          tl.to("#car", { x: carXfor(H1), duration: raceEnd, ease: "power2.in" }, 0);
+          // lineas de velocidad: aparecen por tramos (eventos chicos)
+          ["#sp1", "#sp2", "#sp3"].forEach((s, i) => {
+            for (let k = 0; k < 3; k++) {
+              const t0 = 0.45 + i * 0.37 + k * 1.15;
+              if (t0 > tPerdio) break;
+              tl.fromTo(s, { opacity: 0 }, { opacity: 0.9, duration: 0.08 }, t0);
+              tl.to(s, { opacity: 0, duration: 0.25 }, t0 + 0.32);
+              ev(t0, "linea de velocidad");
+            }
+          });
+          // las lineas siguen la cola del auto
+          tl.fromTo(["#sp1", "#sp2", "#sp3"], { x: H0 - 390 - 170 }, { x: H1 - 390 - 170, duration: raceEnd, ease: "power2.in" }, 0);
+
+          // gancho -> encabezado de la carrera
+          out("#hook", tLa - 0.12, 0.18, { y: -20 });
+          fadeIn("#hdA", tLa, "encabezado SUV medianas 2026");
+          fadeIn("#foot1", tLa + 0.25, "fuente Fenabrave");
+          tl.fromTo("#rank", { scale: 1 }, { scale: 1.22, duration: 0.14, yoyo: true, repeat: 1, ease: "sine.inOut" }, tPrimera);
+          ev(tPrimera, "late el #1 de la que venía primera");
+          // "perdio el primer puesto": cambia el N.º 1
+          tl.to("#rank .r2", { opacity: 1, duration: 0.18 }, tPerdio);
+          tl.fromTo("#rank", { rotation: 0 }, { rotation: 360, duration: 0.45, ease: "power3.out" }, tPerdio);
+          ev(tPerdio, "pasa adelante: #1 -> #2");
+          out("#hdA1", tPerdio, 0.15);
+          tl.fromTo("#hdA2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, tPerdio + 0.05);
+          ev(tPerdio + 0.05, "titulo: cambió el N.º 1");
+          fadeIn("#laneLabelH", tPerdio + 0.5, "etiqueta: la que la pasó");
+          // "quien la paso": signo de pregunta sobre el auto (queda hasta la revelacion)
+          tl.fromTo("#qmark", { opacity: 0, scale: 2.2 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(2.4)" }, tQuien);
+          ev(tQuien, "signo ? sobre el auto");
+
+          // ================= ESCENA B: un hibrido, de marca china =================
+          const tB = tPero1;
+          out(["#hdA", "#laneR", "#trackR", "#rank", "#laneLabelH", "#trackH"], tB - 0.05, 0.22, { x: -60 });
+          tl.to("#laneH", { width: 0, duration: 0.3, ease: "power2.in" }, tB - 0.05);
+          // el auto lleva el ojo: de la carrera al centro, grande
+          tl.to("#car", { scale: 1, x: 0, y: 40, duration: 0.55, ease: "power3.inOut" }, tB - 0.05);
+          ev(tB - 0.05, "el auto pasa al centro");
+          fadeIn("#hdB", tB + 0.08, "titulo: pero no la pasó cualquiera");
+          pop("#tagHib", tHib1, "etiqueta HÍBRIDO", { from: { x: -30 }, to: { x: 0 } });
+          pop("#tagChina", tChina, "etiqueta MARCA CHINA", { from: { x: -30 }, to: { x: 0 } });
+
+          // ================= ESCENA C: 44.020 en 2026 =================
+          const tC = tEn;
+          out(["#hdB", "#tagHib", "#tagChina"], tC - 0.08, 0.2);
+          tl.to("#car", { scale: 0.28, x: 596, y: -380, duration: 0.45, ease: "power3.inOut" }, tC - 0.08);
+          ev(tC - 0.08, "el auto se achica arriba a la derecha");
+          fadeIn("#hdC", t2026a - 0.1, "encabezado patentamientos 2026");
+          tl.set("#n1", { opacity: 1 }, tSuma - 0.02);
+          counter($("n1"), 0, 44020, tSuma, Math.max(0.9, tPatE - tSuma - 0.15), "44.020");
+          fadeIn("#n1l", tPatE - 0.1, "etiqueta: su total en 2026");
+          tl.fromTo("#n1", { scale: 1 }, { scale: 1.04, duration: 0.12, yoyo: true, repeat: 1, transformOrigin: "0% 50%" }, tPatE - 0.15);
+          fadeIn("#n2", t486 - 0.3, "43.534 la que venía primera", 0.3, { y: 30 });
+          fadeIn("#n2l", t486 - 0.15, "etiqueta gris");
+          pop("#d486", t486, "+486", { from: { scale: 1.35 } });
+          tl.fromTo("#n2l", { color: "#77716a" }, { color: "#151415", duration: 0.2, yoyo: true, repeat: 1 }, tVenia2);
+          ev(tVenia2, "resalta: la que venía primera");
+
+          // ================= ESCENA D: octubre =================
+          const tD = tPero2;
+          out(["#hdC", "#n1", "#n1l", "#n2", "#n2l", "#d486", "#foot1"], tD - 0.08, 0.2, { y: -30 });
+          tl.to("#car", { scale: 0.26, x: 101, y: 363.5, duration: 0.45, ease: "power3.inOut" }, tD - 0.08);
+          ev(tD - 0.08, "cambio a octubre");
+          fadeIn("#hdD", tD + 0.05, "titulo lo más fuerte: octubre");
+          fadeIn("#foot2", tD + 0.3, "fuente octubre parcial");
+          tl.fromTo("#cal", { opacity: 0, rotationX: -90, transformOrigin: "50% 0%" }, { opacity: 1, rotationX: 0, duration: 0.4, ease: "back.out(1.6)" }, tOct);
+          ev(tOct, "calendario OCT");
+          tl.fromTo("#baseline", { opacity: 0, scaleX: 0, transformOrigin: "0 50%" }, { opacity: 1, scaleX: 1, duration: 0.3 }, tOct + 0.2);
+          ev(tOct + 0.2, "linea base");
+          tl.set(["#vbH", "#vbR"], { opacity: 1 }, tSaco - 0.1);
+          tl.fromTo("#vbH", { height: 0 }, { height: 480, duration: 0.7, ease: "power3.out" }, tSaco - 0.1);
+          tl.fromTo("#vbR", { height: 0 }, { height: 290, duration: 0.6, ease: "power3.out" }, tSaco);
+          tl.fromTo("#car", { y: 363.5 }, { y: -116.5, duration: 0.7, ease: "power3.out", immediateRender: false }, tSaco - 0.1);
+          counter($("vH"), 0, 5342, tSaco - 0.1, 0.7, "5.342");
+          counter($("vR"), 0, 3234, tSaco, 0.6, "3.234");
+          fadeIn("#vlH", tSaco + 0.2, "etiqueta barra bordó");
+          fadeIn("#vlR", tSaco + 0.35, "etiqueta barra gris");
+          tl.fromTo("#octLine", { opacity: 0, scaleX: 0, transformOrigin: "0 50%" }, { opacity: 1, scaleX: 1, duration: 0.25 }, t2000 - 0.1);
+          ev(t2000 - 0.1, "linea de diferencia");
+          pop("#dOct", t2000, "+2.108", { from: { scale: 1.4 } });
+          tl.fromTo("#dOct", { y: 0 }, { y: -6, duration: 0.12, yoyo: true, repeat: 1 }, tSolo);
+          ev(tSolo, "rebote +2.108 en un solo mes");
+
+          // ================= ESCENA E: como =================
+          const tE = tComo;
+          out(["#hdD", "#cal", "#vbH", "#vbR", "#baseline", "#octLine", "#vlH", "#vlR", "#dOct", "#foot2"], tE - 0.1, 0.2);
+          tl.to("#car", { x: 900, opacity: 0, duration: 0.35, ease: "power2.in" }, tE - 0.1);
+          tl.fromTo("#hdE", { opacity: 0, scale: 0.93, transformOrigin: "0 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, tE);
+          ev(tE, "¿CÓMO?");
+          const path = $("trendPath");
+          const len = path.getTotalLength();
+          tl.set(path, { attr: { "stroke-dasharray": len, "stroke-dashoffset": len, opacity: 1 } }, tTomo - 0.01);
+          tl.to(path, { attr: { "stroke-dashoffset": 0 }, duration: Math.max(0.8, tVers - tTomo), ease: "power2.inOut" }, tTomo);
+          for (let k = 0; k < tVers - tTomo; k += 0.25) ev(tTomo + k, "linea de crecimiento se dibuja");
+          tl.fromTo("#trendHead", { attr: { opacity: 0 } }, { attr: { opacity: 1 }, duration: 0.1 }, tVers - 0.05);
+          tl.to("#trend", { opacity: 0.25, duration: 0.3 }, tVers);
+          tl.fromTo("#card1", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, tVers);
+          ev(tVers, "tarjeta híbridas flex");
+          tl.fromTo("#card2", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, tDesde);
+          ev(tDesde, "tarjeta se fabrica en Brasil");
+          tl.fromTo("#card2 .tt", { color: "#151415" }, { color: "#801628", duration: 0.15 }, tFab);
+          ev(tFab, "resalta: se fabrica");
+
+          // ================= ESCENA F: veredicto =================
+          const tF = tEntonces;
+          out(["#hdE", "#card1", "#card2", "#trend"], tF + 0.3, 0.25, { x: -40 });
+          tl.fromTo("#car", { x: 300, y: 30, scale: 0.9, opacity: 0 }, { x: 40, y: 30, scale: 0.9, opacity: 1, duration: 0.5, ease: "power3.out", immediateRender: false }, tF - 0.05);
+          ev(tF - 0.05, "vuelve el auto");
+          fadeIn("#hdF", tF + 0.1, "titulo la SUV mediana más vendida");
+          pop("#porAhora", tAhora, "POR AHORA*");
+          fadeIn("#foot3", tAhora + 0.2, "nota: datos parciales");
+          tl.fromTo("#n1badge", { opacity: 0, scale: 1.8, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.6)" }, tVendida);
+          ev(tVendida, "sello N.º 1");
+          tl.set("#tagHib", { left: 300, top: 244 }, tHib2 - 0.01);
+          pop("#tagHib", tHib2, "etiqueta HÍBRIDO otra vez");
+
+          // ================= ESCENA G: revelacion =================
+          const tG = tCual;
+          out(["#hdF", "#porAhora", "#n1badge", "#tagHib", "#foot3"], tG - 0.08, 0.2);
+          fadeIn("#hdG", tG, "¿CUÁL ES?");
+          tl.to("#car", { x: 0, y: 0, scale: 1, duration: 0.5, ease: "power2.inOut" }, tG);
+          tl.fromTo("#qmark", { scale: 1 }, { scale: 1.25, duration: 0.14, yoyo: true, repeat: 3, ease: "sine.inOut" }, tG + 0.05);
+          ev(tG + 0.05, "? late");
+          ev(tG + 0.33, "? late");
+          // revelacion en "Haval": destello, el dibujo se llena con la foto
+          tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.85, duration: 0.06 }, tHaval - 0.04);
+          tl.to("#flash", { opacity: 0, duration: 0.35, ease: "power2.out" }, tHaval + 0.02);
+          tl.set("#carPhoto", { opacity: 1 }, tHaval - 0.04);
+          tl.fromTo("#carPhoto", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power3.out" }, tHaval - 0.04);
+          tl.to("#carLines", { opacity: 0, duration: 0.35 }, tHaval + 0.05);
+          tl.to("#qmark", { opacity: 0, scale: 0.9, duration: 0.15 }, tHaval - 0.04);
+          tl.fromTo("#shadow", { opacity: 0 }, { opacity: 1, duration: 0.4 }, tHaval);
+          out("#hdG", tHaval - 0.06, 0.1);
+          tl.fromTo("#hdH", { opacity: 0, scale: 1.12, transformOrigin: "0 50%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }, tHaval - 0.02);
+          ev(tHaval - 0.04, "REVELACIÓN: Haval H6 (foto real)");
+          fadeIn("#credit", tHaval + 0.3, "crédito de la foto");
+          pop("#pillHev", tHibrida - 0.2, "versión híbrida");
+          fadeIn("#logo", tValpa, "logo Valparaiso Motors");
+
+          // ================= ESCENA H: CTA encima del pago =================
+          out("#pillHev", tPedinos - 0.1, 0.15);
+          tl.to("#car", { y: -70, duration: 0.4, ease: "power2.out" }, tPedinos - 0.1);
+          tl.to("#shadow", { y: -70, duration: 0.4, ease: "power2.out" }, tPedinos - 0.1);
+          tl.to("#credit", { y: 50, duration: 0.4, ease: "power2.out" }, tPedinos - 0.1);
+          pop("#cta", tPedinos, "botón Pedinos precio y financiación", { from: { y: 20 }, to: { y: 0 } });
+          tl.fromTo("#cta", { scale: 1 }, { scale: 1.04, duration: 0.14, yoyo: true, repeat: 1 }, tAutos);
+          ev(tAutos, "botón late");
+          pop("#comenta", tComenta, "Comentá H6", { from: { rotation: -14, scale: 1.3 }, to: { rotation: -4 } });
+          fadeIn("#share", tAutos + 0.1, "Mandáselo a alguien…");
+
+          // ================= Subtitulos palabra por palabra =================
+          buildSubs(tl);
+
+          // ================= Rellenos: nunca mas de 0,3 s sin evento =================
+          fillGaps(tl);
+
+          window.__timelines["main"] = tl;
+        }
+
+        function buildSubs(tl) {
+          const subs = $("subs");
+          const pages = [];
+          const len = (ws) => ws.map((w) => w.text).join(" ").length;
+          const ok = (ws) => ws.length <= 4 && len(ws) <= 20;
+          let chunk = [];
+          const flush = () => {
+            const m = chunk.length;
+            if (!m) return;
+            const target = len(chunk) / Math.max(1, Math.ceil(len(chunk) / 18));
+            const best = [0], prev = [0];
+            for (let j = 1; j <= m; j++) {
+              best[j] = Infinity;
+              for (let i = Math.max(0, j - 4); i < j; i++) {
+                const pg = chunk.slice(i, j);
+                if (!ok(pg) || best[i] === Infinity) continue;
+                const solo = pg.length === 1 && m > 1 ? 400 : 0;
+                const c = best[i] + Math.pow(len(pg) - target, 2) + solo + 30;
+                if (c < best[j]) { best[j] = c; prev[j] = i; }
+              }
+            }
+            const cuts = [];
+            for (let j = m; j > 0; j = prev[j]) cuts.unshift([prev[j], j]);
+            cuts.forEach(([i, j]) => pages.push(chunk.slice(i, j)));
+            chunk = [];
+          };
+          toks.forEach((t) => {
+            chunk.push(t);
+            if (/[.,:;?!]$/.test(t.text)) flush();
+          });
+          flush();
+          window.__words = [];
+          pages.forEach((pg, pi) => {
+            const el = document.createElement("div");
+            el.className = "page";
+            el.id = "pg" + pi;
+            const spans = pg.map((t, wi) => {
+              const s = document.createElement("span");
+              s.className = "w";
+              s.id = "pg" + pi + "w" + wi;
+              s.textContent = t.text;
+              if (wi) el.appendChild(document.createTextNode(" "));
+              el.appendChild(s);
+              return s;
+            });
+            subs.appendChild(el);
+            const start = pg[0].start;
+            const next = pages[pi + 1];
+            const end = next ? next[0].start : DUR - 0.05;
+            tl.set(el, { opacity: 1 }, start - 0.001);
+            tl.set(el, { opacity: 0 }, end - 0.001);
+            pg.forEach((t, wi) => {
+              tl.fromTo(spans[wi], { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.12, ease: "back.out(3)" }, t.start);
+              tl.set(spans[wi], { color: "#801628" }, t.start);
+              const nt = pg[wi + 1];
+              if (nt) tl.set(spans[wi], { color: "#151415" }, nt.start);
+              ev(t.start, "subtítulo: " + t.text);
+              window.__words.push({ t0: t.start, t1: nt ? nt.start : end, span: spans[wi] });
+            });
+          });
+        }
+
+        function fillGaps(tl) {
+          const tReveal = W("Haval");
+          const ts = events.map((e) => e.t).concat([DUR]).sort((a, b) => a - b);
+          const fills = [];
+          for (let i = 0; i < ts.length - 1; i++) {
+            let a = ts[i];
+            const b = ts[i + 1];
+            while (b - a > 0.3) {
+              a = a + Math.min(0.28, (b - a) / 2);
+              fills.push(a);
+            }
+          }
+          const underlined = new Set();
+          let alt = 0;
+          fills.forEach((t) => {
+            // 1) si se esta diciendo una palabra larga: se subraya esa palabra
+            const w = window.__words.find((x) => x.t0 <= t && t < x.t1 - 0.05);
+            if (w && !underlined.has(w.span)) {
+              underlined.add(w.span);
+              const ul = document.createElement("i");
+              ul.className = "ul";
+              w.span.appendChild(ul);
+              tl.fromTo(ul, { opacity: 1, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.18, ease: "power2.out" }, t);
+              tl.set(ul, { opacity: 0 }, w.t1);
+              ev(t, "relleno: subrayado de la palabra");
+              return;
+            }
+            // 2) en silencios: destello sobre lo que se esta mirando
+            if (t < tReveal) {
+              tl.fromTo("#sheen", { opacity: 0.9, x: -160 }, { opacity: 0.9, x: 860, duration: 0.25, ease: "power1.inOut" }, t);
+              tl.set("#sheen", { opacity: 0 }, t + 0.25);
+              ev(t, "relleno: destello en el titulo");
+            } else {
+              const onCta = t > W("Pedinos") && alt++ % 2 === 1;
+              const el = onCta ? "#ctaSheen" : "#carSheen";
+              tl.fromTo(el, { opacity: 1, x: -240 }, { opacity: 1, x: onCta ? 860 : 900, duration: 0.26, ease: "power1.inOut" }, t);
+              tl.set(el, { opacity: 0 }, t + 0.26);
+              ev(t, onCta ? "relleno: brillo en el botón" : "relleno: brillo sobre el auto");
+            }
+          });
+        }
+
+        document.fonts.ready.then(build);
+      })();
+    </script>
+  </body>
+</html>

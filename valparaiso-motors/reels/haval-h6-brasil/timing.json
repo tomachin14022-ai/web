@@ -1,0 +1,851 @@
+{
+ "tokens": [
+  {
+   "text": "Si",
+   "sentence": 0,
+   "start": 0.03,
+   "end": 0.1
+  },
+  {
+   "text": "estás",
+   "sentence": 0,
+   "start": 0.1,
+   "end": 0.3
+  },
+  {
+   "text": "por",
+   "sentence": 0,
+   "start": 0.39,
+   "end": 0.53
+  },
+  {
+   "text": "comprar",
+   "sentence": 0,
+   "start": 0.53,
+   "end": 0.91
+  },
+  {
+   "text": "una",
+   "sentence": 0,
+   "start": 0.91,
+   "end": 1.07
+  },
+  {
+   "text": "SUV,",
+   "sentence": 0,
+   "start": 1.07,
+   "end": 1.33
+  },
+  {
+   "text": "mirá",
+   "sentence": 0,
+   "start": 1.33,
+   "end": 1.54
+  },
+  {
+   "text": "lo",
+   "sentence": 0,
+   "start": 1.54,
+   "end": 1.64
+  },
+  {
+   "text": "que",
+   "sentence": 0,
+   "start": 1.64,
+   "end": 1.8
+  },
+  {
+   "text": "acaba",
+   "sentence": 0,
+   "start": 1.8,
+   "end": 2.07
+  },
+  {
+   "text": "de",
+   "sentence": 0,
+   "start": 2.07,
+   "end": 2.17
+  },
+  {
+   "text": "pasar",
+   "sentence": 0,
+   "start": 2.17,
+   "end": 2.43
+  },
+  {
+   "text": "en",
+   "sentence": 0,
+   "start": 2.43,
+   "end": 2.53
+  },
+  {
+   "text": "Brasil.",
+   "sentence": 0,
+   "start": 2.53,
+   "end": 3.1
+  },
+  {
+   "text": "La",
+   "sentence": 1,
+   "start": 3.13,
+   "end": 3.2
+  },
+  {
+   "text": "SUV",
+   "sentence": 1,
+   "start": 3.2,
+   "end": 3.36
+  },
+  {
+   "text": "mediana",
+   "sentence": 1,
+   "start": 3.36,
+   "end": 3.71
+  },
+  {
+   "text": "que",
+   "sentence": 1,
+   "start": 3.75,
+   "end": 3.89
+  },
+  {
+   "text": "venía",
+   "sentence": 1,
+   "start": 3.89,
+   "end": 4.15
+  },
+  {
+   "text": "primera",
+   "sentence": 1,
+   "start": 4.15,
+   "end": 4.52
+  },
+  {
+   "text": "en",
+   "sentence": 1,
+   "start": 4.52,
+   "end": 4.61
+  },
+  {
+   "text": "ventas",
+   "sentence": 1,
+   "start": 4.62,
+   "end": 4.9
+  },
+  {
+   "text": "este",
+   "sentence": 1,
+   "start": 4.96,
+   "end": 5.14
+  },
+  {
+   "text": "año",
+   "sentence": 1,
+   "start": 5.14,
+   "end": 5.27
+  },
+  {
+   "text": "perdió",
+   "sentence": 1,
+   "start": 5.35,
+   "end": 5.63
+  },
+  {
+   "text": "el",
+   "sentence": 1,
+   "start": 5.65,
+   "end": 5.74
+  },
+  {
+   "text": "primer",
+   "sentence": 1,
+   "start": 5.74,
+   "end": 5.91
+  },
+  {
+   "text": "puesto.",
+   "sentence": 1,
+   "start": 6.28,
+   "end": 6.56
+  },
+  {
+   "text": "Al",
+   "sentence": 1,
+   "start": 6.59,
+   "end": 6.67
+  },
+  {
+   "text": "final",
+   "sentence": 1,
+   "start": 6.67,
+   "end": 6.86
+  },
+  {
+   "text": "te",
+   "sentence": 1,
+   "start": 6.95,
+   "end": 7.01
+  },
+  {
+   "text": "digo",
+   "sentence": 1,
+   "start": 7.07,
+   "end": 7.28
+  },
+  {
+   "text": "quién",
+   "sentence": 1,
+   "start": 7.28,
+   "end": 7.55
+  },
+  {
+   "text": "la",
+   "sentence": 1,
+   "start": 7.56,
+   "end": 7.67
+  },
+  {
+   "text": "pasó.",
+   "sentence": 1,
+   "start": 7.67,
+   "end": 8.04
+  },
+  {
+   "text": "Pero",
+   "sentence": 2,
+   "start": 8.04,
+   "end": 8.2
+  },
+  {
+   "text": "no",
+   "sentence": 2,
+   "start": 8.2,
+   "end": 8.23
+  },
+  {
+   "text": "la",
+   "sentence": 2,
+   "start": 8.28,
+   "end": 8.36
+  },
+  {
+   "text": "pasó",
+   "sentence": 2,
+   "start": 8.36,
+   "end": 8.51
+  },
+  {
+   "text": "cualquiera:",
+   "sentence": 2,
+   "start": 8.52,
+   "end": 9.03
+  },
+  {
+   "text": "la",
+   "sentence": 2,
+   "start": 9.04,
+   "end": 9.13
+  },
+  {
+   "text": "pasó",
+   "sentence": 2,
+   "start": 9.13,
+   "end": 9.36
+  },
+  {
+   "text": "un",
+   "sentence": 2,
+   "start": 9.36,
+   "end": 9.52
+  },
+  {
+   "text": "híbrido.",
+   "sentence": 2,
+   "start": 9.52,
+   "end": 9.96
+  },
+  {
+   "text": "Y",
+   "sentence": 2,
+   "start": 9.96,
+   "end": 10.02
+  },
+  {
+   "text": "de",
+   "sentence": 2,
+   "start": 10.02,
+   "end": 10.14
+  },
+  {
+   "text": "una",
+   "sentence": 2,
+   "start": 10.14,
+   "end": 10.32
+  },
+  {
+   "text": "marca",
+   "sentence": 2,
+   "start": 10.32,
+   "end": 10.63
+  },
+  {
+   "text": "china.",
+   "sentence": 2,
+   "start": 10.63,
+   "end": 11.14
+  },
+  {
+   "text": "En",
+   "sentence": 3,
+   "start": 11.17,
+   "end": 11.25
+  },
+  {
+   "text": "lo",
+   "sentence": 3,
+   "start": 11.25,
+   "end": 11.36
+  },
+  {
+   "text": "que",
+   "sentence": 3,
+   "start": 11.36,
+   "end": 11.44
+  },
+  {
+   "text": "va",
+   "sentence": 3,
+   "start": 11.53,
+   "end": 11.59
+  },
+  {
+   "text": "de",
+   "sentence": 3,
+   "start": 11.65,
+   "end": 11.74
+  },
+  {
+   "text": "2026",
+   "sentence": 3,
+   "start": 11.75,
+   "end": 12.44
+  },
+  {
+   "text": "ya",
+   "sentence": 3,
+   "start": 12.44,
+   "end": 12.5
+  },
+  {
+   "text": "suma",
+   "sentence": 3,
+   "start": 12.55,
+   "end": 12.77
+  },
+  {
+   "text": "44.020",
+   "sentence": 3,
+   "start": 12.77,
+   "end": 13.86
+  },
+  {
+   "text": "patentamientos:",
+   "sentence": 3,
+   "start": 13.86,
+   "end": 14.88
+  },
+  {
+   "text": "486",
+   "sentence": 3,
+   "start": 14.88,
+   "end": 15.54
+  },
+  {
+   "text": "más",
+   "sentence": 3,
+   "start": 15.54,
+   "end": 15.76
+  },
+  {
+   "text": "que",
+   "sentence": 3,
+   "start": 15.76,
+   "end": 15.96
+  },
+  {
+   "text": "la",
+   "sentence": 3,
+   "start": 16.0,
+   "end": 16.11
+  },
+  {
+   "text": "que",
+   "sentence": 3,
+   "start": 16.12,
+   "end": 16.34
+  },
+  {
+   "text": "venía",
+   "sentence": 3,
+   "start": 16.34,
+   "end": 16.67
+  },
+  {
+   "text": "primera.",
+   "sentence": 3,
+   "start": 16.69,
+   "end": 17.47
+  },
+  {
+   "text": "Pero",
+   "sentence": 4,
+   "start": 17.51,
+   "end": 17.62
+  },
+  {
+   "text": "lo",
+   "sentence": 4,
+   "start": 17.68,
+   "end": 17.78
+  },
+  {
+   "text": "más",
+   "sentence": 4,
+   "start": 17.78,
+   "end": 17.92
+  },
+  {
+   "text": "fuerte",
+   "sentence": 4,
+   "start": 17.99,
+   "end": 18.23
+  },
+  {
+   "text": "fue",
+   "sentence": 4,
+   "start": 18.23,
+   "end": 18.38
+  },
+  {
+   "text": "octubre:",
+   "sentence": 4,
+   "start": 18.38,
+   "end": 18.83
+  },
+  {
+   "text": "le",
+   "sentence": 4,
+   "start": 18.83,
+   "end": 18.93
+  },
+  {
+   "text": "sacó",
+   "sentence": 4,
+   "start": 18.93,
+   "end": 19.13
+  },
+  {
+   "text": "más",
+   "sentence": 4,
+   "start": 19.13,
+   "end": 19.28
+  },
+  {
+   "text": "de",
+   "sentence": 4,
+   "start": 19.28,
+   "end": 19.38
+  },
+  {
+   "text": "2.000",
+   "sentence": 4,
+   "start": 19.38,
+   "end": 19.98
+  },
+  {
+   "text": "autos",
+   "sentence": 4,
+   "start": 19.98,
+   "end": 20.23
+  },
+  {
+   "text": "en",
+   "sentence": 4,
+   "start": 20.23,
+   "end": 20.29
+  },
+  {
+   "text": "un",
+   "sentence": 4,
+   "start": 20.29,
+   "end": 20.48
+  },
+  {
+   "text": "solo",
+   "sentence": 4,
+   "start": 20.48,
+   "end": 20.67
+  },
+  {
+   "text": "mes.",
+   "sentence": 4,
+   "start": 20.67,
+   "end": 20.974
+  },
+  {
+   "text": "¿Cómo?",
+   "sentence": 5,
+   "start": 20.974,
+   "end": 21.38
+  },
+  {
+   "text": "Tomó",
+   "sentence": 5,
+   "start": 21.45,
+   "end": 21.61
+  },
+  {
+   "text": "fuerza",
+   "sentence": 5,
+   "start": 21.61,
+   "end": 21.86
+  },
+  {
+   "text": "con",
+   "sentence": 5,
+   "start": 21.88,
+   "end": 22.01
+  },
+  {
+   "text": "sus",
+   "sentence": 5,
+   "start": 22.01,
+   "end": 22.14
+  },
+  {
+   "text": "nuevas",
+   "sentence": 5,
+   "start": 22.14,
+   "end": 22.41
+  },
+  {
+   "text": "versiones",
+   "sentence": 5,
+   "start": 22.41,
+   "end": 22.82
+  },
+  {
+   "text": "híbridas",
+   "sentence": 5,
+   "start": 22.82,
+   "end": 23.11
+  },
+  {
+   "text": "flex,",
+   "sentence": 5,
+   "start": 23.19,
+   "end": 23.41
+  },
+  {
+   "text": "y",
+   "sentence": 5,
+   "start": 23.42,
+   "end": 23.47
+  },
+  {
+   "text": "desde",
+   "sentence": 5,
+   "start": 23.47,
+   "end": 23.72
+  },
+  {
+   "text": "que",
+   "sentence": 5,
+   "start": 23.72,
+   "end": 23.75
+  },
+  {
+   "text": "se",
+   "sentence": 5,
+   "start": 23.82,
+   "end": 23.98
+  },
+  {
+   "text": "fabrica",
+   "sentence": 5,
+   "start": 24.12,
+   "end": 24.34
+  },
+  {
+   "text": "en",
+   "sentence": 5,
+   "start": 24.34,
+   "end": 24.41
+  },
+  {
+   "text": "Brasil.",
+   "sentence": 5,
+   "start": 24.44,
+   "end": 24.82
+  },
+  {
+   "text": "Entonces,",
+   "sentence": 6,
+   "start": 24.85,
+   "end": 25.25
+  },
+  {
+   "text": "por",
+   "sentence": 6,
+   "start": 25.25,
+   "end": 25.41
+  },
+  {
+   "text": "ahora,",
+   "sentence": 6,
+   "start": 25.41,
+   "end": 25.68
+  },
+  {
+   "text": "la",
+   "sentence": 6,
+   "start": 25.68,
+   "end": 25.76
+  },
+  {
+   "text": "SUV",
+   "sentence": 6,
+   "start": 25.78,
+   "end": 25.94
+  },
+  {
+   "text": "mediana",
+   "sentence": 6,
+   "start": 25.94,
+   "end": 26.31
+  },
+  {
+   "text": "más",
+   "sentence": 6,
+   "start": 26.31,
+   "end": 26.47
+  },
+  {
+   "text": "vendida",
+   "sentence": 6,
+   "start": 26.47,
+   "end": 26.84
+  },
+  {
+   "text": "de",
+   "sentence": 6,
+   "start": 26.84,
+   "end": 26.89
+  },
+  {
+   "text": "Brasil",
+   "sentence": 6,
+   "start": 26.94,
+   "end": 27.25
+  },
+  {
+   "text": "en",
+   "sentence": 6,
+   "start": 27.25,
+   "end": 27.35
+  },
+  {
+   "text": "2026",
+   "sentence": 6,
+   "start": 27.35,
+   "end": 28.0
+  },
+  {
+   "text": "es",
+   "sentence": 6,
+   "start": 28.01,
+   "end": 28.1
+  },
+  {
+   "text": "un",
+   "sentence": 6,
+   "start": 28.1,
+   "end": 28.2
+  },
+  {
+   "text": "híbrido.",
+   "sentence": 6,
+   "start": 28.2,
+   "end": 28.811
+  },
+  {
+   "text": "¿Cuál",
+   "sentence": 7,
+   "start": 28.811,
+   "end": 29.16
+  },
+  {
+   "text": "es?",
+   "sentence": 7,
+   "start": 29.25,
+   "end": 29.3
+  },
+  {
+   "text": "La",
+   "sentence": 7,
+   "start": 29.37,
+   "end": 29.46
+  },
+  {
+   "text": "Haval",
+   "sentence": 7,
+   "start": 29.46,
+   "end": 29.7
+  },
+  {
+   "text": "H6.",
+   "sentence": 7,
+   "start": 29.7,
+   "end": 30.22
+  },
+  {
+   "text": "Y",
+   "sentence": 7,
+   "start": 30.22,
+   "end": 30.31
+  },
+  {
+   "text": "la",
+   "sentence": 7,
+   "start": 30.31,
+   "end": 30.4
+  },
+  {
+   "text": "versión",
+   "sentence": 7,
+   "start": 30.4,
+   "end": 30.79
+  },
+  {
+   "text": "híbrida",
+   "sentence": 7,
+   "start": 30.79,
+   "end": 31.16
+  },
+  {
+   "text": "la",
+   "sentence": 7,
+   "start": 31.16,
+   "end": 31.27
+  },
+  {
+   "text": "tenés",
+   "sentence": 7,
+   "start": 31.27,
+   "end": 31.54
+  },
+  {
+   "text": "en",
+   "sentence": 7,
+   "start": 31.54,
+   "end": 31.65
+  },
+  {
+   "text": "Valparaiso",
+   "sentence": 7,
+   "start": 31.65,
+   "end": 32.16
+  },
+  {
+   "text": "Motors.",
+   "sentence": 7,
+   "start": 32.2,
+   "end": 32.76
+  },
+  {
+   "text": "Pedinos",
+   "sentence": 8,
+   "start": 32.76,
+   "end": 33.17
+  },
+  {
+   "text": "precio",
+   "sentence": 8,
+   "start": 33.17,
+   "end": 33.39
+  },
+  {
+   "text": "y",
+   "sentence": 8,
+   "start": 33.43,
+   "end": 33.47
+  },
+  {
+   "text": "financiación",
+   "sentence": 8,
+   "start": 33.47,
+   "end": 34.01
+  },
+  {
+   "text": "de",
+   "sentence": 8,
+   "start": 34.04,
+   "end": 34.11
+  },
+  {
+   "text": "cualquiera",
+   "sentence": 8,
+   "start": 34.11,
+   "end": 34.57
+  },
+  {
+   "text": "de",
+   "sentence": 8,
+   "start": 34.57,
+   "end": 34.66
+  },
+  {
+   "text": "nuestros",
+   "sentence": 8,
+   "start": 34.66,
+   "end": 34.95
+  },
+  {
+   "text": "autos.",
+   "sentence": 8,
+   "start": 35.03,
+   "end": 35.46
+  },
+  {
+   "text": "Comentá",
+   "sentence": 8,
+   "start": 35.46,
+   "end": 35.86
+  },
+  {
+   "text": "H6",
+   "sentence": 8,
+   "start": 35.91,
+   "end": 36.08
+  },
+  {
+   "text": "y",
+   "sentence": 8,
+   "start": 36.08,
+   "end": 36.12
+  },
+  {
+   "text": "te",
+   "sentence": 8,
+   "start": 36.14,
+   "end": 36.24
+  },
+  {
+   "text": "escribimos.",
+   "sentence": 8,
+   "start": 36.24,
+   "end": 37.02
+  }
+ ],
+ "voiceEnd": 37.02
+}
