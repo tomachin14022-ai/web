@@ -1,0 +1,341 @@
+{
+ "tokens": [
+  {
+   "text": "¿Comprarías",
+   "sentence": 0,
+   "start": 0.05,
+   "end": 0.78
+  },
+  {
+   "text": "un",
+   "sentence": 0,
+   "start": 0.79,
+   "end": 0.9
+  },
+  {
+   "text": "auto",
+   "sentence": 0,
+   "start": 0.96,
+   "end": 1.22
+  },
+  {
+   "text": "chino?",
+   "sentence": 0,
+   "start": 1.22,
+   "end": 1.86
+  },
+  {
+   "text": "En",
+   "sentence": 0,
+   "start": 1.91,
+   "end": 2.0
+  },
+  {
+   "text": "Brasil,",
+   "sentence": 0,
+   "start": 2.0,
+   "end": 2.56
+  },
+  {
+   "text": "mucha",
+   "sentence": 0,
+   "start": 2.56,
+   "end": 2.91
+  },
+  {
+   "text": "gente",
+   "sentence": 0,
+   "start": 2.91,
+   "end": 3.14
+  },
+  {
+   "text": "ya",
+   "sentence": 0,
+   "start": 3.26,
+   "end": 3.29
+  },
+  {
+   "text": "contestó.",
+   "sentence": 0,
+   "start": 3.65,
+   "end": 4.2
+  },
+  {
+   "text": "La",
+   "sentence": 1,
+   "start": 4.25,
+   "end": 4.37
+  },
+  {
+   "text": "SUV",
+   "sentence": 1,
+   "start": 4.37,
+   "end": 4.63
+  },
+  {
+   "text": "mediana",
+   "sentence": 1,
+   "start": 4.63,
+   "end": 5.23
+  },
+  {
+   "text": "más",
+   "sentence": 1,
+   "start": 5.23,
+   "end": 5.48
+  },
+  {
+   "text": "vendida",
+   "sentence": 1,
+   "start": 5.48,
+   "end": 6.09
+  },
+  {
+   "text": "del",
+   "sentence": 1,
+   "start": 6.09,
+   "end": 6.34
+  },
+  {
+   "text": "año",
+   "sentence": 1,
+   "start": 6.35,
+   "end": 6.58
+  },
+  {
+   "text": "ahora",
+   "sentence": 1,
+   "start": 6.63,
+   "end": 7.01
+  },
+  {
+   "text": "es",
+   "sentence": 1,
+   "start": 7.09,
+   "end": 7.2
+  },
+  {
+   "text": "una",
+   "sentence": 1,
+   "start": 7.21,
+   "end": 7.44
+  },
+  {
+   "text": "china,",
+   "sentence": 1,
+   "start": 7.47,
+   "end": 7.88
+  },
+  {
+   "text": "y",
+   "sentence": 1,
+   "start": 7.88,
+   "end": 8.02
+  },
+  {
+   "text": "le",
+   "sentence": 1,
+   "start": 8.02,
+   "end": 8.11
+  },
+  {
+   "text": "sacó",
+   "sentence": 1,
+   "start": 8.12,
+   "end": 8.31
+  },
+  {
+   "text": "el",
+   "sentence": 1,
+   "start": 8.36,
+   "end": 8.41
+  },
+  {
+   "text": "puesto",
+   "sentence": 1,
+   "start": 8.41,
+   "end": 8.72
+  },
+  {
+   "text": "a",
+   "sentence": 1,
+   "start": 8.72,
+   "end": 8.77
+  },
+  {
+   "text": "una",
+   "sentence": 1,
+   "start": 8.77,
+   "end": 8.92
+  },
+  {
+   "text": "norteamericana.",
+   "sentence": 1,
+   "start": 8.92,
+   "end": 10.2
+  },
+  {
+   "text": "Ya",
+   "sentence": 2,
+   "start": 10.25,
+   "end": 10.34
+  },
+  {
+   "text": "suma",
+   "sentence": 2,
+   "start": 10.34,
+   "end": 10.63
+  },
+  {
+   "text": "44.020",
+   "sentence": 2,
+   "start": 10.63,
+   "end": 11.95
+  },
+  {
+   "text": "vendidas",
+   "sentence": 2,
+   "start": 11.99,
+   "end": 12.53
+  },
+  {
+   "text": "en",
+   "sentence": 2,
+   "start": 12.53,
+   "end": 12.67
+  },
+  {
+   "text": "lo",
+   "sentence": 2,
+   "start": 12.67,
+   "end": 12.81
+  },
+  {
+   "text": "que",
+   "sentence": 2,
+   "start": 12.81,
+   "end": 13.01
+  },
+  {
+   "text": "va",
+   "sentence": 2,
+   "start": 12.88,
+   "end": 13.0
+  },
+  {
+   "text": "del",
+   "sentence": 2,
+   "start": 13.0,
+   "end": 13.12
+  },
+  {
+   "text": "año.",
+   "sentence": 2,
+   "start": 13.12,
+   "end": 13.33
+  },
+  {
+   "text": "¿Pasará",
+   "sentence": 3,
+   "start": 13.766,
+   "end": 14.271
+  },
+  {
+   "text": "lo",
+   "sentence": 3,
+   "start": 14.271,
+   "end": 14.338
+  },
+  {
+   "text": "mismo",
+   "sentence": 3,
+   "start": 14.338,
+   "end": 14.528
+  },
+  {
+   "text": "en",
+   "sentence": 3,
+   "start": 14.585,
+   "end": 14.719
+  },
+  {
+   "text": "Argentina?",
+   "sentence": 3,
+   "start": 14.766,
+   "end": 15.033
+  },
+  {
+   "text": "Pedinos",
+   "sentence": 4,
+   "start": 15.595,
+   "end": 15.985
+  },
+  {
+   "text": "precio",
+   "sentence": 4,
+   "start": 16.052,
+   "end": 16.414
+  },
+  {
+   "text": "y",
+   "sentence": 4,
+   "start": 16.48,
+   "end": 16.538
+  },
+  {
+   "text": "financiación",
+   "sentence": 4,
+   "start": 16.538,
+   "end": 17.271
+  },
+  {
+   "text": "de",
+   "sentence": 4,
+   "start": 17.338,
+   "end": 17.442
+  },
+  {
+   "text": "la",
+   "sentence": 4,
+   "start": 17.509,
+   "end": 17.842
+  },
+  {
+   "text": "H6",
+   "sentence": 4,
+   "start": 17.938,
+   "end": 18.271
+  },
+  {
+   "text": "PRO",
+   "sentence": 4,
+   "start": 18.309,
+   "end": 18.538
+  },
+  {
+   "text": "HEV",
+   "sentence": 4,
+   "start": 18.538,
+   "end": 18.766
+  },
+  {
+   "text": "en",
+   "sentence": 4,
+   "start": 18.766,
+   "end": 18.919
+  },
+  {
+   "text": "Valparaiso",
+   "sentence": 4,
+   "start": 18.919,
+   "end": 19.68
+  },
+  {
+   "text": "Motors.",
+   "sentence": 4,
+   "start": 19.68,
+   "end": 20.233
+  }
+ ],
+ "voiceEnd": 20.233
+}

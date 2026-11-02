@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Haval H6 en Brasil · Valparaiso Motors</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Anton"; src: url("assets/fonts/Anton-latin.woff2") format("woff2"); font-weight: 400; font-display: block; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-latin-var.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      :root { --paper: #faf9f6; --ink: #151415; --bordo: #801628; --gris: #77716a; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--paper); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Inter", sans-serif; color: var(--ink); }
+      .clip { position: absolute; inset: 0; }
+
+      /* ---------- Fondo (ocupa toda la pantalla) ---------- */
+      #bg { position: absolute; inset: 0; background: radial-gradient(120% 70% at 45% 38%, #ffffff 0%, #f6f4f0 55%, #e9e6e0 100%); }
+      #floor { position: absolute; left: 0; right: 0; top: 1060px; height: 860px; background: linear-gradient(180deg, rgba(232,229,223,0) 0%, rgba(226,222,215,0.65) 35%, rgba(220,216,208,0.9) 100%); }
+      #streaks { position: absolute; left: -600px; top: -400px; width: 2400px; height: 2800px;
+        background: repeating-linear-gradient(65deg, rgba(21,20,21,0.05) 0px, rgba(21,20,21,0.05) 4px, rgba(0,0,0,0) 4px, rgba(0,0,0,0) 74px); }
+      .ghost { position: absolute; left: 0; width: 1080px; text-align: center; font-family: "Anton"; line-height: 1; white-space: nowrap;
+        color: rgba(0,0,0,0); -webkit-text-stroke: 4px rgba(21,20,21,0.075); opacity: 0; }
+      #ghQ { font-size: 980px; top: 420px; opacity: 1; }
+      #gh1 { font-size: 820px; top: 470px; }
+      #gh2 { font-size: 560px; top: 640px; }
+      #gh5 { font-size: 820px; top: 500px; }
+      #ghQ2 { font-size: 980px; top: 420px; }
+      #grain { position: absolute; inset: 0; opacity: 0.07; mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(110% 80% at 45% 45%, rgba(0,0,0,0) 60%, rgba(40,30,30,0.10) 100%); }
+      #flash { position: absolute; inset: 0; background: #ffffff; opacity: 0; }
+
+      /* ---------- Zona segura de Reels: x 60-900, y 260-1440 ---------- */
+      #stage { position: absolute; left: 60px; top: 260px; width: 840px; height: 1180px; }
+      #cam { position: absolute; left: 0; top: 0; width: 840px; height: 1180px; }
+
+      /* Barra de progreso: se llena hasta el "?" (la respuesta llega en la revelacion) */
+      #prog { position: absolute; left: 0; top: 0; width: 790px; height: 10px; border-radius: 5px; background: rgba(21,20,21,0.09); overflow: hidden; }
+      #progFill { position: absolute; inset: 0; background: var(--bordo); border-radius: 5px; transform-origin: 0 50%; }
+      #progQ { position: absolute; left: 798px; top: -16px; width: 42px; height: 42px; }
+      #progQ .f { position: absolute; inset: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: "Anton"; color: #fff; backface-visibility: hidden; }
+      #progQ .f1 { background: var(--ink); font-size: 28px; }
+      #progQ .f2 { background: var(--bordo); font-size: 19px; }
+
+      .anton { font-family: "Anton", sans-serif; font-weight: 400; text-transform: uppercase; line-height: 0.96; }
+      .acc { color: var(--bordo); }
+      .kicker { font-weight: 800; font-size: 30px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bordo); }
+      .ln { overflow: hidden; padding-top: 0.14em; margin-top: -0.14em; }
+      .ln .in { display: block; white-space: nowrap; }
+      .hd { position: absolute; left: 0; top: 30px; width: 840px; }
+      .sheen { position: absolute; top: -10px; bottom: -10px; width: 140px; left: 0; opacity: 0;
+        background: linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 100%); }
+      .tag { position: absolute; display: flex; align-items: center; gap: 14px; padding: 14px 26px 14px 18px; border-radius: 999px;
+        font-weight: 900; font-size: 38px; letter-spacing: 0.03em; text-transform: uppercase; opacity: 0; white-space: nowrap; }
+      .tag svg { width: 40px; height: 40px; flex: none; }
+      .tag-b { background: var(--bordo); color: #fff; }
+      .tag-i { background: var(--ink); color: #fff; }
+      .tag-o { background: #fff; color: var(--ink); border: 4px solid var(--ink); }
+
+      /* ---------- 1) Gancho ---------- */
+      #h1 { top: 24px; font-size: 128px; }
+      #h1 .kw { display: inline-block; }
+      #stampBR { left: 470px; top: 186px; font-size: 34px; padding: 10px 22px; }
+      #crowd { position: absolute; left: 0; top: 412px; width: 840px; height: 56px; display: flex; gap: 14px; }
+      #crowd svg { width: 56px; height: 56px; opacity: 0; flex: none; }
+      #crowdCheck { position: absolute; left: 0; top: 404px; width: 72px; height: 72px; opacity: 0; }
+      #road { position: absolute; left: -400px; top: 788px; width: 1700px; height: 8px; opacity: 1;
+        background: repeating-linear-gradient(90deg, #151415 0px, #151415 70px, rgba(0,0,0,0) 70px, rgba(0,0,0,0) 140px); }
+      #roadEdge { position: absolute; left: 0; top: 802px; width: 840px; height: 4px; background: #151415; opacity: 0; }
+      .speed { position: absolute; left: 0; height: 9px; border-radius: 5px; background: var(--ink); opacity: 0; }
+
+      /* ---------- 2) Ranking ---------- */
+      #h2 .t, #h2 .t2 { font-size: 84px; }
+      #h2 .t2 { position: absolute; left: 0; top: 0; }
+      #porAhora { left: 0; top: 246px; font-size: 26px; padding: 6px 16px; }
+      .rcard { position: absolute; left: 0; width: 840px; height: 200px; border-radius: 28px; background: #fff; box-shadow: 0 18px 44px rgba(21,20,21,0.13); opacity: 0; }
+      #cardA { top: 310px; }
+      #cardB { top: 540px; }
+      .rnum { position: absolute; left: 18px; top: 18px; width: 164px; height: 164px; }
+      .rnum .f { position: absolute; inset: 0; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-family: "Anton"; font-size: 120px; color: #fff; backface-visibility: hidden; }
+      .rlab { position: absolute; left: 212px; font-weight: 900; font-size: 34px; letter-spacing: 0.01em; text-transform: uppercase; white-space: nowrap; }
+      #labA { top: 48px; }
+      #chipNA { left: 212px; top: 104px; font-size: 28px; padding: 8px 18px; }
+      #labB { left: 470px; top: 64px; color: var(--bordo); font-family: "Anton"; font-size: 70px; font-weight: 400; opacity: 0; }
+
+      /* ---------- 3) Contador ---------- */
+      #h4 .t { font-size: 62px; margin-top: 8px; }
+      .num { position: absolute; left: 0; font-family: "Anton"; white-space: nowrap; opacity: 0; line-height: 1; }
+      #n1 { top: 190px; font-size: 250px; color: var(--bordo); }
+      #n1l { position: absolute; left: 4px; top: 452px; font-weight: 800; font-size: 30px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0; }
+      #n2 { top: 540px; font-size: 140px; color: var(--gris); }
+      #n2l { position: absolute; left: 4px; top: 690px; font-weight: 800; font-size: 28px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gris); opacity: 0; }
+      #d486 { left: 450px; top: 562px; font-family: "Anton"; font-size: 90px; padding: 6px 30px 10px; }
+
+      /* ---------- Auto: caja base 800x360; se mueve con x/y/scale ---------- */
+      #car { position: absolute; left: 20px; top: 330px; width: 800px; height: 360px; }
+      #car > img, #rig > img { position: absolute; inset: 0; width: 100%; height: 100%; }
+      #carPhoto { opacity: 0; clip-path: inset(0% 0% 0% 100%); }
+      .wheel { position: absolute; }
+      .wheel .spin { position: absolute; inset: 0; }
+      .wheel img { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .wheel .sharp { opacity: 0.5; }
+      #rig { position: absolute; inset: 0; }
+      .wind { position: absolute; left: 0; height: 3px; border-radius: 2px; background: rgba(21,20,21,0.38); opacity: 0; }
+      #wF { left: 276.76px; top: 225.33px; width: 93.33px; height: 93.33px; transform: rotate(3.9deg) scaleX(0.7985); }
+      #wR { left: 667.71px; top: 211.29px; width: 82.86px; height: 82.86px; transform: rotate(0.4deg) scaleX(0.6331); }
+      #shadow { position: absolute; left: 60px; top: 660px; width: 720px; height: 56px; border-radius: 50%;
+        background: radial-gradient(50% 50% at 50% 50%, rgba(20,15,15,0.38) 0%, rgba(20,15,15,0) 100%); opacity: 0; }
+      #qmark { position: absolute; left: 20px; top: -50px; width: 140px; height: 140px; border-radius: 50%; background: var(--bordo); color: #fff;
+        display: flex; align-items: center; justify-content: center; font-family: "Anton"; font-size: 96px; opacity: 0; box-shadow: 0 10px 30px rgba(128,22,40,0.35); }
+      #carSheenBox { position: absolute; inset: 0; overflow: hidden; -webkit-mask-image: url("assets/img/h6-pro-hev-foto.webp"); mask-image: url("assets/img/h6-pro-hev-foto.webp");
+        -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+      .sweep { position: absolute; top: -20%; height: 140%; width: 180px; left: 0; opacity: 0;
+        background: linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 100%); }
+
+      /* ---------- 4) Revelacion ---------- */
+      #h9 .k { margin-bottom: 4px; }
+      #h9 .t { font-size: 190px; transform-origin: 0 50%; }
+      #h9 .ch { display: inline-block; opacity: 0; }
+      #proHev { left: 606px; top: 120px; font-family: "Anton"; font-size: 58px; padding: 4px 22px 8px; letter-spacing: 0.02em; }
+
+      /* ---------- 5) Pregunta ---------- */
+      #h10 .t { font-size: 92px; }
+      #pillBR { left: 30px; top: 690px; font-size: 34px; padding: 10px 24px 10px 14px; }
+      #pillAR { left: 500px; top: 690px; font-size: 34px; padding: 10px 24px; }
+      #arrowBA { position: absolute; left: 288px; top: 704px; width: 200px; height: 50px; overflow: visible; }
+      #bubble { position: absolute; left: 660px; top: 290px; width: 170px; height: 140px; opacity: 0; }
+      #tagComenta { left: 540px; top: 286px; font-size: 32px; padding: 8px 22px 8px 14px; }
+      #tagCual { left: 210px; top: 790px; font-size: 40px; padding: 12px 28px 12px 20px; }
+      #tagCual svg { width: 40px; height: 40px; }
+
+      /* ---------- 6) CTA ---------- */
+      #cta { position: absolute; left: 20px; top: 700px; width: 800px; height: 150px; border-radius: 75px; background: var(--bordo); color: #fff; overflow: hidden;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; box-shadow: 0 16px 36px rgba(128,22,40,0.32); }
+      #cta .l1 { font-weight: 900; font-size: 38px; letter-spacing: 0.02em; text-transform: uppercase; }
+      #cta .l2 { font-family: "Anton"; font-size: 40px; letter-spacing: 0.04em; margin-top: 4px; opacity: 0; text-transform: uppercase; }
+      #logo { position: absolute; left: 230px; top: 1096px; width: 380px; opacity: 0; }
+
+      .foot { position: absolute; left: 0; top: 1150px; width: 840px; text-align: center; font-weight: 600; font-size: 24px; color: #57524c; opacity: 0; }
+
+      /* ---------- Subtitulos palabra por palabra ---------- */
+      #subs { position: absolute; left: 0; top: 958px; width: 840px; height: 140px; }
+      .page { position: absolute; left: 0; top: 0; width: 840px; text-align: center; font-weight: 900; font-size: 76px; line-height: 1.06;
+        text-transform: uppercase; letter-spacing: 0.01em; opacity: 0; }
+      .w .ul { position: absolute; left: 2px; right: 2px; bottom: -3px; height: 8px; border-radius: 4px; background: var(--bordo); transform-origin: 0 50%; opacity: 0; }
+      .w { position: relative; display: inline-block; color: var(--ink); paint-order: stroke fill; -webkit-text-stroke: 14px var(--paper); opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="__DURATION__" data-width="1080" data-height="1920">
+      <audio id="mix" src="audio/mix.wav" data-start="0" data-duration="__DURATION__" data-track-index="2"></audio>
+
+      <div id="scene" class="clip" data-start="0" data-duration="__DURATION__" data-track-index="0">
+        <div id="bg"></div>
+        <div id="floor"></div>
+        <div id="streaks"></div>
+        <div id="ghQ" class="ghost" data-layout-ignore>?</div>
+        <div id="gh1" class="ghost" data-layout-ignore>#1</div>
+        <div id="gh2" class="ghost" data-layout-ignore>2026</div>
+        <div id="ghQ2" class="ghost" data-layout-ignore>?</div>
+        <div id="gh5" class="ghost" data-layout-ignore>H6</div>
+
+        <div id="stage">
+          <div id="cam">
+            <!-- ===== 1) Gancho: escrito desde el cuadro 0 ===== -->
+            <div id="h1" class="hd anton">
+              <div class="ln"><div class="in" id="h1l1"><span class="kw" id="kw0">¿Comprarías</span></div></div>
+              <div class="ln"><div class="in" id="h1l2"><span class="kw" id="kw1">un</span> <span class="kw" id="kw2">auto</span></div></div>
+              <div class="ln"><div class="in acc" id="h1l3"><span class="kw" id="kw3">chino?</span></div></div>
+            </div>
+            <div id="stampBR" class="tag tag-i">Brasil · 2026</div>
+            <div id="crowd"></div>
+            <svg id="crowdCheck" viewBox="0 0 72 72"><circle cx="36" cy="36" r="34" fill="#801628"/><path d="M20 37 L31 48 L52 25" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div id="roadEdge"></div>
+            <div id="road"></div>
+            <div id="sp1" class="speed" style="top:560px;width:130px"></div>
+            <div id="sp2" class="speed" style="top:630px;width:180px"></div>
+            <div id="sp3" class="speed" style="top:700px;width:110px"></div>
+            <div id="wd1" class="wind" style="top:446px;width:240px"></div>
+            <div id="wd2" class="wind" style="top:462px;width:160px"></div>
+            <div id="wd3" class="wind" style="top:812px;width:260px"></div>
+            <div id="wd4" class="wind" style="top:830px;width:180px"></div>
+
+            <!-- ===== 2) Ranking ===== -->
+            <div id="h2" class="hd">
+              <div class="ln"><div class="in kicker" id="h2k">Brasil · SUV medianas · 2026</div></div>
+              <div style="position:relative; margin-top:14px">
+                <div>
+                  <div class="ln t anton"><div class="in" id="h2a1">La más vendida</div></div>
+                  <div class="ln t anton"><div class="in acc" id="h2a2">del año</div></div>
+                </div>
+                <div class="t2 anton">
+                  <div class="ln"><div class="in" id="h2b1">Le sacó</div></div>
+                  <div class="ln"><div class="in acc" id="h2b2">el puesto</div></div>
+                </div>
+              </div>
+            </div>
+            <div id="porAhora" class="tag tag-o">Por ahora*</div>
+            <div id="cardA" class="rcard">
+              <div class="rnum"><div class="f" id="numA1" style="background:#151415">1</div><div class="f" id="numA2" style="background:#77716a">2</div></div>
+              <div class="rlab" id="labA">La que venía primera</div>
+              <div class="tag tag-i" id="chipNA">Norteamericana</div>
+            </div>
+            <div id="cardB" class="rcard">
+              <div class="rnum"><div class="f" id="numB1" style="background:#77716a">2</div><div class="f" id="numB2" style="background:#801628">1</div></div>
+              <div class="rlab" id="labB">China</div>
+            </div>
+
+            <!-- ===== 3) Contador ===== -->
+            <div id="h4" class="hd">
+              <div class="ln"><div class="in kicker" id="h4k">Brasil · 2026</div></div>
+              <div class="ln t anton"><div class="in" id="h4a">Vendidas en el año</div></div>
+            </div>
+            <div id="n1" class="num">0</div>
+            <div id="n1l">En lo que va de 2026</div>
+            <div id="n2" class="num">43.534</div>
+            <div id="n2l">La norteamericana</div>
+            <div id="d486" class="tag tag-b">+486</div>
+
+            <!-- ===== 4) Revelacion ===== -->
+            <div id="h9" class="hd">
+              <div class="kicker k" id="h9k" style="opacity:0">La que la pasó</div>
+              <div class="t anton" id="h9t"><span class="ch">H</span><span class="ch">A</span><span class="ch">V</span><span class="ch">A</span><span class="ch">L</span>&nbsp;<span class="ch acc">H</span><span class="ch acc">6</span></div>
+            </div>
+            <div id="proHev" class="tag tag-b">PRO HEV</div>
+
+            <!-- ===== 5) Pregunta ===== -->
+            <div id="h10" class="hd">
+              <div class="ln"><div class="in kicker" id="h10k">Tu opinión</div></div>
+              <div class="ln t anton"><div class="in" id="h10a">¿Pasará lo mismo</div></div>
+              <div class="ln t anton"><div class="in" id="h10b">en <span class="acc">Argentina</span>?</div></div>
+            </div>
+            <div id="pillBR" class="tag tag-i"><svg viewBox="0 0 38 38"><path d="M8 20 L16 28 L31 11" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Brasil</div>
+            <svg id="arrowBA" viewBox="0 0 200 50"><path id="arrowLine" d="M 8 25 L 182 25" fill="none" stroke="#801628" stroke-width="8" stroke-linecap="round"/><path id="arrowHead" d="M 160 8 L 186 25 L 160 42" fill="none" stroke="#801628" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></svg>
+            <div id="pillAR" class="tag tag-b">Argentina ?</div>
+            <div id="tagCual" class="tag tag-b">¿Y cuál es?<svg id="cualArrow" viewBox="0 0 40 40"><path d="M20 6 V32 M9 22 L20 33 L31 22" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div id="tagComenta" class="tag tag-i"><svg viewBox="0 0 46 46"><path d="M6 10 H40 V32 H20 L11 40 V32 H6 Z" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>Comentá</div>
+
+            <!-- ===== Auto (dibujo con ruedas que giran -> foto real) ===== -->
+            <div id="shadow"></div>
+            <div id="car">
+              <div id="rig">
+              <img id="carLines" src="assets/img/h6-pro-hev-lineas.png" alt="" />
+              <div class="wheel" id="wF"><div class="spin" id="wFs"><img class="sharp" src="assets/img/h6-pro-hev-rueda-delantera.png" alt="" /><img class="blur" src="assets/img/h6-pro-hev-rueda-delantera-blur.png" alt="" /></div></div>
+              <div class="wheel" id="wR"><div class="spin" id="wRs"><img class="sharp" src="assets/img/h6-pro-hev-rueda-trasera.png" alt="" /><img class="blur" src="assets/img/h6-pro-hev-rueda-trasera-blur.png" alt="" /></div></div>
+              </div>
+              <img id="carPhoto" src="assets/img/h6-pro-hev-foto.webp" alt="" />
+              <div id="carSheenBox"><div class="sweep" id="carSheen"></div></div>
+              <div id="qmark">?</div>
+            </div>
+            <svg id="bubble" viewBox="0 0 170 140"><path d="M14 10 H156 Q164 10 164 18 V92 Q164 100 156 100 H70 L36 132 L42 100 H14 Q6 100 6 92 V18 Q6 10 14 10 Z" fill="#801628"/><circle class="dot" cx="50" cy="55" r="11" fill="#fff"/><circle class="dot" cx="85" cy="55" r="11" fill="#fff"/><circle class="dot" cx="120" cy="55" r="11" fill="#fff"/></svg>
+            <div id="cta"><div class="sweep" id="ctaSheen" style="width:220px"></div><div class="l1">Pedinos precio y financiación</div><div class="l2" id="ctaL2">Haval H6 PRO HEV</div></div>
+            <img id="logo" src="assets/img/logo-negro.png" alt="Valparaiso Motors" />
+            <div id="sheenBox" style="position:absolute;left:0;top:20px;width:840px;height:270px;overflow:hidden;pointer-events:none"><div class="sheen" id="sheen"></div></div>
+          </div>
+
+          <div id="prog"><div id="progFill"></div></div>
+          <div id="progQ"><div class="f f1" id="pq1">?</div><div class="f f2" id="pq2">H6</div></div>
+
+          <div id="foot1" class="foot" data-layout-ignore>*Datos preliminares de Fenabrave al 29/10/2026 (vía Motor1 Brasil). Ranking provisorio.</div>
+          <div id="subs"></div>
+        </div>
+
+        <div id="grain"></div>
+        <div id="vignette"></div>
+        <div id="flash"></div>
+      </div>
+    </div>
+
+    <script id="timing" type="application/json">__TIMING__</script>
+    <script>
+      (function () {
+        const DUR = __DURATION__;
+        const HEADLINE_WORDS = 4; // "¿Comprarías un auto chino?" va escrito en el titular con karaoke
+        const D = JSON.parse(document.getElementById("timing").textContent);
+        const toks = D.tokens;
+        const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, "");
+        function find(word, n) {
+          let c = 0;
+          for (const t of toks) if (norm(t.text) === norm(word) && ++c === (n || 1)) return t;
+          throw new Error("ancla no encontrada: " + word + " #" + (n || 1));
+        }
+        const W = (w, n) => find(w, n).start;
+        const WE = (w, n) => find(w, n).end;
+        const S = (i) => toks.find((t) => t.sentence === i).start;
+        const $ = (id) => document.getElementById(id);
+        const events = (window.__hfEvents = []);
+        const ev = (t, label) => events.push({ t: +t.toFixed(3), label });
+        const fmt = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+        // gente (para "mucha gente ya contestó")
+        const crowd = $("crowd");
+        for (let i = 0; i < 11; i++) {
+          crowd.insertAdjacentHTML("beforeend", '<svg viewBox="0 0 56 56" class="person"><circle cx="28" cy="16" r="11" fill="' + (i % 3 === 1 ? "#801628" : "#151415") + '"/><path d="M8 54 C 8 36, 48 36, 48 54 Z" fill="' + (i % 3 === 1 ? "#801628" : "#151415") + '"/></svg>');
+        }
+
+        function build() {
+          const tl = gsap.timeline({ paused: true });
+          const pop = (el, t, label, from, to) => {
+            tl.fromTo(el, Object.assign({ opacity: 0, scale: 0.92 }, from || {}), Object.assign({ opacity: 1, scale: 1, duration: 0.34, ease: "back.out(2.4)" }, to || {}), t);
+            ev(t, label);
+          };
+          const rise = (sel, t, label, stagger) => {
+            tl.fromTo(sel, { yPercent: 115, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: "power4.out", stagger: stagger || 0.07, immediateRender: false }, t);
+            ev(t, label);
+          };
+          const sink = (sel, t) => tl.to(sel, { yPercent: -115, opacity: 0, duration: 0.3, ease: "power3.in", stagger: 0.04 }, t);
+          const out = (el, t, dur, to) => tl.to(el, Object.assign({ opacity: 0, duration: dur || 0.2, ease: "power2.in" }, to || {}), t);
+          const shake = (t, a) => {
+            const amp = a || 10;
+            [[amp, -amp * 0.6], [-amp * 0.8, amp * 0.5], [amp * 0.5, -amp * 0.3], [-amp * 0.25, amp * 0.15], [0, 0]].forEach(([x, y], i) =>
+              tl.to("#cam", { x, y, duration: 0.05, ease: "none" }, t + i * 0.05));
+          };
+          const counter = (el, from, to, t, dur, label) => {
+            const o = { v: from };
+            tl.set(el, { textContent: fmt(from) }, Math.max(0, t - 0.001));
+            tl.fromTo(o, { v: from }, { v: to, duration: dur, ease: "power2.out", onUpdate: () => (el.textContent = fmt(o.v)) }, t);
+            ev(t, label + " (cuenta)");
+            for (let k = 0.1; k < dur - 0.05; k += 0.1) ev(t + k, label + " cambia");
+          };
+          const camDrift = (t0, t1) => tl.fromTo("#cam", { scale: 1, rotation: -0.4 }, { scale: 1.022, rotation: 0.4, duration: Math.max(0.3, t1 - t0), ease: "none", transformOrigin: "50% 45%", immediateRender: false }, t0);
+          const ghost = (id, t0, t1, rot) => {
+            tl.fromTo(id, { opacity: t0 === 0 ? 1 : 0, rotation: -rot, x: -30 }, { opacity: 1, rotation: 0, x: 0, duration: 0.6, ease: "power2.out", immediateRender: t0 === 0 }, t0);
+            tl.to(id, { rotation: rot, x: 30, duration: Math.max(0.4, t1 - t0 - 0.6), ease: "none" }, t0 + 0.6);
+            tl.to(id, { opacity: 0, duration: 0.3 }, t1 - 0.15);
+          };
+
+          // ---- anclas de la voz ----
+          const s1 = S(1), s2 = S(2), s3 = S(3), s4 = S(4);   // 0 gancho · 1 ranking · 2 contador · 3 pregunta · 4 CTA
+          const tBrasil = W("Brasil", 1), tMucha = W("mucha"), tContesto = W("contestó");
+          const tVendida = W("vendida"), tAhora = W("ahora"), tChina = W("china"), tSaco = W("sacó"), tNA = W("norteamericana");
+          const tSuma = W("suma"), tVendidasE = WE("vendidas"), tVa = W("va");
+          const tRev = s4 + 0.05, tArg = W("Argentina");   // la foto aparece en "Pedinos"
+          const tH6b = W("H6", 1), tPro = W("PRO"), tValpa = W("Valparaiso"), tFin = toks[toks.length - 1].end;
+
+          tl.set("#car", { transformOrigin: "0 0" }, 0);
+          tl.set(["#h2 .in", "#h4 .in", "#h10 .in"], { yPercent: 115, opacity: 0 }, 0);
+          tl.set(["#numA2", "#numB2"], { rotationX: -90, transformPerspective: 600 }, 0);
+          tl.set(["#numA1", "#numB1"], { rotationX: 0, transformPerspective: 600 }, 0);
+          tl.set(["#numA2", "#numB2"], { opacity: 0 }, 0);   // caras ocultas del giro: invisibles hasta que giran
+          tl.set("#pq2", { rotationY: -90, transformPerspective: 400 }, 0);
+          ev(0, "cuadro 0: titular escrito + auto andando");
+
+          // ---- capas que nunca se quedan quietas ----
+          // estelas del fondo: patron periodico (81,65 px en horizontal) en loop, rapido en el gancho y despues lento
+          const PER = 74 / Math.sin((65 * Math.PI) / 180);
+          const loopX = (sel, period, speed, t0, t1) => {
+            const d = period / speed, n = Math.max(1, Math.ceil((t1 - t0) / d));
+            tl.fromTo(sel, { x: 0 }, { x: period, duration: d, ease: "none", repeat: n - 1, immediateRender: t0 === 0 }, t0);
+          };
+          loopX("#streaks", PER, 2000, 0, s1);
+          loopX("#streaks", PER, 160, s1, DUR);
+          tl.fromTo("#progFill", { scaleX: 0 }, { scaleX: 1, duration: tRev, ease: "none" }, 0);
+          ghost("#ghQ", 0, s1, 4);
+          ghost("#gh1", s1, s2, 4);
+          ghost("#gh2", s2, s3, 3);
+          ghost("#ghQ2", s3, tRev, 4);
+          ghost("#gh5", tRev, DUR + 0.2, 3);
+
+          // ================= 1) GANCHO: el auto ya viene andando =================
+          camDrift(0, s1);
+          [["#h1l1", 0, 22], ["#h1l2", 22, 0], ["#h1l3", 0, 18]].forEach(([id, a, b]) => tl.fromTo(id, { x: a }, { x: b, duration: s1, ease: "none" }, 0));
+          toks.slice(0, HEADLINE_WORDS).forEach((t, i) => {
+            const kw = $("kw" + i);
+            const bordo = i === 3;
+            const base = bordo ? "#801628" : "#151415", hi = bordo ? "#151415" : "#801628";
+            tl.fromTo(kw, { scale: 1, color: base }, { scale: 1.06, color: hi, duration: 0.12, ease: "power2.out", transformOrigin: "50% 90%", immediateRender: false }, t.start);
+            tl.to(kw, { scale: 1, color: base, duration: 0.25, ease: "power2.inOut" }, Math.max(t.start + 0.14, t.end));
+            ev(t.start, "titular: late " + t.text);
+          });
+          // ---- auto: PASADA A FONDO. Plano que acompaña al auto; el piso pasa a V px/s ----
+          const carHookY = 470 - 330;
+          const carS = 0.9, k = (800 / 1680) * carS;
+          const V = 800;                                  // velocidad del piso en pantalla (px/s)
+          const tEx = s1 - 0.25;                          // empieza la salida
+          const drift = 100;                              // el auto avanza 100 px en pantalla
+          const vRel = V + drift / tEx;                   // piso respecto del auto
+          const rF = 151 * k, rR = 145 * k;               // radio de cada cubierta en pantalla
+          const degF = (vRel / rF) * 57.2958, degR = (vRel / rR) * 57.2958;   // ruedas sincronizadas con el piso
+          tl.set("#car", { scale: carS, x: 120, y: carHookY }, 0);
+          tl.to("#car", { x: 120 - drift, duration: tEx, ease: "none" }, 0);
+          tl.fromTo("#wFs", { rotation: 0 }, { rotation: -degF * tEx, duration: tEx, ease: "none" }, 0);
+          tl.fromTo("#wRs", { rotation: 0 }, { rotation: -degR * tEx, duration: tEx, ease: "none" }, 0);
+          tl.fromTo("#rig", { rotation: 1.1 }, { rotation: 0.35, duration: 1.2, ease: "power2.out", transformOrigin: "82% 96%" }, 0);   // trompa arriba al acelerar
+          tl.fromTo("#carLines", { y: 0 }, { y: -2.5, duration: 0.05, yoyo: true, repeat: Math.floor(tEx / 0.05) - 1, ease: "sine.inOut" }, 0);   // vibracion del motor
+          loopX("#road", 140, V, 0, s1);
+          tl.set("#roadEdge", { opacity: 1 }, 0);
+          // lineas de velocidad desde la cola y lineas de viento que pasan
+          ["#sp1", "#sp2", "#sp3"].forEach((sp, i) => {
+            for (let n = 0; n < 9; n++) {
+              const t0 = 0.05 + i * 0.11 + n * 0.36;
+              if (t0 > tEx - 0.1) break;
+              const rear = 120 + 720 - drift * Math.min(1, t0 / tEx);
+              tl.fromTo(sp, { opacity: 0, x: rear + 4, scaleX: 0.6, transformOrigin: "0% 50%" }, { opacity: 0.9, x: rear + 12, scaleX: 1.4, duration: 0.08, immediateRender: false }, t0);
+              tl.to(sp, { opacity: 0, x: rear + 140, duration: 0.2 }, t0 + 0.09);
+              ev(t0, "línea de velocidad");
+            }
+          });
+          ["#wd1", "#wd2", "#wd3", "#wd4"].forEach((wd, i) => {
+            for (let n = 0; n < 8; n++) {
+              const t0 = 0.12 + i * 0.13 + n * 0.5;
+              if (t0 > tEx - 0.1) break;
+              tl.fromTo(wd, { opacity: 0, x: -160 }, { opacity: 1, x: 120, duration: 0.1, ease: "none", immediateRender: false }, t0);
+              tl.to(wd, { opacity: 0, x: 900, duration: 0.26, ease: "none" }, t0 + 0.1);
+              ev(t0, "línea de viento");
+            }
+          });
+          tl.fromTo("#stampBR", { opacity: 0, scale: 1.5, rotation: 8 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.3, ease: "back.out(2.2)" }, tBrasil);
+          ev(tBrasil, "sello BRASIL · 2026");
+          tl.fromTo("#stage", { scale: 1 }, { scale: 1.06, duration: 0.1, ease: "power2.out", transformOrigin: "50% 45%" }, tBrasil);
+          tl.to("#stage", { scale: 1, duration: 0.35, ease: "power2.inOut" }, tBrasil + 0.1);
+          shake(tBrasil + 0.18, 9);
+          tl.fromTo("#crowd .person", { opacity: 0, y: 16, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.22, ease: "back.out(2.4)", stagger: 0.07 }, tMucha);
+          for (let i = 0; i < 11; i++) ev(tMucha + i * 0.07, "persona " + (i + 1));
+          tl.fromTo("#crowdCheck", { opacity: 0, x: 766, scale: 1.5 }, { opacity: 1, x: 766, scale: 1, duration: 0.3, ease: "back.out(2.6)" }, tContesto);
+          ev(tContesto, "tilde: ya contestó");
+
+          // ================= 2) RANKING =================
+          tl.to("#car", { x: -1300, scaleX: 1.0, filter: "blur(8px)", duration: 0.36, ease: "power3.in" }, tEx);
+          tl.to("#rig", { rotation: 2.2, duration: 0.2, ease: "power2.out" }, tEx);
+          tl.to("#wFs", { rotation: "-=" + ((1300 / rF) * 57.2958).toFixed(0), duration: 0.36, ease: "power3.in" }, tEx);
+          tl.to("#wRs", { rotation: "-=" + ((1300 / rR) * 57.2958).toFixed(0), duration: 0.36, ease: "power3.in" }, tEx);
+          tl.set("#rig", { rotation: 0 }, s1 + 0.15);
+          tl.set(["#wF .sharp", "#wR .sharp"], { opacity: 1 }, s1 + 0.15);
+          tl.set(["#wF .blur", "#wR .blur"], { opacity: 0 }, s1 + 0.15);
+          tl.set("#car", { filter: "blur(0px)" }, s1 + 0.14);
+          tl.to(["#h1l1", "#h1l2", "#h1l3"], { x: -900, duration: 0.32, ease: "power3.in", stagger: 0.04 }, s1 - 0.2);
+          tl.set("#h1", { opacity: 0 }, s1 + 0.25);
+          out(["#stampBR", "#crowd", "#crowdCheck"], s1 - 0.2, 0.2, { y: -40 });
+          out(["#road", "#roadEdge"], s1 - 0.1, 0.2);
+          ev(tEx, "el auto sale disparado a la izquierda");
+          camDrift(s1, s2);
+          rise(["#h2k", "#h2a1", "#h2a2"], s1 + 0.05, "título: la más vendida del año");
+          tl.fromTo("#cardA", { opacity: 1, x: 900 }, { opacity: 1, x: 0, duration: 0.55, ease: "power4.out", immediateRender: false }, s1 + 0.1);
+          tl.fromTo("#cardB", { opacity: 1, x: 900 }, { opacity: 1, x: 0, duration: 0.55, ease: "power4.out", immediateRender: false }, s1 + 0.18);
+          ev(s1 + 0.1, "tarjeta 1");
+          ev(s1 + 0.18, "tarjeta 2");
+          // el auto entra chiquito en la tarjeta 2 (escala 0.27 = 216x97)
+          tl.set("#car", { scaleX: 0.27, scaleY: 0.27, x: 900, y: 540 + 52 - 330 }, s1 + 0.17);
+          tl.to("#car", { x: 205 - 20, duration: 0.55, ease: "power4.out" }, s1 + 0.18);
+          tl.fromTo("#h2a2", { color: "#801628" }, { color: "#151415", duration: 0.15, yoyo: true, repeat: 1, immediateRender: false }, tVendida);
+          ev(tVendida, "resalta: más vendida");
+          pop("#porAhora", tAhora, "POR AHORA*", { scale: 1.3 });
+          tl.fromTo("#foot1", { opacity: 0 }, { opacity: 1, duration: 0.3 }, tAhora + 0.15);
+          tl.to("#foot1", { opacity: 0, duration: 0.2 }, s3 - 0.1);
+          tl.fromTo("#labB", { opacity: 0, x: 40, scale: 1.3 }, { opacity: 1, x: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, tChina);
+          ev(tChina, "CHINA");
+          // "le saco el puesto": las tarjetas se dan vuelta
+          const sw = tSaco;
+          tl.to("#cardB", { y: -230, scale: 1.04, duration: 0.5, ease: "power3.inOut" }, sw);
+          tl.to("#cardB", { scale: 1, duration: 0.25, ease: "power2.out" }, sw + 0.5);
+          tl.to("#cardA", { y: 230, scale: 0.97, duration: 0.5, ease: "power3.inOut" }, sw);
+          tl.to("#car", { y: 540 + 52 - 330 - 230, duration: 0.5, ease: "power3.inOut" }, sw);
+          tl.to(["#numA1", "#numB1"], { rotationX: 90, duration: 0.16, ease: "power2.in" }, sw + 0.12);
+          tl.set(["#numA2", "#numB2"], { opacity: 1 }, sw + 0.27);
+          tl.to(["#numA2", "#numB2"], { rotationX: 0, duration: 0.22, ease: "back.out(2)" }, sw + 0.28);
+          tl.set(["#numA1", "#numB1"], { opacity: 0 }, sw + 0.29);
+          tl.to("#labA", { color: "#77716a", duration: 0.3 }, sw + 0.3);
+          ev(sw, "las tarjetas se dan vuelta");
+          ev(sw + 0.28, "números 1 y 2 giran");
+          shake(sw + 0.45, 12);
+          sink(["#h2a1", "#h2a2"], sw - 0.05);
+          rise(["#h2b1", "#h2b2"], sw + 0.12, "título: le sacó el puesto");
+          pop("#chipNA", tNA, "NORTEAMERICANA", { scale: 1.3 });
+
+          // ================= 3) CONTADOR =================
+          tl.to("#cardA", { x: -900, duration: 0.35, ease: "power3.in" }, s2 - 0.14);
+          tl.to("#cardB", { x: -900, duration: 0.35, ease: "power3.in" }, s2 - 0.08);
+          out("#porAhora", s2 - 0.14, 0.2);
+          sink(["#h2k", "#h2b1", "#h2b2"], s2 - 0.14);
+          tl.to("#car", { scaleX: 0.28, scaleY: 0.28, x: 580, y: -250, duration: 0.5, ease: "power3.inOut" }, s2 - 0.1);
+          tl.fromTo("#qmark", { opacity: 0, scale: 5, rotation: -30 }, { opacity: 1, scale: 2.4, rotation: 0, duration: 0.45, ease: "back.out(2.6)" }, s2 + 0.3);
+          ev(s2 - 0.1, "el auto vuela a la esquina");
+          ev(s2 + 0.3, "signo ? sobre el auto");
+          camDrift(s2, s3);
+          rise(["#h4k", "#h4a"], s2 + 0.05, "título: vendidas en el año");
+          tl.fromTo("#n1", { opacity: 0, scale: 0.94, filter: "blur(8px)", transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "power3.out" }, tSuma - 0.05);
+          counter($("n1"), 0, 44020, tSuma + 0.1, Math.max(0.9, tVendidasE - tSuma - 0.1), "44.020");
+          tl.to("#n1", { scale: 1.05, duration: 0.12, yoyo: true, repeat: 1 }, tVendidasE);
+          tl.fromTo("#n1l", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, tVendidasE + 0.05);
+          ev(tVendidasE + 0.05, "etiqueta: en lo que va de 2026");
+          tl.fromTo("#n2", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, tVa - 0.1);
+          tl.fromTo("#n2l", { opacity: 0 }, { opacity: 1, duration: 0.25 }, tVa);
+          ev(tVa - 0.1, "43.534 de la norteamericana");
+          tl.fromTo("#d486", { opacity: 0, x: 220, rotation: 25, scale: 1.2 }, { opacity: 1, x: 0, rotation: -4, scale: 1, duration: 0.42, ease: "back.out(2)" }, tVa + 0.35);
+          ev(tVa + 0.35, "+486 entra volando");
+          shake(tVa + 0.65, 10);
+
+          // ================= 4) PREGUNTA: ¿Pasara lo mismo en Argentina? (sigue el dibujo) =================
+          tl.to(["#n1", "#n1l"], { y: -260, opacity: 0, duration: 0.3, ease: "power3.in" }, s3 - 0.14);
+          tl.to(["#n2", "#n2l", "#d486"], { y: -260, opacity: 0, duration: 0.3, ease: "power3.in" }, s3 - 0.08);
+          sink(["#h4k", "#h4a"], s3 - 0.14);
+          tl.to("#car", { scaleX: 0.85, scaleY: 0.85, x: 60, y: 20, duration: 0.55, ease: "power3.inOut" }, s3 - 0.1);
+          tl.to("#qmark", { scale: 1, rotation: 360, duration: 0.55, ease: "power3.inOut" }, s3 - 0.1);
+          ev(s3 - 0.1, "el dibujo vuelve grande con el ?");
+          rise(["#h10k", "#h10a", "#h10b"], s3 - 0.02, "¿Pasará lo mismo en Argentina?");
+          tl.fromTo("#pillBR", { opacity: 0, x: -40, scale: 1.2 }, { opacity: 1, x: 0, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, s3 + 0.35);
+          ev(s3 + 0.35, "Brasil ✓");
+          tl.fromTo("#arrowLine", { attr: { "stroke-dasharray": 174, "stroke-dashoffset": 174 } }, { attr: { "stroke-dashoffset": 0 }, duration: Math.max(0.3, tArg - s3 - 0.55), ease: "power2.inOut" }, s3 + 0.55);
+          ev(s3 + 0.55, "la flecha se dibuja hacia Argentina");
+          tl.fromTo("#arrowHead", { attr: { opacity: 0 } }, { attr: { opacity: 1 }, duration: 0.08 }, tArg - 0.05);
+          tl.fromTo("#pillAR", { opacity: 0, scale: 1.5, rotation: 10 }, { opacity: 1, scale: 1, rotation: -3, duration: 0.38, ease: "back.out(2.4)" }, tArg);
+          ev(tArg, "ARGENTINA ? golpea");
+          shake(tArg + 0.2, 9);
+          tl.fromTo("#qmark", { scale: 1 }, { scale: 1.2, duration: 0.14, yoyo: true, repeat: 1, ease: "sine.inOut", immediateRender: false }, tArg + 0.1);
+          // la pregunta NO cierra: queda abierta y empuja a la respuesta (¿cual es?)
+          const tCual = tArg + 0.25;
+          tl.fromTo("#tagCual", { opacity: 0, y: 30, scale: 1.25 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2.6)" }, tCual);
+          ev(tCual, "¿Y CUÁL ES? 👇");
+          tl.fromTo("#cualArrow", { y: -3 }, { y: 6, duration: 0.14, yoyo: true, repeat: Math.max(1, Math.floor((tRev - tCual) / 0.14)), ease: "sine.inOut", immediateRender: false }, tCual + 0.15);
+          tl.fromTo("#qmark", { scale: 1 }, { scale: 1.4, duration: 0.12, yoyo: true, repeat: Math.max(1, Math.floor((tRev - tCual) / 0.12)), ease: "sine.inOut", immediateRender: false }, tCual);
+          tl.fromTo("#progQ", { scale: 1 }, { scale: 1.45, duration: 0.12, yoyo: true, repeat: Math.max(1, Math.floor((tRev - tCual) / 0.12)), ease: "sine.inOut", immediateRender: false }, tCual);
+          ev(tCual + 0.12, "el ? late más fuerte");
+
+          // ================= 5) CTA + REVELACION: la foto real aparece en "Pedinos precio y financiacion" =================
+          sink(["#h10k", "#h10a", "#h10b"], s4 - 0.16);
+          out(["#pillBR", "#arrowBA", "#pillAR", "#tagCual"], s4 - 0.14, 0.2, { y: 30 });
+          tl.to("#car", { scaleX: 0.9, scaleY: 0.9, x: 40, y: -10, duration: 0.4, ease: "power3.out" }, s4 - 0.12);
+          tl.to("#qmark", { rotation: "+=360", scale: 1.3, duration: 0.3, ease: "power2.in" }, s4 - 0.25);
+          tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.9, duration: 0.06 }, tRev - 0.04);
+          tl.to("#flash", { opacity: 0, duration: 0.4, ease: "power2.out" }, tRev + 0.02);
+          tl.set("#carPhoto", { opacity: 1 }, tRev - 0.04);
+          tl.fromTo("#carPhoto", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.42, ease: "power3.out", immediateRender: false }, tRev - 0.04);
+          tl.to("#rig", { opacity: 0, duration: 0.35 }, tRev + 0.05);
+          tl.to("#qmark", { opacity: 0, scale: 0.9, duration: 0.15 }, tRev - 0.04);
+          tl.set("#shadow", { y: -40, scaleX: 0.9 }, tRev - 0.05);
+          tl.fromTo("#shadow", { opacity: 0 }, { opacity: 1, duration: 0.4 }, tRev);
+          tl.fromTo("#h9k", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.25 }, tRev);
+          tl.fromTo("#h9 .ch", { opacity: 0, scale: 1.5, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.32, ease: "expo.out", stagger: 0.04 }, tRev - 0.02);
+          ev(tRev - 0.04, "REVELACIÓN: Haval H6 PRO HEV (foto real)");
+          shake(tRev + 0.1, 14);
+          tl.to("#pq1", { rotationY: 90, duration: 0.15, ease: "power2.in", transformPerspective: 400 }, tRev);
+          tl.to("#pq2", { rotationY: 0, duration: 0.2, ease: "back.out(2)" }, tRev + 0.15);
+          ev(tRev + 0.15, "el ? de la barra se vuelve H6");
+          tl.fromTo("#cta", { opacity: 0, y: 120 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" }, tRev + 0.25);
+          ev(tRev + 0.25, "botón Pedinos precio y financiación");
+          tl.to("#h9t", { scale: 0.8, duration: 0.3, ease: "power3.out" }, tPro - 0.15);
+          tl.fromTo("#proHev", { opacity: 0, x: 120, scale: 1.3 }, { opacity: 1, x: 0, scale: 1, duration: 0.38, ease: "back.out(2.4)" }, tPro);
+          ev(tPro, "PRO HEV golpea al lado del nombre");
+          shake(tPro + 0.2, 8);
+          tl.fromTo("#ctaL2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, tH6b);
+          ev(tH6b, "botón: Haval H6 PRO HEV");
+          tl.fromTo("#logo", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, tValpa);
+          ev(tValpa, "logo Valparaiso Motors");
+          // "COMENTÁ" queda como sticker en el cierre (sin voz)
+          tl.fromTo("#tagComenta", { opacity: 0, scale: 1.4, rotation: -14 }, { opacity: 1, scale: 1, rotation: -5, duration: 0.35, ease: "back.out(2.6)" }, tFin - 0.3);
+          ev(tFin - 0.3, "sticker COMENTÁ");
+          tl.to("#cta", { scale: 1.04, duration: 0.18, yoyo: true, repeat: 3, ease: "sine.inOut" }, tFin + 0.1);
+          ev(tFin + 0.1, "el botón late");
+          ev(tFin + 0.46, "el botón late");
+
+          buildSubs(tl);
+          fillGaps(tl);
+          window.__timelines["main"] = tl;
+        }
+
+        function buildSubs(tl) {
+          const subs = $("subs");
+          const pages = [];
+          const len = (ws) => ws.map((w) => w.text).join(" ").length;
+          const ok = (ws) => ws.length <= 4 && len(ws) <= 16;   // letra de 76 px: 16 letras entran en una linea
+          let chunk = [];
+          const flush = () => {
+            const m = chunk.length;
+            if (!m) return;
+            const target = len(chunk) / Math.max(1, Math.ceil(len(chunk) / 15));
+            const best = [0], prev = [0];
+            for (let j = 1; j <= m; j++) {
+              best[j] = Infinity;
+              for (let i = Math.max(0, j - 4); i < j; i++) {
+                const pg = chunk.slice(i, j);
+                if (!ok(pg) || best[i] === Infinity) continue;
+                const solo = pg.length === 1 && m > 1 ? 400 : 0;
+                const c = best[i] + Math.pow(len(pg) - target, 2) + solo + 30;
+                if (c < best[j]) { best[j] = c; prev[j] = i; }
+              }
+            }
+            const cuts = [];
+            for (let j = m; j > 0; j = prev[j]) cuts.unshift([prev[j], j]);
+            cuts.forEach(([i, j]) => pages.push(chunk.slice(i, j)));
+            chunk = [];
+          };
+          const rest = toks.slice(HEADLINE_WORDS);
+          rest.forEach((t, i) => {
+            chunk.push(t);
+            if (/[.,:;?!]$/.test(t.text) || (rest[i + 1] && rest[i + 1].sentence !== t.sentence)) flush();
+          });
+          flush();
+          window.__words = [];
+          pages.forEach((pg, pi) => {
+            const el = document.createElement("div");
+            el.className = "page";
+            el.id = "pg" + pi;
+            const spans = pg.map((t, wi) => {
+              const s = document.createElement("span");
+              s.className = "w";
+              s.id = "pg" + pi + "w" + wi;
+              s.textContent = t.text;
+              if (wi) el.appendChild(document.createTextNode(" "));
+              el.appendChild(s);
+              return s;
+            });
+            subs.appendChild(el);
+            const start = pg[0].start;
+            const next = pages[pi + 1];
+            const end = next ? next[0].start : DUR - 0.05;
+            tl.set(el, { opacity: 1 }, start - 0.001);
+            tl.set(el, { opacity: 0 }, end - 0.001);
+            pg.forEach((t, wi) => {
+              const nt = pg[wi + 1];
+              tl.fromTo(spans[wi], { opacity: 0, scale: 0.9, y: 8 }, { opacity: 1, scale: 1, y: 0, duration: 0.12, ease: "back.out(3)" }, t.start);
+              tl.set(spans[wi], { color: "#801628" }, t.start);
+              if (nt) tl.set(spans[wi], { color: "#151415" }, nt.start);
+              ev(t.start, "subtítulo: " + t.text);
+              window.__words.push({ t0: t.start, t1: nt ? nt.start : end, span: spans[wi] });
+            });
+          });
+        }
+
+        function fillGaps(tl) {
+          const tReveal = S(4) + 0.05;
+          const ts = events.map((e) => e.t).concat([DUR]).sort((a, b) => a - b);
+          const fills = [];
+          for (let i = 0; i < ts.length - 1; i++) {
+            let a = ts[i];
+            const b = ts[i + 1];
+            while (b - a > 0.3) { a = a + Math.min(0.28, (b - a) / 2); fills.push(a); }
+          }
+          const underlined = new Set();
+          let alt = 0;
+          fills.forEach((t) => {
+            const w = (window.__words || []).find((x) => x.t0 <= t && t < x.t1 - 0.05);
+            if (w && !underlined.has(w.span)) {
+              underlined.add(w.span);
+              const ul = document.createElement("i");
+              ul.className = "ul";
+              w.span.appendChild(ul);
+              tl.fromTo(ul, { opacity: 1, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.18, ease: "power2.out", immediateRender: false }, t);
+              tl.set(ul, { opacity: 0 }, w.t1);
+              ev(t, "relleno: subrayado de la palabra");
+              return;
+            }
+            if (t < tReveal) {
+              tl.fromTo("#sheen", { opacity: 0.9, x: -160 }, { opacity: 0.9, x: 860, duration: 0.25, ease: "power1.inOut", immediateRender: false }, t);
+              tl.set("#sheen", { opacity: 0 }, t + 0.25);
+              ev(t, "relleno: destello en el título");
+            } else {
+              const onCta = t > S(4) + 0.3 && alt++ % 2 === 1;
+              const el = onCta ? "#ctaSheen" : "#carSheen";
+              tl.fromTo(el, { opacity: 1, x: -240 }, { opacity: 1, x: onCta ? 860 : 900, duration: 0.26, ease: "power1.inOut", immediateRender: false }, t);
+              tl.set(el, { opacity: 0 }, t + 0.26);
+              ev(t, onCta ? "relleno: brillo en el botón" : "relleno: brillo sobre el auto");
+            }
+          });
+        }
+
+        document.fonts.ready.then(build);
+      })();
+    </script>
+  </body>
+</html>

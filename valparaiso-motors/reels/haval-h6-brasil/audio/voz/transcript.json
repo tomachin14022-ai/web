@@ -1,0 +1,332 @@
+[
+  {
+    "text": "¿Comprarías",
+    "start": 0.05,
+    "end": 0.78,
+    "id": "w0"
+  },
+  {
+    "text": "un",
+    "start": 0.79,
+    "end": 0.9,
+    "id": "w1"
+  },
+  {
+    "text": "auto",
+    "start": 0.96,
+    "end": 1.22,
+    "id": "w2"
+  },
+  {
+    "text": "chino?",
+    "start": 1.22,
+    "end": 1.86,
+    "id": "w3"
+  },
+  {
+    "text": "En",
+    "start": 1.91,
+    "end": 2,
+    "id": "w4"
+  },
+  {
+    "text": "Brasil,",
+    "start": 2,
+    "end": 2.56,
+    "id": "w5"
+  },
+  {
+    "text": "mucha",
+    "start": 2.56,
+    "end": 2.91,
+    "id": "w6"
+  },
+  {
+    "text": "gente",
+    "start": 2.91,
+    "end": 3.14,
+    "id": "w7"
+  },
+  {
+    "text": "ya",
+    "start": 3.26,
+    "end": 3.29,
+    "id": "w8"
+  },
+  {
+    "text": "contestó.",
+    "start": 3.65,
+    "end": 4.2,
+    "id": "w9"
+  },
+  {
+    "text": "La",
+    "start": 4.25,
+    "end": 4.37,
+    "id": "w10"
+  },
+  {
+    "text": "SUV",
+    "start": 4.37,
+    "end": 4.63,
+    "id": "w11"
+  },
+  {
+    "text": "mediana",
+    "start": 4.63,
+    "end": 5.23,
+    "id": "w12"
+  },
+  {
+    "text": "más",
+    "start": 5.23,
+    "end": 5.48,
+    "id": "w13"
+  },
+  {
+    "text": "vendida",
+    "start": 5.48,
+    "end": 6.09,
+    "id": "w14"
+  },
+  {
+    "text": "del",
+    "start": 6.09,
+    "end": 6.34,
+    "id": "w15"
+  },
+  {
+    "text": "año",
+    "start": 6.35,
+    "end": 6.58,
+    "id": "w16"
+  },
+  {
+    "text": "ahora",
+    "start": 6.63,
+    "end": 7.01,
+    "id": "w17"
+  },
+  {
+    "text": "es",
+    "start": 7.09,
+    "end": 7.2,
+    "id": "w18"
+  },
+  {
+    "text": "una",
+    "start": 7.21,
+    "end": 7.44,
+    "id": "w19"
+  },
+  {
+    "text": "China",
+    "start": 7.47,
+    "end": 7.88,
+    "id": "w20"
+  },
+  {
+    "text": "y",
+    "start": 7.88,
+    "end": 8.02,
+    "id": "w21"
+  },
+  {
+    "text": "le",
+    "start": 8.02,
+    "end": 8.11,
+    "id": "w22"
+  },
+  {
+    "text": "sacó",
+    "start": 8.12,
+    "end": 8.31,
+    "id": "w23"
+  },
+  {
+    "text": "el",
+    "start": 8.36,
+    "end": 8.41,
+    "id": "w24"
+  },
+  {
+    "text": "puesto",
+    "start": 8.41,
+    "end": 8.72,
+    "id": "w25"
+  },
+  {
+    "text": "a",
+    "start": 8.72,
+    "end": 8.77,
+    "id": "w26"
+  },
+  {
+    "text": "una",
+    "start": 8.77,
+    "end": 8.92,
+    "id": "w27"
+  },
+  {
+    "text": "norteamericana.",
+    "start": 8.92,
+    "end": 10.2,
+    "id": "w28"
+  },
+  {
+    "text": "Ya",
+    "start": 10.25,
+    "end": 10.34,
+    "id": "w29"
+  },
+  {
+    "text": "suma",
+    "start": 10.34,
+    "end": 10.63,
+    "id": "w30"
+  },
+  {
+    "text": "44.020",
+    "start": 10.63,
+    "end": 11.95,
+    "id": "w31"
+  },
+  {
+    "text": "vendidas",
+    "start": 11.99,
+    "end": 12.53,
+    "id": "w32"
+  },
+  {
+    "text": "en",
+    "start": 12.53,
+    "end": 12.67,
+    "id": "w33"
+  },
+  {
+    "text": "lo",
+    "start": 12.67,
+    "end": 12.81,
+    "id": "w34"
+  },
+  {
+    "text": "que",
+    "start": 12.81,
+    "end": 13.01,
+    "id": "w35"
+  },
+  {
+    "text": "va",
+    "start": 13.09,
+    "end": 13.17,
+    "id": "w36"
+  },
+  {
+    "text": "del",
+    "start": 13.17,
+    "end": 13.39,
+    "id": "w37"
+  },
+  {
+    "text": "año.¿Pasará",
+    "start": 13.39,
+    "end": 14.33,
+    "id": "w38"
+  },
+  {
+    "text": "lo",
+    "start": 14.33,
+    "end": 14.44,
+    "id": "w39"
+  },
+  {
+    "text": "mismo",
+    "start": 14.47,
+    "end": 14.78,
+    "id": "w40"
+  },
+  {
+    "text": "en",
+    "start": 14.84,
+    "end": 14.93,
+    "id": "w41"
+  },
+  {
+    "text": "Argentina?",
+    "start": 14.93,
+    "end": 15.8,
+    "id": "w42"
+  },
+  {
+    "text": "Pedimos",
+    "start": 15.85,
+    "end": 16.34,
+    "id": "w43"
+  },
+  {
+    "text": "precio",
+    "start": 16.39,
+    "end": 16.85,
+    "id": "w44"
+  },
+  {
+    "text": "y",
+    "start": 16.85,
+    "end": 16.93,
+    "id": "w45"
+  },
+  {
+    "text": "financiación",
+    "start": 16.93,
+    "end": 17.9,
+    "id": "w46"
+  },
+  {
+    "text": "de",
+    "start": 17.91,
+    "end": 18.06,
+    "id": "w47"
+  },
+  {
+    "text": "la",
+    "start": 18.06,
+    "end": 18.18,
+    "id": "w48"
+  },
+  {
+    "text": "H6",
+    "start": 18.25,
+    "end": 18.54,
+    "id": "w49"
+  },
+  {
+    "text": "Pro",
+    "start": 18.54,
+    "end": 18.78,
+    "id": "w50"
+  },
+  {
+    "text": "HEV",
+    "start": 18.78,
+    "end": 19.02,
+    "id": "w51"
+  },
+  {
+    "text": "en",
+    "start": 19.02,
+    "end": 19.18,
+    "id": "w52"
+  },
+  {
+    "text": "Valparaíso",
+    "start": 19.18,
+    "end": 19.98,
+    "id": "w53"
+  },
+  {
+    "text": "Motors.",
+    "start": 19.98,
+    "end": 20.56,
+    "id": "w54"
+  }
+]
