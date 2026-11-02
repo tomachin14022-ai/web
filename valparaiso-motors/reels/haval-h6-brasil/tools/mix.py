@@ -127,11 +127,12 @@ def main(voice_path):
         ("pop", W("va") + 0.35, -15),                       # +486
         ("whoosh", S(3) - 0.12 - 2 * fr, -15),              # pasa a la pregunta (sigue el dibujo)
         ("pop", W("Argentina"), -15),
-        ("pop", W("Comentá") - 0.15, -17),                  # globo de comentario
-        ("riser", S(4) + 0.05 - 3.2, -17, (10.03 - 3.2, 10.03)),
+        ("pop", W("Argentina") + 0.25, -16),                # cartel ¿Y CUÁL ES?
+        ("riser", S(3) + 0.1, -14, (10.03 - (S(4) + 0.05 - S(3) - 0.1), 10.03)),   # sube durante la pregunta hasta el destello
         ("impact-bass-1", S(4) + 0.01, -9),                 # revelacion en "Pedinos"
         ("pop", S(4) + 0.3, -15),                           # boton
         ("pop", W("PRO"), -15),
+        ("click", toks[-1]["end"] - 0.3, -18),              # sticker COMENTÁ
     ]
     for item in plan:
         sfx(*item)

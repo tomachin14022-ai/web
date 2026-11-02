@@ -237,111 +237,93 @@
   {
    "text": "¿Pasará",
    "sentence": 3,
-   "start": 13.522,
-   "end": 14.189
+   "start": 13.56,
+   "end": 13.922
   },
   {
    "text": "lo",
+   "sentence": 3,
+   "start": 13.922,
+   "end": 13.998
+  },
+  {
+   "text": "mismo",
+   "sentence": 3,
+   "start": 13.998,
+   "end": 14.208
+  },
+  {
+   "text": "en",
    "sentence": 3,
    "start": 14.208,
    "end": 14.274
   },
   {
-   "text": "mismo",
-   "sentence": 3,
-   "start": 14.36,
-   "end": 14.541
-  },
-  {
-   "text": "en",
-   "sentence": 3,
-   "start": 14.541,
-   "end": 14.636
-  },
-  {
    "text": "Argentina?",
    "sentence": 3,
-   "start": 14.636,
-   "end": 15.208
-  },
-  {
-   "text": "Comentá.",
-   "sentence": 3,
-   "start": 15.208,
-   "end": 15.855
+   "start": 14.284,
+   "end": 14.684
   },
   {
    "text": "Pedinos",
    "sentence": 4,
-   "start": 15.855,
-   "end": 16.417
+   "start": 14.95,
+   "end": 15.293
   },
   {
    "text": "precio",
    "sentence": 4,
-   "start": 16.417,
-   "end": 16.855
-  },
-  {
-   "text": "y",
-   "sentence": 4,
-   "start": 16.855,
-   "end": 16.931
-  },
-  {
-   "text": "financiación",
-   "sentence": 4,
-   "start": 16.931,
-   "end": 17.846
+   "start": 15.322,
+   "end": 15.684
   },
   {
    "text": "de",
    "sentence": 4,
-   "start": 17.846,
-   "end": 17.998
+   "start": 15.741,
+   "end": 15.827
   },
   {
    "text": "la",
    "sentence": 4,
-   "start": 17.998,
-   "end": 18.084
+   "start": 15.884,
+   "end": 16.227
   },
   {
    "text": "H6",
    "sentence": 4,
-   "start": 18.189,
-   "end": 18.455
+   "start": 16.341,
+   "end": 16.627
   },
   {
    "text": "PRO",
    "sentence": 4,
-   "start": 18.455,
-   "end": 18.684
+   "start": 16.76,
+   "end": 16.989
   },
   {
    "text": "HEV",
    "sentence": 4,
-   "start": 18.684,
-   "end": 18.836
+   "start": 16.989,
+   "end": 17.141
   },
   {
    "text": "en",
    "sentence": 4,
-   "start": 18.836,
-   "end": 18.989
+   "start": 17.141,
+   "end": 17.293
   },
   {
    "text": "Valparaiso",
    "sentence": 4,
-   "start": 18.989,
-   "end": 19.75
+   "start": 17.293,
+   "end": 18.055
   },
   {
    "text": "Motors.",
    "sentence": 4,
-   "start": 19.903,
-   "end": 20.246
+   "start": 18.208,
+   "end": 18.55
   }
  ],
- "voiceEnd": 20.246
+ "voiceEnd": 18.55
 }

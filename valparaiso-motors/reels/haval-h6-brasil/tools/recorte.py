@@ -10,6 +10,8 @@ import sys
 
 CORTES = [
     (13.42, 15.48),  # "Es la Haval H6." (pedido del dueño: la foto y el nombre aparecen recien en "Pedinos")
+    (16.97, 17.93),  # "Comentá." (para que la pregunta no suene a cierre: empalma directo con "Pedinos")
+    (18.82, 19.64),  # "y financiación" (la H6 PRO HEV no tiene financiación)
 ]
 SR = 48000
 
