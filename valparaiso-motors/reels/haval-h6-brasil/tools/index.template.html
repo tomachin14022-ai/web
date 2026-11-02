@@ -25,6 +25,7 @@
       #gh1 { font-size: 820px; top: 470px; }
       #gh2 { font-size: 560px; top: 640px; }
       #gh5 { font-size: 820px; top: 500px; }
+      #ghQ2 { font-size: 980px; top: 420px; }
       #grain { position: absolute; inset: 0; opacity: 0.07; mix-blend-mode: multiply;
         background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
       #vignette { position: absolute; inset: 0; background: radial-gradient(110% 80% at 45% 45%, rgba(0,0,0,0) 60%, rgba(40,30,30,0.10) 100%); }
@@ -155,6 +156,7 @@
         <div id="ghQ" class="ghost" data-layout-ignore>?</div>
         <div id="gh1" class="ghost" data-layout-ignore>#1</div>
         <div id="gh2" class="ghost" data-layout-ignore>2026</div>
+        <div id="ghQ2" class="ghost" data-layout-ignore>?</div>
         <div id="gh5" class="ghost" data-layout-ignore>H6</div>
 
         <div id="stage">
@@ -216,7 +218,7 @@
 
             <!-- ===== 4) Revelacion ===== -->
             <div id="h9" class="hd">
-              <div class="kicker k" id="h9k" style="opacity:0">Es la</div>
+              <div class="kicker k" id="h9k" style="opacity:0">La que la pasó</div>
               <div class="t anton" id="h9t"><span class="ch">H</span><span class="ch">A</span><span class="ch">V</span><span class="ch">A</span><span class="ch">L</span>&nbsp;<span class="ch acc">H</span><span class="ch acc">6</span></div>
             </div>
             <div id="proHev" class="tag tag-b">PRO HEV</div>
@@ -322,12 +324,12 @@
           };
 
           // ---- anclas de la voz ----
-          const s1 = S(1), s2 = S(2), s3 = S(3), s4 = S(4), s5 = S(5);
+          const s1 = S(1), s2 = S(2), s3 = S(3), s4 = S(4);   // 0 gancho · 1 ranking · 2 contador · 3 pregunta · 4 CTA
           const tBrasil = W("Brasil", 1), tMucha = W("mucha"), tContesto = W("contestó");
           const tVendida = W("vendida"), tAhora = W("ahora"), tChina = W("china"), tSaco = W("sacó"), tNA = W("norteamericana");
           const tSuma = W("suma"), tVendidasE = WE("vendidas"), tVa = W("va");
-          const tHaval = W("Haval"), tArg = W("Argentina"), tComenta = W("Comentá");
-          const tH6b = W("H6", 2), tPro = W("PRO"), tValpa = W("Valparaiso"), tFin = toks[toks.length - 1].end;
+          const tRev = s4 + 0.05, tArg = W("Argentina"), tComenta = W("Comentá");   // la foto aparece en "Pedinos"
+          const tH6b = W("H6", 1), tPro = W("PRO"), tValpa = W("Valparaiso"), tFin = toks[toks.length - 1].end;
 
           tl.set("#car", { transformOrigin: "0 0" }, 0);
           tl.set(["#h2 .in", "#h4 .in", "#h10 .in"], { yPercent: 115, opacity: 0 }, 0);
@@ -345,11 +347,12 @@
           };
           loopX("#streaks", PER, 2000, 0, s1);
           loopX("#streaks", PER, 160, s1, DUR);
-          tl.fromTo("#progFill", { scaleX: 0 }, { scaleX: 1, duration: tHaval, ease: "none" }, 0);
+          tl.fromTo("#progFill", { scaleX: 0 }, { scaleX: 1, duration: tRev, ease: "none" }, 0);
           ghost("#ghQ", 0, s1, 4);
           ghost("#gh1", s1, s2, 4);
           ghost("#gh2", s2, s3, 3);
-          ghost("#gh5", tHaval, DUR + 0.2, 3);
+          ghost("#ghQ2", s3, tRev, 4);
+          ghost("#gh5", tRev, DUR + 0.2, 3);
 
           // ================= 1) GANCHO: el auto ya viene andando =================
           camDrift(0, s1);
@@ -478,62 +481,52 @@
           ev(tVa + 0.35, "+486 entra volando");
           shake(tVa + 0.65, 10);
 
-          // ================= 4) REVELACION: "Es la Haval H6" =================
+          // ================= 4) PREGUNTA: ¿Pasara lo mismo en Argentina? (sigue el dibujo) =================
           tl.to(["#n1", "#n1l"], { y: -260, opacity: 0, duration: 0.3, ease: "power3.in" }, s3 - 0.14);
           tl.to(["#n2", "#n2l", "#d486"], { y: -260, opacity: 0, duration: 0.3, ease: "power3.in" }, s3 - 0.08);
           sink(["#h4k", "#h4a"], s3 - 0.14);
-          tl.to("#car", { x: 0, y: 0, scaleX: 1, scaleY: 1, duration: 0.55, ease: "power3.inOut" }, s3 - 0.1);
+          tl.to("#car", { scaleX: 0.85, scaleY: 0.85, x: 60, y: 20, duration: 0.55, ease: "power3.inOut" }, s3 - 0.1);
           tl.to("#qmark", { scale: 1, rotation: 360, duration: 0.55, ease: "power3.inOut" }, s3 - 0.1);
-          ev(s3 - 0.1, "el auto vuelve grande al centro");
-          tl.fromTo("#h9k", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.25 }, s3 + 0.1);
-          ev(s3 + 0.1, "ES LA");
-          tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.9, duration: 0.06 }, tHaval - 0.04);
-          tl.to("#flash", { opacity: 0, duration: 0.4, ease: "power2.out" }, tHaval + 0.02);
-          tl.set("#carPhoto", { opacity: 1 }, tHaval - 0.04);
-          tl.fromTo("#carPhoto", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.42, ease: "power3.out", immediateRender: false }, tHaval - 0.04);
-          tl.to(["#carLines", "#wF", "#wR"], { opacity: 0, duration: 0.35 }, tHaval + 0.05);
-          tl.to("#qmark", { opacity: 0, scale: 0.9, duration: 0.15 }, tHaval - 0.04);
-          tl.fromTo("#shadow", { opacity: 0 }, { opacity: 1, duration: 0.4 }, tHaval);
-          tl.fromTo("#h9 .ch", { opacity: 0, scale: 1.5, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.32, ease: "expo.out", stagger: 0.04 }, tHaval - 0.02);
-          ev(tHaval - 0.04, "REVELACIÓN: Haval H6 (foto real)");
-          shake(tHaval + 0.1, 14);
-          tl.to("#pq1", { rotationY: 90, duration: 0.15, ease: "power2.in", transformPerspective: 400 }, tHaval);
-          tl.to("#pq2", { rotationY: 0, duration: 0.2, ease: "back.out(2)" }, tHaval + 0.15);
-          ev(tHaval + 0.15, "el ? de la barra se vuelve H6");
-          tl.to("#car", { scaleX: 1.03, scaleY: 1.03, duration: Math.max(0.3, s4 - tHaval - 0.3), ease: "none" }, tHaval + 0.1);
-
-          // ================= 5) PREGUNTA: ¿Pasara lo mismo en Argentina? =================
-          tl.to("#h9 .ch", { opacity: 0, y: -40, duration: 0.22, ease: "power2.in", stagger: 0.02 }, s4 - 0.14);
-          out("#h9k", s4 - 0.14, 0.2);
-          tl.to("#car", { scaleX: 0.85, scaleY: 0.85, x: 60, y: 20, duration: 0.5, ease: "power3.inOut" }, s4 - 0.12);
-          tl.to("#shadow", { y: -15, scaleX: 0.85, duration: 0.5, ease: "power3.inOut" }, s4 - 0.12);
-          ev(s4 - 0.12, "el auto se acomoda para la pregunta");
-          rise(["#h10k", "#h10a", "#h10b"], s4 - 0.02, "¿Pasará lo mismo en Argentina?");
-          tl.fromTo("#pillBR", { opacity: 0, x: -40, scale: 1.2 }, { opacity: 1, x: 0, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, s4 + 0.35);
-          ev(s4 + 0.35, "Brasil ✓");
-          tl.fromTo("#arrowLine", { attr: { "stroke-dasharray": 174, "stroke-dashoffset": 174 } }, { attr: { "stroke-dashoffset": 0 }, duration: Math.max(0.3, tArg - s4 - 0.55), ease: "power2.inOut" }, s4 + 0.55);
-          ev(s4 + 0.55, "la flecha se dibuja hacia Argentina");
+          ev(s3 - 0.1, "el dibujo vuelve grande con el ?");
+          rise(["#h10k", "#h10a", "#h10b"], s3 - 0.02, "¿Pasará lo mismo en Argentina?");
+          tl.fromTo("#pillBR", { opacity: 0, x: -40, scale: 1.2 }, { opacity: 1, x: 0, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, s3 + 0.35);
+          ev(s3 + 0.35, "Brasil ✓");
+          tl.fromTo("#arrowLine", { attr: { "stroke-dasharray": 174, "stroke-dashoffset": 174 } }, { attr: { "stroke-dashoffset": 0 }, duration: Math.max(0.3, tArg - s3 - 0.55), ease: "power2.inOut" }, s3 + 0.55);
+          ev(s3 + 0.55, "la flecha se dibuja hacia Argentina");
           tl.fromTo("#arrowHead", { attr: { opacity: 0 } }, { attr: { opacity: 1 }, duration: 0.08 }, tArg - 0.05);
           tl.fromTo("#pillAR", { opacity: 0, scale: 1.5, rotation: 10 }, { opacity: 1, scale: 1, rotation: -3, duration: 0.38, ease: "back.out(2.4)" }, tArg);
           ev(tArg, "ARGENTINA ? golpea");
           shake(tArg + 0.2, 9);
+          tl.fromTo("#qmark", { scale: 1 }, { scale: 1.2, duration: 0.14, yoyo: true, repeat: 1, ease: "sine.inOut", immediateRender: false }, tArg + 0.1);
           tl.fromTo("#bubble", { opacity: 0, scale: 0.9, rotation: 12, transformOrigin: "20% 100%" }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.4)" }, tComenta - 0.15);
           ev(tComenta - 0.15, "globo de comentario");
           tl.fromTo("#tagComenta", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, tComenta);
           ev(tComenta, "COMENTÁ");
           tl.fromTo("#bubble .dot", { opacity: 0.3 }, { opacity: 1, duration: 0.2, stagger: 0.12, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, tComenta);
 
-          // ================= 6) CTA: precio y financiacion de la H6 PRO HEV =================
-          sink(["#h10k", "#h10a", "#h10b"], s5 - 0.14);
-          out(["#pillBR", "#arrowBA", "#pillAR", "#tagComenta"], s5 - 0.12, 0.2, { y: 30 });
-          tl.to("#bubble", { scale: 0.7, x: 30, y: -10, duration: 0.4, ease: "power3.inOut" }, s5 - 0.1);
-          tl.to("#car", { scaleX: 0.9, scaleY: 0.9, x: 40, y: -10, duration: 0.45, ease: "power3.out" }, s5 - 0.1);
-          tl.to("#shadow", { y: -40, scaleX: 0.9, duration: 0.45, ease: "power3.out" }, s5 - 0.1);
-          tl.fromTo("#h9k", { opacity: 0 }, { opacity: 1, duration: 0.2, immediateRender: false }, s5);
-          tl.fromTo("#h9 .ch", { opacity: 0, scale: 1.4, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "expo.out", stagger: 0.03, immediateRender: false }, s5);
-          ev(s5, "vuelve HAVAL H6");
-          tl.fromTo("#cta", { opacity: 0, y: 120 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" }, s5 + 0.05);
-          ev(s5 + 0.05, "botón Pedinos precio y financiación");
+          // ================= 5) CTA + REVELACION: la foto real aparece en "Pedinos precio y financiacion" =================
+          sink(["#h10k", "#h10a", "#h10b"], s4 - 0.16);
+          out(["#pillBR", "#arrowBA", "#pillAR", "#tagComenta"], s4 - 0.14, 0.2, { y: 30 });
+          tl.to("#bubble", { scale: 0.7, x: 30, y: -10, duration: 0.4, ease: "power3.inOut" }, s4 - 0.12);
+          tl.to("#car", { scaleX: 0.9, scaleY: 0.9, x: 40, y: -10, duration: 0.4, ease: "power3.out" }, s4 - 0.12);
+          tl.to("#qmark", { rotation: "+=360", scale: 1.3, duration: 0.3, ease: "power2.in" }, s4 - 0.25);
+          tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.9, duration: 0.06 }, tRev - 0.04);
+          tl.to("#flash", { opacity: 0, duration: 0.4, ease: "power2.out" }, tRev + 0.02);
+          tl.set("#carPhoto", { opacity: 1 }, tRev - 0.04);
+          tl.fromTo("#carPhoto", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.42, ease: "power3.out", immediateRender: false }, tRev - 0.04);
+          tl.to("#rig", { opacity: 0, duration: 0.35 }, tRev + 0.05);
+          tl.to("#qmark", { opacity: 0, scale: 0.9, duration: 0.15 }, tRev - 0.04);
+          tl.set("#shadow", { y: -40, scaleX: 0.9 }, tRev - 0.05);
+          tl.fromTo("#shadow", { opacity: 0 }, { opacity: 1, duration: 0.4 }, tRev);
+          tl.fromTo("#h9k", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.25 }, tRev);
+          tl.fromTo("#h9 .ch", { opacity: 0, scale: 1.5, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.32, ease: "expo.out", stagger: 0.04 }, tRev - 0.02);
+          ev(tRev - 0.04, "REVELACIÓN: Haval H6 PRO HEV (foto real)");
+          shake(tRev + 0.1, 14);
+          tl.to("#pq1", { rotationY: 90, duration: 0.15, ease: "power2.in", transformPerspective: 400 }, tRev);
+          tl.to("#pq2", { rotationY: 0, duration: 0.2, ease: "back.out(2)" }, tRev + 0.15);
+          ev(tRev + 0.15, "el ? de la barra se vuelve H6");
+          tl.fromTo("#cta", { opacity: 0, y: 120 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" }, tRev + 0.25);
+          ev(tRev + 0.25, "botón Pedinos precio y financiación");
           tl.to("#h9t", { scale: 0.8, duration: 0.3, ease: "power3.out" }, tPro - 0.15);
           tl.fromTo("#proHev", { opacity: 0, x: 120, scale: 1.3 }, { opacity: 1, x: 0, scale: 1, duration: 0.38, ease: "back.out(2.4)" }, tPro);
           ev(tPro, "PRO HEV golpea al lado del nombre");
@@ -615,7 +608,7 @@
         }
 
         function fillGaps(tl) {
-          const tReveal = W("Haval");
+          const tReveal = S(4) + 0.05;
           const ts = events.map((e) => e.t).concat([DUR]).sort((a, b) => a - b);
           const fills = [];
           for (let i = 0; i < ts.length - 1; i++) {
@@ -642,7 +635,7 @@
               tl.set("#sheen", { opacity: 0 }, t + 0.25);
               ev(t, "relleno: destello en el título");
             } else {
-              const onCta = t > S(5) && alt++ % 2 === 1;
+              const onCta = t > S(4) + 0.3 && alt++ % 2 === 1;
               const el = onCta ? "#ctaSheen" : "#carSheen";
               tl.fromTo(el, { opacity: 1, x: -240 }, { opacity: 1, x: onCta ? 860 : 900, duration: 0.26, ease: "power1.inOut", immediateRender: false }, t);
               tl.set(el, { opacity: 0 }, t + 0.26);

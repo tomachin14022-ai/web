@@ -1,12 +1,13 @@
 # Reel · Haval H6 en Brasil
 
-Reel 1080x1920 a 60 fps (HyperFrames), 23,6 s. Gancho: "¿Comprarías un auto chino? En Brasil, mucha gente ya contestó."
+Reel 1080x1920 a 60 fps (HyperFrames), 21,6 s. Gancho: "¿Comprarías un auto chino? En Brasil, mucha gente ya contestó."
 Cuenta que la Haval H6 pasó a ser la SUV mediana más vendida de Brasil en 2026 (datos parciales de octubre), abre el debate con "¿Pasará lo mismo en Argentina? Comentá" y cierra con "Pedinos precio y financiación de la H6 PRO HEV en Valparaiso Motors".
-No nombra a la rival. El auto aparece como dibujo de líneas andando (ruedas que giran sincronizadas con el piso) y la foto real de la H6 PRO HEV recién cuando se dice el nombre.
+No nombra a la rival. El auto aparece como dibujo de líneas andando (ruedas que giran sincronizadas con el piso) y sigue en dibujo durante la pregunta; la foto real de la H6 PRO HEV y el nombre aparecen recién en "Pedinos precio y financiación". La frase "Es la Haval H6" se sacó de la voz (pedido del dueño).
 
 ## Archivos
 - `guion/guion-pantalla.txt`: texto correcto (subtítulos).
-- `guion/guion-voz-elevenlabs.txt`: lo que se grabó en ElevenLabs.
+- `guion/guion-voz-elevenlabs.txt`: lo que queda de la voz (la grabación original además decía "Es la Haval H6").
+- `guion/guion-pantalla-voz-original.txt`: el guion completo de la grabación original, para alinear los tiempos antes del corte.
 - `guion/descripcion-y-comentario.md`: descripción, comentario fijado y lista para verificar.
 - `audio/voz/elevenlabs-tomas.mp3`: voz original del dueño.
 - `tools/index.template.html`: la composición. Las animaciones se anclan a palabras del guion.
@@ -19,8 +20,9 @@ Desde esta carpeta:
 
 ```sh
 npx --yes hyperframes@0.8.230 transcribe audio/voz/elevenlabs-tomas.mp3 --model small --language es   # audio/voz/transcript.json
-python3 tools/align.py audio/voz/transcript.json guion/guion-pantalla.txt timing.json
-python3 tools/velocidad.py audio/voz/elevenlabs-tomas.mp3 audio/voz/voz-tramos.wav   # x1,05 desde "¿Pasará"
+python3 tools/align.py audio/voz/transcript.json guion/guion-pantalla-voz-original.txt timing.json
+python3 tools/recorte.py audio/voz/elevenlabs-tomas.mp3 audio/voz/voz-recortada.wav   # saca "Es la Haval H6"
+python3 tools/velocidad.py audio/voz/voz-recortada.wav audio/voz/voz-tramos.wav     # x1,05 desde "¿Pasará"
 python3 tools/mix.py audio/voz/voz-tramos.wav     # voz > efectos > música, -14 LUFS / -1 dBTP
 python3 tools/build.py                            # arma index.html
 npx --yes hyperframes@0.8.230 check

@@ -76,7 +76,7 @@ def main(voice_path):
 
     # --- Musica: un pulso cae justo en la revelacion ("Haval") ---
     period = 60.0 / BPM
-    t_rev = W("Haval")
+    t_rev = S(4) + 0.05  # revelacion en "Pedinos"
     offset = (BPM_FIRST_BEAT - t_rev) % period
     music = load(MUSIC, start=offset, dur=dur + 0.5)[:n]
     music = np.pad(music, ((0, n - len(music)), (0, 0)))
@@ -116,7 +116,7 @@ def main(voice_path):
         ("pop", W("Brasil", 1), -15),                       # sello BRASIL 2026
         ("pop", W("mucha"), -18),                           # aparece la gente
         ("click", W("contestó"), -16),                      # tilde
-        ("whoosh", S(1) - 0.22 - 2 * fr, -13),              # el auto sale disparado / entran las tarjetas
+        ("whoosh", S(1) - 0.25 - 2 * fr, -13),              # el auto sale disparado / entran las tarjetas
         ("pop", W("ahora"), -17),                           # POR AHORA*
         ("pop", W("china"), -15),
         ("whoosh", W("sacó") - 2 * fr, -14),                # las tarjetas se dan vuelta
@@ -125,13 +125,12 @@ def main(voice_path):
         ("whoosh", S(2) - 0.12 - 2 * fr, -15),
         ("ping", W("vendidas", end=True), -19),
         ("pop", W("va") + 0.35, -15),                       # +486
-        ("riser", W("Haval") - 3.2, -16, (10.03 - 3.2, 10.03)),
-        ("impact-bass-1", W("Haval") - 0.04, -9),
-        ("whoosh", S(4) - 0.12 - 2 * fr, -15),              # pasa a la pregunta
+        ("whoosh", S(3) - 0.12 - 2 * fr, -15),              # pasa a la pregunta (sigue el dibujo)
         ("pop", W("Argentina"), -15),
         ("pop", W("Comentá") - 0.15, -17),                  # globo de comentario
-        ("whoosh", S(5) - 0.1 - 2 * fr, -15),
-        ("pop", S(5) + 0.05, -15),                          # boton
+        ("riser", S(4) + 0.05 - 3.2, -17, (10.03 - 3.2, 10.03)),
+        ("impact-bass-1", S(4) + 0.01, -9),                 # revelacion en "Pedinos"
+        ("pop", S(4) + 0.3, -15),                           # boton
         ("pop", W("PRO"), -15),
     ]
     for item in plan:

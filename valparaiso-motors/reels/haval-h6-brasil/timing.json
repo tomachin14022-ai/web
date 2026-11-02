@@ -235,137 +235,113 @@
    "end": 13.56
   },
   {
-   "text": "Es",
-   "sentence": 3,
-   "start": 13.6,
-   "end": 13.9
-  },
-  {
-   "text": "la",
-   "sentence": 3,
-   "start": 13.9,
-   "end": 14.24
-  },
-  {
-   "text": "Haval",
-   "sentence": 3,
-   "start": 14.38,
-   "end": 14.6
-  },
-  {
-   "text": "H6.",
-   "sentence": 3,
-   "start": 14.6,
-   "end": 15.08
-  },
-  {
    "text": "¿Pasará",
-   "sentence": 4,
-   "start": 15.576,
-   "end": 16.243
+   "sentence": 3,
+   "start": 13.522,
+   "end": 14.189
   },
   {
    "text": "lo",
-   "sentence": 4,
-   "start": 16.262,
-   "end": 16.329
+   "sentence": 3,
+   "start": 14.208,
+   "end": 14.274
   },
   {
    "text": "mismo",
-   "sentence": 4,
-   "start": 16.414,
-   "end": 16.595
+   "sentence": 3,
+   "start": 14.36,
+   "end": 14.541
   },
   {
    "text": "en",
-   "sentence": 4,
-   "start": 16.595,
-   "end": 16.69
+   "sentence": 3,
+   "start": 14.541,
+   "end": 14.636
   },
   {
    "text": "Argentina?",
-   "sentence": 4,
-   "start": 16.69,
-   "end": 17.262
+   "sentence": 3,
+   "start": 14.636,
+   "end": 15.208
   },
   {
    "text": "Comentá.",
-   "sentence": 4,
-   "start": 17.262,
-   "end": 17.91
+   "sentence": 3,
+   "start": 15.208,
+   "end": 15.855
   },
   {
    "text": "Pedinos",
-   "sentence": 5,
-   "start": 17.91,
-   "end": 18.471
+   "sentence": 4,
+   "start": 15.855,
+   "end": 16.417
   },
   {
    "text": "precio",
-   "sentence": 5,
-   "start": 18.471,
-   "end": 18.91
+   "sentence": 4,
+   "start": 16.417,
+   "end": 16.855
   },
   {
    "text": "y",
-   "sentence": 5,
-   "start": 18.91,
-   "end": 18.986
+   "sentence": 4,
+   "start": 16.855,
+   "end": 16.931
   },
   {
    "text": "financiación",
-   "sentence": 5,
-   "start": 18.986,
-   "end": 19.9
+   "sentence": 4,
+   "start": 16.931,
+   "end": 17.846
   },
   {
    "text": "de",
-   "sentence": 5,
-   "start": 19.9,
-   "end": 20.052
+   "sentence": 4,
+   "start": 17.846,
+   "end": 17.998
   },
   {
    "text": "la",
-   "sentence": 5,
-   "start": 20.052,
-   "end": 20.138
+   "sentence": 4,
+   "start": 17.998,
+   "end": 18.084
   },
   {
    "text": "H6",
-   "sentence": 5,
-   "start": 20.243,
-   "end": 20.51
+   "sentence": 4,
+   "start": 18.189,
+   "end": 18.455
   },
   {
    "text": "PRO",
-   "sentence": 5,
-   "start": 20.51,
-   "end": 20.738
+   "sentence": 4,
+   "start": 18.455,
+   "end": 18.684
   },
   {
    "text": "HEV",
-   "sentence": 5,
-   "start": 20.738,
-   "end": 20.89
+   "sentence": 4,
+   "start": 18.684,
+   "end": 18.836
   },
   {
    "text": "en",
-   "sentence": 5,
-   "start": 20.89,
-   "end": 21.043
+   "sentence": 4,
+   "start": 18.836,
+   "end": 18.989
   },
   {
    "text": "Valparaiso",
-   "sentence": 5,
-   "start": 21.043,
-   "end": 21.805
+   "sentence": 4,
+   "start": 18.989,
+   "end": 19.75
   },
   {
    "text": "Motors.",
-   "sentence": 5,
-   "start": 21.957,
-   "end": 22.3
+   "sentence": 4,
+   "start": 19.903,
+   "end": 20.246
   }
  ],
- "voiceEnd": 22.3
+ "voiceEnd": 20.246
 }
