@@ -1,16 +1,16 @@
 # Reel · Haval H6 en Brasil
 
-Reel 1080x1920 a 60 fps (HyperFrames), 20,9 s. Gancho: "¿Comprarías un auto chino? En Brasil, mucha gente ya contestó."
-Cuenta que la Haval H6 pasó a ser la SUV mediana más vendida de Brasil en 2026 (datos parciales de octubre), abre el debate con "¿Pasará lo mismo en Argentina?" y cierra con "Pedinos precio de la H6 PRO HEV en Valparaiso Motors" (la H6 PRO HEV no tiene financiación).
-No nombra a la rival. El auto aparece como dibujo de líneas andando (ruedas que giran sincronizadas con el piso) y sigue en dibujo durante la pregunta; la foto real de la H6 PRO HEV y el nombre aparecen recién en "Pedinos precio". La pregunta no suena a cierre: queda abierta con "¿Y CUÁL ES?" y "COMENTÁ" va como sticker al final, sin voz.
+Reel 1080x1920 a 60 fps (HyperFrames), 21,5 s. Gancho: "¿Comprarías un auto chino? En Brasil, mucha gente ya contestó."
+Cuenta que la Haval H6 pasó a ser la SUV mediana más vendida de Brasil en 2026 (datos parciales de octubre), abre el debate con "¿Pasará lo mismo en Argentina?" y cierra con "Pedinos precio y financiación de la H6 PRO HEV en Valparaiso Motors".
+No nombra a la rival. El auto aparece como dibujo de líneas andando (ruedas que giran sincronizadas con el piso) y sigue en dibujo durante la pregunta; la foto real de la H6 PRO HEV y el nombre aparecen recién en "Pedinos precio y financiación". La pregunta no suena a cierre: queda abierta con "¿Y CUÁL ES?" y "COMENTÁ" va como sticker al final, sin voz.
 
 ## Archivos
 - `guion/guion-pantalla.txt`: texto correcto (subtítulos).
-- `guion/guion-voz-elevenlabs.txt`: lo que se grabó en ElevenLabs (02/11, 17:01).
+- `guion/guion-voz-elevenlabs.txt`: lo que se grabó en ElevenLabs (02/11, 18:15).
 - `guion/descripcion-y-comentario.md`: descripción, comentario fijado y lista para verificar.
 - `audio/voz/elevenlabs-tomas.mp3`: voz del dueño (sin cortes).
 - `tools/index.template.html`: la composición. Las animaciones se anclan a palabras del guion.
-- `tools/ajustes-tiempos.json`: tiempos medidos a mano sobre la forma de onda (empalme "año. / ¿Pasará" y la pregunta).
+- `tools/ajustes-tiempos.json`: tiempos medidos a mano sobre la forma de onda (empalme "año. / ¿Pasará", la pregunta y el cierre).
 - `tools/recorte.py`: para sacar tramos de la voz si hiciera falta (con esta voz no hay cortes).
 - `CREDITOS.md`: fuentes de datos, imagen, voz, música, efectos y tipografías.
 - `render/` (no se sube al repositorio): `haval-h6-brasil-final.mp4` (máxima calidad) y `haval-h6-brasil-liviano.mp4` (para subir).
