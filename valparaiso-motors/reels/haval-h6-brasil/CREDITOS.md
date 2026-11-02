@@ -11,7 +11,7 @@
   Dibujo de líneas hecho a partir de esa imagen; la placa y el logo de la parrilla se borraron en el dibujo para no revelar el nombre antes de tiempo. Las llantas giran por separado (ajustadas a la elipse real de cada rueda).
 
 ## Voz
-- ElevenLabs, voz "Tomas – Argentina / Uruguaya" (archivo del dueño). Se sacaron "Es la Haval H6", "Comentá" y "y financiación". Sin acelerar hasta "¿Pasará lo mismo en Argentina?" y ×1,05 desde ahí hasta el final (pedidos del dueño para este video).
+- ElevenLabs, voz "Tomas – Argentina / Uruguaya" (archivo del dueño, grabado el 02/11 a las 17:01, sin cortes). Sin acelerar hasta "¿Pasará lo mismo en Argentina?" y ×1,05 desde ahí hasta el final (pedidos del dueño para este video).
 
 ## Música
 - "Running Out of Time", Ahjay Stelino. Mixkit Stock Music Free License (https://mixkit.co/license/#musicFree).

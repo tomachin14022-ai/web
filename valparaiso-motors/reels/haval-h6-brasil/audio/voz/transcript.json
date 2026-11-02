@@ -1,362 +1,332 @@
 [
   {
     "text": "¿Comprarías",
-    "start": 0.04,
-    "end": 0.78,
+    "start": 0.05,
+    "end": 0.79,
     "id": "w0"
   },
   {
     "text": "un",
-    "start": 0.83,
-    "end": 0.91,
+    "start": 0.85,
+    "end": 0.94,
     "id": "w1"
   },
   {
     "text": "auto",
-    "start": 0.96,
-    "end": 1.22,
+    "start": 0.99,
+    "end": 1.26,
     "id": "w2"
   },
   {
     "text": "chino?",
-    "start": 1.22,
-    "end": 1.84,
+    "start": 1.26,
+    "end": 1.88,
     "id": "w3"
   },
   {
     "text": "En",
-    "start": 1.88,
-    "end": 1.99,
+    "start": 1.93,
+    "end": 2.02,
     "id": "w4"
   },
   {
     "text": "Brasil,",
-    "start": 1.99,
+    "start": 2.02,
     "end": 2.6,
     "id": "w5"
   },
   {
     "text": "mucha",
     "start": 2.6,
-    "end": 2.98,
+    "end": 2.97,
     "id": "w6"
   },
   {
     "text": "gente",
-    "start": 2.98,
-    "end": 3.13,
+    "start": 2.97,
+    "end": 3.2,
     "id": "w7"
   },
   {
     "text": "ya",
-    "start": 3.13,
-    "end": 3.62,
+    "start": 3.32,
+    "end": 3.4,
     "id": "w8"
   },
   {
-    "text": "contestó,",
-    "start": 3.62,
-    "end": 4.32,
+    "text": "contestó.",
+    "start": 3.73,
+    "end": 4.27,
     "id": "w9"
   },
   {
-    "text": "la",
-    "start": 4.32,
-    "end": 4.47,
+    "text": "La",
+    "start": 4.39,
+    "end": 4.5,
     "id": "w10"
   },
   {
     "text": "SUV",
-    "start": 4.47,
-    "end": 4.65,
+    "start": 4.51,
+    "end": 4.77,
     "id": "w11"
   },
   {
     "text": "mediana",
-    "start": 4.74,
-    "end": 5.21,
+    "start": 4.77,
+    "end": 5.37,
     "id": "w12"
   },
   {
     "text": "más",
-    "start": 5.21,
-    "end": 5.42,
+    "start": 5.37,
+    "end": 5.62,
     "id": "w13"
   },
   {
     "text": "vendida",
-    "start": 5.42,
-    "end": 5.95,
+    "start": 5.62,
+    "end": 6.23,
     "id": "w14"
   },
   {
     "text": "del",
-    "start": 6.08,
-    "end": 6.17,
+    "start": 6.23,
+    "end": 6.49,
     "id": "w15"
   },
   {
     "text": "año",
-    "start": 6.17,
-    "end": 6.44,
+    "start": 6.49,
+    "end": 6.72,
     "id": "w16"
   },
   {
     "text": "ahora",
-    "start": 6.44,
-    "end": 6.99,
+    "start": 6.87,
+    "end": 7.18,
     "id": "w17"
   },
   {
     "text": "es",
-    "start": 7,
-    "end": 7.08,
+    "start": 7.18,
+    "end": 7.35,
     "id": "w18"
   },
   {
     "text": "una",
-    "start": 7.08,
-    "end": 7.24,
+    "start": 7.35,
+    "end": 7.61,
     "id": "w19"
   },
   {
     "text": "China",
-    "start": 7.28,
-    "end": 7.55,
+    "start": 7.61,
+    "end": 7.95,
     "id": "w20"
   },
   {
     "text": "y",
-    "start": 7.57,
-    "end": 7.63,
+    "start": 8.06,
+    "end": 8.13,
     "id": "w21"
   },
   {
     "text": "le",
-    "start": 7.63,
-    "end": 7.75,
+    "start": 8.13,
+    "end": 8.19,
     "id": "w22"
   },
   {
     "text": "sacó",
-    "start": 7.75,
-    "end": 8.01,
+    "start": 8.33,
+    "end": 8.43,
     "id": "w23"
   },
   {
     "text": "el",
-    "start": 8.02,
-    "end": 8.14,
+    "start": 8.43,
+    "end": 8.53,
     "id": "w24"
   },
   {
     "text": "puesto",
-    "start": 8.15,
-    "end": 8.52,
+    "start": 8.66,
+    "end": 8.84,
     "id": "w25"
   },
   {
     "text": "a",
-    "start": 8.52,
-    "end": 8.77,
+    "start": 8.84,
+    "end": 8.87,
     "id": "w26"
   },
   {
     "text": "una",
-    "start": 8.77,
-    "end": 9.02,
+    "start": 8.88,
+    "end": 9.01,
     "id": "w27"
   },
   {
     "text": "norteamericana.",
-    "start": 9.02,
-    "end": 10,
+    "start": 9.01,
+    "end": 10.26,
     "id": "w28"
   },
   {
     "text": "Ya",
-    "start": 10,
-    "end": 10.05,
+    "start": 10.31,
+    "end": 10.41,
     "id": "w29"
   },
   {
     "text": "suma",
-    "start": 10.14,
-    "end": 10.38,
+    "start": 10.41,
+    "end": 10.71,
     "id": "w30"
   },
   {
-    "text": "44.020",
-    "start": 10.38,
-    "end": 11.54,
+    "text": "44",
+    "start": 10.71,
+    "end": 11.17,
     "id": "w31"
   },
   {
-    "text": "vendidas",
-    "start": 11.54,
-    "end": 12.06,
+    "text": "mil",
+    "start": 11.17,
+    "end": 11.4,
     "id": "w32"
   },
   {
-    "text": "en",
-    "start": 12.06,
-    "end": 12.19,
+    "text": "20",
+    "start": 11.4,
+    "end": 11.59,
     "id": "w33"
   },
   {
-    "text": "lo",
-    "start": 12.19,
-    "end": 12.32,
+    "text": "vendidas",
+    "start": 12.11,
+    "end": 12.48,
     "id": "w34"
   },
   {
-    "text": "que",
-    "start": 12.32,
-    "end": 12.51,
+    "text": "en",
+    "start": 12.48,
+    "end": 12.61,
     "id": "w35"
   },
   {
-    "text": "va",
-    "start": 12.51,
-    "end": 12.64,
+    "text": "lo",
+    "start": 12.63,
+    "end": 12.65,
     "id": "w36"
   },
   {
-    "text": "del",
-    "start": 12.64,
-    "end": 12.88,
+    "text": "que",
+    "start": 12.79,
+    "end": 13.01,
     "id": "w37"
   },
   {
-    "text": "año.",
-    "start": 12.88,
-    "end": 13.56,
+    "text": "va",
+    "start": 13.01,
+    "end": 13.15,
     "id": "w38"
   },
   {
-    "text": "Es",
-    "start": 13.6,
-    "end": 13.9,
+    "text": "del",
+    "start": 13.15,
+    "end": 13.38,
     "id": "w39"
   },
   {
-    "text": "la",
-    "start": 13.9,
-    "end": 14.24,
+    "text": "año.¿Pasará",
+    "start": 13.42,
+    "end": 14.4,
     "id": "w40"
   },
   {
-    "text": "Javal",
-    "start": 14.24,
-    "end": 14.85,
+    "text": "lo",
+    "start": 14.4,
+    "end": 14.54,
     "id": "w41"
   },
   {
-    "text": "H6.¿Pasará",
-    "start": 15.26,
-    "end": 16.3,
+    "text": "mismo",
+    "start": 14.54,
+    "end": 14.88,
     "id": "w42"
   },
   {
-    "text": "lo",
-    "start": 16.3,
-    "end": 16.37,
+    "text": "en",
+    "start": 14.93,
+    "end": 15.03,
     "id": "w43"
   },
   {
-    "text": "mismo",
-    "start": 16.46,
-    "end": 16.65,
+    "text": "Argentina?",
+    "start": 15.03,
+    "end": 15.9,
     "id": "w44"
   },
   {
-    "text": "en",
-    "start": 16.65,
-    "end": 16.75,
+    "text": "Pedimos",
+    "start": 15.95,
+    "end": 16.51,
     "id": "w45"
   },
   {
-    "text": "Argentina?",
-    "start": 16.75,
-    "end": 17.35,
+    "text": "precio",
+    "start": 16.51,
+    "end": 17.04,
     "id": "w46"
   },
   {
-    "text": "Comentá.",
-    "start": 17.35,
-    "end": 18.03,
+    "text": "de",
+    "start": 17.04,
+    "end": 17.21,
     "id": "w47"
   },
   {
-    "text": "Pedimos",
-    "start": 18.08,
-    "end": 18.55,
+    "text": "la",
+    "start": 17.22,
+    "end": 17.24,
     "id": "w48"
   },
   {
-    "text": "precio",
-    "start": 18.62,
-    "end": 19.08,
+    "text": "H6",
+    "start": 17.24,
+    "end": 17.75,
     "id": "w49"
   },
   {
-    "text": "y",
-    "start": 19.08,
-    "end": 19.16,
+    "text": "Pro",
+    "start": 17.75,
+    "end": 18.01,
     "id": "w50"
   },
   {
-    "text": "financiación",
-    "start": 19.16,
-    "end": 20.12,
+    "text": "HEV",
+    "start": 18.01,
+    "end": 18.25,
     "id": "w51"
   },
   {
-    "text": "de",
-    "start": 20.12,
-    "end": 20.28,
+    "text": "en",
+    "start": 18.28,
+    "end": 18.45,
     "id": "w52"
   },
   {
-    "text": "la",
-    "start": 20.28,
-    "end": 20.37,
+    "text": "Valparaíso",
+    "start": 18.45,
+    "end": 19.27,
     "id": "w53"
   },
   {
-    "text": "H6",
-    "start": 20.48,
-    "end": 20.76,
-    "id": "w54"
-  },
-  {
-    "text": "Pro",
-    "start": 20.76,
-    "end": 21,
-    "id": "w55"
-  },
-  {
-    "text": "HB",
-    "start": 21,
-    "end": 21.16,
-    "id": "w56"
-  },
-  {
-    "text": "en",
-    "start": 21.16,
-    "end": 21.32,
-    "id": "w57"
-  },
-  {
-    "text": "Valparaíso",
-    "start": 21.32,
-    "end": 22.12,
-    "id": "w58"
-  },
-  {
     "text": "Motors.",
-    "start": 22.28,
-    "end": 22.64,
-    "id": "w59"
+    "start": 19.3,
+    "end": 19.94,
+    "id": "w54"
   }
 ]

@@ -9,9 +9,8 @@ import subprocess
 import sys
 
 CORTES = [
-    (13.42, 15.48),  # "Es la Haval H6." (pedido del dueño: la foto y el nombre aparecen recien en "Pedinos")
-    (16.97, 17.93),  # "Comentá." (para que la pregunta no suene a cierre: empalma directo con "Pedinos")
-    (18.82, 19.64),  # "y financiación" (la H6 PRO HEV no tiene financiación)
+    # (inicio, fin) en segundos de la voz original, medidos en los silencios.
+    # La voz grabada el 02/11 (17:01) ya viene sin "Es la Haval H6", "Comentá" ni "y financiación": no hace falta cortar.
 ]
 SR = 48000
 

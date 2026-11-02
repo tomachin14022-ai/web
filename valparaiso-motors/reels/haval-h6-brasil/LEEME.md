@@ -1,18 +1,17 @@
 # Reel · Haval H6 en Brasil
 
-Reel 1080x1920 a 60 fps (HyperFrames), 19,9 s. Gancho: "¿Comprarías un auto chino? En Brasil, mucha gente ya contestó."
+Reel 1080x1920 a 60 fps (HyperFrames), 20,9 s. Gancho: "¿Comprarías un auto chino? En Brasil, mucha gente ya contestó."
 Cuenta que la Haval H6 pasó a ser la SUV mediana más vendida de Brasil en 2026 (datos parciales de octubre), abre el debate con "¿Pasará lo mismo en Argentina?" y cierra con "Pedinos precio de la H6 PRO HEV en Valparaiso Motors" (la H6 PRO HEV no tiene financiación).
-No nombra a la rival. El auto aparece como dibujo de líneas andando (ruedas que giran sincronizadas con el piso) y sigue en dibujo durante la pregunta; la foto real de la H6 PRO HEV y el nombre aparecen recién en "Pedinos precio". De la grabación original se sacaron "Es la Haval H6", "Comentá" (para que la pregunta no suene a cierre: queda abierta con "¿Y CUÁL ES?" y "COMENTÁ" va como sticker al final) y "y financiación".
+No nombra a la rival. El auto aparece como dibujo de líneas andando (ruedas que giran sincronizadas con el piso) y sigue en dibujo durante la pregunta; la foto real de la H6 PRO HEV y el nombre aparecen recién en "Pedinos precio". La pregunta no suena a cierre: queda abierta con "¿Y CUÁL ES?" y "COMENTÁ" va como sticker al final, sin voz.
 
 ## Archivos
 - `guion/guion-pantalla.txt`: texto correcto (subtítulos).
-- `guion/guion-voz-elevenlabs.txt`: lo que queda de la voz después de los cortes.
-- `guion/guion-pantalla-voz-original.txt`: el guion completo de la grabación original, para alinear los tiempos antes del corte.
+- `guion/guion-voz-elevenlabs.txt`: lo que se grabó en ElevenLabs (02/11, 17:01).
 - `guion/descripcion-y-comentario.md`: descripción, comentario fijado y lista para verificar.
-- `audio/voz/elevenlabs-tomas.mp3`: voz original del dueño.
+- `audio/voz/elevenlabs-tomas.mp3`: voz del dueño (sin cortes).
 - `tools/index.template.html`: la composición. Las animaciones se anclan a palabras del guion.
-- `tools/ajustes-tiempos.json`: tiempos medidos a mano sobre la forma de onda de la voz original.
-- `tools/recorte.py`: los cortes de la voz (en los silencios) y el corrimiento de tiempos.
+- `tools/ajustes-tiempos.json`: tiempos medidos a mano sobre la forma de onda (empalme "año. / ¿Pasará" y la pregunta).
+- `tools/recorte.py`: para sacar tramos de la voz si hiciera falta (con esta voz no hay cortes).
 - `CREDITOS.md`: fuentes de datos, imagen, voz, música, efectos y tipografías.
 - `render/` (no se sube al repositorio): `haval-h6-brasil-final.mp4` (máxima calidad) y `haval-h6-brasil-liviano.mp4` (para subir).
 
@@ -21,8 +20,8 @@ Desde esta carpeta:
 
 ```sh
 npx --yes hyperframes@0.8.230 transcribe audio/voz/elevenlabs-tomas.mp3 --model small --language es   # audio/voz/transcript.json
-python3 tools/align.py audio/voz/transcript.json guion/guion-pantalla-voz-original.txt timing.json
-python3 tools/recorte.py audio/voz/elevenlabs-tomas.mp3 audio/voz/voz-recortada.wav   # saca "Es la Haval H6", "Comentá" y "y financiación"
+python3 tools/align.py audio/voz/transcript.json guion/guion-pantalla.txt timing.json
+python3 tools/recorte.py audio/voz/elevenlabs-tomas.mp3 audio/voz/voz-recortada.wav   # sin cortes: copia la voz
 python3 tools/velocidad.py audio/voz/voz-recortada.wav audio/voz/voz-tramos.wav     # x1,05 desde "¿Pasará"
 python3 tools/mix.py audio/voz/voz-tramos.wav     # voz > efectos > música, -14 LUFS / -1 dBTP
 python3 tools/build.py                            # arma index.html
