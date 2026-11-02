@@ -141,10 +141,10 @@
 
       /* ---------- Subtitulos palabra por palabra ---------- */
       #subs { position: absolute; left: 0; top: 958px; width: 840px; height: 140px; }
-      .page { position: absolute; left: 0; top: 0; width: 840px; text-align: center; font-weight: 900; font-size: 60px; line-height: 1.08;
+      .page { position: absolute; left: 0; top: 0; width: 840px; text-align: center; font-weight: 900; font-size: 76px; line-height: 1.06;
         text-transform: uppercase; letter-spacing: 0.01em; opacity: 0; }
-      .w .ul { position: absolute; left: 2px; right: 2px; bottom: -2px; height: 7px; border-radius: 4px; background: var(--bordo); transform-origin: 0 50%; opacity: 0; }
-      .w { position: relative; display: inline-block; color: var(--ink); paint-order: stroke fill; -webkit-text-stroke: 12px var(--paper); opacity: 0; }
+      .w .ul { position: absolute; left: 2px; right: 2px; bottom: -3px; height: 8px; border-radius: 4px; background: var(--bordo); transform-origin: 0 50%; opacity: 0; }
+      .w { position: relative; display: inline-block; color: var(--ink); paint-order: stroke fill; -webkit-text-stroke: 14px var(--paper); opacity: 0; }
     </style>
   </head>
   <body>
@@ -559,12 +559,12 @@
           const subs = $("subs");
           const pages = [];
           const len = (ws) => ws.map((w) => w.text).join(" ").length;
-          const ok = (ws) => ws.length <= 4 && len(ws) <= 20;
+          const ok = (ws) => ws.length <= 4 && len(ws) <= 16;   // letra de 76 px: 16 letras entran en una linea
           let chunk = [];
           const flush = () => {
             const m = chunk.length;
             if (!m) return;
-            const target = len(chunk) / Math.max(1, Math.ceil(len(chunk) / 18));
+            const target = len(chunk) / Math.max(1, Math.ceil(len(chunk) / 15));
             const best = [0], prev = [0];
             for (let j = 1; j <= m; j++) {
               best[j] = Infinity;
