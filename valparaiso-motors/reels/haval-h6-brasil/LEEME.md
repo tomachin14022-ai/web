@@ -1,6 +1,6 @@
 # Reel · Haval H6 en Brasil
 
-Reel 1080x1920 (HyperFrames) sobre la nota de Motor1 Brasil: la Haval H6, un híbrido, pasa a ser la SUV mediana más vendida de Brasil en 2026 (datos parciales de octubre). Habla de la noticia y cierra con "Pedinos precio y financiación de la H6 PRO HEV". No nombra a la rival; el nombre del auto aparece recién en la revelación (dibujo de líneas → foto real).
+Reel 1080x1920 (HyperFrames) sobre la nota de Motor1 Brasil: la Haval H6, un híbrido, pasa a ser la SUV mediana más vendida de Brasil en 2026 (datos parciales de octubre). Habla de la noticia, abre el debate con "¿Pasará lo mismo en Argentina?" y cierra con "Pedinos precio y financiación de la H6 PRO HEV". No nombra a la rival; el nombre del auto aparece recién en la revelación (dibujo de líneas → foto real).
 
 ## Archivos
 - `guion/guion-pantalla.txt`: texto correcto (subtítulos).
@@ -21,7 +21,8 @@ cp <voz-elevenlabs>.mp3 audio/voz/original.mp3
 ffmpeg -y -i audio/voz/original.mp3 -af "rubberband=tempo=1.2:pitchq=quality:formant=preserved" -ar 48000 audio/voz/voz.wav
 npx --yes hyperframes@0.8.230 transcribe audio/voz/voz.wav --model small --language es   # escribe audio/voz/transcript.json
 python3 tools/align.py audio/voz/transcript.json guion/guion-pantalla.txt timing.json
-python3 tools/mix.py audio/voz/voz.wav        # voz > efectos > música, -14 LUFS / -1 dBTP
+python3 tools/pausas.py audio/voz/voz.wav audio/voz/voz-pausas.wav   # 0,7 s de pausa despues de "La Haval H6" (si la voz ya la trae, sacarla de PAUSAS)
+python3 tools/mix.py audio/voz/voz-pausas.wav # voz > efectos > música, -14 LUFS / -1 dBTP
 python3 tools/build.py                        # arma index.html
 npx --yes hyperframes@0.8.230 check
 npx --yes hyperframes@0.8.230 render -o render/haval-h6-brasil.mp4

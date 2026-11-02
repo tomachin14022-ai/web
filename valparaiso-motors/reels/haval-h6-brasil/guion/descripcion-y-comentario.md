@@ -8,7 +8,11 @@ En lo que va de 2026, la que venía primera perdió el puesto. La pasó un híbr
 
 ¿Cómo? Tomó fuerza con sus versiones híbridas flex y desde que se fabrica en Brasil.
 
-Es la Haval H6. 📩 Pedinos precio y financiación de la H6 PRO HEV en Valparaiso Motors, Córdoba: comentá H6 y te escribimos por mensaje.
+Es la Haval H6.
+
+¿Qué lectura hacés? ¿Pasará lo mismo en Argentina? Te leemos en los comentarios 👇
+
+📩 Pedinos precio y financiación de la H6 PRO HEV en Valparaiso Motors, Córdoba: comentá H6 y te escribimos por mensaje.
 
 Datos: Fenabrave, preliminares al 29/10/2026, vía Motor1 Brasil. Ranking de SUV medianas en Brasil: la ventaja es provisoria hasta el cierre de octubre.
 Foto: Chanokchon, CC BY-SA 4.0, Wikimedia Commons (recortada).

@@ -43,6 +43,7 @@ Reglas fijas:
 - Sonido real, no sintetizado: voz > efectos > música. La música baja cuando habla la voz y nunca queda en silencio.
 - Antes del render final, mostrar cuadros de prueba y preguntar si le gusta (una sola pregunta).
 - Si un número es una cuenta propia, decirlo ("estimado" o "ejemplo") y mostrar la cuenta.
+- Preguntar antes de actuar: antes de cambiar archivos, renderizar o publicar, proponer qué se va a hacer (con una recomendación) y esperar el OK.
 ```
 
 ---
@@ -86,6 +87,7 @@ Reglas fijas:
 ### Forma de trabajar con el dueño
 - Escribe rápido, con errores de tipeo: interpretá la intención.
 - Quiere el archivo terminado, no muchas preguntas. Si hay una decisión de verdad, una sola pregunta con recomendación.
+- **Nuevo (nov. 2026): "andá preguntándome antes de actuar".** Antes de cambiar archivos, renderizar, subir al repositorio o publicar, decile qué vas a hacer (con una recomendación) y esperá su OK. Agrupá las decisiones en una sola consulta para no frenarlo de más.
 - Graba la voz en **ElevenLabs** (voz "Tomas – Argentina / Uruguaya") y te pasa el MP3.
   - **Guion para voz:** solo el texto que se dice, **sin números de línea ni indicaciones de cómo decirlo**.
 - **Pruebas A/B con "reels de prueba"** de Instagram (se muestran a no seguidores) para elegir gancho o versión.

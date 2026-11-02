@@ -134,7 +134,11 @@ def main(voice_path):
         ("ping", W("vendida", 2), -16),
         ("riser", W("Haval") - 3.2, -16, (10.03 - 3.2, 10.03)),
         ("impact-bass-1", W("Haval") - 0.04, -9),
-        ("pop", S(8), -15),                                 # boton
+        ("whoosh", S(8) - 0.1 - 2 * fr, -15),               # pasa a la pregunta
+        ("pop", W("Argentina"), -15),
+        ("pop", W("comentarios") - 0.25, -17),              # globo de comentario
+        ("whoosh", S(9) - 0.1 - 2 * fr, -15),
+        ("pop", S(9) + 0.05, -15),                          # boton
         ("pop", W("PRO"), -15),
     ]
     for item in plan:

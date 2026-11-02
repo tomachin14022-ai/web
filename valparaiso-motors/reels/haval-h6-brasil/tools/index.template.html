@@ -161,6 +161,13 @@
       #logo { position: absolute; left: 230px; top: 1096px; width: 380px; opacity: 0; }
       #credit { position: absolute; right: 24px; top: 724px; font-weight: 600; font-size: 20px; color: #57524c; opacity: 0; }
 
+      /* Pregunta para debatir */
+      #h10 .t { font-size: 92px; }
+      #pillBR { left: 30px; top: 770px; font-size: 34px; padding: 10px 24px 10px 14px; }
+      #pillBR svg, #pillAR svg { width: 38px; height: 38px; }
+      #pillAR { left: 500px; top: 770px; font-size: 34px; padding: 10px 24px; }
+      #arrowBA { position: absolute; left: 288px; top: 784px; width: 200px; height: 50px; overflow: visible; }
+      #bubble { position: absolute; left: 650px; top: 300px; width: 170px; height: 140px; opacity: 0; }
       .foot { position: absolute; left: 0; top: 1150px; width: 840px; text-align: center; font-weight: 600; font-size: 24px; color: #57524c; opacity: 0; }
 
       /* Subtitulos palabra por palabra */
@@ -287,6 +294,14 @@
               <div class="t anton" id="h9t"><span class="ch">H</span><span class="ch">A</span><span class="ch">V</span><span class="ch">A</span><span class="ch">L</span>&nbsp;<span class="ch acc">H</span><span class="ch acc">6</span></div>
             </div>
             <div id="proHev" class="tag tag-b">PRO HEV</div>
+            <div id="h10" class="hd">
+              <div class="ln"><div class="in kicker" id="h10k">¿Qué lectura hacés?</div></div>
+              <div class="ln t anton"><div class="in" id="h10a">¿Pasará lo mismo</div></div>
+              <div class="ln t anton"><div class="in" id="h10b">en <span class="acc">Argentina</span>?</div></div>
+            </div>
+            <div id="pillBR" class="tag tag-i"><svg viewBox="0 0 38 38"><path d="M8 20 L16 28 L31 11" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Brasil</div>
+            <svg id="arrowBA" viewBox="0 0 200 50"><path id="arrowLine" d="M 8 25 L 182 25" fill="none" stroke="#801628" stroke-width="8" stroke-linecap="round"/><path id="arrowHead" d="M 160 8 L 186 25 L 160 42" fill="none" stroke="#801628" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></svg>
+            <div id="pillAR" class="tag tag-b">Argentina ?</div>
 
             <!-- ===== Auto (dibujo -> foto) ===== -->
             <div id="shadow"></div>
@@ -312,6 +327,7 @@
               <div id="qmark">?</div>
             </div>
             <div id="n1badge"><div class="a">N.º</div><div class="b">1</div></div>
+            <svg id="bubble" viewBox="0 0 170 140"><path d="M14 10 H156 Q164 10 164 18 V92 Q164 100 156 100 H70 L36 132 L42 100 H14 Q6 100 6 92 V18 Q6 10 14 10 Z" fill="#801628"/><circle class="dot" cx="50" cy="55" r="11" fill="#fff"/><circle class="dot" cx="85" cy="55" r="11" fill="#fff"/><circle class="dot" cx="120" cy="55" r="11" fill="#fff"/></svg>
             <div id="credit" data-layout-ignore>Foto: Chanokchon · CC BY-SA 4.0</div>
             <div id="cta"><div class="sweep" id="ctaSheen" style="width:220px"></div><div class="l1">Pedinos precio y financiación</div><div class="l2" id="ctaL2">Haval H6 PRO HEV</div></div>
             <img id="logo" src="assets/img/logo-negro.png" alt="Valparaiso Motors" />
@@ -392,7 +408,8 @@
           };
 
           // ---- anclas de la voz ----
-          const s1 = S(1), s2 = S(2), s3 = S(3), s4 = S(4), s5 = S(5), s6 = S(6), s7 = S(7), s8 = S(8);
+          const s1 = S(1), s2 = S(2), s3 = S(3), s4 = S(4), s5 = S(5), s6 = S(6), s7 = S(7), s8 = S(8), s9 = S(9);
+          const tPasara = W("¿Pasará"), tArg = W("Argentina"), tComent = W("comentarios");
           const tBrasil = W("Brasil", 1), t2026 = W("2026", 1), tPerdio = W("perdió"), tCual1 = W("cuál", 1), tPaso = W("pasó", 1);
           const tHib1 = W("híbrido", 1), tChina = W("china"), tSuma = W("suma"), tPatE = WE("patentamientos"), t486 = W("486"), tVenia2 = W("venía", 2);
           const tOct = W("octubre"), tSaco = W("sacó"), t2000 = W("2.000"), tSolo = W("solo");
@@ -401,7 +418,7 @@
           const tHaval = W("Haval"), tPro = W("PRO"), tH6b = W("H6", 2), tValpa = W("Valparaiso"), tFin = toks[toks.length - 1].end;
 
           tl.set("#car", { transformOrigin: "0 0" }, 0);
-          tl.set(["#h2 .in", "#h3 .in", "#h4 .in", "#h5 .in", "#h7 .in"], { yPercent: 115, opacity: 0 }, 0);
+          tl.set(["#h2 .in", "#h3 .in", "#h4 .in", "#h5 .in", "#h7 .in", "#h10 .in"], { yPercent: 115, opacity: 0 }, 0);
           tl.set(["#numA2", "#numB2"], { rotationX: -90, transformPerspective: 600 }, 0);
           tl.set(["#numA1", "#numB1"], { rotationX: 0, transformPerspective: 600 }, 0);
           tl.set("#pq2", { rotationY: -90, transformPerspective: 400 }, 0);
@@ -650,12 +667,39 @@
           tl.fromTo("#credit", { opacity: 0 }, { opacity: 1, duration: 0.3 }, tHaval + 0.4);
           ev(tHaval + 0.4, "crédito de la foto");
 
-          // ================= 9) CTA: precio y financiacion de la H6 PRO HEV =================
-          tl.to("#car", { scaleX: 0.9, scaleY: 0.9, x: 40, y: -10, duration: 0.45, ease: "power3.out" }, s8 - 0.1);
-          tl.to("#shadow", { y: -50, scaleX: 0.9, duration: 0.45, ease: "power3.out" }, s8 - 0.1);
-          tl.to("#credit", { y: -50, duration: 0.45, ease: "power3.out" }, s8 - 0.1);
-          tl.fromTo("#cta", { opacity: 0, y: 120 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" }, s8);
-          ev(s8, "botón Pedinos precio y financiación");
+          // ================= 9) PREGUNTA PARA DEBATIR =================
+          tl.to("#h9 .ch", { opacity: 0, y: -40, duration: 0.22, ease: "power2.in", stagger: 0.02 }, s8 - 0.12);
+          out(["#h9k", "#credit"], s8 - 0.12, 0.2);
+          tl.to("#car", { scaleX: 0.78, scaleY: 0.78, x: 88, y: 60, duration: 0.5, ease: "power3.inOut" }, s8 - 0.1);
+          tl.to("#shadow", { y: -20, scaleX: 0.8, duration: 0.5, ease: "power3.inOut" }, s8 - 0.1);
+          ev(s8 - 0.1, "el auto se acomoda para la pregunta");
+          rise("#h10k", s8 + 0.05, "¿Qué lectura hacés?");
+          rise(["#h10a", "#h10b"], tPasara - 0.05, "título: ¿pasará lo mismo en Argentina?");
+          tl.fromTo("#pillBR", { opacity: 0, x: -40, scale: 1.2 }, { opacity: 1, x: 0, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, tPasara + 0.15);
+          ev(tPasara + 0.15, "Brasil ✓");
+          const aLen = 174;
+          tl.fromTo("#arrowLine", { attr: { "stroke-dasharray": aLen, "stroke-dashoffset": aLen } }, { attr: { "stroke-dashoffset": 0 }, duration: Math.max(0.3, tArg - tPasara - 0.35), ease: "power2.inOut" }, tPasara + 0.35);
+          ev(tPasara + 0.35, "la flecha se dibuja hacia Argentina");
+          tl.fromTo("#arrowHead", { attr: { opacity: 0 } }, { attr: { opacity: 1 }, duration: 0.08 }, tArg - 0.05);
+          tl.fromTo("#pillAR", { opacity: 0, scale: 1.5, rotation: 10 }, { opacity: 1, scale: 1, rotation: -3, duration: 0.38, ease: "back.out(2.4)" }, tArg);
+          ev(tArg, "ARGENTINA ? golpea");
+          shake(tArg + 0.2, 9);
+          tl.fromTo("#bubble", { opacity: 0, scale: 0.9, rotation: 12, transformOrigin: "20% 100%" }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.4)" }, tComent - 0.25);
+          ev(tComent - 0.25, "globo de comentario");
+          tl.fromTo("#bubble .dot", { opacity: 0.3 }, { opacity: 1, duration: 0.2, stagger: 0.12, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, tComent - 0.1);
+
+          // ================= 10) CTA: precio y financiacion de la H6 PRO HEV =================
+          sink(["#h10k", "#h10a", "#h10b"], s9 - 0.14);
+          out(["#pillBR", "#arrowBA", "#pillAR"], s9 - 0.12, 0.2, { y: 30 });
+          tl.to("#bubble", { scale: 0.7, x: 40, y: -30, duration: 0.4, ease: "power3.inOut" }, s9 - 0.1);
+          tl.to("#car", { scaleX: 0.9, scaleY: 0.9, x: 40, y: -10, duration: 0.45, ease: "power3.out" }, s9 - 0.1);
+          tl.to("#shadow", { y: -50, scaleX: 0.9, duration: 0.45, ease: "power3.out" }, s9 - 0.1);
+          tl.fromTo("#credit", { opacity: 0, y: -50 }, { opacity: 1, y: -50, duration: 0.3, immediateRender: false }, s9 + 0.3);
+          tl.fromTo("#h9k", { opacity: 0 }, { opacity: 1, duration: 0.2, immediateRender: false }, s9);
+          tl.fromTo("#h9 .ch", { opacity: 0, scale: 1.4, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "expo.out", stagger: 0.03, immediateRender: false }, s9);
+          ev(s9, "vuelve HAVAL H6");
+          tl.fromTo("#cta", { opacity: 0, y: 120 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" }, s9 + 0.05);
+          ev(s9 + 0.05, "botón Pedinos precio y financiación");
           tl.to("#h9t", { scale: 0.8, duration: 0.3, ease: "power3.out" }, tPro - 0.15);
           tl.fromTo("#proHev", { opacity: 0, x: 120, scale: 1.3 }, { opacity: 1, x: 0, scale: 1, duration: 0.38, ease: "back.out(2.4)" }, tPro);
           ev(tPro, "PRO HEV golpea al lado del nombre");
@@ -765,7 +809,7 @@
               tl.set("#sheen", { opacity: 0 }, t + 0.25);
               ev(t, "relleno: destello en el título");
             } else {
-              const onCta = t > S(8) && alt++ % 2 === 1;
+              const onCta = t > S(9) && alt++ % 2 === 1;
               const el = onCta ? "#ctaSheen" : "#carSheen";
               tl.fromTo(el, { opacity: 1, x: -240 }, { opacity: 1, x: onCta ? 860 : 900, duration: 0.26, ease: "power1.inOut", immediateRender: false }, t);
               tl.set(el, { opacity: 0 }, t + 0.26);
