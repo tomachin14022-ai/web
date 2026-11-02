@@ -47,6 +47,10 @@ def strip_accents(s: str) -> str:
     return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn")
 
 
+def norm_word(s):
+    return re.sub(r"[^a-z0-9]", "", strip_accents(s.lower()))
+
+
 def spoken_units(token: str) -> list[str]:
     """Palabras pronunciadas (normalizadas) para un token del guion o de Whisper."""
     t = strip_accents(token.lower())
@@ -146,6 +150,21 @@ def main(transcript_path, script_path, out_path):
         else:  # signos sueltos
             tk["start"] = tk["end"] = tokens[ti - 1]["end"] if ti else 0.0
         del tk["units"]
+
+    # Ajustes manuales (tools/ajustes-tiempos.json): {"palabra#n": [inicio, fin]} medidos sobre la forma de onda
+    import os
+    aj_path = os.path.join(os.path.dirname(__file__), "ajustes-tiempos.json")
+    if os.path.exists(aj_path):
+        aj = json.load(open(aj_path, encoding="utf-8"))
+        for key, (t0, t1) in aj.items():
+            word, _, k = key.partition("#")
+            c = 0
+            for tk in tokens:
+                if norm_word(tk["text"]) == norm_word(word):
+                    c += 1
+                    if c == int(k or 1):
+                        tk["start"], tk["end"] = t0, t1
+                        break
 
     matched = sum(1 for a, b, n in sm.get_matching_blocks() for _ in range(n))
     json.dump({"tokens": tokens, "voiceEnd": round(words[-1]["end"], 3)}, open(out_path, "w", encoding="utf-8"),

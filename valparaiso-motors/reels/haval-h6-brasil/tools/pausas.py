@@ -11,7 +11,7 @@ import sys
 import unicodedata
 
 PAUSAS = [
-    ("H6", 1, 0.7),  # que la revelacion ("La Haval H6") respire antes de la pregunta
+    # ("H6", 1, 0.7),  # ejemplo: 0,7 s de silencio despues de "La Haval H6" (la voz de ElevenLabs ya trae la pausa)
 ]
 SR = 48000
 

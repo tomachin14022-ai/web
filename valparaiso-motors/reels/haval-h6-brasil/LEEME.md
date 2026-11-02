@@ -1,32 +1,32 @@
 # Reel · Haval H6 en Brasil
 
-Reel 1080x1920 (HyperFrames) sobre la nota de Motor1 Brasil: la Haval H6, un híbrido, pasa a ser la SUV mediana más vendida de Brasil en 2026 (datos parciales de octubre). Habla de la noticia, abre el debate con "¿Pasará lo mismo en Argentina?" y cierra con "Pedinos precio y financiación de la H6 PRO HEV". No nombra a la rival; el nombre del auto aparece recién en la revelación (dibujo de líneas → foto real).
+Reel 1080x1920 a 60 fps (HyperFrames), 23,6 s. Gancho: "¿Comprarías un auto chino? En Brasil, mucha gente ya contestó."
+Cuenta que la Haval H6 pasó a ser la SUV mediana más vendida de Brasil en 2026 (datos parciales de octubre), abre el debate con "¿Pasará lo mismo en Argentina? Comentá" y cierra con "Pedinos precio y financiación de la H6 PRO HEV en Valparaiso Motors".
+No nombra a la rival. El auto aparece como dibujo de líneas andando (ruedas que giran sincronizadas con el piso) y la foto real de la H6 PRO HEV recién cuando se dice el nombre.
 
 ## Archivos
 - `guion/guion-pantalla.txt`: texto correcto (subtítulos).
-- `guion/guion-voz-elevenlabs.txt`: lo que se pega en ElevenLabs (números y siglas escritos como se dicen).
+- `guion/guion-voz-elevenlabs.txt`: lo que se grabó en ElevenLabs.
 - `guion/descripcion-y-comentario.md`: descripción, comentario fijado y lista para verificar.
-- `revision/hoja-de-cuadros.jpg`: cuadros de prueba (con voz temporal).
-- `render/borrador-voz-temporal.mp4`: borrador para ver el movimiento (no se sube al repositorio).
-- `tools/index.template.html`: la composición. Todas las animaciones se anclan a palabras del guion, así que cambiar la voz no rompe nada.
-- `CREDITOS.md`: fuentes de datos, foto, música, efectos y tipografías.
+- `audio/voz/elevenlabs-tomas.mp3`: voz original del dueño.
+- `tools/index.template.html`: la composición. Las animaciones se anclan a palabras del guion.
+- `tools/ajustes-tiempos.json`: tiempos medidos a mano sobre la forma de onda ("Haval", "H6", "¿Pasará").
+- `CREDITOS.md`: fuentes de datos, imagen, voz, música, efectos y tipografías.
+- `render/` (no se sube al repositorio): `haval-h6-brasil-final.mp4` (máxima calidad) y `haval-h6-brasil-liviano.mp4` (para subir).
 
-## Cambiar a la voz definitiva (ElevenLabs)
+## Volver a armarlo
 Desde esta carpeta:
 
 ```sh
-mkdir -p audio/voz
-cp <voz-elevenlabs>.mp3 audio/voz/original.mp3
-# acelerar x1,20 sin cambiar el tono
-ffmpeg -y -i audio/voz/original.mp3 -af "rubberband=tempo=1.2:pitchq=quality:formant=preserved" -ar 48000 audio/voz/voz.wav
-npx --yes hyperframes@0.8.230 transcribe audio/voz/voz.wav --model small --language es   # escribe audio/voz/transcript.json
+npx --yes hyperframes@0.8.230 transcribe audio/voz/elevenlabs-tomas.mp3 --model small --language es   # audio/voz/transcript.json
 python3 tools/align.py audio/voz/transcript.json guion/guion-pantalla.txt timing.json
-python3 tools/pausas.py audio/voz/voz.wav audio/voz/voz-pausas.wav   # 0,7 s de pausa despues de "La Haval H6" (si la voz ya la trae, sacarla de PAUSAS)
-python3 tools/mix.py audio/voz/voz-pausas.wav # voz > efectos > música, -14 LUFS / -1 dBTP
-python3 tools/build.py                        # arma index.html
+python3 tools/velocidad.py audio/voz/elevenlabs-tomas.mp3 audio/voz/voz-tramos.wav   # x1,05 desde "¿Pasará"
+python3 tools/mix.py audio/voz/voz-tramos.wav     # voz > efectos > música, -14 LUFS / -1 dBTP
+python3 tools/build.py                            # arma index.html
 npx --yes hyperframes@0.8.230 check
-npx --yes hyperframes@0.8.230 render -o render/haval-h6-brasil.mp4
-ffmpeg -i render/haval-h6-brasil.mp4 -c:v libx264 -crf 26 -preset slow -c:a aac -b:a 192k -movflags +faststart render/haval-h6-brasil-liviano.mp4
+npx --yes hyperframes@0.8.230 render -o render/haval-h6-brasil-final.mp4 --fps 60 --quality delivery
+ffmpeg -i render/haval-h6-brasil-final.mp4 -c:v libx264 -crf 26 -preset slow -c:a aac -b:a 192k -movflags +faststart render/haval-h6-brasil-liviano.mp4
 ```
 
+`tools/pausas.py` sirve para meter silencios en la voz si hace falta (en este video no se usó).
 Requisitos de Python: `numpy` (mix.py). La alineación usa solo la biblioteca estándar.
