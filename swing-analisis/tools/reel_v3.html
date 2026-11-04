@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<!-- Compositor del reel v3 (1080x1920, 30 fps). window.setFrame(k).
+     ?panel=/run/v3&cap=/voice3/captions.json&tl=/run/timeline_v3.json&fm=/run/fmetrics.json -->
+<style>
+  :root{--bg:#0b100d;--ink:#0d1310;--paper:#f2efe8;--lime:#c9f26b;--red:#ff4d6d;--cyan:#3fd0ff;--yel:#ffd23f;--muted:#9aa59e}
+  html,body{margin:0;background:var(--bg)}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Inter,sans-serif;color:var(--paper);
+    background:radial-gradient(110% 55% at 50% 45%,#16211b 0%,#0b100d 72%)}
+  #grain{position:absolute;inset:0;opacity:.06;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+  #panel{position:absolute;left:100px;top:380px;width:760px;height:1030px;border-radius:28px;overflow:hidden;background:#000;
+    box-shadow:0 26px 70px rgba(0,0,0,.55),0 0 0 2px rgba(255,255,255,.07)}
+  #panel img{width:760px;height:1030px;display:block}
+  #kicker{position:absolute;top:262px;left:100px;font:800 25px Inter;letter-spacing:.16em;color:var(--lime)}
+  #title{position:absolute;top:298px;left:100px;width:860px;font:900 60px/1 Inter;letter-spacing:-.015em;white-space:nowrap}
+  #title .g{color:var(--lime)} #title .r{color:var(--red)}
+  /* barra de posiciones P1-P10 */
+  #pbar{position:absolute;left:24px;right:24px;top:20px;height:58px;border-radius:16px;background:rgba(11,16,13,.78);backdrop-filter:blur(6px)}
+  #pbar .track{position:absolute;left:26px;right:26px;top:41px;height:4px;border-radius:2px;background:rgba(255,255,255,.18)}
+  #pbar .fill{position:absolute;left:0;top:0;height:4px;border-radius:2px;background:var(--lime)}
+  #pbar .tick{position:absolute;top:8px;transform:translateX(-50%);font:800 17px 'JetBrains Mono',monospace;color:rgba(255,255,255,.55)}
+  #pbar .tick.on{color:var(--ink);background:var(--lime);padding:1px 6px;border-radius:7px}
+  #pbar .dot{position:absolute;top:36px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(0,0,0,.6)}
+  /* subtitulos */
+  #cap{position:absolute;left:100px;width:760px;top:470px;display:flex;justify-content:center}
+  #cap .box{display:flex;gap:14px;padding:12px 22px;border-radius:18px;background:rgba(11,16,13,.82);font:900 50px/1.05 Inter;text-transform:uppercase}
+  #cap span{display:inline-block;color:#fff} #cap span.on{color:var(--lime)}
+  /* datos en vivo */
+  #hud{position:absolute;left:628px;top:700px;width:216px;display:flex;flex-direction:column;gap:12px}
+  .tile{background:rgba(11,16,13,.84);border-radius:16px;padding:12px 16px;border-left:5px solid var(--cyan);opacity:0}
+  .tile .l{font:800 14px Inter;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+  .tile .v{font:800 34px/1.1 'JetBrains Mono',monospace;color:#fff;margin-top:4px}
+  .tile .s{font:700 15px Inter;color:var(--muted);margin-top:2px}
+  .tile.r{border-left-color:var(--red)} .tile.r .v{color:#ffd0d9}
+  .tile.g{border-left-color:var(--lime)} .tile.g .v{color:var(--lime)}
+  .chip{position:absolute;font:800 27px Inter;padding:12px 20px;border-radius:999px;white-space:nowrap;opacity:0;box-shadow:0 10px 26px rgba(0,0,0,.4)}
+  .chip.r{background:var(--red);color:#fff} .chip.g{background:var(--lime);color:var(--ink)} .chip.d{background:rgba(11,16,13,.92);color:var(--paper);border:2px solid rgba(255,255,255,.16)}
+  .dim{position:absolute;inset:0;background:rgba(5,8,6,.62);opacity:0}
+  .card{position:absolute;left:100px;top:420px;width:760px;height:950px;border-radius:32px;background:rgba(10,15,12,.95);
+    border:2px solid rgba(255,255,255,.1);box-shadow:0 30px 80px rgba(0,0,0,.6);opacity:0;padding:56px 52px;box-sizing:border-box}
+  .card h2{margin:0;font:900 62px/1.02 Inter;letter-spacing:-.01em}
+  .card .k{font:800 25px Inter;letter-spacing:.16em;color:var(--lime);margin-bottom:18px}
+  .card .row{display:flex;align-items:center;gap:22px;margin-top:30px;font:800 38px/1.12 Inter;opacity:0}
+  .card .n{flex:none;width:64px;height:64px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font:900 32px Inter}
+  .card .src{position:absolute;left:52px;bottom:42px;font:600 21px Inter;color:var(--muted)}
+</style></head>
+<body><div id="stage">
+  <div id="kicker"></div><div id="title"></div>
+  <div id="panel"><img id="pimg">
+    <div id="pbar"><div class="track"><div class="fill"></div></div></div>
+  </div>
+  <div id="hud"></div>
+  <div id="cap"></div>
+  <div class="dim" id="dim"></div>
+  <div id="chips"></div>
+  <div class="card" id="squat">
+    <div class="k">TEST DE MOVILIDAD · TPI</div><h2>SENTADILLA<br>PROFUNDA</h2>
+    <svg id="sq" width="250" height="300" viewBox="0 0 260 300" style="position:absolute;right:46px;top:46px"></svg>
+    <div class="row" data-t="44.25"><div class="n">1</div>Pies al ancho de los hombros</div>
+    <div class="row" data-t="44.6"><div class="n">2</div>Palo arriba de la cabeza</div>
+    <div class="row" data-t="45.31"><div class="n">3</div>Bajá con los talones apoyados</div>
+    <div class="row" data-t="46.01" style="color:#ffd0d9"><div class="n" style="background:var(--red);color:#fff">!</div>¿Se levantan? Trabajá esa movilidad</div>
+    <div class="src">Fuente: TPI · Overhead Deep Squat Test</div>
+  </div>
+  <div class="card" id="cta">
+    <div class="k">TU TURNO</div><h2>¿QUERÉS QUE<br>ANALICE TU SWING?</h2>
+    <div class="row" data-t="52.47"><div class="n">1</div>Filmalo desde atrás</div>
+    <div class="row" data-t="54.0"><div class="n">2</div>Y de frente</div>
+    <div class="row" data-t="52.47" style="opacity:0" id="dm"><div class="n">✈</div>Mandámelo por mensaje</div>
+    <div class="src">Análisis completo: video + informe + plan de práctica</div>
+  </div>
+  <div id="grain"></div>
+</div>
+<script>
+const Q = new URLSearchParams(location.search);
+const FPS = 30;
+let CAP, TL, FM;
+const ease = x => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+const TITLES = [
+  [0, 4.25, 'ANÁLISIS DE SWING · DRIVER', '<span class="r">SE LEVANTA</span> EN EL IMPACTO'],
+  [4.25, 8.5, 'LO QUE HACE BIEN', '<span class="g">LA BASE ES BUENA</span>'],
+  [8.5, 16.1, 'EL PROBLEMA', 'LA <span class="r">CADERA</span> VA A LA PELOTA'],
+  [16.1, 23.0, 'DIAGNÓSTICO · TPI', '<span class="r">EXTENSIÓN TEMPRANA</span>'],
+  [23.0, 31.4, 'POR QUÉ PASA', 'LA <span class="r">SECUENCIA</span>'],
+  [31.4, 37.0, 'CÓMO CORREGIRLO', 'LA <span class="g">CLAVE</span>'],
+  [37.0, 43.1, 'EJERCICIO 1', 'LA <span class="g">SILLA</span>'],
+  [43.1, 50.9, 'EJERCICIO 2', 'TU <span class="g">MOVILIDAD</span>'],
+  [50.9, 99, 'ANÁLISIS PERSONALIZADO', 'MANDAME TU SWING'],
+];
+// datos en vivo: [desde, hasta, [claves]]
+const HUD = [
+  [0, 2.2, ['cola', 'incl']], [4.25, 6.0, ['incl_ok']], [6.0, 7.0, ['incl_ok']], [7.0, 8.5, ['varilla']],
+  [10.85, 16.1, ['cola', 'incl']], [23.0, 31.4, ['rodilla', 'cabeza', 'talon']], [31.4, 37.0, ['objetivo', 'cola']],
+];
+const CHIPS = [
+  [16.31, 19.63, 'r', 'TPI: la pelvis va hacia la pelota', 120, 560],
+  [19.63, 23.0, 'd', 'Según TPI suele dar:', 120, 560],
+  [21.0, 23.0, 'r', 'TIROS A LA DERECHA', 120, 630],
+  [21.6, 23.0, 'r', 'GANCHOS', 470, 630],
+  [22.08, 23.0, 'r', 'GOLPES FINOS', 120, 700],
+  [39.09, 43.1, 'd', '1 · Cola apoyada', 470, 560],
+  [40.04, 43.1, 'd', '2 · Swings lentos', 470, 560],
+  [41.66, 43.1, 'r', '3 · Sin despegarte', 470, 560],
+];
+const chipsEl = document.getElementById('chips');
+const chipEls = CHIPS.map(c => { const d = document.createElement('div'); d.className = 'chip ' + c[2]; d.textContent = c[3];
+  d.style.left = c[4] + 'px'; d.style.top = c[5] + 'px'; chipsEl.appendChild(d); return d; });
+
+function tile(cls, l, v, s) { return `<div class="tile ${cls}"><div class="l">${l}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ''}</div>`; }
+function hudHTML(keys, f, f1) {
+  const c = x => (x >= 0 ? '+' : '') + x.toFixed(1).replace('.', ',');
+  return keys.map(k => ({
+    cola: tile(f.cola_cm > 2 ? 'r' : '', 'Cadera → pelota', c(f.cola_cm) + ' cm', 'vs. address'),
+    incl: tile(f1.incl - f.incl > 3 ? 'r' : '', 'Inclinación', Math.round(f.incl) + '°', 'address ' + Math.round(f1.incl) + '°'),
+    incl_ok: tile('g', 'Inclinación', Math.round(f.incl) + '°', 'address ' + Math.round(f1.incl) + '°'),
+    varilla: tile('g', 'Varilla en la bajada', '≈50°', 'zona 44°–58°'),
+    rodilla: tile('', 'Rodilla de atrás', f.rodilla_atras + '°', 'address ' + f1.rodilla_atras + '°'),
+    cabeza: tile(f.cabeza_baja_cm > 3 ? 'r' : '', 'Cabeza', (f.cabeza_baja_cm > 0 ? '↓ ' : '↑ ') + Math.abs(f.cabeza_baja_cm).toFixed(0) + ' cm', 'vs. address'),
+    talon: tile(f.talon_atras_cm > 3 ? 'r' : '', 'Talón de atrás', '↑ ' + f.talon_atras_cm.toFixed(0) + ' cm', 'vs. address'),
+    objetivo: tile('g', 'Objetivo en P7', '≈ 0 cm', 'cola sobre la línea'),
+  })[k]).join('');
+}
+function squatSVG(p) {
+  const hipY = 150 + 70 * p, kneeX = 130 + 40 * p, kneeY = 215 + 10 * p, sh = [130 - 18 * p, hipY - 95 + 20 * p];
+  return `<g stroke="#f2efe8" stroke-width="10" stroke-linecap="round" fill="none">
+    <line x1="110" y1="285" x2="${kneeX}" y2="${kneeY}"/><line x1="${kneeX}" y1="${kneeY}" x2="${120 - 25 * p}" y2="${hipY}"/>
+    <line x1="${120 - 25 * p}" y1="${hipY}" x2="${sh[0]}" y2="${sh[1]}"/><line x1="${sh[0]}" y1="${sh[1]}" x2="${sh[0] + 5}" y2="${sh[1] - 85}"/>
+    <line x1="${sh[0] - 55}" y1="${sh[1] - 85}" x2="${sh[0] + 65}" y2="${sh[1] - 85}" stroke="#c9f26b"/>
+    <line x1="95" y1="288" x2="145" y2="288" stroke="#c9f26b"/></g><circle cx="${sh[0] + 22}" cy="${sh[1] - 22}" r="18" fill="#f2efe8"/>`;
+}
+function rows(card, t) { card.querySelectorAll('.row').forEach(r => { const a = ease((t - +r.dataset.t) / 0.3);
+  r.style.opacity = a; r.style.transform = `translateY(${(1 - a) * 18}px)`; }); }
+
+// barra P1-P10: posiciones parejas, el punto avanza por tramos
+let PK = [], ticks = [];
+function setupBar() {
+  PK = Object.entries(TL.P).sort((a, b) => a[1] - b[1]);
+  const bar = document.getElementById('pbar');
+  PK.forEach(([name], j) => { const d = document.createElement('div'); d.className = 'tick'; d.textContent = name;
+    d.style.left = (26 + (760 - 48 - 52) * j / (PK.length - 1)) + 'px'; bar.appendChild(d); ticks.push(d); });
+  const dot = document.createElement('div'); dot.className = 'dot'; dot.id = 'dot'; bar.appendChild(dot);
+}
+function barPos(src) {
+  for (let j = 0; j < PK.length - 1; j++) { const a = PK[j][1], b = PK[j + 1][1];
+    if (src <= b) return (j + Math.max(0, (src - a) / (b - a))) / (PK.length - 1); }
+  return 1;
+}
+
+window.setFrame = async (k) => {
+  const t = k / FPS, fr = TL.frames[Math.min(k, TL.frames.length - 1)], src = fr.src, i = Math.round(src);
+  const img = document.getElementById('pimg'); img.src = `${Q.get('panel') || '/run/v3'}/${String(k).padStart(5, '0')}.png`; await img.decode();
+  // barra
+  const pos = barPos(fr.mode === 'compare' ? TL.P.P7 : src);
+  document.querySelector('#pbar .fill').style.width = (pos * 100) + '%';
+  document.getElementById('dot').style.left = (26 + (760 - 48 - 52) * pos) + 'px';
+  ticks.forEach((d, j) => d.classList.toggle('on', Math.abs(src - PK[j][1]) < 1.6 && fr.mode !== 'compare'));
+  document.getElementById('pbar').style.opacity = fr.mode === 'compare' ? 0 : 1;
+  // titulos
+  const T = TITLES.find(x => t >= x[0] && t < x[1]); const a = t < 0.05 ? 1 : ease((t - T[0]) / 0.3);
+  const ti = document.getElementById('title'), ki = document.getElementById('kicker');
+  ti.innerHTML = T[3]; ki.textContent = T[2]; ti.style.opacity = a; ti.style.transform = `translateY(${(1 - a) * 22}px)`; ki.style.opacity = a;
+  // datos en vivo
+  const H = fr.view[2] >= 340 && fr.mode !== 'compare' ? HUD.find(x => t >= x[0] && t < x[1]) : null; const hud = document.getElementById('hud');
+  if (H) { hud.innerHTML = hudHTML(H[2], FM.frames[i], FM.frames[TL.P.P1]);
+    [...hud.children].forEach((el, j) => { const e = ease((t - H[0] - 0.12 * j) / 0.3); el.style.opacity = t < 0.05 ? 1 : e; el.style.transform = `translateX(${(1 - e) * 24}px)`; }); }
+  else hud.innerHTML = '';
+  CHIPS.forEach((c, j) => { const on = t >= c[0] && t < c[1]; const e = on ? ease((t - c[0]) / 0.25) : 0;
+    chipEls[j].style.opacity = e; chipEls[j].style.transform = `scale(${0.94 + 0.06 * e})`;
+    if (on && j >= 5) { const later = CHIPS.slice(j + 1).some(d => t >= d[0] && t < d[1] && d[5] === c[5]); if (later) chipEls[j].style.opacity = 0; } });
+  // tarjetas
+  const sq = document.getElementById('squat'), cta = document.getElementById('cta'), dim = document.getElementById('dim');
+  const sqA = t >= 43.1 && t < 50.9 ? Math.min(ease((t - 43.1) / 0.35), ease((50.9 - t) / 0.2)) : 0;
+  const ctA = t >= 50.9 ? ease((t - 50.9) / 0.35) : 0;
+  sq.style.opacity = sqA; sq.style.transform = `scale(${0.95 + 0.05 * sqA})`;
+  cta.style.opacity = ctA; cta.style.transform = `scale(${0.95 + 0.05 * ctA})`;
+  dim.style.opacity = Math.max(sqA, ctA); rows(sq, t); rows(cta, t);
+  document.getElementById('dm').style.opacity = ease((t - 52.47) / 0.3);
+  document.getElementById('sq').innerHTML = squatSVG(t >= 43.1 && t < 50.9 ? 0.5 - 0.5 * Math.cos(Math.max(0, t - 44.2) * 2.2) : 0);
+  // subtitulos
+  const cap = document.getElementById('cap'); cap.innerHTML = '';
+  const pg = CAP.pages.find(p => t >= p.s && t < p.e);
+  if (pg && sqA < 0.5 && ctA < 0.5) { const box = document.createElement('div'); box.className = 'box';
+    const vis = pg.words.filter(w => t >= w.s);
+    vis.forEach((w, j) => { const s = document.createElement('span'); s.textContent = w.w.replace(/[.,:;]$/, '');
+      s.style.transform = `scale(${0.9 + 0.1 * ease((t - w.s) / 0.12)})`; if (j === vis.length - 1) s.className = 'on'; box.appendChild(s); });
+    if (vis.length) cap.appendChild(box); }
+  // en la comparacion los subtitulos bajan para no tapar
+};
+(async () => {
+  [CAP, TL, FM] = await Promise.all([Q.get('cap') || '/voice3/captions.json', Q.get('tl') || '/run/timeline_v3.json', Q.get('fm') || '/run/fmetrics.json']
+    .map(u => fetch(u).then(r => r.json())));
+  setupBar(); window.ready = true;
+})();
+</script></body></html>

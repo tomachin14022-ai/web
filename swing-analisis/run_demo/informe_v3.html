@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Análisis de swing · Informe</title>
+<style>
+  @page{size:A4;margin:0}
+  :root{--ink:#0d1310;--lime:#7fb31b;--limebg:#eef8d8;--red:#e23b5a;--redbg:#fde7ec;--amber:#c98a00;--amberbg:#fff4d6;--cyan:#1a9fd0;--muted:#5d6a63;--line:#e3e8e4;--dark:#0f1713}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,sans-serif;color:var(--ink);font-size:10.8pt;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;padding:15mm 15mm 13mm;position:relative;page-break-after:always;overflow:hidden}
+  .page:last-child{page-break-after:auto}
+  .foot{position:absolute;left:15mm;right:15mm;bottom:7mm;display:flex;justify-content:space-between;font-size:8pt;color:var(--muted);border-top:1px solid var(--line);padding-top:2mm}
+  h1{font:900 31pt/1.0 Inter;margin:0;letter-spacing:-.015em}
+  h2{font:900 18pt/1.12 Inter;margin:0 0 3mm;letter-spacing:-.01em}
+  h3{font:800 12pt/1.2 Inter;margin:0 0 1.5mm}
+  p{margin:0 0 2.4mm}
+  .k{font:800 8.5pt Inter;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:2mm}
+  .mono{font-family:'JetBrains Mono',monospace}
+  img{display:block;width:100%;border-radius:2.5mm}
+  figure{margin:0} figcaption{font-size:8pt;color:var(--muted);margin-top:1mm;line-height:1.3}
+  .hero{background:var(--dark);color:#f2efe8;margin:-15mm -15mm 6mm;padding:13mm 15mm 9mm;display:grid;grid-template-columns:1fr 58mm;gap:8mm}
+  .hero .k{color:#c9f26b}
+  .hero .meta{margin-top:5mm;display:grid;grid-template-columns:1fr 1fr;gap:2mm 4mm;font-size:9pt}
+  .hero .meta b{display:block;font-size:7.5pt;letter-spacing:.12em;color:#9aa59e;text-transform:uppercase}
+  .hero img{border-radius:3mm}
+  .prio{margin-top:5mm;background:#ff4d6d;color:#fff;border-radius:3mm;padding:3.5mm 4mm;font:800 11pt/1.3 Inter}
+  .prio small{display:block;font:700 7.5pt Inter;letter-spacing:.14em;opacity:.85;margin-bottom:1mm}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin:0 0 5mm}
+  .kpi{border:1.5px solid var(--line);border-radius:3mm;padding:3mm 3.5mm}
+  .kpi .l{font:800 7.5pt Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .kpi .v{font:800 19pt/1.1 'JetBrains Mono',monospace;color:var(--red);margin-top:1mm}
+  .kpi .s{font-size:8.5pt;color:var(--muted)}
+  .strip{display:grid;grid-template-columns:repeat(10,1fr);gap:1.4mm}
+  .strip figcaption{text-align:center;font:800 8pt 'JetBrains Mono',monospace;color:var(--ink)}
+  table{width:100%;border-collapse:collapse;font-size:9.2pt;margin:2mm 0 3mm}
+  th{font:800 7.8pt Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:1.5px solid var(--ink);padding:1.5mm 1.8mm}
+  td{border-bottom:1px solid var(--line);padding:1.6mm 1.8mm;vertical-align:top}
+  td.n{font-family:'JetBrains Mono',monospace;font-size:8.8pt;white-space:nowrap}
+  td.r{color:var(--red);font-weight:800} td.g{color:var(--lime);font-weight:800}
+  .st{display:inline-block;font:800 7.5pt Inter;letter-spacing:.06em;padding:.8mm 2.2mm;border-radius:99px;white-space:nowrap}
+  .ok{background:var(--limebg);color:#4d7a00} .warn{background:var(--amberbg);color:#8a5d00} .bad{background:var(--redbg);color:#b3173b} .na{background:#eef1ef;color:#5d6a63}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:6mm} .three{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+  .chain{display:grid;grid-template-columns:repeat(5,1fr);gap:2mm;margin:3mm 0 4mm}
+  .step{border-radius:3mm;padding:3mm;background:#f4f6f5;position:relative;font-size:8.8pt;line-height:1.3}
+  .step b{display:block;font:800 9.5pt Inter;margin-bottom:1mm}
+  .step .num{display:block;font:800 7.5pt 'JetBrains Mono',monospace;color:var(--muted);margin-bottom:.8mm}
+  .step.red{background:var(--redbg)}
+  .callout{border-left:1.2mm solid var(--cyan);padding:2.4mm 4mm;background:#eef7fb;border-radius:0 3mm 3mm 0;margin:3mm 0;font-size:9.5pt}
+  .goal{border-left-color:var(--lime);background:var(--limebg)}
+  .week{border:1.5px solid var(--line);border-radius:3.5mm;padding:4mm;margin-bottom:3.5mm;display:grid;grid-template-columns:30mm 1fr;gap:4mm}
+  .week .w{font:900 22pt/1 Inter;color:var(--lime)} .week .w small{display:block;font:800 8pt Inter;letter-spacing:.12em;color:var(--muted);margin-top:1mm}
+  ul{margin:1mm 0 2mm;padding-left:4.5mm} li{margin-bottom:1mm}
+  .src li{font-size:8.5pt}
+  .three img{height:58mm;object-fit:cover;object-position:center 55%}
+  .seq img{height:44mm!important}
+  .two figure img{max-height:112mm;object-fit:cover;object-position:center 60%}
+  .log{width:100%;border-collapse:collapse;font-size:9pt;margin-top:2mm}
+  .log td,.log th{border:1px solid var(--line);padding:2mm;text-align:center}
+  .log td:first-child,.log th:first-child{text-align:left;width:38%}
+</style></head>
+<body>
+
+<!-- 1 · PORTADA Y RESUMEN -->
+<section class="page">
+  <div class="hero">
+    <div>
+      <div class="k">Análisis de swing · Informe personalizado</div>
+      <h1>Se levanta<br>en el impacto</h1>
+      <div class="meta">
+        <div><b>Golfista</b>Swing de prueba (video de muestra)</div>
+        <div><b>Fecha</b>4 de noviembre de 2026</div>
+        <div><b>Palo · mano</b>Driver · diestro</div>
+        <div><b>Vista</b>Desde atrás (down the line)</div>
+      </div>
+      <div class="prio"><small>TU PRIORIDAD</small>Que la cadera gire hacia atrás en la bajada, en vez de ir hacia la pelota (extensión temprana).</div>
+    </div>
+    <figure><img src="img/hero.png"><figcaption style="color:#9aa59e">P7 · impacto. Contorno celeste: tu cuerpo en el address. En rojo, el espacio que dejó la cadera.</figcaption></figure>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="l">Cadera → pelota en P7</div><div class="v">+6,4 cm</div><div class="s">objetivo: sobre la línea</div></div>
+    <div class="kpi"><div class="l">Inclinación P1 → P7</div><div class="v">32° → 24°</div><div class="s">el torso se levanta 8°</div></div>
+    <div class="kpi"><div class="l">Talón de atrás en P5</div><div class="v">↑ 6 cm</div><div class="s">despega temprano</div></div>
+  </div>
+  <h2>Resumen</h2>
+  <p>Tu swing tiene una base muy buena: postura atlética, una subida estable y un palo que baja en plano. El problema está en la <b>secuencia de la bajada</b>: en el cambio de dirección te agachás, el talón de atrás despega temprano y la cadera se va hacia la pelota; después estirás las piernas y el torso se levanta. Eso es lo que TPI llama <b>extensión temprana</b>, y según TPI suele dar tiros a la derecha, ganchos y golpes finos o gruesos.</p>
+  <p><b>Lo que vas a trabajar:</b> girar con la cola hacia atrás para que en el impacto el glúteo izquierdo esté sobre la línea. Con el ejercicio de la silla y un control de movilidad (sentadilla profunda), en un plan de 3 semanas (página 5).</p>
+  <div class="k" style="margin-top:4mm">Tu swing en 10 posiciones</div>
+  <div class="strip">
+    <figure><img src="img/p1.png"><figcaption>P1</figcaption></figure><figure><img src="img/p2.png"><figcaption>P2</figcaption></figure>
+    <figure><img src="img/p3.png"><figcaption>P3</figcaption></figure><figure><img src="img/p4.png"><figcaption>P4</figcaption></figure>
+    <figure><img src="img/p5.png"><figcaption>P5</figcaption></figure><figure><img src="img/p6.png"><figcaption>P6</figcaption></figure>
+    <figure><img src="img/p7.png"><figcaption>P7</figcaption></figure><figure><img src="img/p8.png"><figcaption>P8</figcaption></figure>
+    <figure><img src="img/p9.png"><figcaption>P9</figcaption></figure><figure><img src="img/p10.png"><figcaption>P10</figcaption></figure>
+  </div>
+  <p class="note" style="font-size:8pt;color:var(--muted);margin-top:1.5mm">P1 address · P2 palo paralelo (subida) · P3 brazo paralelo · P4 tope · P5 brazo paralelo (bajada) · P6 palo paralelo · P7 impacto · P8 palo paralelo (salida) · P9 brazo paralelo · P10 final.</p>
+  <div class="foot"><span>Análisis de swing · informe de prueba</span><span>1 / 6</span></div>
+</section>
+
+<!-- 2 · EVALUACION -->
+<section class="page">
+  <div class="k">Evaluación completa</div>
+  <h2>Fundamento por fundamento</h2>
+  <table>
+    <tr><th style="width:24%">Fundamento</th><th style="width:15%">Estado</th><th>Qué vimos</th></tr>
+    <tr><td><b>Postura</b> · P1</td><td><span class="st ok">BIEN</span></td><td>Espalda inclinada ≈32°, rodillas flexionadas (≈146° atrás, ≈154° adelante) y brazos colgando: manos ≈8 cm por delante del hombro.</td></tr>
+    <tr><td><b>Subida</b> · P1→P4</td><td><span class="st ok">BIEN</span></td><td>La inclinación se mantiene (32° → 30° en el tope) y la rodilla de atrás conserva la flexión (146° → 136°).</td></tr>
+    <tr><td><b>Plano de bajada</b> · P5–P6</td><td><span class="st ok">BIEN</span></td><td>La varilla baja a ≈50°, dentro de la zona entre la línea de la varilla del address (≈44°) y la línea pelota–hombro (≈58°). No se ve "over the top" (según TPI, causa principal del slice).</td></tr>
+    <tr><td><b>Transición</b> · P4→P5</td><td><span class="st warn">MEJORAR</span></td><td>Se agacha (rodilla 136° → 129°, cabeza ↓4 cm), el talón de atrás despega (↑6 cm) y la cadera avanza 3,3 cm hacia la pelota.</td></tr>
+    <tr><td><b>Impacto</b> · P7</td><td><span class="st bad">PRIORIDAD</span></td><td>Cadera +6,4 cm hacia la pelota, inclinación 24° (−8° vs. el address), piernas estiradas (rodilla de atrás 151°) y talón de atrás ↑11 cm.</td></tr>
+    <tr><td><b>Final</b> · P10</td><td><span class="st ok">BIEN</span></td><td>De frente al objetivo, con el peso sobre el pie de adelante y el talón de atrás arriba. En equilibrio.</td></tr>
+    <tr><td><b>Alineación y pelota</b></td><td><span class="st na">NO EVALUADO</span></td><td>Necesita la vista de frente.</td></tr>
+    <tr><td><b>Desplazamiento lateral</b> (sway / slide)</td><td><span class="st na">NO EVALUADO</span></td><td>Necesita la vista de frente.</td></tr>
+    <tr><td><b>Ritmo</b></td><td><span class="st na">NO EVALUADO</span></td><td>El video está en cámara lenta: los tiempos no son reales.</td></tr>
+    <tr><td><b>Cara del palo, path, vuelo</b></td><td><span class="st na">NO EVALUADO</span></td><td>No se ven en un video de celular. Contanos dónde sale y cómo curva la pelota.</td></tr>
+  </table>
+  <div class="three">
+    <figure><img src="img/ok_postura.png"><figcaption>P1 · postura: línea celeste = inclinación.</figcaption></figure>
+    <figure><img src="img/ok_subida.png"><figcaption>P4 · la inclinación se mantiene (blanca = momento, celeste = address).</figcaption></figure>
+    <figure><img src="img/ok_plano.png"><figcaption>Bajada · la varilla dentro de la zona del plano; en amarillo, el recorrido de la cabeza del palo.</figcaption></figure>
+  </div>
+  <div class="foot"><span>Análisis de swing · informe de prueba</span><span>2 / 6</span></div>
+</section>
+
+<!-- 3 · DIAGNOSTICO -->
+<section class="page">
+  <div class="k">Diagnóstico · prioridad</div>
+  <h2>Extensión temprana</h2>
+  <p>TPI la define como <b>"cualquier movimiento de la pelvis hacia la pelota en la subida o la bajada"</b>. Es la característica de swing más común: según TPI la tiene el 67 % de más de 90.000 golfistas evaluados, y el 99 % de más de 100 profesionales de PGA, European y LPGA Tour evaluados no la tiene.</p>
+  <div class="two">
+    <figure><img src="img/compare.png"><figcaption>P1 vs. P7. Línea roja: tu cola en el address. A la derecha, el contorno celeste es tu address; en rojo, el espacio que dejó la cadera.</figcaption></figure>
+    <div>
+      <h3>Tus números, posición por posición</h3>
+      <table>
+        <tr><th>Pos.</th><th>Cadera → pelota</th><th>Inclin.</th><th>Rodilla atrás</th><th>Talón atrás</th></tr>
+        <tr><td class="n">P1</td><td class="n">0</td><td class="n">32°</td><td class="n">146°</td><td class="n">0</td></tr>
+        <tr><td class="n">P4</td><td class="n">+2,8 cm</td><td class="n">30°</td><td class="n">136°</td><td class="n">0</td></tr>
+        <tr><td class="n">P5</td><td class="n r">+6,1 cm</td><td class="n">31°</td><td class="n">129°</td><td class="n r">↑6 cm</td></tr>
+        <tr><td class="n">P6</td><td class="n r">+6,2 cm</td><td class="n">28°</td><td class="n">136°</td><td class="n r">↑10 cm</td></tr>
+        <tr><td class="n">P7</td><td class="n r">+6,4 cm</td><td class="n r">24°</td><td class="n">151°</td><td class="n r">↑11 cm</td></tr>
+        <tr><td class="n">P8</td><td class="n r">+7,1 cm</td><td class="n r">18°</td><td class="n">165°</td><td class="n">↑16 cm</td></tr>
+      </table>
+      <p style="font-size:9pt">La cadera hace casi todo el recorrido hacia la pelota <b>entre P4 y P5</b> (de +2,8 a +6,1 cm). La inclinación se pierde <b>entre P5 y P7</b>, cuando estira las piernas.</p>
+      <h3>Por qué te importa</h3>
+      <p style="font-size:9.5pt">Con la cadera ocupando el lugar de los brazos, las manos tienen que compensar. Según TPI, la extensión temprana suele dar tiros que salen a la derecha (block o push), ganchos, golpes gruesos o finos, y hasta shanks.</p>
+    </div>
+  </div>
+  <div class="k" style="margin-top:3mm">La secuencia que lo produce</div>
+  <div class="chain">
+    <div class="step"><span class="num">P4→P5</span><b>1 · Se agacha</b>Rodilla de atrás 136° → 129°. Cabeza ↓4 cm.</div>
+    <div class="step red"><span class="num">P4→P5</span><b>2 · Talón despega</b>El talón de atrás sube ≈6 cm antes de que los brazos lleguen a la cadera.</div>
+    <div class="step red"><span class="num">P4→P5</span><b>3 · Cadera a la pelota</b>La cola avanza 3,3 cm: ya está a +6 cm.</div>
+    <div class="step"><span class="num">P5→P7</span><b>4 · Estira las piernas</b>Rodilla de atrás 129° → 151°.</div>
+    <div class="step red"><span class="num">P5→P7</span><b>5 · Se levanta</b>El torso pierde 7° (31° → 24°).</div>
+  </div>
+  <div class="three seq">
+    <figure><img src="img/seq_agacha.png"><figcaption>P5 · se agacha: la línea punteada es la altura de tu cabeza en el address.</figcaption></figure>
+    <figure><img src="img/seq_talon.png"><figcaption>Zoom al pie de atrás: el talón despega temprano.</figcaption></figure>
+    <figure><img src="img/seq_sube.png"><figcaption>P7 · se levanta: inclinación del momento (blanca) vs. address (celeste).</figcaption></figure>
+  </div>
+  <div class="foot"><span>Análisis de swing · informe de prueba</span><span>3 / 6</span></div>
+</section>
+
+<!-- 4 · LA CLAVE -->
+<section class="page">
+  <div class="k">Cómo corregirlo</div>
+  <h2>La clave: girar con la cola hacia atrás</h2>
+  <div class="two">
+    <figure><img src="img/clave.png"><figcaption>Objetivo en P7: la cola vuelve a la línea y el glúteo izquierdo la toca.</figcaption></figure>
+    <div>
+      <p>No se trata de "quedarse abajo" ni de frenar las piernas: la fuerza de las piernas está bien. Lo que cambia es la <b>dirección</b>. En la bajada, la cadera tiene que girar <b>hacia atrás</b> (la cola hacia la línea) mientras las rodillas se estiran, en vez de ir hacia la pelota.</p>
+      <h3>Sensaciones que ayudan</h3>
+      <ul>
+        <li><b>"La cola busca la pared":</b> en el cambio de dirección, sentí que la cola se queda atrás y gira.</li>
+        <li><b>"El talón de atrás espera":</b> dejalo apoyado hasta que las manos pasen la cadera (P6).</li>
+        <li><b>"El pecho mira la pelota":</b> mantené la inclinación del address hasta el impacto.</li>
+      </ul>
+      <div class="callout goal"><b>Objetivo medible para el próximo video:</b><br>
+      • P7 · cadera → pelota: <b>menos de 2 cm</b> (hoy +6,4 cm).<br>
+      • P7 · inclinación: <b>no más de 3–4° menos que en el address</b> (hoy −8°).<br>
+      • P5 · talón de atrás: <b>apoyado</b> (hoy ↑6 cm).</div>
+      <p style="font-size:8.5pt;color:var(--muted)">Son objetivos de práctica fijados para tu swing, a partir de tus propias medidas del address. No son valores de laboratorio.</p>
+    </div>
+  </div>
+  <div class="k" style="margin-top:3mm">Ejercicio 1 · La silla</div>
+  <div class="three">
+    <figure><img src="img/silla_ok.png"><figcaption>Address: la cola apoyada en la silla.</figcaption></figure>
+    <figure><img src="img/silla_gap.png"><figcaption>Así es hoy tu impacto: la cola se despega (en rojo).</figcaption></figure>
+    <div>
+      <ol style="padding-left:4.5mm;margin:0">
+        <li>Silla atrás, con la cola apoyada en el respaldo en el address.</li>
+        <li>Swings lentos, sin pelota, hasta la altura de la cintura.</li>
+        <li>En la bajada la cola gira y sigue tocando la silla: en el impacto la toca el glúteo izquierdo.</li>
+        <li>Si se despega, te extendiste: repetí más lento.</li>
+      </ol>
+      <p style="font-size:8pt;color:var(--muted);margin-top:2mm">Ejercicio difundido por el entrenador Chris Como (golf.com).</p>
+    </div>
+  </div>
+  <div class="foot"><span>Análisis de swing · informe de prueba</span><span>4 / 6</span></div>
+</section>
+
+<!-- 5 · PLAN -->
+<section class="page">
+  <div class="k">Plan de práctica sugerido</div>
+  <h2>3 semanas para cambiar tu impacto</h2>
+  <div class="week"><div class="w">1<small>SEMANA · SENTIR</small></div><div>
+    <b>Silla sin pelota:</b> 3 series de 10 swings lentos, 4 o 5 días. Contá "1 (tope), 2 (cola atrás), 3 (impacto)".<br>
+    <b>Test de sentadilla profunda (TPI)</b>, el primer día: pies al ancho de los hombros, palo con los brazos estirados arriba de la cabeza, y bajá lo más que puedas. Frená si hay dolor, se levantan los talones, el palo se cae hacia adelante o perdés el equilibrio.<br>
+    <span style="color:var(--muted);font-size:9pt">Según TPI, si no podés bajar con los talones apoyados es casi imposible mantener la postura en la bajada (suele ser rigidez de pantorrillas o falta de control del core y la pelvis). TPI recomienda una evaluación con un profesional certificado.</span></div></div>
+  <div class="week"><div class="w">2<small>SEMANA · CON PELOTA</small></div><div>
+    <b>Medios swings con hierro 7</b> al lado de la silla: 3 series de 10, la cola tocando en el impacto. Si la silla molesta, usá una pared o una bolsa.<br>
+    <b>Filmá 3 swings desde atrás</b> (mismo lugar que este video) y mirá si la cola sigue sobre la línea en P7.</div></div>
+  <div class="week"><div class="w">3<small>SEMANA · VELOCIDAD</small></div><div>
+    <b>Swings completos:</b> primero con hierro y después con driver. Antes de cada golpe, un ensayo lento con la sensación de "cola atrás".<br>
+    <b>Video de control:</b> filmá desde atrás y de frente y mandalo para comparar contra este informe (antes / después).</div></div>
+  <div class="k" style="margin-top:4mm">Registro de práctica · marcá cada día</div>
+  <table class="log">
+    <tr><th>Ejercicio</th><th>L</th><th>M</th><th>M</th><th>J</th><th>V</th><th>S</th><th>D</th></tr>
+    <tr><td>Semana 1 · Silla sin pelota (3×10)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Semana 2 · Medios swings con hierro 7 (3×10)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Semana 3 · Swings completos + ensayo lento</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Movilidad (si el test de sentadilla falló)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <div class="callout"><b>Cómo vas a saber que funciona:</b> en el video de control, la cola sobre la línea en el impacto, el pecho con una inclinación parecida a la del address, y el talón de atrás apoyado más tiempo. En la cancha: contacto más centrado y menos tiros que salen a la derecha.</div>
+  <div class="foot"><span>Análisis de swing · informe de prueba</span><span>5 / 6</span></div>
+</section>
+
+<!-- 6 · METODO -->
+<section class="page">
+  <div class="k">Cómo se hizo este análisis</div>
+  <h2>Método, precisión y fuentes</h2>
+  <div class="two">
+    <div>
+      <h3>Método</h3>
+      <ol style="padding-left:4.5mm">
+        <li>Se compensó el movimiento de la cámara usando el fondo (el video tenía un paneo leve), así las líneas quedan fijas al piso.</li>
+        <li>Se mejoró la definición del video con un modelo de superresolución (Real-ESRGAN), sin cambiar la forma del cuerpo.</li>
+        <li>Detección del cuerpo con MediaPipe Pose: 33 puntos por cuadro, en los 264 cuadros, más la silueta para la línea de la cola.</li>
+        <li>El palo se detectó automáticamente y se verificó a mano en 22 cuadros clave. El impacto se confirmó cuadro a cuadro (la pelota está en el 142 y ya no en el 144).</li>
+        <li>Las posiciones P1–P10 se marcaron con las referencias de brazo y palo paralelos.</li>
+      </ol>
+      <h3>Precisión</h3>
+      <p>Las medidas salen de una sola cámara: son aproximadas (escala ≈4,7 mm por pixel). Sirven para ver tendencias y comparar contra tu próximo video filmado igual, no como medidas de laboratorio.</p>
+    </div>
+    <div>
+      <h3>Para el próximo video</h3>
+      <ul>
+        <li>Dos tomas: <b>desde atrás</b> y <b>de frente</b>, 2 o 3 swings cada una.</li>
+        <li>Celular fijo (trípode), a la altura de las manos, sin zoom, cuerpo entero, palo y pelota en cuadro.</li>
+        <li>60 fps o más, de día y sin contraluz. Archivo original, sin cámara lenta editada.</li>
+        <li>Contanos: palo, dónde salió la pelota y cómo curvó, y si tenés alguna molestia.</li>
+      </ul>
+      <h3>Fuentes</h3>
+      <ul class="src">
+        <li>TPI · Swing Characteristics (mytpi.com)</li>
+        <li>TPI · Early Extension (mytpi.com/articles/swing)</li>
+        <li>TPI · The Overhead Deep Squat Test (mytpi.com/articles/screening)</li>
+        <li>Titleist Learning Lab · Physics of ball striking</li>
+        <li>golf.com · Chair drill para la extensión temprana (Chris Como)</li>
+        <li>The Sand Trap · Recording Your Golf Swing</li>
+        <li>Google MediaPipe Pose Landmarker · Real-ESRGAN</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Análisis de swing · informe de prueba</span><span>6 / 6</span></div>
+</section>
+</body></html>

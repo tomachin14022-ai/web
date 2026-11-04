@@ -1,0 +1,56 @@
+[
+ {
+  "id": "hook",
+  "voz": "Este swing se levanta en el impacto. Te muestro por qué pasa, y cómo corregirlo.",
+  "texto": "Este swing se levanta en el impacto. Te muestro por qué pasa, y cómo corregirlo.",
+  "pausa": 0.35
+ },
+ {
+  "id": "bueno",
+  "voz": "La base es buena: buena postura, una subida estable, y el palo baja en plano.",
+  "texto": "La base es buena: buena postura, una subida estable, y el palo baja en plano.",
+  "pausa": 0.4
+ },
+ {
+  "id": "cola",
+  "voz": "Pero mirá la cola. Arranca sobre esta línea, y en el impacto se fue unos seis centímetros hacia la pelota. Y el torso se levantó ocho grados.",
+  "texto": "Pero mirá la cola. Arranca sobre esta línea, y en el impacto se fue unos 6 centímetros hacia la pelota. Y el torso se levantó 8 grados.",
+  "pausa": 0.4
+ },
+ {
+  "id": "nombre",
+  "voz": "Eso es extensión temprana: la cadera le quita lugar a los brazos. Según te pe i, da tiros a la derecha, ganchos, y golpes finos.",
+  "texto": "Eso es extensión temprana: la cadera le quita lugar a los brazos. Según TPI, da tiros a la derecha, ganchos, y golpes finos.",
+  "pausa": 0.4
+ },
+ {
+  "id": "causa",
+  "voz": "Empieza en el cambio de dirección: se agacha, el talón de atrás despega temprano, y la cadera se va hacia la pelota. Después estira las piernas, y se levanta.",
+  "texto": "Empieza en el cambio de dirección: se agacha, el talón de atrás despega temprano, y la cadera se va hacia la pelota. Después estira las piernas, y se levanta.",
+  "pausa": 0.4
+ },
+ {
+  "id": "clave",
+  "voz": "La clave es girar con la cola hacia atrás: en el impacto, el glúteo izquierdo tiene que tocar esta línea.",
+  "texto": "La clave es girar con la cola hacia atrás: en el impacto, el glúteo izquierdo tiene que tocar esta línea.",
+  "pausa": 0.4
+ },
+ {
+  "id": "ejercicio",
+  "voz": "El ejercicio: una silla atrás, con la cola apoyada. Swings lentos, y llegá al impacto sin despegarte de la silla.",
+  "texto": "El ejercicio: una silla atrás, con la cola apoyada. Swings lentos, y llegá al impacto sin despegarte de la silla.",
+  "pausa": 0.4
+ },
+ {
+  "id": "movilidad",
+  "voz": "Y probá una sentadilla profunda: si se te levantan los talones, trabajá esa movilidad. Según te pe i, sin ella cuesta mucho mantener la postura.",
+  "texto": "Y probá una sentadilla profunda: si se te levantan los talones, trabajá esa movilidad. Según TPI, sin ella cuesta mucho mantener la postura.",
+  "pausa": 0.45
+ },
+ {
+  "id": "cta",
+  "voz": "¿Querés que analice tu swing? Mandámelo filmado desde atrás y de frente.",
+  "texto": "¿Querés que analice tu swing? Mandámelo filmado desde atrás y de frente.",
+  "pausa": 0.6
+ }
+]

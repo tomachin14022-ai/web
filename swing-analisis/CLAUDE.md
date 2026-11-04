@@ -5,15 +5,27 @@
 
 ## Qué quiere el dueño
 1. **Parámetros de filmación** para que los espectadores manden su swing bien grabado.
-2. **Un reel** analizando el swing, con la **pantalla dividida**: video real con esqueleto de un lado y **personaje 3D** del otro.
+2. **Un reel** analizando el swing "como un instructor profesional": qué hace bien, qué hace mal y cómo mejorarlo.
 3. **Un PDF completo**: qué hace bien, qué hace mal y qué hacer para cambiarlo.
 4. Información **correcta, con fuente**, "no decir por decir".
+5. **Decisión del 04/11/2026: sin modelo 3D.** Se probó un maniquí 3D y el dueño pidió sacarlo y enfocarse en la calidad del análisis y en mejorar el swing.
+6. **Es un producto pago.** Tiene que parecer un análisis "de otro nivel", no uno genérico de IA: máxima calidad, profesionalismo y visuales.
+
+## Estándar del producto pago
+- **Estructura de profesional:** las 10 posiciones P1–P10, evaluación fundamento por fundamento (bien / mejorar / prioridad / no evaluado),
+  **una sola prioridad** con su **secuencia de causa y efecto** sacada de los datos (ej.: "entre P4 y P5 la cadera avanza 3,3 cm; entre P5 y P7 pierde 7°").
+- **Específico de ese swing:** cada frase con su número y su cuadro. Nada que sirva para cualquier golfista.
+- **Plan que cambia el juego:** sensaciones, ejercicios con progresión de 3 semanas (sin pelota → medio swing → completo), objetivos medibles
+  para el próximo video (marcados como objetivos de práctica, no como normas) y control antes/después.
+- **Visuales:** video mejorado (superresolución si es chico), contorno del address sobre el impacto, P1 vs P7 lado a lado, zoom a la zona clave,
+  datos en vivo, barra P1–P10, silla del ejercicio dibujada sobre el video. Subtítulos palabra por palabra.
+- **Verificar cada dato mirando el video** antes de decirlo. Ejemplo de la prueba: el modelo decía que despegaban los dos talones y en el video
+  solo despegaba el de atrás; y las manos más altas en el impacto son normales, así que no se mostraron como falla.
 
 ## Reglas de precisión (no negociables)
 - Cada diagnóstico se apoya en **un cuadro concreto** que se muestra (en el PDF y en el reel). Sin cuadro, no hay diagnóstico.
 - Las medidas salen de una sola cámara de celular: son **aproximadas**. Mostrar "aprox." y dar rangos, nunca decimales de laboratorio.
   No encontramos un estudio que valide MediaPipe contra captura de movimiento en golf (búsqueda del 04/11/2026).
-- El modelo 3D es **estimado** (la profundidad la adivina el modelo desde una sola cámara). Rotularlo "estimado".
 - La pose **no ve el palo ni la cara del palo**. Lo que hace la pelota se le pregunta al espectador (dónde sale y cómo curva) y se explica con las leyes de vuelo (abajo).
 - Nombrar las fallas con las **definiciones de TPI** (abajo). No inventar nombres ni porcentajes.
 - Máximo **2–3 cambios prioritarios** por swing, del más importante al menos. Cada uno con un ejercicio.
@@ -48,25 +60,42 @@ Complemento: V1 Golf (6–10 ft de frente, 8–12 ft desde atrás). Lo de "fijo,
 - **Qué se puede medir con la pose (aprox.)**: inclinación del tronco, movimiento de cabeza, cadera hacia la pelota (early extension), sway y slide, flexión de rodillas, brazo adelantado en el tope, momentos del swing (address, tope, impacto, final) y ritmo subida/bajada (solo con video a velocidad real).
 - **Qué NO**: cara del palo, path en grados, velocidad del palo o de la pelota, distancia, spin.
 
-## Proceso técnico (probado el 04/11/2026)
-1. **Pose:** MediaPipe Pose Landmarker *heavy* (Google, gratis, corre en CPU). Hace falta `apt-get install libegl1 libgles2 libgl1`.
-   - Modelo: `https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_heavy/float16/latest/pose_landmarker_heavy.task`
-   - `python -I tools/pose_extract.py VIDEO MODELO pose.json`: en la prueba detectó el cuerpo en 264 de 264 cuadros (~20 s en CPU).
-2. **Momentos y medidas:** `python -I tools/analyze.py pose.json VIDEO salida/`. Saca `metrics.json`, los cuadros clave con esqueleto y todos los cuadros dibujados. Está pensado para la toma desde atrás; falta la versión de frente.
-3. **Pantalla dividida 3D:** `tools/split.html` (Three.js 0.170: maniquí armado con los puntos 3D, cámara que gira de "como el video" a "de frente") + `tools/shoot.js` (Playwright saca cada cuadro). Va en una carpeta `r3d/` con `npm install three@0.170.0`, servida con `python3 -m http.server`.
-4. **Reel final:** HyperFrames (skills `hyperframes`, `threejs-*`, `embedded-captions`, `media-use`), con la voz que elija el dueño.
-5. **PDF:** skill `pdf`, o HTML impreso con Playwright.
+## Proceso técnico v2 (probado el 04/11/2026, toma desde atrás)
+Entorno: venv con `mediapipe opencv-python-headless numpy scipy`; `apt-get install libegl1 libgles2 libgl1`;
+carpeta `r3d/` con `npm install three@0.170.0`, servida con `python3 -m http.server 8765` desde la carpeta de trabajo.
+1. **Pose + silueta:** `python -I tools/pose_extract.py VIDEO pose_landmarker_heavy.task pose.npz`
+   (modelo: `https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_heavy/float16/latest/pose_landmarker_heavy.task`).
+2. **Compensar la cámara** con el fondo: `tools/stabilize.py VIDEO pose.npz CUADRO_ADDRESS stab.npz`. Las líneas quedan pegadas al piso.
+3. **Palo y pelota:** `tools/club_detect.py` (automático + correcciones a mano en JSON). La punta del palo se marca a ojo en ~20 cuadros clave
+   (hojas con grilla: ver `run_demo/`) con su profundidad con signo (+ hacia la cámara). El impacto se confirma mirando cuándo desaparece la pelota.
+4. **Datos 2D suavizados:** `tools/build3d.py` → `swing3d.json` (puntos del cuerpo estabilizados `p2`, palo `h2`/`g2`, momentos). El nombre quedó
+   de la prueba 3D; el 3D ya no se usa, pero este archivo sí.
+5. **Medidas:** `tools/metrics.py` (línea de cola con la silueta, columna, plano) y `tools/frame_metrics.py` (datos por cuadro y P1–P10 en
+   `run_demo/posiciones.json`; P3/P5/P9 = muñeca a la altura del hombro, P2/P6/P8 = palo paralelo, P7 = la pelota desaparece).
+6. **Superresolución** (solo si el video es chico): `tools/upscale.py` con `realesr-general-x4v3.pth` (Real-ESRGAN, ~4 s por cuadro en CPU, necesita torch).
+7. **Panel del video:** `tools/render_v3.py` (760x1030, dibuja a 2x). Capas: esqueleto, contorno del address, hueco de la cadera, línea de cola,
+   columna, plano, recorrido del palo, cabeza, ángulo de rodilla, talón, objetivo, silla. Modos: vista con zoom y comparación P1 | P7.
+   La edición va en `run_demo/timeline_v3.py`, con tiempos sacados de las palabras de la voz.
+8. **Voz:** guion en `run_demo/guion.json` (texto para la voz y texto para subtítulos por separado; texto limpio en `guion_voz.txt`).
+   Prueba: Kokoro local (`hyperframes tts`, voz `em_alex`, `--lang es`, con `HYPERFRAMES_PYTHON` apuntando a un venv con `kokoro-onnx soundfile`),
+   acelerada ×1,12 con rubberband. **Para el producto pago: la voz de ElevenLabs del dueño** (Kokoro suena neutro/español, no rioplatense).
+   Tiempos por palabra: `hyperframes transcribe voz.wav -m small -l es`. Subtítulos: `tools/captions.py` (1–4 palabras, ≤20 letras).
+9. **Composición:** `tools/reel_v3.html` (títulos, barra P1–P10, datos en vivo, subtítulos, tarjetas) + `tools/shoot_reel.js` (1080x1920, 30 fps).
+   Audio: `tools/mix.py` (voz > efectos > música con ducking; cues en `run_demo/cues.json`) y loudnorm a −14 LUFS / −1 dBTP.
+   Sonidos: Kenney (CC0) desde `series-ai/jam-ready-assets` (archivos LFS por `media.githubusercontent.com`).
+10. **PDF:** `run_demo/informe_v3.html` (6 páginas: portada con prioridad y KPIs, P1–P10, evaluación, diagnóstico con secuencia, la clave y la silla,
+    plan de 3 semanas con registro, método y fuentes) impreso con `tools/print_pdf.js`.
 
 **Límites vistos en la prueba** (clip de muestra de GolfDB, licencia CC BY-NC: solo para pruebas internas, no publicar):
-- el clip tenía zoom y paneo, así que la línea de referencia de la cadera no sirve: por eso la regla de "celular fijo";
-- era cámara lenta, así que el ritmo medido (subida 3,5 s) no es real: por eso "archivo original".
+- el clip tenía paneo leve (~11 px): se compensó con el fondo;
+- era cámara lenta: el ritmo medido no es real. Por eso pedir el archivo original;
+- la varilla se pierde cuando pasa delante del cuerpo o sale borrosa: hay que marcarla a mano en los cuadros clave.
 
 **Pendiente:**
-- versión de frente del análisis;
-- personaje 3D más lindo (humanoide con huesos en vez del maniquí);
-- centrar mejor la figura en la zona segura;
-- diseño del reel (nombre de la cuenta, colores, voz);
-- plantilla del PDF.
+- probar con un video real HD de un espectador (dos tomas) y sumar la versión de frente (sway, slide, posición de pelota, palo en el impacto);
+- pedirle al espectador el vuelo de la pelota para conectar el diagnóstico con su error;
+- convertir este proceso en una skill propia `analisis-swing`;
+- nombre de la cuenta, logo, colores y voz definitivos (ElevenLabs del dueño) para el producto.
 
 ## Skills (búsqueda en skills.sh, 04/11/2026)
 - **No existe una skill de análisis de swing de golf.** Los resultados con "swing" son de trading ("swing-review") y "golf-data" es de torneos.
