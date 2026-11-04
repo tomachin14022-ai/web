@@ -11,6 +11,15 @@
 5. **Decisión del 04/11/2026: sin modelo 3D.** Se probó un maniquí 3D y el dueño pidió sacarlo y enfocarse en la calidad del análisis y en mejorar el swing.
 6. **Es un producto pago.** Tiene que parecer un análisis "de otro nivel", no uno genérico de IA: máxima calidad, profesionalismo y visuales.
 
+## Pedidos del dueño (04/11/2026, después del swing 2) — los más recientes mandan
+- **Usar la skill `analisis-swing`** (`.claude/skills/analisis-swing/SKILL.md`): protocolo de filmación, checklist técnico,
+  postura crítica y formato. El análisis lo van a evaluar **profesores de golf**: no puede haber errores técnicos.
+- **Mucho más técnico y preciso.** Pedir siempre el video **desde atrás y de frente** con el protocolo de la skill antes de analizar.
+- **Criticar al jugador sin sesgo positivo.** No suavizar ni empezar por lo bueno para quedar bien.
+- **Reel:** análisis puro, **sin gancho ni re-gancho**, y **termina con un drill** (después, solo el cierre breve de reporte + "Seguime").
+- **Error del swing 2:** el reel y el informe dijeron "la bajada está en plano" y era **over the top** (manos 14–23 cm por encima de
+  su camino de subida, varilla en P5 14° más empinada que en P3, tope cruzado). No publicar esos archivos.
+
 ## Pedidos del dueño (04/11/2026, después del primer reel) — valen para todos los análisis
 - **Voz:** dejarla como está (Kokoro `em_alex`, `--lang es`, acelerada ×1,12). No cambiarla sin que lo pida.
 - **Cierre del reel:** antes del final decir que el análisis va acompañado de un reporte (ej.: "Este análisis va acompañado
