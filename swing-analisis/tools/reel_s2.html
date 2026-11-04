@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<!-- Compositor del reel v3 (1080x1920, 30 fps). window.setFrame(k).
+     ?panel=/run/v3&cap=/voice3/captions.json&tl=/run/timeline_v3.json&fm=/run/fmetrics.json -->
+<style>
+  :root{--bg:#0b100d;--ink:#0d1310;--paper:#f2efe8;--lime:#c9f26b;--red:#ff4d6d;--cyan:#3fd0ff;--yel:#ffd23f;--muted:#9aa59e}
+  html,body{margin:0;background:var(--bg)}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Inter,sans-serif;color:var(--paper);
+    background:radial-gradient(110% 55% at 50% 45%,#16211b 0%,#0b100d 72%)}
+  #grain{position:absolute;inset:0;opacity:.06;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+  #panel{position:absolute;left:100px;top:380px;width:760px;height:1030px;border-radius:28px;overflow:hidden;background:#000;
+    box-shadow:0 26px 70px rgba(0,0,0,.55),0 0 0 2px rgba(255,255,255,.07)}
+  #panel img{width:760px;height:1030px;display:block}
+  #kicker{position:absolute;top:262px;left:100px;font:800 25px Inter;letter-spacing:.16em;color:var(--lime)}
+  #title{position:absolute;top:298px;left:100px;width:860px;font:900 60px/1 Inter;letter-spacing:-.015em;white-space:nowrap}
+  #title .g{color:var(--lime)} #title .r{color:var(--red)}
+  /* barra de posiciones P1-P10 */
+  #pbar{position:absolute;left:24px;right:24px;top:20px;height:58px;border-radius:16px;background:rgba(11,16,13,.78);backdrop-filter:blur(6px)}
+  #pbar .track{position:absolute;left:26px;right:26px;top:41px;height:4px;border-radius:2px;background:rgba(255,255,255,.18)}
+  #pbar .fill{position:absolute;left:0;top:0;height:4px;border-radius:2px;background:var(--lime)}
+  #pbar .tick{position:absolute;top:8px;transform:translateX(-50%);font:800 17px 'JetBrains Mono',monospace;color:rgba(255,255,255,.55)}
+  #pbar .tick.on{color:var(--ink);background:var(--lime);padding:1px 6px;border-radius:7px}
+  #pbar .dot{position:absolute;top:36px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(0,0,0,.6)}
+  /* subtitulos */
+  #cap{position:absolute;left:100px;width:760px;top:470px;display:flex;justify-content:center}
+  #cap .box{display:flex;gap:14px;padding:12px 22px;border-radius:18px;background:rgba(11,16,13,.82);font:900 50px/1.05 Inter;text-transform:uppercase}
+  #cap span{display:inline-block;color:#fff} #cap span.on{color:var(--lime)}
+  /* datos en vivo */
+  #hud{position:absolute;left:628px;top:700px;width:216px;display:flex;flex-direction:column;gap:12px}
+  .tile{background:rgba(11,16,13,.84);border-radius:16px;padding:12px 16px;border-left:5px solid var(--cyan);opacity:0}
+  .tile .l{font:800 14px Inter;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+  .tile .v{font:800 34px/1.1 'JetBrains Mono',monospace;color:#fff;margin-top:4px}
+  .tile .s{font:700 15px Inter;color:var(--muted);margin-top:2px}
+  .tile.r{border-left-color:var(--red)} .tile.r .v{color:#ffd0d9}
+  .tile.g{border-left-color:var(--lime)} .tile.g .v{color:var(--lime)}
+  .chip{position:absolute;font:800 27px Inter;padding:12px 20px;border-radius:999px;white-space:nowrap;opacity:0;box-shadow:0 10px 26px rgba(0,0,0,.4)}
+  .chip.r{background:var(--red);color:#fff} .chip.g{background:var(--lime);color:var(--ink)} .chip.d{background:rgba(11,16,13,.92);color:var(--paper);border:2px solid rgba(255,255,255,.16)}
+  .dim{position:absolute;inset:0;background:rgba(5,8,6,.62);opacity:0}
+  .card{position:absolute;left:100px;top:420px;width:760px;height:950px;border-radius:32px;background:rgba(10,15,12,.95);
+    border:2px solid rgba(255,255,255,.1);box-shadow:0 30px 80px rgba(0,0,0,.6);opacity:0;padding:56px 52px;box-sizing:border-box}
+  .card h2{margin:0;font:900 62px/1.02 Inter;letter-spacing:-.01em}
+  .card .k{font:800 25px Inter;letter-spacing:.16em;color:var(--lime);margin-bottom:18px}
+  .card .row{display:flex;align-items:center;gap:22px;margin-top:30px;font:800 38px/1.12 Inter;opacity:0}
+  .card .n{flex:none;width:64px;height:64px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font:900 32px Inter}
+  .card .src{position:absolute;left:52px;bottom:42px;font:600 21px Inter;color:var(--muted)}
+</style></head>
+<body><div id="stage">
+  <div id="kicker"></div><div id="title"></div>
+  <div id="panel"><img id="pimg">
+    <div id="pbar"><div class="track"><div class="fill"></div></div></div>
+  </div>
+  <div id="hud"></div>
+  <div id="cap"></div>
+  <div class="dim" id="dim"></div>
+  <div id="chips"></div>
+  <div class="card" id="squat">
+    <div class="k">TEST DE MOVILIDAD · TPI</div><h2>SENTADILLA<br>PROFUNDA</h2>
+    <svg id="sq" width="150" height="175" viewBox="0 0 260 300" style="position:absolute;right:52px;top:52px"></svg>
+    <div class="row" data-t="83.16"><div class="n">1</div>Pies al ancho de los hombros</div>
+    <div class="row" data-t="84.44"><div class="n">2</div>Palo arriba, brazos estirados</div>
+    <div class="row" data-t="85.0"><div class="n">3</div>Bajá lo más que puedas</div>
+    <div class="row" data-t="86.36" style="color:#ffd0d9"><div class="n" style="background:var(--red);color:#fff">!</div>¿No podés? Cuesta mantener la postura en la subida</div>
+    <div class="src">Fuente: TPI · Overhead Deep Squat Test</div>
+  </div>
+  <div class="card" id="rep">
+    <div class="k">INCLUIDO EN EL ANÁLISIS</div><h2>REPORTE<br>COMPLETO · PDF</h2>
+    <div id="pages" style="position:relative;height:420px;margin-top:26px">
+      <img src="/s2/report/pg-1.png" style="position:absolute;left:30px;top:30px;width:250px;border-radius:10px;box-shadow:0 14px 34px rgba(0,0,0,.5);transform:rotate(-6deg)">
+      <img src="/s2/report/pg-3.png" style="position:absolute;left:230px;top:0;width:250px;border-radius:10px;box-shadow:0 14px 34px rgba(0,0,0,.5)">
+      <img src="/s2/report/pg-5.png" style="position:absolute;left:430px;top:30px;width:250px;border-radius:10px;box-shadow:0 14px 34px rgba(0,0,0,.5);transform:rotate(6deg)">
+    </div>
+    <div class="row" data-t="91.72" style="font-size:32px"><div class="n">✓</div>Las 10 posiciones y todos los números</div>
+    <div class="row" data-t="94.23" style="font-size:32px"><div class="n">✓</div>Plan de práctica de 3 semanas</div>
+  </div>
+  <div class="card" id="fol" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+    <div class="k">¿TE SIRVIÓ?</div><h2 style="font-size:82px">SEGUIME</h2>
+    <div style="font:800 40px/1.2 Inter;margin-top:14px;color:#c9d1cb">para más análisis</div>
+    <div id="btn" style="margin-top:56px;font:900 44px Inter;background:var(--lime);color:var(--ink);padding:22px 60px;border-radius:999px">+ SEGUIR</div>
+  </div>
+  <div id="inset" style="position:absolute;left:540px;top:560px;width:300px;opacity:0;background:rgba(11,16,13,.92);border-radius:20px;padding:14px;box-shadow:0 16px 40px rgba(0,0,0,.5)">
+    <svg viewBox="0 0 300 230" style="width:100%;height:auto">
+      <text x="150" y="20" text-anchor="middle" font-family="Inter" font-weight="800" font-size="14" fill="#9aa59e">VISTA DESDE ARRIBA</text>
+      <line x1="150" y1="210" x2="150" y2="44" stroke="#f2efe8" stroke-width="3" stroke-dasharray="7 6"/>
+      <polygon points="150,34 142,50 158,50" fill="#f2efe8"/>
+      <text x="160" y="58" font-family="Inter" font-weight="800" font-size="14" fill="#f2efe8">OBJETIVO</text>
+      <circle cx="105" cy="180" r="15" fill="#f2efe8"/>
+      <line id="ln_ok" x1="105" y1="180" x2="105" y2="80" stroke="#c9f26b" stroke-width="7" stroke-linecap="round"/>
+      <text id="tx_ok" x="20" y="74" font-family="Inter" font-weight="800" font-size="14" fill="#c9f26b">IDEAL</text>
+      <line id="ln_bad" x1="105" y1="180" x2="165" y2="92" stroke="#ff4d6d" stroke-width="7" stroke-linecap="round"/>
+      <text id="tx_bad" x="170" y="108" font-family="Inter" font-weight="800" font-size="14" fill="#ff4d6d">TU PALO</text>
+    </svg>
+  </div>
+  <div id="grain"></div>
+</div>
+<script>
+const Q = new URLSearchParams(location.search);
+const FPS = 30;
+let CAP, TL, FM;
+const ease = x => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+const TITLES = [
+  [0, 6.1, 'ANÁLISIS DE SWING · HIERRO', 'POSICIÓN POR <span class="g">POSICIÓN</span>'],
+  [6.1, 11.0, 'CÓMO LO VAMOS A VER', '<span class="g">BIEN</span> · <span class="r">MEJORAR</span> · PLAN'],
+  [11.0, 18.25, 'LO QUE HACE BIEN · 1', '<span class="g">LA CADERA</span>'],
+  [18.25, 23.15, 'LO QUE HACE BIEN · 2', '<span class="g">BAJADA EN PLANO</span>'],
+  [23.15, 28.3, 'LO QUE HACE BIEN · 3', '<span class="g">IMPACTO Y FINAL</span>'],
+  [28.3, 39.1, 'A MEJORAR · PRIORIDAD', '<span class="r">SE PARA</span> EN LA SUBIDA'],
+  [39.1, 49.55, 'A MEJORAR · PRIORIDAD', 'Y <span class="r">VUELVE A BAJAR</span>'],
+  [49.55, 57.2, 'A MEJORAR · 2', 'SALE <span class="r">POR DENTRO</span>'],
+  [57.2, 64.75, 'A MEJORAR · 2', 'Y QUEDA <span class="r">CRUZADO</span>'],
+  [64.75, 74.4, 'EL PLAN · 1', '<span class="g">LA SUBIDA</span>'],
+  [74.4, 82.4, 'EL PLAN · 2', '<span class="g">LA SALIDA</span>'],
+  [82.4, 90.1, 'EL PLAN · 3', 'TU <span class="g">MOVILIDAD</span>'],
+  [90.1, 95.3, 'INCLUIDO EN EL ANÁLISIS', 'REPORTE <span class="g">COMPLETO</span>'],
+  [95.3, 999, 'GRACIAS POR MIRAR', '<span class="g">SEGUIME</span>'],
+];
+// datos en vivo: [desde, hasta, [claves]]
+const HUD = [
+  [11.0, 18.25, ['cola_ok']], [18.25, 23.15, ['varilla']], [23.15, 25.6, ['rodilla_adel']],
+  [28.3, 35.1, ['rodilla', 'incl']], [39.1, 49.55, ['cabeza_tope', 'talon']], [49.55, 57.2, ['p2']],
+];
+const CHIPS = [
+  [7.61, 11.0, 'g', '1 · LO QUE HACE BIEN', 130, 560],
+  [8.39, 11.0, 'r', '2 · LO QUE HAY QUE MEJORAR', 130, 630],
+  [9.85, 11.0, 'd', '3 · EL PLAN', 130, 700],
+  [16.35, 18.25, 'd', 'TPI: la más común (67 % de los golfistas)', 120, 560],
+  [46.08, 49.55, 'r', 'RIESGO: CONTACTO GRUESO O FINO', 120, 560],
+  [62.28, 64.75, 'd', 'Movimiento extra = depende del timing', 120, 560],
+  [70.30, 74.4, 'g', 'PARED: subidas lentas', 120, 560],
+];
+const chipsEl = document.getElementById('chips');
+const chipEls = CHIPS.map(c => { const d = document.createElement('div'); d.className = 'chip ' + c[2]; d.textContent = c[3];
+  d.style.left = c[4] + 'px'; d.style.top = c[5] + 'px'; chipsEl.appendChild(d); return d; });
+
+function tile(cls, l, v, s) { return `<div class="tile ${cls}"><div class="l">${l}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ''}</div>`; }
+function hudHTML(keys, f, f1) {
+  const c = x => (x >= 0 ? '+' : '') + x.toFixed(1).replace('.', ',');
+  const f4 = FM.frames[TL.P.P4];
+  return keys.map(k => ({
+    cola_ok: tile(Math.abs(f.cola_cm) <= 2 ? 'g' : 'r', 'Cadera → pelota', c(f.cola_cm) + ' cm', 'vs. address · objetivo ±2 cm'),
+    varilla: tile('g', 'Varilla en la bajada', '56°–61°', 'zona 51°–66°'),
+    rodilla_adel: tile('g', 'Pierna de adelante', f.rodilla_adelante + '°', 'firme en el impacto'),
+    rodilla: tile(f.rodilla_atras - f1.rodilla_atras > 5 ? 'r' : '', 'Rodilla de atrás', f.rodilla_atras + '°', 'address ' + f1.rodilla_atras + '°'),
+    incl: tile(f1.incl - f.incl > 4 ? 'r' : '', 'Inclinación', Math.round(f.incl) + '°', 'address ' + Math.round(f1.incl) + '°'),
+    cabeza_tope: tile((f.cabeza_baja_cm - f4.cabeza_baja_cm) > 3 ? 'r' : '', 'Cabeza vs. tope', '↓ ' + Math.max(0, f.cabeza_baja_cm - f4.cabeza_baja_cm).toFixed(0) + ' cm', 'cuánto vuelve a bajar'),
+    talon: tile(f.talon_atras_cm > 3 ? 'r' : '', 'Talón de atrás', '↑ ' + f.talon_atras_cm.toFixed(0) + ' cm', 'vs. address'),
+    p2: tile('r', 'Cabeza del palo en P2', '≈38 cm', 'detrás de las manos'),
+  })[k]).join('');
+}
+function squatSVG(p) {
+  const hipY = 150 + 70 * p, kneeX = 130 + 40 * p, kneeY = 215 + 10 * p, sh = [130 - 18 * p, hipY - 95 + 20 * p];
+  return `<g stroke="#f2efe8" stroke-width="10" stroke-linecap="round" fill="none">
+    <line x1="110" y1="285" x2="${kneeX}" y2="${kneeY}"/><line x1="${kneeX}" y1="${kneeY}" x2="${120 - 25 * p}" y2="${hipY}"/>
+    <line x1="${120 - 25 * p}" y1="${hipY}" x2="${sh[0]}" y2="${sh[1]}"/><line x1="${sh[0]}" y1="${sh[1]}" x2="${sh[0] + 5}" y2="${sh[1] - 85}"/>
+    <line x1="${sh[0] - 55}" y1="${sh[1] - 85}" x2="${sh[0] + 65}" y2="${sh[1] - 85}" stroke="#c9f26b"/>
+    <line x1="95" y1="288" x2="145" y2="288" stroke="#c9f26b"/></g><circle cx="${sh[0] + 22}" cy="${sh[1] - 22}" r="18" fill="#f2efe8"/>`;
+}
+function rows(card, t) { card.querySelectorAll('.row').forEach(r => { const a = ease((t - +r.dataset.t) / 0.3);
+  r.style.opacity = a; r.style.transform = `translateY(${(1 - a) * 18}px)`; }); }
+
+// barra P1-P10: posiciones parejas, el punto avanza por tramos
+let PK = [], ticks = [];
+function setupBar() {
+  PK = Object.entries(TL.P).sort((a, b) => a[1] - b[1]);
+  const bar = document.getElementById('pbar');
+  PK.forEach(([name], j) => { const d = document.createElement('div'); d.className = 'tick'; d.textContent = name;
+    d.style.left = (26 + (760 - 48 - 52) * j / (PK.length - 1)) + 'px'; bar.appendChild(d); ticks.push(d); });
+  const dot = document.createElement('div'); dot.className = 'dot'; dot.id = 'dot'; bar.appendChild(dot);
+}
+function barPos(src) {
+  for (let j = 0; j < PK.length - 1; j++) { const a = PK[j][1], b = PK[j + 1][1];
+    if (src <= b) return (j + Math.max(0, (src - a) / (b - a))) / (PK.length - 1); }
+  return 1;
+}
+
+window.setFrame = async (k) => {
+  const t = k / FPS, fr = TL.frames[Math.min(k, TL.frames.length - 1)], src = fr.src, i = Math.round(src);
+  const img = document.getElementById('pimg'); img.src = `${Q.get('panel') || '/s2/panels'}/${String(k).padStart(5, '0')}.png`; await img.decode();
+  // barra
+  const pos = barPos(fr.mode === 'compare' && fr.cmp ? fr.cmp[1] : src);
+  document.querySelector('#pbar .fill').style.width = (pos * 100) + '%';
+  document.getElementById('dot').style.left = (26 + (760 - 48 - 52) * pos) + 'px';
+  ticks.forEach((d, j) => d.classList.toggle('on', Math.abs(src - PK[j][1]) < 1.6 && fr.mode !== 'compare'));
+  document.getElementById('pbar').style.opacity = fr.mode === 'compare' ? 0 : 1;
+  // titulos
+  const T = TITLES.find(x => t >= x[0] && t < x[1]); const a = t < 0.05 ? 1 : ease((t - T[0]) / 0.3);
+  const ti = document.getElementById('title'), ki = document.getElementById('kicker');
+  ti.innerHTML = T[3]; ki.textContent = T[2]; ti.style.opacity = a; ti.style.transform = `translateY(${(1 - a) * 22}px)`; ki.style.opacity = a;
+  // datos en vivo
+  const H = fr.view[2] >= 340 && fr.mode !== 'compare' ? HUD.find(x => t >= x[0] && t < x[1]) : null; const hud = document.getElementById('hud');
+  if (H) { hud.innerHTML = hudHTML(H[2], FM.frames[i], FM.frames[TL.P.P1]);
+    [...hud.children].forEach((el, j) => { const e = ease((t - H[0] - 0.12 * j) / 0.3); el.style.opacity = t < 0.05 ? 1 : e; el.style.transform = `translateX(${(1 - e) * 24}px)`; }); }
+  else hud.innerHTML = '';
+  CHIPS.forEach((c, j) => { const on = t >= c[0] && t < c[1]; const e = on ? ease((t - c[0]) / 0.25) : 0;
+    chipEls[j].style.opacity = e; chipEls[j].style.transform = `scale(${0.94 + 0.06 * e})`;
+    if (on && j >= 5) { const later = CHIPS.slice(j + 1).some(d => t >= d[0] && t < d[1] && d[5] === c[5]); if (later) chipEls[j].style.opacity = 0; } });
+  // tarjetas
+  const win = (a0, a1) => t >= a0 && t < a1 ? Math.min(ease((t - a0) / 0.35), ease((a1 - t) / 0.2)) : 0;
+  const cards = {squat: win(82.4, 90.1), rep: win(90.1, 95.3), fol: t >= 95.3 ? ease((t - 95.3) / 0.35) : 0};
+  let dmax = 0;
+  for (const [id, v] of Object.entries(cards)) { const el = document.getElementById(id); el.style.opacity = v; el.style.transform = `scale(${0.95 + 0.05 * v})`; rows(el, t); dmax = Math.max(dmax, v); }
+  document.getElementById('dim').style.opacity = dmax;
+  document.getElementById('sq').innerHTML = squatSVG(t >= 82.4 && t < 90.1 ? 0.5 - 0.5 * Math.cos(Math.max(0, t - 83.2) * 2.2) : 0);
+  document.getElementById('btn').style.transform = `scale(${1 + 0.04 * Math.sin(Math.max(0, t - 95.6) * 6)})`;
+  const ins = win(58.04, 60.65); const inset = document.getElementById('inset'); inset.style.opacity = ins;
+  const okA = ease((t - 58.6) / 0.35), badA = ease((t - 58.04) / 0.35);
+  ['ln_ok', 'tx_ok'].forEach(id => document.getElementById(id).style.opacity = okA);
+  ['ln_bad', 'tx_bad'].forEach(id => document.getElementById(id).style.opacity = badA);
+  // subtitulos
+  const cap = document.getElementById('cap'); cap.innerHTML = '';
+  const pg = CAP.pages.find(p => t >= p.s && t < p.e);
+  if (pg && dmax < 0.5) { const box = document.createElement('div'); box.className = 'box';
+    const vis = pg.words.filter(w => t >= w.s);
+    vis.forEach((w, j) => { const s = document.createElement('span'); s.textContent = w.w.replace(/[.,:;]$/, '');
+      s.style.transform = `scale(${0.9 + 0.1 * ease((t - w.s) / 0.12)})`; if (j === vis.length - 1) s.className = 'on'; box.appendChild(s); });
+    if (vis.length) cap.appendChild(box); }
+  // en la comparacion los subtitulos bajan para no tapar
+};
+(async () => {
+  [CAP, TL, FM] = await Promise.all([Q.get('cap') || '/s2/voice/captions.json', Q.get('tl') || '/s2/timeline.json', Q.get('fm') || '/s2/fmetrics.json']
+    .map(u => fetch(u).then(r => r.json())));
+  setupBar(); window.ready = true;
+})();
+</script></body></html>

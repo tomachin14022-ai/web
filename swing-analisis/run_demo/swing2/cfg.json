@@ -1,0 +1,109 @@
+{
+ "video": "<carpeta>/src/swing.mp4",
+ "up_scale": 1,
+ "src_w": 1080,
+ "src_h": 1920,
+ "unit": 2.3,
+ "stab": "<carpeta>/stab.npz",
+ "pose": "<carpeta>/pose.npz",
+ "swing3d": "<carpeta>/swing3d.json",
+ "metrics": "<carpeta>/metrics.json",
+ "fmetrics": "<carpeta>/fmetrics.json",
+ "timeline": "<carpeta>/timeline.json",
+ "vp": [
+  330,
+  790
+ ],
+ "compare_view": [
+  285,
+  330,
+  420
+ ],
+ "head_ref_frame": 40,
+ "labels": {
+  "sin_ee": {
+   "text": "✓ SIN EXTENSIÓN TEMPRANA",
+   "at": "hip",
+   "dx": -520,
+   "dy": -260,
+   "style": "good"
+  },
+  "en_plano": {
+   "text": "✓ EN PLANO · 56–61°",
+   "at": "hands",
+   "dx": 60,
+   "dy": -150,
+   "style": "good"
+  },
+  "firme": {
+   "text": "✓ PIERNA FIRME",
+   "at": "knee_l",
+   "dx": 70,
+   "dy": -150,
+   "style": "good"
+  },
+  "equilibrio": {
+   "text": "✓ EQUILIBRIO",
+   "at": "hip",
+   "dx": 120,
+   "dy": -60,
+   "style": "good"
+  },
+  "se_para": {
+   "text": "SE PARA",
+   "at": "spine",
+   "dx": -380,
+   "dy": -90,
+   "style": "bad"
+  },
+  "vuelve_bajar": {
+   "text": "VUELVE A BAJAR",
+   "at": "head",
+   "dx": -480,
+   "dy": -200,
+   "style": "bad"
+  },
+  "detras": {
+   "text": "≈38 cm DETRÁS DE LAS MANOS",
+   "at": "club",
+   "dx": -40,
+   "dy": 70,
+   "style": "bad"
+  },
+  "cruzado": {
+   "text": "CRUZADO",
+   "at": "hands",
+   "dx": 200,
+   "dy": -170,
+   "style": "bad"
+  },
+  "paralelo": {
+   "text": "PARALELO A LA LÍNEA",
+   "at": "hands",
+   "dx": -560,
+   "dy": 160,
+   "style": "good"
+  },
+  "vuelve_plano": {
+   "text": "✓ VUELVE AL PLANO",
+   "at": "hands",
+   "dx": 60,
+   "dy": -150,
+   "style": "good"
+  },
+  "mantene": {
+   "text": "MANTENÉ ESTE ÁNGULO",
+   "at": "knee_r",
+   "dx": 70,
+   "dy": 50,
+   "style": "good"
+  },
+  "ideal": {
+   "text": "IDEAL: PARALELA A LA LÍNEA",
+   "at": "hands",
+   "dx": 40,
+   "dy": -170,
+   "style": "good"
+  }
+ }
+}

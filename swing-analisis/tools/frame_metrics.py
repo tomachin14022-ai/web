@@ -28,6 +28,7 @@ for t in range(n):
         "cola_cm": round((cola[t] - c0) * k_cm, 1),
         "incl": round(math.degrees(math.atan2(sh[0] - hp[0], hp[1] - sh[1])), 1),
         "rodilla_atras": round(ang(p, 24, 26, 28)),
+        "rodilla_adelante": round(ang(p, 23, 25, 27)),
         "talon_atras_cm": round(max(0.0, (P(a)[30][1] - p[30][1]) * k_cm), 1),
         "cabeza_baja_cm": round((ear[1] - ear0[1]) * k_cm, 1),
     })

@@ -11,6 +11,18 @@
 5. **Decisión del 04/11/2026: sin modelo 3D.** Se probó un maniquí 3D y el dueño pidió sacarlo y enfocarse en la calidad del análisis y en mejorar el swing.
 6. **Es un producto pago.** Tiene que parecer un análisis "de otro nivel", no uno genérico de IA: máxima calidad, profesionalismo y visuales.
 
+## Pedidos del dueño (04/11/2026, después del primer reel) — valen para todos los análisis
+- **Voz:** dejarla como está (Kokoro `em_alex`, `--lang es`, acelerada ×1,12). No cambiarla sin que lo pida.
+- **Cierre del reel:** antes del final decir que el análisis va acompañado de un reporte (ej.: "Este análisis va acompañado
+  de un reporte completo, con todos los números y el plan de práctica") y terminar con **"Seguime para más análisis"**.
+- **Subtítulos sincronizados con la voz:** los tiempos de Whisper llegan ~0,2 s antes. Usar alineación forzada
+  (`tools/align_captions.py`, modelo MMS_FA de torchaudio, en un venv con `torch==2.9.1 torchaudio==2.9.1` CPU).
+- **Analizar varias cosas, no solo lo peor:** lo que hace bien (con datos) + 2 o 3 puntos a mejorar en orden de prioridad,
+  con la secuencia de causa y efecto, y el plan. Preciso, y largo si hace falta (el reel del swing 2 dura 98 s).
+- **PDF sin la sección "cómo se hizo el análisis".** Solo una línea de "medidas aproximadas" y las referencias al final.
+- **Cámara lenta del iPhone:** los videos vienen con la cámara lenta "horneada" (normal → lento → normal). Detectarla por el
+  movimiento por cuadro y no medir el ritmo. Igual suma cuadros alrededor del impacto.
+
 ## Estándar del producto pago
 - **Estructura de profesional:** las 10 posiciones P1–P10, evaluación fundamento por fundamento (bien / mejorar / prioridad / no evaluado),
   **una sola prioridad** con su **secuencia de causa y efecto** sacada de los datos (ej.: "entre P4 y P5 la cadera avanza 3,3 cm; entre P5 y P7 pierde 7°").
@@ -83,6 +95,9 @@ carpeta `r3d/` con `npm install three@0.170.0`, servida con `python3 -m http.ser
 9. **Composición:** `tools/reel_v3.html` (títulos, barra P1–P10, datos en vivo, subtítulos, tarjetas) + `tools/shoot_reel.js` (1080x1920, 30 fps).
    Audio: `tools/mix.py` (voz > efectos > música con ducking; cues en `run_demo/cues.json`) y loudnorm a −14 LUFS / −1 dBTP.
    Sonidos: Kenney (CC0) desde `series-ai/jam-ready-assets` (archivos LFS por `media.githubusercontent.com`).
+**Videos HD (como el swing 2):** `tools/render_v4.py` con `cfg.json` (`up_scale: 1`, `src_w/src_h`, `unit` ≈ altura del cuerpo en px / 320,
+`vp` = punto de fuga de la línea de tiro, `labels` configurables) y `tools/reel_s2.html`. Grillas para marcar el palo: `tools/grid_hd.py`.
+Ejemplo completo en `run_demo/swing2/` (guion, posiciones, marcas del palo, edición, sonidos, informe).
 10. **PDF:** `run_demo/informe_v3.html` (6 páginas: portada con prioridad y KPIs, P1–P10, evaluación, diagnóstico con secuencia, la clave y la silla,
     plan de 3 semanas con registro, método y fuentes) impreso con `tools/print_pdf.js`.
 
