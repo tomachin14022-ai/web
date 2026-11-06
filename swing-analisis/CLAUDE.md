@@ -14,7 +14,9 @@
 ## Pedidos del dueño (06/11/2026, después de la investigación) — los más recientes mandan
 - **No puede hacer la prueba con 10 jugadores y un profesor.** Se empieza **solo desde atrás**, con el mínimo de la skill (sección 3):
   un video en la línea de las manos, dos palos en el piso y tres datos (palo, salida, curva).
-- **Validación:** el dueño hace de evaluador a ciegas (anota su diagnóstico antes de ver el análisis). Registro en `validacion.md`.
+- **El dueño no opina de técnica** (no es profesor). Quiere: ángulos analizados y **comparados con profesionales**, y **un drill para la
+  causa más grande**. Plan: 5 videos gratis de seguidores y después cobrar. Tienen que verse bien, estar bien analizados y ser verídicos.
+  Validación: reacciones de profesores a esos 5 videos, en `validacion.md`. Comparación con profesionales: tabla en la skill (sección 2).
 - **Estructura de cada análisis:** rol de biomecánico y coach de alto rendimiento, 4 secciones (posición y biomecánica · error principal
   y causa raíz · métricas si hay launch monitor · plan con sensación, drill y chequeo). Detalle en la skill, sección 9. Lo que el video no
   permite evaluar se dice antes de suponer. En el producto no se dice que lo hizo un coach del PGA Tour.

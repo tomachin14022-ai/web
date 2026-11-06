@@ -21,9 +21,10 @@ Base de todo: `swing-analisis/investigacion/informe.md` (investigación del 05�
 - **Solo tres tipos de afirmación:** *medido* (dibujado sobre el cuadro, con número y margen: cualquiera lo puede verificar mirando),
   *inferido* (del vuelo o del contacto, dicho como "por el vuelo que contás…") y *no evaluable*. **Si no se puede dibujar sobre el
   video, no se afirma como medido.** El dibujo es a la vez el visual del reel y la prueba.
-- **Puerta antes de publicar (primeros 5 videos, 06/11/2026):** el dueño anota su diagnóstico a ciegas → se le muestra la hoja de
-  cuadros con las líneas y el diagnóstico escrito → se discuten los desacuerdos con el cuadro y la medida → recién ahí voz y render.
-  Lo que no se resuelve no se publica o se dice "no concluyente".
+- **El dueño no opina de técnica** (no es profesor, 06/11/2026). No hay juez humano antes de publicar: la garantía es el método
+  (solo lo medido y dibujado, criterios publicados, regla asimétrica, revisión de la sección 10). Al dueño se le muestra la hoja de
+  cuadros solo para aprobar **cómo se ve**. La validación externa son las reacciones de profesores a los 5 videos gratis
+  (registrarlas en `swing-analisis/validacion.md`).
 - **Una sola prioridad.** Ocho fallas del mismo peso se leen como análisis amateur. Prioridad = la causa, no el efecto.
 - **Revisión final de "profesor desconfiado"** (sección 10) antes de entregar.
 
@@ -49,6 +50,28 @@ cm validadas, y las que hay se contradicen entre fabricantes: la referencia defe
   "dato del fabricante, sin validación independiente" [FAB] · "según TPI (dato propio)" [TPI] · "criterio de enseñanza" [INS] ·
   "estimación propia" [CP/INF]. Lo [NV] no se usa. No comparar contra referencias de otro sistema (el X-factor del mismo swing
   da −72° o −124° según el método [PR]).
+
+### Comparar con profesionales (pedido del dueño): qué se puede y qué no
+
+Desde atrás con un celular **casi no hay ángulos de profesionales comparables grado por grado** (otros sistemas, otras definiciones;
+comparar un ángulo 2D con un número de Sportsbox es el error que un profesor detecta). Se compara **lo que hacen los profesionales
+respecto de su propio address**, siempre con la fuente:
+
+| Medida desde atrás | Comparación con profesionales | Fuente |
+|---|---|---|
+| Inclinación del tronco P1 → P7 | En el tour vuelve a ~su inclinación del address en el impacto | Sportsbox [FAB] |
+| Nalga respecto de su línea del address (P4–P7) | 99 % de más de 100 jugadores de tour evaluados no tienen early extension | TPI, dato propio [TPI] |
+| Manos de bajada contra subida; slot A–B | Bajada en el slot o por debajo del camino de subida (definición de over the top) | TPI / V1 [TPI/FAB] |
+| Hombro líder en P4 respecto de la paralela a cóccix–nuca | Profesionales inclinan más los hombros en el tope (36° contra 29,6° en hándicaps altos) | TPI receta; SwingTRU [FAB] |
+| Pelvis que baja y después sube; rodilla líder que se estira | Patrón de tour (2,5–8,4 cm abajo, 3,6–10,9 cm arriba): **no es falla** | Sportsbox [FAB] |
+| Tiempo de subida (solo video a velocidad real) | 0,7–0,8 s en profesionales con hierro 5 | Grober y Cholewicki [CONF] |
+| Variación entre los 3 swings | Un jugador de tour: ~1° de variación del tronco; menos variación se asocia a mejor score (r = 0,801, universitarios) | Sportsbox [FAB]; Yamamoto 2023 [PR] |
+
+**No comparar en grados absolutos:** inclinación del tronco (45–60° en 2D según Yamamoto, ~30° en Sportsbox: depende del método),
+flexión de la rodilla líder (35 ± 5° es 3D; desde atrás se ve en escorzo), ángulo de la varilla en P1 (sin norma).
+**Para comparar grado por grado** hace falta una referencia propia: medir con este mismo pipeline 5–10 swings de profesionales o
+jugadores de un dígito filmados con el mismo protocolo (no necesitan opinar, solo filmar). Videos de tour bajados de internet no se usan
+para un producto pago.
 
 ## 3. Antes de analizar: video y datos
 
@@ -83,7 +106,9 @@ para mandarle al seguidor**. Lo esencial:
 3. **Qué cuadro del video lo explica** (checklist P1–P10: `referencias/checklist_p1_p10.md`).
 4. **Qué limitación física podría estar detrás**, como hipótesis: "suele tener una causa física (por ejemplo …); un screen de TPI
    lo confirmaría". El video no diagnostica la limitación física.
-5. **Una sola prioridad**, con su cadena de causa y efecto, su drill, la progresión y un **objetivo medible para el próximo video**.
+5. **Una sola prioridad** (la "causa más grande"), elegida con esta regla: (a) está medida por encima del margen, (b) explica el vuelo que
+   informó el jugador, y (c) es la que aparece **primero** en la cadena (ej.: si se para en la subida y eso lo lleva a bajar por encima,
+   la prioridad es la postura, no el over the top). Con su drill, la progresión y un **objetivo medible para el próximo video**.
    Revisar el setup (grip, pelota, postura, alineación) antes que el swing.
 
 Nombrar las fallas con las 16 características de TPI y decidir cada una con **`referencias/fallas.md`** (criterio de video, vuelo,
