@@ -13,7 +13,8 @@
 
 ## Pedidos del dueño (06/11/2026, después de la investigación) — los más recientes mandan
 - **No puede hacer la prueba con 10 jugadores y un profesor.** Se empieza **solo desde atrás**, con el mínimo de la skill (sección 3):
-  un video en la línea de las manos, dos palos en el piso y tres datos (palo, salida, curva).
+  un video en la línea de las manos y tres datos (palo, salida, curva). **Sin palos en el piso**: pedirlos frena a la gente
+  (el over the top se decide con la prueba relativa, que no los necesita).
 - **El dueño no opina de técnica** (no es profesor). Quiere: ángulos analizados y **comparados con profesionales**, y **un drill para la
   causa más grande**. Plan: 5 videos gratis de seguidores y después cobrar. Tienen que verse bien, estar bien analizados y ser verídicos.
   Validación: reacciones de profesores a esos 5 videos, en `validacion.md`. Comparación con profesionales: tabla en la skill (sección 2).

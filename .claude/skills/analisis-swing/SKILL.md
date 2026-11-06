@@ -97,7 +97,10 @@ para mandarle al seguidor**. Lo esencial:
 **Mínimo para analizar** (el dueño no puede exigir todo el protocolo, 06/11/2026). Por ahora solo desde atrás:
 - Un video **desde atrás**, celular fijo (trípode, o apoyado en la bolsa o una silla), en la línea de las manos y a la altura de las
   manos, 1x, cámara lenta, **archivo original**.
-- **Dos palos en el piso** en lugar de varillas (no hace falta medirlos). Dan la línea de tiro y el punto de fuga.
+- **Sin palos en el piso** (el dueño, 06/11/2026: pedirlos frena a la gente). El punto de fuga se saca de líneas que ya estén en la
+  imagen y sean paralelas a la línea de tiro (bordes de la alfombra, línea del puesto), si las hay. Si no hay: el slot de TPI y el
+  tope cruzado quedan como dibujo de referencia, sin decidir nada, y el over the top se decide con la prueba relativa (bajada contra
+  subida), que no depende del control de cámara. Lo que no tenga over the top se dice "sin señales de over the top", nunca "en plano".
 - **Tres datos:** palo, dónde salió la pelota y cómo curvó.
 - Sin varillas medidas: la escala sale del largo del palo del address (desde atrás está casi en el plano de la imagen; preguntar el palo).
   Si la cámara no pasa el control, el slot de TPI no vale y el over the top se decide con la prueba relativa.
