@@ -149,6 +149,22 @@ prueba relativa". Si no, "no evaluable".
   curva a la derecha por gear effect. Antes de decir over the top por un slice con driver, pedir la marca del impacto.
 - Gulgin 2014 [PR] no encontró asociación del screen de TPI con over the top: la causa física se plantea como hipótesis.
 
+**Proceso desde atrás con las herramientas** (`swing-analisis/tools/`, venv con mediapipe y opencv):
+1. `pose_extract.py` → `stabilize.py` → `club_detect.py` (+ marcas a mano del palo con `grid_hd.py`) → `build3d.py` → `metrics.py`
+   → `frame_metrics.py`. Posiciones P1–P10 verificadas mirando los cuadros (`posiciones.json`).
+2. `punto_fuga.py` con dos puntos de cada palo del piso → `--vp` y control de cámara.
+3. **`dtl_checks.py swing3d.json metrics.json posiciones.json --vp X,Y`**: postura, early extension, plano de hombros, over the top
+   (incluye `plano_check`), late buckle, P2, P3, las 16 de TPI con sí / dentro del margen / no evaluable, y las candidatas a prioridad.
+   Con video a velocidad real: `--pose pose.npz --velocidad-real` para el ritmo con los tiempos reales de cada cuadro.
+4. **`hoja_prueba.py config.json hoja.jpg`**: P1, P3, P4, P5, P6 y P7 con las capas que prueban cada número (`slot`, `hand_paths`,
+   `shoulder_plane`, `shaft_ext`, `spine_delta`, `tush`). Revisarla como "profesor desconfiado": cada línea tiene que caer sobre lo que
+   dice medir (ej.: la línea B sobre la varilla en P3). Lo que no se ve bien en la hoja no va al guion. Después se le muestra al dueño
+   (aprueba cómo se ve).
+5. Guion solo con lo de la hoja; el reel usa las mismas capas.
+- Tope cruzado o laid off: **descripción visual** con la varilla prolongada y la línea de tiro. Desde atrás no se puede separar con un
+  número "cruzado" de "por encima o por debajo de la horizontal". P2: solo el lado (adentro / en línea / afuera), sin cm.
+- La varilla gira 3–6° por cuadro cerca de P3: la prueba P5 contra P3 tiene que superar el margen moviendo P3 y P5 un cuadro.
+
 ## 6. Leyes de vuelo (para inferir cara y path)
 
 - **La cara manda la salida; la diferencia cara–path manda la curva.** La cara explica **61–76 %** de la salida según el único estudio

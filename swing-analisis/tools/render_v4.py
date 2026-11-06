@@ -99,6 +99,39 @@ head_top0 = float(GHOST[:, 1].min())
 def ext(a, b, k):
     return (a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k)
 
+# --- datos de las capas de prueba (v5): los mismos puntos que usan dtl_checks.py y plano_check.py ---
+PPi = {k: int(v) for k, v in PP.items()}
+ZURDO = bool(C.get("zurdo", False))
+LEAD_SH, TRAIL_SH = (12, 11) if ZURDO else (11, 12)
+LADO = 1.0 if F3[P1]["h2"][0] > hip0[0] else -1.0
+HANDS = np.array([(np.array(f["p2"])[15] + np.array(f["p2"])[16]) / 2 for f in F3])
+
+def _x_at(frames, y):
+    pts = HANDS[list(frames)]
+    for p, q in zip(pts, pts[1:]):
+        if (p[1] - y) * (q[1] - y) <= 0 and p[1] != q[1]:
+            return p[0] + (y - p[1]) / (q[1] - p[1]) * (q[0] - p[0])
+    return None
+
+_rows = []
+_ylo = max(HANDS[PPi["P3"]][1], HANDS[PPi["P5"]][1]); _yhi = min(HANDS[P1][1], HANDS[PPi["P7"]][1])
+for _y in np.arange(_ylo, _yhi, 4):
+    _a, _b = _x_at(range(P1, PPi["P3"] + 1), _y), _x_at(range(PPi["P5"], PPi["P7"] + 1), _y)
+    if _a is not None and _b is not None:
+        _rows.append((float(_y), _a, _b, (_b - _a) * LADO * k_cm))
+GAP = None  # (y, x_subida, x_bajada, cm en esa altura, mediana cm): la medida que dibuja "hand_paths"
+if _rows:
+    _med = float(np.median([r[3] for r in _rows]))
+    GAP = min(_rows, key=lambda r: abs(r[3] - _med)) + (_med,)
+LINE_A = (np.array(F3[P1]["h2"]), np.array(F3[P1]["g2"]))
+LINE_B = (np.array(F3[PPi["P3"]]["h2"]), np.array(F3[PPi["P3"]]["g2"]))
+_dt = (shm0 - hip0) / np.linalg.norm(shm0 - hip0)
+SH_LINE = (p2a[TRAIL_SH] - _dt * 260 * U, p2a[TRAIL_SH] + _dt * 200 * U)  # paralela al tronco de P1 por el hombro de atrás
+
+def x_on(line, y):
+    a, b = line
+    return a[0] + (y - a[1]) * (b[0] - a[0]) / (b[1] - a[1]) if abs(b[1] - a[1]) > 1e-6 else None
+
 class Canvas:
     def __init__(self, img, view):
         self.img = img; self.view = view; self.s = img.shape[1] / view[2]; self.labels = []
@@ -130,19 +163,21 @@ class Canvas:
     def fill(self, mask_bool, col, alpha):
         ov = self.img.copy(); ov[mask_bool] = bgr(col)
         cv2.addWeighted(ov, alpha, self.img, 1 - alpha, 0, self.img)
-    def pill(self, text, x, y, bg, fg=INK, a=1.0, big=False):
-        self.labels.append((text, x, y, bg, fg, a, big))
+    def pill(self, text, x, y, bg, fg=INK, a=1.0, big=False, right=False):
+        self.labels.append((text, x, y, bg, fg, a, big, right))
     def finish(self):
         if not self.labels:
             return self.img
         im = Image.fromarray(cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)).convert("RGBA")
         lay = Image.new("RGBA", im.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
-        for text, x, y, bg, fg, a, big in self.labels:
+        for text, x, y, bg, fg, a, big, right in self.labels:
             if a <= 0.01:
                 continue
             fnt = f_big if big else f_lbl
             bb = d.textbbox((0, 0), text, font=fnt); tw, th = bb[2] - bb[0], bb[3] - bb[1]
             px, py = 24, 15
+            if right:  # x es el borde derecho de la etiqueta
+                x = x - tw - 2 * px
             x = min(max(x, 14), im.size[0] - tw - 2 * px - 14); y = min(max(y, 14), im.size[1] - th - 2 * py - 20)
             d.rounded_rectangle([x, y, x + tw + 2 * px, y + th + 2 * py + 6], radius=(th + 2 * py) // 2, fill=bg + (int(240 * a),))
             d.text((x + px, y + py - bb[1] + 3), text, font=fnt, fill=fg + (int(255 * a),))
@@ -245,7 +280,7 @@ def draw_scene(cv, i, t, Lset, starts, side="single"):
         g = ease(st("butt_arrow") / 0.4)
         y = P(0, hip0[1] + 8 * U)[1]; x0 = P(c0, 0)[0]; x1 = P(cola[i], 0)[0]
         cv.arrow((x0, y), (x0 + (x1 - x0) * g, y), RED, 8)
-        cv.pill(f"+{FM['frames'][i]['cola_cm']:.1f} cm".replace(".", ","), x0 - 60, y + 36, RED, WHITE, g)
+        cv.pill(f"{FM['frames'][i]['cola_cm']:+.1f} cm".replace(".", ","), x0 - 60, y + 36, RED, WHITE, g)
     if "target" in Lset:
         g = ease(st("target") / 0.5)
         y = P(0, hip0[1] + 8)[1]; x0 = P(c0, 0)[0]; x1 = P(cola[i], 0)[0]
@@ -326,6 +361,68 @@ def draw_scene(cv, i, t, Lset, starts, side="single"):
         g = ease(st("ideal_head") / 0.3)
         e = (g2 - np.array(VP)) / np.linalg.norm(g2 - np.array(VP))
         cv.ring(P(*(g2 + e * 200 * U)), 30 * (0.6 + 0.4 * g), LIME, 5)
+    # --- capas de prueba (v5) ---
+    if "slot" in Lset:  # TPI: línea A (varilla en P1) y línea B (varilla en P3); el espacio entre las dos es el slot
+        g = ease(st("slot") / 0.5)
+        y_top, y_bot = shm0[1] - 160 * U, floor_y
+        xa = (x_on(LINE_A, y_top), x_on(LINE_A, y_bot)); xb = (x_on(LINE_B, y_top), x_on(LINE_B, y_bot))
+        if None not in xa + xb:
+            ov = cv.img.copy()
+            poly = np.array([P(xa[0], y_top), P(xb[0], y_top), P(xb[1], y_bot), P(xa[1], y_bot)], np.int32)
+            cv2.fillPoly(ov, [poly], bgr(LIME)); cv2.addWeighted(ov, 0.16 * g, cv.img, 1 - 0.16 * g, 0, cv.img)
+            cv.line(P(xa[1], y_bot), P(xa[0], y_top), CYAN, 5, g); cv.line(P(xb[1], y_bot), P(xb[0], y_top), LIME, 5, g)
+            y_l = y_bot - 70 * U; xl_a, xl_b = x_on(LINE_A, y_l), x_on(LINE_B, y_l)
+            ia, ib = (0, 1) if (xl_a - xl_b) * LADO < 0 else (1, 0)  # la de más adentro va a la izquierda
+            pa, pb = P(xl_a, y_l), P(xl_b, y_l)
+            cv.pill("A", pa[0] - 90 if ia == 0 else pa[0] + 26, pa[1] - 40, CYAN, INK, g)
+            cv.pill("B", pb[0] - 90 if ib == 0 else pb[0] + 26, pb[1] - 40, LIME, INK, g)
+    if "hand_paths" in Lset:  # camino de las manos: subida (P1→P4) contra bajada (P4→ahora), a la misma altura
+        g = ease(st("hand_paths") / 0.6)
+        def path(pts, col):
+            if len(pts) < 2:
+                return
+            q = np.round(np.array(pts)).astype(np.int32)
+            cv2.polylines(cv.img, [q], False, bgr(INK), 11, cv2.LINE_AA); cv2.polylines(cv.img, [q], False, bgr(col), 6, cv2.LINE_AA)
+        up = [P(*HANDS[j]) for j in range(P1, min(i, PPi["P4"]) + 1)]
+        path(up[: max(2, int(len(up) * g))], CYAN)
+        if i > PPi["P4"]:
+            path([P(*HANDS[j]) for j in range(PPi["P4"], min(i, PPi["P8"]) + 1)], YEL)
+        if GAP is not None and i >= PPi["P6"]:
+            y, xs, xd, _, med = GAP; col = RED if abs(med) > 4 else LIME
+            a, b = P(xs, y), P(xd, y)
+            cv.line(a, b, col, 5); cv.ring(a, 9, CYAN, 4); cv.ring(b, 9, YEL, 4)
+            txt = (f"BAJADA {med:.0f} cm POR ENCIMA" if med > 4 else f"BAJADA {-med:.0f} cm POR DEBAJO" if med < -4
+                   else "MISMO CAMINO (±4 cm)")
+            cv.pill(txt, min(a[0], b[0]) - 34, (a[1] + b[1]) / 2 - 40, col, WHITE if col == RED else INK, 1.0, right=True)
+    if "shoulder_plane" in Lset:  # TPI: paralela a la línea del tronco de P1 por el hombro de atrás; hombro líder en P4
+        g = ease(st("shoulder_plane") / 0.5)
+        a, b = SH_LINE; cv.line(P(*a), P(*(a + (b - a) * g)), CYAN, 4, dashed=True)
+        d = (b - a) / np.linalg.norm(b - a); n = np.array([d[1], -d[0]]); n = -n if n[1] > 0 else n
+        dist = float(np.dot(p2[LEAD_SH] - a, n) * k_cm); col = RED if dist > 3 else LIME
+        cv.ring(P(*p2[LEAD_SH]), 26, col, 6)
+        cv.pill(f"HOMBRO LÍDER {dist:+.0f} cm", *P(p2[LEAD_SH][0] + 30 * U, p2[LEAD_SH][1] - 40 * U), col, WHITE if col == RED else INK, g)
+    if "tush" in Lset:  # línea de la cola del address; el color sale de la medida (±3 cm)
+        g = ease(st("tush") / 0.45); v = (cola[i] - c0) * LADO * k_cm
+        col = CYAN if i == P1 else (RED if v > 3 else LIME)
+        cv.line(P(c0, floor_y), P(c0, hip0[1] - 100 * U), col, 6, g)
+        if i != P1:
+            y = P(0, hip0[1] + 8 * U)[1]; x0 = P(c0, 0)[0]
+            txt = f"COLA {v:+.0f} cm".replace("+-", "−") + ("" if v > 3 else " (±3)")
+            cv.pill(txt, x0 - 30, y + 60, col, WHITE if col == RED else INK, g, right=True)
+    if "spine_delta" in Lset:  # tronco de ahora contra el de P1, en grados (±5°)
+        g = ease(st("spine_delta") / 0.4)
+        hp = (p2[23] + p2[24]) / 2; sm = (p2[11] + p2[12]) / 2
+        tr = lambda h, s_: math.degrees(math.atan2(LADO * (s_[0] - h[0]), h[1] - s_[1]))
+        dlt = tr(hp, sm) - tr(hip0, shm0); col = RED if abs(dlt) > 5 else LIME
+        cv.line(P(*hip0), P(*ext(hip0, shm0, 1.55)), CYAN, 6, g)
+        cv.line(P(*hp), P(*ext(hp, sm, 1.45)), WHITE, 5, dashed=True)
+        back = P(min(sm[0], hp[0]) if LADO > 0 else max(sm[0], hp[0]), (sm[1] + hp[1]) / 2)  # al costado de la espalda
+        cv.pill(f"TRONCO {dlt:+.0f}°" + ("" if abs(dlt) > 5 else " (±5°)"), back[0] - 70 if LADO > 0 else back[0] + 70,
+                back[1] - 140, col, WHITE if col == RED else INK, g, right=LADO > 0)
+    if "shaft_ext" in Lset:  # varilla prolongada: hacia dónde apunta respecto de la línea de tiro
+        g = ease(st("shaft_ext") / 0.4)
+        d = (h2 - g2) / (np.linalg.norm(h2 - g2) + 1e-6)
+        cv.line(P(*(g2 - d * 120 * U)), P(*(g2 + d * 420 * U * g)), WHITE, 4, dashed=True)
     # etiquetas configurables: "lbl:<id>" -> C["labels"][id]
     for name in Lset:
         if not name.startswith("lbl:"):

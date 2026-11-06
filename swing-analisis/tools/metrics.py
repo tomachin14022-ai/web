@@ -27,7 +27,9 @@ def lp(x, wn=0.45):
 
 P2 = lp(np.array([stab_pts(t, lm[t, :, :2]) for t in range(n)]))
 M = np.array([cv2.warpAffine(masks[t], A[t], (w, h)) for t in range(n)])  # siluetas estabilizadas
-toward = 1.0  # en este video la pelota esta a la derecha (+x)
+ball = stab_pts(ref, C["ball"][None])[0]
+hip_ref = (P2[ref, 23] + P2[ref, 24]) / 2
+toward = 1.0 if ball[0] > hip_ref[0] else -1.0  # +1: la pelota esta a la derecha (+x) del jugador en la imagen
 foot_y = float(np.max(P2[ref, [29, 30, 31, 32], 1]))
 head_top = float(np.argmax(M[ref].max(1) > 128))
 body_h = foot_y - head_top  # altura en pixeles (agachado, en el address)
@@ -37,7 +39,9 @@ def butt_x(t):
     hy = int((P2[t, 23, 1] + P2[t, 24, 1]) / 2)
     band = M[t, max(0, hy - int(0.02 * body_h)): hy + int(0.07 * body_h)] > 128
     xs = np.where(band.any(0))[0]
-    return float(xs.min()) if len(xs) else np.nan
+    if not len(xs):
+        return np.nan
+    return float(xs.min()) if toward > 0 else float(xs.max())  # el punto mas alejado de la pelota
 
 def head_box(t):
     """Caja de la cabeza: desde la silueta, arriba de los hombros."""
@@ -53,7 +57,7 @@ def head_box(t):
 bx = lp(np.array([butt_x(t) for t in range(n)]), 0.35)
 ear = (P2[:, 7] + P2[:, 8]) / 2
 sh = (P2[:, 11] + P2[:, 12]) / 2; hip = (P2[:, 23] + P2[:, 24]) / 2
-spine = np.degrees(np.arctan2(sh[:, 0] - hip[:, 0], hip[:, 1] - sh[:, 1]))  # + inclinado hacia la pelota
+spine = np.degrees(np.arctan2(toward * (sh[:, 0] - hip[:, 0]), hip[:, 1] - sh[:, 1]))  # + inclinado hacia la pelota
 
 def ang(a, b, c):
     v1, v2 = a - b, c - b
@@ -75,13 +79,13 @@ for name, t in moments.items():
         "talon_izq_arriba_pct": pct(heel["izq"][ref] - heel["izq"][t]),
     }
 # Plano: linea de la varilla en el address (pelota -> manos) y linea pelota -> hombro de atras.
-ball = stab_pts(ref, C["ball"][None])[0]
 grip = (P2[:, 15] + P2[:, 16] + P2[:, 19] + P2[:, 20]) / 4
 res["plano"] = {"pelota": ball.round(1).tolist(), "manos_address": grip[ref].round(1).tolist(),
                 "hombro_der_address": P2[ref, 12].round(1).tolist()}
 res["series"] = {"cola_x": bx.round(1).tolist(), "oreja": ear.round(1).tolist(), "columna": spine.round(1).tolist()}
 res["caja_cabeza_address"] = head_box(ref)
 res["linea_cola_address_x"] = round(float(bx[ref]), 1)
+res["lado"] = toward  # +1 pelota a la derecha; las series en px no cambian de signo, los "_pct" ya van hacia la pelota
 json.dump(res, open(out, "w"), indent=1)
 for k2, v in res["por_momento"].items():
     print(k2, v)

@@ -42,6 +42,10 @@
   "varilla_P3_deg": 46.4,
   "varilla_P5_deg": 62.8,
   "P5_menos_P3_deg": 16.4,
+  "P5_menos_P3_con_1_cuadro_de_error_deg": [
+   12.1,
+   24.8
+  ],
   "escorzo_varilla_P3_P5": [
    0.91,
    1.2

@@ -14,7 +14,7 @@ S3 = json.load(open(s3d)); M = json.load(open(met)); PP = json.load(open(pj))
 k_cm = S3["k_m_por_px"] * 100
 F = S3["frames"]; n = len(F); a = PP["P1"]
 P = lambda t: np.array(F[t]["p2"])
-cola = M["series"]["cola_x"]; c0 = M["linea_cola_address_x"]
+cola = M["series"]["cola_x"]; c0 = M["linea_cola_address_x"]; lado = M.get("lado", 1.0)  # + = hacia la pelota
 
 def ang(p, j1, j2, j3):
     v1, v2 = p[j1] - p[j2], p[j3] - p[j2]
@@ -25,8 +25,8 @@ ear0 = (P(a)[7] + P(a)[8]) / 2
 for t in range(n):
     p = P(t); hp = (p[23] + p[24]) / 2; sh = (p[11] + p[12]) / 2; ear = (p[7] + p[8]) / 2
     rows.append({
-        "cola_cm": round((cola[t] - c0) * k_cm, 1),
-        "incl": round(math.degrees(math.atan2(sh[0] - hp[0], hp[1] - sh[1])), 1),
+        "cola_cm": round((cola[t] - c0) * lado * k_cm, 1),
+        "incl": round(math.degrees(math.atan2(lado * (sh[0] - hp[0]), hp[1] - sh[1])), 1),
         "rodilla_atras": round(ang(p, 24, 26, 28)),
         "rodilla_adelante": round(ang(p, 23, 25, 27)),
         "talon_atras_cm": round(max(0.0, (P(a)[30][1] - p[30][1]) * k_cm), 1),

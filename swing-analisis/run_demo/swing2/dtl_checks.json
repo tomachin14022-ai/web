@@ -1,0 +1,248 @@
+{
+ "lado_pelota": "derecha",
+ "zurdo": false,
+ "margenes": {
+  "angulos_deg": 5.0,
+  "desplazamientos_cm": 3.0,
+  "plano_cm": 4.0
+ },
+ "P1_setup": {
+  "tronco_deg": 46.4,
+  "rodilla_atras_deg": 160.5,
+  "rodilla_adelante_deg": 166.9,
+  "varilla_linea_A_deg": 53.1,
+  "manos_delante_de_la_cadera_cm": 25.5,
+  "nota": "Referencias del propio address. No se comparan en grados con profesionales (depende del método)."
+ },
+ "posiciones": {
+  "P2": {
+   "tronco_deg": 37.4,
+   "d_tronco_deg": -8.9,
+   "d_rodilla_atras_deg": 16.9,
+   "d_rodilla_adelante_deg": -34.4,
+   "cola_hacia_pelota_cm": -2.0,
+   "cabeza_baja_cm": -1.2,
+   "cabeza_hacia_pelota_cm": -1.8,
+   "pelvis_baja_cm": 3.2,
+   "talon_atras_arriba_cm": 0.0
+  },
+  "P3": {
+   "tronco_deg": 36.3,
+   "d_tronco_deg": -10.1,
+   "d_rodilla_atras_deg": 11.5,
+   "d_rodilla_adelante_deg": -39.2,
+   "cola_hacia_pelota_cm": -1.9,
+   "cabeza_baja_cm": -1.3,
+   "cabeza_hacia_pelota_cm": -2.0,
+   "pelvis_baja_cm": 3.3,
+   "talon_atras_arriba_cm": 0.0
+  },
+  "P4": {
+   "tronco_deg": 33.6,
+   "d_tronco_deg": -12.8,
+   "d_rodilla_atras_deg": 12.4,
+   "d_rodilla_adelante_deg": -40.1,
+   "cola_hacia_pelota_cm": -1.7,
+   "cabeza_baja_cm": -2.7,
+   "cabeza_hacia_pelota_cm": -3.3,
+   "pelvis_baja_cm": 3.1,
+   "talon_atras_arriba_cm": 0.0
+  },
+  "P5": {
+   "tronco_deg": 41.8,
+   "d_tronco_deg": -4.6,
+   "d_rodilla_atras_deg": -24.1,
+   "d_rodilla_adelante_deg": -24.7,
+   "cola_hacia_pelota_cm": -0.7,
+   "cabeza_baja_cm": 6.0,
+   "cabeza_hacia_pelota_cm": -5.4,
+   "pelvis_baja_cm": 0.5,
+   "talon_atras_arriba_cm": 5.3
+  },
+  "P6": {
+   "tronco_deg": 41.3,
+   "d_tronco_deg": -5.1,
+   "d_rodilla_atras_deg": -21.5,
+   "d_rodilla_adelante_deg": -12.5,
+   "cola_hacia_pelota_cm": -1.1,
+   "cabeza_baja_cm": 6.0,
+   "cabeza_hacia_pelota_cm": -7.5,
+   "pelvis_baja_cm": -1.9,
+   "talon_atras_arriba_cm": 9.7
+  },
+  "P7": {
+   "tronco_deg": 38.2,
+   "d_tronco_deg": -8.2,
+   "d_rodilla_atras_deg": -10.6,
+   "d_rodilla_adelante_deg": 1.5,
+   "cola_hacia_pelota_cm": -0.6,
+   "cabeza_baja_cm": 4.3,
+   "cabeza_hacia_pelota_cm": -9.1,
+   "pelvis_baja_cm": -3.5,
+   "talon_atras_arriba_cm": 12.5
+  },
+  "P8": {
+   "tronco_deg": 32.6,
+   "d_tronco_deg": -13.8,
+   "d_rodilla_atras_deg": 3.7,
+   "d_rodilla_adelante_deg": 11.6,
+   "cola_hacia_pelota_cm": 0.3,
+   "cabeza_baja_cm": 1.2,
+   "cabeza_hacia_pelota_cm": -10.2,
+   "pelvis_baja_cm": -3.9,
+   "talon_atras_arriba_cm": 14.3
+  }
+ },
+ "plano": {
+  "margenes": {
+   "manos_cm": 4.0,
+   "varilla_deg": 5.0
+  },
+  "camara": {
+   "giro_deg": -8.5,
+   "inclinacion_deg": -6.9,
+   "pasa": false
+  },
+  "prueba1_slot_sin_validar": "over",
+  "prueba1_slot": {
+   "detalle": {
+    "P5": {
+     "cabeza_vs_B_cm": 41.0,
+     "cabeza_vs_A_cm": 40.5,
+     "manos_vs_B_cm": 13.8
+    },
+    "P6": {
+     "cabeza_vs_B_cm": -0.8,
+     "cabeza_vs_A_cm": 11.5,
+     "manos_vs_B_cm": -1.3
+    }
+   },
+   "resultado": "no_valida_camara"
+  },
+  "prueba2_relativa": {
+   "manos_bajada_menos_subida_cm (+ = por encima/afuera)": {
+    "840": 19.0,
+    "940": 18.3
+   },
+   "mediana_cm": 18.7,
+   "rango_cm": [
+    15.6,
+    19.2
+   ],
+   "alturas_px": [
+    840,
+    1010
+   ],
+   "tramo_cm": 35.3,
+   "varilla_P3_deg": 46.4,
+   "varilla_P5_deg": 62.8,
+   "P5_menos_P3_deg": 16.4,
+   "P5_menos_P3_con_1_cuadro_de_error_deg": [
+    12.1,
+    24.8
+   ],
+   "escorzo_varilla_P3_P5": [
+    0.91,
+    1.2
+   ],
+   "resultado": "over"
+  },
+  "pistas": {
+   "cabeza_afuera_de_manos_P4_P5_cm_max": 23.0,
+   "cabeza_afuera": true,
+   "P6": "varilla en escorzo (0.23 del largo): cabeza vs manos",
+   "cabeza_vs_manos_P6_cm": -10.1,
+   "P6_empinada": false
+  },
+  "veredicto": "OVER THE TOP"
+ },
+ "tpi": {
+  "loss_of_posture": {
+   "veredicto": "sí",
+   "en": "P4",
+   "valor": "-13° de tronco contra P1",
+   "sentido": "se para (pierde inclinación)",
+   "dibujo": "spine_ref + spine_live",
+   "rodilla_atras_P4_deg": 12.4
+  },
+  "early_extension": {
+   "veredicto": "dentro del margen",
+   "valor": "máx -1 cm (±3 cm)",
+   "dibujo": "butt (línea en contacto)"
+  },
+  "flat_shoulder_plane": {
+   "veredicto": "no",
+   "valor": "hombro líder -7 cm respecto de la línea (+ = encima)",
+   "dibujo": "shoulder_plane",
+   "nota": "aprox.: el hombro líder queda detrás del cuerpo desde atrás; verificar en el cuadro"
+  },
+  "over_the_top": {
+   "veredicto": "sí",
+   "valor": "OVER THE TOP",
+   "dibujo": "hand_paths + slot"
+  },
+  "late_buckle": {
+   "veredicto": "dentro del margen",
+   "valor": "+10° de P7 a P8 (±10°)"
+  },
+  "s_posture": {
+   "veredicto": "descripción",
+   "valor": "curvatura de la espalda en P1: se mira en el cuadro, no se mide con los puntos"
+  },
+  "c_posture": {
+   "veredicto": "descripción",
+   "valor": "curvatura de la espalda en P1: se mira en el cuadro, no se mide con los puntos"
+  },
+  "flying_elbow": {
+   "veredicto": "descripción",
+   "valor": "codo de atrás en P4: no es falla por sí solo (TPI)"
+  },
+  "casting": {
+   "veredicto": "dato",
+   "valor": "ángulo brazo líder–varilla en P5: 116° (±10°); se juzga de frente"
+  },
+  "sway": {
+   "veredicto": "no evaluable desde atrás",
+   "valor": "necesita la toma de frente"
+  },
+  "slide": {
+   "veredicto": "no evaluable desde atrás",
+   "valor": "necesita la toma de frente"
+  },
+  "reverse_spine_angle": {
+   "veredicto": "no evaluable desde atrás",
+   "valor": "necesita la toma de frente"
+  },
+  "forward_lunge": {
+   "veredicto": "no evaluable desde atrás",
+   "valor": "necesita la toma de frente"
+  },
+  "hanging_back": {
+   "veredicto": "no evaluable desde atrás",
+   "valor": "necesita la toma de frente"
+  },
+  "scooping": {
+   "veredicto": "no evaluable desde atrás",
+   "valor": "necesita la toma de frente"
+  },
+  "chicken_winging": {
+   "veredicto": "no evaluable desde atrás",
+   "valor": "necesita la toma de frente"
+  }
+ },
+ "palo": {
+  "P2": "cabeza por dentro de las manos (solo el lado: en escorzo los cm no valen)",
+  "P2_escorzo": 0.48,
+  "P3_linea_B_deg": 46.4,
+  "P1_linea_A_deg": 53.1,
+  "P3_menos_P1_deg": -6.8,
+  "P4": "descripción visual: dibujar la varilla prolongada y la línea de tiro. Desde atrás no se puede separar 'cruzado' de 'por encima o por debajo de la horizontal' con un número. No es falla por sí solo",
+  "P4_escorzo": 0.31
+ },
+ "ritmo": "no evaluable: cámara lenta horneada o sin tiempos reales",
+ "candidatas_prioridad": [
+  "loss_of_posture",
+  "over_the_top"
+ ],
+ "regla_prioridad": "Elegir la primera de la lista que además explique el vuelo informado; si ninguna lo explica, decirlo y no forzar la cadena."
+}

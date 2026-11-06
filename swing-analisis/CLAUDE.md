@@ -109,6 +109,12 @@ carpeta `r3d/` con `npm install three@0.170.0`, servida con `python3 -m http.ser
    (hojas con grilla: ver `run_demo/`) con su profundidad con signo (+ hacia la cámara). El impacto se confirma mirando cuándo desaparece la pelota.
 4. **Datos 2D suavizados:** `tools/build3d.py` → `swing3d.json` (puntos del cuerpo estabilizados `p2`, palo `h2`/`g2`, momentos). El nombre quedó
    de la prueba 3D; el 3D ya no se usa, pero este archivo sí.
+5a. **Chequeos desde atrás (06/11/2026):** `tools/dtl_checks.py` (todo lo medible con margen y veredicto, incluye el plano),
+   `tools/punto_fuga.py` (control de cámara con los palos del piso) y `tools/hoja_prueba.py` (hoja de 6 cuadros con las capas de prueba
+   nuevas de `render_v4.py`: `slot`, `hand_paths`, `shoulder_plane`, `shaft_ext`, `spine_delta`, `tush`). Probado en el swing 2
+   (OVER THE TOP + pérdida de postura en la subida) y en el clip de muestra (mismo camino; cola +6 cm y tronco −8° en el impacto).
+   `metrics.py` detecta solo de qué lado está la pelota (diestros, zurdos o cámara espejada); `pose_extract.py` guarda el tiempo real
+   de cada cuadro (`t_ms`) para la cámara lenta de 240 fps.
 5b. **Plano / over the top (obligatorio desde atrás):** `python -I tools/plano_check.py swing3d.json posiciones.json --vp X,Y`
    (punto de fuga de las varillas). Prueba relativa con mediana, slot de TPI si la cámara pasa el control, pistas y regla asimétrica.
    Probado: swing 2 → OVER THE TOP; clip de muestra → "sin señales en la prueba relativa (cámara sin verificar)".
@@ -139,7 +145,7 @@ Ejemplo completo en `run_demo/swing2/` (guion, posiciones, marcas del palo, edic
 **Pendiente:**
 - probar con un video real HD de un espectador (dos tomas, protocolo nuevo) y sumar la versión de frente (sway, slide, hanging back,
   posición de pelota, inclinación de la varilla en el impacto) con escala de la varilla de las puntas;
-- herramienta para marcar el punto de fuga y la escala de las varillas (hoy `--vp` se pasa a mano);
+- marcar el punto de fuga sin leer coordenadas a mano (hoy: `grid_hd.py` + `punto_fuga.py`);
 - medir la **consistencia entre los 3 swings** de cada toma e incluirla en el PDF;
 - probar RTMPose (`rtmlib`) contra MediaPipe en los mismos videos (licencia y cambios de lado);
 - validar los márgenes del pipeline contra una referencia (dos celulares con Pose2Sim o digitalización manual a 240 fps);
