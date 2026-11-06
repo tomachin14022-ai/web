@@ -61,6 +61,15 @@ para mandarle al seguidor**. Lo esencial:
   permiso). **Sin vuelo y contacto no se diagnostica el path.**
 - Si hay **dolor o lesión**: derivar a un profesional de la salud; no dar ejercicios para eso.
 
+**Mínimo para analizar** (el dueño no puede exigir todo el protocolo, 06/11/2026). Por ahora solo desde atrás:
+- Un video **desde atrás**, celular fijo (trípode, o apoyado en la bolsa o una silla), en la línea de las manos y a la altura de las
+  manos, 1x, cámara lenta, **archivo original**.
+- **Dos palos en el piso** en lugar de varillas (no hace falta medirlos). Dan la línea de tiro y el punto de fuga.
+- **Tres datos:** palo, dónde salió la pelota y cómo curvó.
+- Sin varillas medidas: la escala sale del largo del palo del address (desde atrás está casi en el plano de la imagen; preguntar el palo).
+  Si la cámara no pasa el control, el slot de TPI no vale y el over the top se decide con la prueba relativa.
+- Lo que falte se dice en el análisis como "no evaluable con este video", nunca se supone.
+
 ## 4. Orden del diagnóstico (como trabaja un profesor)
 
 1. **Qué hace la pelota** (lo informa el jugador).
@@ -137,17 +146,51 @@ prueba relativa". Si no, "no evaluable".
   P7 impacto, P10 final). V1 llama P6 al impacto.
 - "Según TPI" para sus porcentajes (67 % de 90.000 con early extension es dato propio de TPI, sin método publicado).
 
-## 9. Formato del reel y del PDF
+## 9. Estructura del análisis (pedido del dueño, 06/11/2026) y formato del reel y del PDF
 
-**Reel:** sin gancho ni re-gancho, análisis puro. Orden: datos (palo, vistas, vuelo informado) → swing completo a velocidad real →
-recorrido P1–P10 con la medida de cada posición → la prioridad con su evidencia y su cadena de causa → fallas secundarias → **termina
-con el drill** (pasos claros). Después, solo el cierre que pidió el dueño: el análisis va con un reporte + "Seguime para más análisis".
+Rol: biomecánico de golf y coach de alto rendimiento. Lenguaje técnico, conciso, sin divagar. **Antes de cada fase, decir
+expresamente si la información alcanza**; lo que no alcanza se marca "no evaluable con este video" y no se supone.
+Ese rol es para el tono del análisis: en el reel y el PDF **nunca** se dice que lo hizo un coach del PGA Tour ni un biomecánico.
+
+**1. Diagnóstico de posición y biomecánica** (desde atrás; entre corchetes, cómo se obtiene)
+- *Postura y setup:* inclinación del tronco, flexión de rodillas, distancia a la pelota, brazos, S/C posture [medido, ±3–5°];
+  alineación de pies con los palos del piso [medido]; cara del palo en el address [descripción, poco precisa desde atrás];
+  distribución de peso [no se mide: no hay plataforma; solo pistas visuales].
+- *Backswing y carga:* plano de la varilla en P2 (cabeza vs manos), P3 (línea B) y P4 (cruzado / laid off) [medido; P2 en escorzo];
+  plano de hombros (receta TPI) y codo de atrás [medido / descripción]; giro de hombros vs caderas [**no en grados**: descripción];
+  hinge de muñecas [descripción: "se ve cupped/bowed"].
+- *Transición y downswing:* plano de bajada y over the top [`plano_check.py`]; lag (ángulo brazo líder–varilla en P5) [medido, ±5–10°];
+  pelvis hacia la pelota (early extension), bajada y subida de la pelvis, talón de atrás, rodillas [medido, ±1–3 cm];
+  secuencia cinemática y fuerzas contra el suelo [**no se miden** en 2D; a 240 fps solo el orden de algunos eventos visibles y pistas
+  como la caída de la pelvis o la extensión de la rodilla líder].
+- *Impacto y release:* postura en P7 contra P1 [medido]; ángulo de ataque, face-to-path, loft dinámico [**inferidos** del vuelo, el
+  divot y la marca de contacto: tendencia, no grados]; punto de contacto [solo con foto de la marca]; shaft lean [**de frente**: no
+  evaluable desde atrás].
+
+**2. Error principal (causa raíz).** Una sola falla, con la cadena completa: cuadro y medida → qué pasa en el impacto (path, cara, ataque,
+low point) → el vuelo que informó el jugador. Las secundarias, después y más cortas. Si la causa puede ser física, decirlo como hipótesis.
+
+**3. Métricas** (solo con datos de TrackMan / GCQuad; si no hay, decir "sin datos de launch monitor" y dar la tendencia inferida del vuelo):
+path vs cara y face-to-path (signo y tamaño de la curva) · ángulo de ataque y low point · loft dinámico y spin loft (tour: ~14,7° driver,
+~24,3° hierro 6 [FAB]) · spin axis (±2 ≈ recto [FAB]). Comparar contra el propio jugador y el palo, no contra un promedio de otro sistema.
+
+**4. Plan de corrección**
+- *Sensación clave:* una sola, dicha como intención física concreta.
+- *Drill:* 1 o 2, paso a paso, solo con pasos verificados (sección 7), con su progresión.
+- *Chequeo sin ayuda externa:* la señal física del drill (la pared, la silla, la botella, el contacto) y el **mismo encuadre de video**
+  con un objetivo medible para el próximo (ej.: "la nalga no se despega más de 3 cm de su línea en P7").
+
+**Reel:** sin gancho ni re-gancho, análisis puro, siguiendo las 4 secciones: datos (palo, vista, vuelo informado) → swing completo a
+velocidad real → recorrido P1–P10 con la medida de cada posición → error principal con su cadena → secundarias → **termina con el drill**
+(pasos claros). Después, solo el cierre que pidió el dueño: el análisis va con un reporte + "Seguime para más análisis".
 Voz: la misma (Kokoro `em_alex`, ×1,12). Subtítulos con alineación forzada.
 
-**PDF:** sin la sección de método (solo una línea de "medidas aproximadas, ±margen"). Portada con la prioridad · definiciones P1–P10 ·
-P1–P10 con medidas y margen · evaluación fundamento por fundamento y la lista TPI con sí / no / no evaluable · vuelo informado → impacto →
-cuadro · prioridad con números y secuencia · fallas secundarias · consistencia entre swings · lo que no se mide con este video ·
-hipótesis física (sugerir screen) · drill y plan con objetivos medibles · registro de práctica · referencias con su tipo de fuente.
+**PDF:** las 4 secciones, sin la sección de método (solo una línea de "medidas aproximadas, ±margen"). Además: portada con la prioridad ·
+definiciones P1–P10 · lista TPI con sí / no / no evaluable · consistencia entre swings · lo que no se mide con este video · registro de
+práctica · referencias con su tipo de fuente.
+
+**Validación sin profesor:** el dueño hace de evaluador a ciegas. Antes de ver el análisis, anota su falla principal y su prioridad.
+Se comparan y se registran en `swing-analisis/validacion.md`; cada desacuerdo se discute con evidencia y, si corresponde, se vuelve regla.
 
 ## 10. Revisión final de "profesor desconfiado"
 
