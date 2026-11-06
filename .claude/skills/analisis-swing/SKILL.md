@@ -18,6 +18,12 @@ Base de todo: `swing-analisis/investigacion/informe.md` (investigación del 05�
 - **Lo que diga el dueño o el jugador es una hipótesis**, no un dato: aislar la afirmación, medirla, concluir, y cambiar de
   opinión solo con evidencia nueva, no por insistencia.
 - **Cada afirmación lleva medida + cuadro + criterio con su tipo de fuente.** Si falta alguno, no se dice.
+- **Solo tres tipos de afirmación:** *medido* (dibujado sobre el cuadro, con número y margen: cualquiera lo puede verificar mirando),
+  *inferido* (del vuelo o del contacto, dicho como "por el vuelo que contás…") y *no evaluable*. **Si no se puede dibujar sobre el
+  video, no se afirma como medido.** El dibujo es a la vez el visual del reel y la prueba.
+- **Puerta antes de publicar (primeros 5 videos, 06/11/2026):** el dueño anota su diagnóstico a ciegas → se le muestra la hoja de
+  cuadros con las líneas y el diagnóstico escrito → se discuten los desacuerdos con el cuadro y la medida → recién ahí voz y render.
+  Lo que no se resuelve no se publica o se dice "no concluyente".
 - **Una sola prioridad.** Ocho fallas del mismo peso se leen como análisis amateur. Prioridad = la causa, no el efecto.
 - **Revisión final de "profesor desconfiado"** (sección 10) antes de entregar.
 
