@@ -78,3 +78,16 @@ ffprobe -v error -select_streams v:0 \
 > podés, foto de la marca en la cara con spray o cinta de impacto, y del divot) · si fallás para un lado o para los dos · distancia ·
 > condiciones (viento, pendiente, alfombra) · datos de launch monitor si tenés · **si tenés dolor o alguna lesión** · y si me das
 > permiso para publicar tu swing (si sos menor, el permiso es de tu madre, padre o tutor).
+
+## Historia de Instagram (versión corta, solo desde atrás, 06/11/2026)
+
+1. **ANALIZO TU SWING 🏌️** · Elijo 5 swings y los analizo gratis en un reel: ángulos medidos sobre tu video, la causa principal de
+   tu error y un drill para corregirla. Te explico cómo mandármelo 👉
+2. **CÓMO FILMARLO 📱** · Celular fijo (trípode o apoyado en la bolsa), vertical y sin zoom (1x) · Detrás tuyo, mirando hacia el
+   objetivo · En la línea de tus manos (entre tus pies y la pelota) y a la altura de tus manos · A unos 3 metros (4 pasos largos) ·
+   En CÁMARA LENTA · Que se vean tu cuerpo entero, el palo arriba y la pelota.
+3. **ANTES DE PEGAR ⛳** · Poné 2 palos en el piso, paralelos a la línea de tiro: uno justo delante de la punta de tus pies y otro del
+   otro lado de la pelota, a un palmo. Con eso mido con precisión.
+4. **CÓMO MANDARLO 📩** · Subí el video sin editar ni recortar a Google Drive y mandame el link por DM (por Instagram pierde
+   calidad). Contame qué palo usaste, para dónde salió la pelota (izquierda, derecho o derecha), cómo curvó y si sos zurdo.
+   Al mandarlo aceptás que publique tu swing; si sos menor, con permiso de tu mamá, papá o tutor.
