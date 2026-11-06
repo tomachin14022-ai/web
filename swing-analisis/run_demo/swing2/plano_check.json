@@ -1,0 +1,59 @@
+{
+ "margenes": {
+  "manos_cm": 4.0,
+  "varilla_deg": 5.0
+ },
+ "camara": {
+  "giro_deg": -8.5,
+  "inclinacion_deg": -6.9,
+  "pasa": false
+ },
+ "prueba1_slot_sin_validar": "over",
+ "prueba1_slot": {
+  "detalle": {
+   "P5": {
+    "cabeza_vs_B_cm": 41.0,
+    "cabeza_vs_A_cm": 40.5,
+    "manos_vs_B_cm": 13.8
+   },
+   "P6": {
+    "cabeza_vs_B_cm": -0.8,
+    "cabeza_vs_A_cm": 11.5,
+    "manos_vs_B_cm": -1.3
+   }
+  },
+  "resultado": "no_valida_camara"
+ },
+ "prueba2_relativa": {
+  "manos_bajada_menos_subida_cm (+ = por encima/afuera)": {
+   "840": 19.0,
+   "940": 18.3
+  },
+  "mediana_cm": 18.7,
+  "rango_cm": [
+   15.6,
+   19.2
+  ],
+  "alturas_px": [
+   840,
+   1010
+  ],
+  "tramo_cm": 35.3,
+  "varilla_P3_deg": 46.4,
+  "varilla_P5_deg": 62.8,
+  "P5_menos_P3_deg": 16.4,
+  "escorzo_varilla_P3_P5": [
+   0.91,
+   1.2
+  ],
+  "resultado": "over"
+ },
+ "pistas": {
+  "cabeza_afuera_de_manos_P4_P5_cm_max": 23.0,
+  "cabeza_afuera": true,
+  "P6": "varilla en escorzo (0.23 del largo): cabeza vs manos",
+  "cabeza_vs_manos_P6_cm": -10.1,
+  "P6_empinada": false
+ },
+ "veredicto": "OVER THE TOP"
+}

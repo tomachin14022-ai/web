@@ -14,3 +14,9 @@ Evidencia medida en el video (desde atrás, escala ≈0,21 cm por pixel):
 
 Lo que sí sigue en pie: se para en la subida (rodilla de atrás 161° → 177°, tronco 46° → 34°), vuelve a bajar en la bajada
 (cabeza ↓9 cm desde el tope, talón de atrás temprano) y la cola se mantiene sobre su línea hasta el impacto.
+
+Verificación automática (06/11/2026, `tools/plano_check.py`, resultado en `plano_check.json`): veredicto **OVER THE TOP**.
+Manos de bajada contra subida a la misma altura: mediana +18,7 cm (rango 15,6–19,2, alturas 840–1010 px); varilla P5 62,8° contra
+P3 46,4° (+16,4°); cabeza del palo hasta 23 cm por fuera de las manos entre P4 y P5. La cámara estaba girada 8,5° (punto de fuga
+330,790), así que el slot de TPI no se usó para decidir. Las diferencias con los números de arriba son por el tramo de alturas
+(ahora entre P3/P5 y P1/P7) y por la definición del ángulo.

@@ -11,6 +11,13 @@
 5. **Decisión del 04/11/2026: sin modelo 3D.** Se probó un maniquí 3D y el dueño pidió sacarlo y enfocarse en la calidad del análisis y en mejorar el swing.
 6. **Es un producto pago.** Tiene que parecer un análisis "de otro nivel", no uno genérico de IA: máxima calidad, profesionalismo y visuales.
 
+## Pedido del dueño (05–06/11/2026): "investigá todo, que sea milimétrico"
+- Hecho: investigación completa con fuentes en `investigacion/informe.md` (notas por tema en `investigacion/notas/`) y aplicada a la
+  skill `analisis-swing` (protocolo, márgenes, over the top, checklist, fallas, errores de amateur).
+- **"Milimétrico" no se puede prometer con un celular**: ±3–5° en ángulos, ±1–3 cm en desplazamientos, ±2–4 cm en el plano, ±1 cuadro.
+  Lo que sí se puede: medir de forma reproducible contra el address del mismo jugador, con el margen declarado, y la consistencia
+  entre swings. Ningún modelo de pose está validado en golf contra captura con marcadores (ni Sportsbox de forma independiente).
+
 ## Pedidos del dueño (04/11/2026, después del swing 2) — los más recientes mandan
 - **Usar la skill `analisis-swing`** (`.claude/skills/analisis-swing/SKILL.md`): protocolo de filmación, checklist técnico,
   postura crítica y formato. El análisis lo van a evaluar **profesores de golf**: no puede haber errores técnicos.
@@ -45,8 +52,10 @@
 
 ## Reglas de precisión (no negociables)
 - Cada diagnóstico se apoya en **un cuadro concreto** que se muestra (en el PDF y en el reel). Sin cuadro, no hay diagnóstico.
-- Las medidas salen de una sola cámara de celular: son **aproximadas**. Mostrar "aprox." y dar rangos, nunca decimales de laboratorio.
-  No encontramos un estudio que valide MediaPipe contra captura de movimiento en golf (búsqueda del 04/11/2026).
+- Las medidas salen de una sola cámara de celular: son **aproximadas**, con margen declarado (tabla en la skill, sección 2).
+  Nunca decimales de laboratorio. Giro de pelvis/tórax, X-factor, muñecas, cara y path **no se informan con números**.
+- **Regla asimétrica:** "bien" o "en plano" exige todas las pruebas dentro del margen; si no, "no evaluable". Over the top se decide
+  **solo** con `tools/plano_check.py` (nunca a ojo ni con una sola medida).
 - La pose **no ve el palo ni la cara del palo**. Lo que hace la pelota se le pregunta al espectador (dónde sale y cómo curva) y se explica con las leyes de vuelo (abajo).
 - Nombrar las fallas con las **definiciones de TPI** (abajo). No inventar nombres ni porcentajes.
 - Máximo **2–3 cambios prioritarios** por swing, del más importante al menos. Cada uno con un ejercicio.
@@ -55,31 +64,30 @@
 - **Permiso por escrito** del espectador para publicar su swing. Si es menor, del padre, madre o tutor.
 
 ## Guía de filmación (para los espectadores)
-Fuente principal: The Sand Trap, "Recording Your Golf Swing" (thesandtrap.com/b/playing_tips/filming_your_swing, act. 08/2024).
-Complemento: V1 Golf (6–10 ft de frente, 8–12 ft desde atrás). Lo de "fijo, sin zoom" y "archivo original" sale de nuestra prueba.
-
-**Dos tomas** (de frente y desde atrás), 2 o 3 swings en cada una:
-- **De frente:** celular a la **altura de las manos** (cadera, apenas debajo del ombligo), mirando perpendicular a la línea de tiro y **centrado en el medio de los pies**, a **2 a 3,5 m de la pelota**. Truco: una varilla en el piso, perpendicular a la línea de tiro, en el medio de la postura; el celular sobre esa línea.
-- **Desde atrás (down the line):** a la **altura de las manos**, apuntando **paralelo a la línea de tiro**, a la altura de los **dedos del pie de atrás**, a **2,5 a 3,5 m de la pelota**. Truco: varilla delante de los pies, paralela a la línea; el celular justo por dentro de la línea de la varilla. No filmar desde atrás de la pelota.
-- **En las dos:**
-  - celular **fijo** (trípode o soporte), **sin zoom y sin seguir al jugador**;
-  - cuerpo entero, palo y pelota en cuadro todo el swing, con espacio arriba de la cabeza (para el palo en el tope) y debajo de la pelota;
-  - **vertical**, lente normal **1x** (no el gran angular 0,5x, que deforma);
-  - **60 fps como mínimo**; 120 o 240 fps mejor;
-  - **de día**, con buena luz y sin contraluz, para que el palo no salga borroso;
-  - ropa ajustada que contraste con el fondo;
-  - empezar a grabar 2–3 s antes y cortar 2 s después del final;
-  - mandar el **archivo original** (Drive, mail o WhatsApp "como documento"), **sin cámara lenta editada ni filtros**.
-- **Datos que tiene que mandar:** diestro o zurdo, palo, adónde apuntaba, **dónde salió la pelota y cómo curvó**, qué quiere mejorar, nivel o hándicap, si tiene dolor o lesión, y el permiso para publicar.
+**La versión vigente está en la skill:** `.claude/skills/analisis-swing/referencias/filmacion.md` (protocolo, error por ubicación de
+cámara, control al recibir con `ffprobe` y **mensaje listo para mandar**). Corrección del 06/11/2026 respecto de la guía anterior:
+- **Desde atrás**, la cámara va en la **prolongación de la línea de las manos** (entre la varilla de las puntas y la de la pelota, más cerca
+  de la de las puntas), con el lente **a la altura de las manos**. La guía vieja decía "a la altura de los dedos del pie de atrás, a la
+  altura de las manos": esa posición queda debajo del plano y **empina el swing 4–7 cm** (empuja a falsos over the top). Si se filma
+  desde la línea de las puntas, el lente va a ~1,05–1,10 m.
+- 3–3,7 m (no 2–3 m), 1x, nivelado, cámara lenta 240 fps y archivo original "100 % – 240 FPS" (AirDrop, cable o Drive).
+- De frente, la escala sale de la varilla de las puntas (con la línea de la pelota se subestima ~20 %).
+- Cuestionario de vuelo y contacto **obligatorio** antes de diagnosticar.
 
 ## Base de conocimiento (con fuente)
 - **Características de swing de TPI** (mytpi.com/improve-my-game/swing-characteristics, leído el 04/11/2026). Son 16:
   S-Posture, C-Posture, Loss of Posture, Flat Shoulder Plane, Flying Elbow, Early Extension, Over the Top, Sway, Slide, Late Buckle, Reverse Spine Angle, Forward Lunge, Hanging Back, Casting, Scooping, Chicken Winging.
   - Early Extension (TPI): "cualquier movimiento de la pelvis hacia la pelota en la subida o la bajada". Según TPI, 67 % de 90.000 golfistas evaluados la tienen (dato propio de TPI).
   - Sway: movimiento lateral excesivo del tren inferior **alejándose** del objetivo en la subida. Slide: lo mismo **hacia** el objetivo en la bajada.
-- **Vuelo de la pelota** (Titleist Learning Lab, "Physics of ball striking"): la **cara** define la mayor parte de la dirección de salida (≈75 % en hierros medios, ≈85 % en driver) y la diferencia **cara–trayectoria** define la curva. "La cara la manda, el path la curva." Son valores aproximados y cambian con golpes fuera del centro.
+- **Vuelo de la pelota:** la **cara** define la mayor parte de la salida y la diferencia **cara–path** define la curva. Corrección del 06/11/2026:
+  el "≈75 %/≈85 %" es una cifra de enseñanza de TrackMan [FAB]; el único estudio publicado (PING 2018 [PR], 157 golfistas) da **76 % con driver,
+  69 % con hierro 7 y 61 % con wedge**. Decir "entre dos tercios y más de tres cuartos según el palo". Con driver, un golpe de talón imita un pull-slice.
+- **Base completa con fuentes y tipo de evidencia:** `investigacion/informe.md`.
 - **Qué se puede medir con la pose (aprox.)**: inclinación del tronco, movimiento de cabeza, cadera hacia la pelota (early extension), sway y slide, flexión de rodillas, brazo adelantado en el tope, momentos del swing (address, tope, impacto, final) y ritmo subida/bajada (solo con video a velocidad real).
-- **Qué NO**: cara del palo, path en grados, velocidad del palo o de la pelota, distancia, spin.
+- **Qué NO**: cara del palo, path en grados, velocidad del palo o de la pelota, distancia, spin, giro de pelvis y tórax, X-factor, muñecas.
+- **Licencias para el producto pago:** RTMPose con `rtmlib` (Apache-2.0) como modelo principal recomendado y MediaPipe de control cruzado
+  (comparar dos modelos detecta cambios de lado). Evitar OpenPose, AlphaPose, VideoPose3D, Sapiens, código de SwingNet/GolfDB (no comerciales),
+  WHAM/HMR2 (licencia SMPL) y YOLO de Ultralytics (AGPL). Dos celulares: Pose2Sim (BSD-3).
 
 ## Proceso técnico v2 (probado el 04/11/2026, toma desde atrás)
 Entorno: venv con `mediapipe opencv-python-headless numpy scipy`; `apt-get install libegl1 libgles2 libgl1`;
@@ -91,6 +99,9 @@ carpeta `r3d/` con `npm install three@0.170.0`, servida con `python3 -m http.ser
    (hojas con grilla: ver `run_demo/`) con su profundidad con signo (+ hacia la cámara). El impacto se confirma mirando cuándo desaparece la pelota.
 4. **Datos 2D suavizados:** `tools/build3d.py` → `swing3d.json` (puntos del cuerpo estabilizados `p2`, palo `h2`/`g2`, momentos). El nombre quedó
    de la prueba 3D; el 3D ya no se usa, pero este archivo sí.
+5b. **Plano / over the top (obligatorio desde atrás):** `python -I tools/plano_check.py swing3d.json posiciones.json --vp X,Y`
+   (punto de fuga de las varillas). Prueba relativa con mediana, slot de TPI si la cámara pasa el control, pistas y regla asimétrica.
+   Probado: swing 2 → OVER THE TOP; clip de muestra → "sin señales en la prueba relativa (cámara sin verificar)".
 5. **Medidas:** `tools/metrics.py` (línea de cola con la silueta, columna, plano) y `tools/frame_metrics.py` (datos por cuadro y P1–P10 en
    `run_demo/posiciones.json`; P3/P5/P9 = muñeca a la altura del hombro, P2/P6/P8 = palo paralelo, P7 = la pelota desaparece).
 6. **Superresolución** (solo si el video es chico): `tools/upscale.py` con `realesr-general-x4v3.pth` (Real-ESRGAN, ~4 s por cuadro en CPU, necesita torch).
@@ -116,10 +127,14 @@ Ejemplo completo en `run_demo/swing2/` (guion, posiciones, marcas del palo, edic
 - la varilla se pierde cuando pasa delante del cuerpo o sale borrosa: hay que marcarla a mano en los cuadros clave.
 
 **Pendiente:**
-- probar con un video real HD de un espectador (dos tomas) y sumar la versión de frente (sway, slide, posición de pelota, palo en el impacto);
-- pedirle al espectador el vuelo de la pelota para conectar el diagnóstico con su error;
-- convertir este proceso en una skill propia `analisis-swing`;
-- nombre de la cuenta, logo, colores y voz definitivos (ElevenLabs del dueño) para el producto.
+- probar con un video real HD de un espectador (dos tomas, protocolo nuevo) y sumar la versión de frente (sway, slide, hanging back,
+  posición de pelota, inclinación de la varilla en el impacto) con escala de la varilla de las puntas;
+- herramienta para marcar el punto de fuga y la escala de las varillas (hoy `--vp` se pasa a mano);
+- medir la **consistencia entre los 3 swings** de cada toma e incluirla en el PDF;
+- probar RTMPose (`rtmlib`) contra MediaPipe en los mismos videos (licencia y cambios de lado);
+- validar los márgenes del pipeline contra una referencia (dos celulares con Pose2Sim o digitalización manual a 240 fps);
+- rehacer el análisis del swing 2 con la skill nueva si el dueño lo quiere publicar;
+- nombre de la cuenta, logo, colores y voz definitivos para el producto.
 
 ## Skills (búsqueda en skills.sh, 04/11/2026)
 - **No existe una skill de análisis de swing de golf.** Los resultados con "swing" son de trading ("swing-review") y "golf-data" es de torneos.
@@ -128,4 +143,5 @@ Ejemplo completo en `run_demo/swing2/` (guion, posiciones, marcas del palo, edic
   - `kinemotioninc/kinemotion` (`mediapipe-pose-detection` 82 y `video-analysis-workflow` 45, MIT): es de saltos, pero tomamos sus prácticas (suavizar los puntos, corregir izquierda/derecha cambiadas, chequear la calidad del video).
   - `jayv29/pose-analysis-skill` (1): esgrima y escalada; tomamos la idea de no puntuar si el video no sirve.
   - `move-ai-motion-capture` (108): servicio pago de captura profesional; no hace falta para esto.
-- **Lo que usamos:** skills ya instaladas (hyperframes, threejs-*, embedded-captions, media-use, pdf, ffmpeg) + MediaPipe. Siguiente paso recomendado: convertir este proceso en una skill propia `analisis-swing`.
+- **Lo que usamos:** skills ya instaladas (hyperframes, threejs-*, embedded-captions, media-use, pdf, ffmpeg) + MediaPipe, y la skill propia
+  `analisis-swing` (creada el 04/11 y actualizada el 06/11/2026 con la investigación).
