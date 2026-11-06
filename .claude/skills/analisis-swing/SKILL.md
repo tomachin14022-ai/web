@@ -21,6 +21,10 @@ Base de todo: `swing-analisis/investigacion/informe.md` (investigación del 05�
 - **Solo tres tipos de afirmación:** *medido* (dibujado sobre el cuadro, con número y margen: cualquiera lo puede verificar mirando),
   *inferido* (del vuelo o del contacto, dicho como "por el vuelo que contás…") y *no evaluable*. **Si no se puede dibujar sobre el
   video, no se afirma como medido.** El dibujo es a la vez el visual del reel y la prueba.
+- **Pedido del dueño (06/11/2026): "solo lo que se pueda dibujar y ver".** Los números salen solo de lo visible y dibujado. Lo inferido
+  se limita a unir la falla con el vuelo que contó el jugador ("por cómo contás que sale la pelota…"). No se estiman ángulos 3D
+  (giros, X-factor) con modelos que "adivinan" la profundidad, como hacen las apps de una sola cámara (Sportsbox): no se pueden
+  verificar mirando el video. Para medir giros de verdad hacen falta dos celulares filmando el mismo swing a la vez (Pose2Sim).
 - **El dueño no opina de técnica** (no es profesor, 06/11/2026). No hay juez humano antes de publicar: la garantía es el método
   (solo lo medido y dibujado, criterios publicados, regla asimétrica, revisión de la sección 10). Al dueño se le muestra la hoja de
   cuadros solo para aprobar **cómo se ve**. La validación externa son las reacciones de profesores a los 5 videos gratis
