@@ -1,21 +1,43 @@
 ---
 name: grill-me
-description: Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill me".
+description: Pone a prueba un plan o un diseño con hasta 5 preguntas, de a una, cada una con la opción recomendada primero, hasta que no quede ninguna decisión importante abierta. Usala cuando el usuario diga "grill me", "poneme a prueba", "haceme preguntas", "estresá este plan" o pida revisar un plan antes de producirlo (un reel, una campaña, una promo, un flujo de mensajes).
 ---
 
-Interview the user relentlessly about every aspect of their plan until you reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one.
+# Poner a prueba un plan (máximo 5 preguntas)
 
-## How to ask questions
+Entrevistá al usuario sobre su plan hasta que las decisiones que importan queden resueltas. El dueño quiere el trabajo terminado, no muchas preguntas: cada pregunta tiene que ganarse su lugar.
 
-Use the **AskUserQuestion tool** for every question you ask. Never pose questions as plain text in your response — always use the multiple-choice popup so the user can quickly select an answer or type a custom one.
+## Antes de preguntar
 
-Ask **one question at a time**. Wait for the user's answer before moving to the next question. This keeps the conversation focused and prevents overwhelm.
+1. Leé lo que ya existe: `CLAUDE.md`, los archivos del proyecto y lo que se dijo en la conversación. No preguntes nada que ya esté resuelto ahí (marca, colores, formato, zonas seguras, reglas legales, tono).
+2. Armá la lista de decisiones abiertas y ordenala por impacto: primero las que más cambian el resultado o las que más cuesta cambiar después (por ejemplo, una que obliga a volver a renderizar).
+3. Si una decisión depende de otra, preguntá primero la de arriba.
 
-For each question, provide 2–4 concrete multiple-choice options representing the most likely answers or directions. Think about what the user would realistically choose — generic options like "Yes" / "No" aren't helpful unless the question is genuinely binary. The user always has the "Other" field available to write something custom.
+## Cómo preguntar
 
-## Flow
+- **Máximo 5 preguntas** en total.
+- **Una por vez**, con la herramienta **AskUserQuestion**. Nunca escribas las preguntas como texto suelto.
+- Entre 2 y 4 opciones concretas por pregunta, pensadas para este plan. Nada de "Sí / No" salvo que la decisión sea de verdad de dos caminos.
+- **La primera opción es la que recomendás**, con "(Recomendado)" al final del nombre y el porqué en la descripción, en una frase.
+- Cada pregunta se entiende sola: el usuario puede ver solo el cuadro de la pregunta, sin lo que escribiste antes.
+- Español rioplatense, claro y profesional.
 
-1. After receiving an answer, briefly acknowledge the decision (1–2 sentences max), then immediately ask the next question via AskUserQuestion.
-2. If a question can be answered by exploring the codebase or files, explore them yourself instead of asking the user.
-3. Continue until all branches of the design tree are resolved.
-4. When finished, provide a concise summary of all decisions made.
+## Después de cada respuesta
+
+- Confirmá la decisión en una frase y pasá a la siguiente pregunta.
+- Si la respuesta resuelve otras decisiones de la lista, sacalas.
+- Si el usuario dice "con eso alcanza", "decidí vos" o algo parecido, cortá y pasá al resumen.
+
+## Al terminar
+
+Cuando se acaban las 5 preguntas o no quedan decisiones abiertas:
+
+1. **Resumen corto** con:
+   - lo que se decidió;
+   - lo que decidiste vos sin preguntar, con el porqué en una línea ("si no te gusta, avisame");
+   - los datos que hay que verificar antes de publicar.
+2. Si el pedido era producir algo (un guion, un reel, un carrusel), seguí con el trabajo usando esas decisiones. No pidas permiso otra vez.
+
+---
+
+Basada en [grill-me](https://github.com/RobMitt/grill-me-skill) de RobMitt, adaptada para Valparaiso Motors: en español, con la opción recomendada primero y un máximo de 5 preguntas.
