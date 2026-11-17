@@ -11,7 +11,7 @@ Con tanque de tinta: menos de cinco. Cuarenta y cuatro veces menos.
 Si imprimís cien hojas por mes…
 en el mes doce se da vuelta. Desde ahí, gana la cara.
 En tres años, ahorrás más de quinientos mil.
-Los links de las dos están en la bio.
+Link en la bio.
 
 ## 2. Cafetera
 
@@ -22,7 +22,7 @@ Con café en grano: setecientos tres pesos. Tres veces menos.
 Si tomás dos cafés por día…
 en el mes siete se da vuelta. Desde ahí, gana la cara.
 En tres años, ahorrás casi tres millones.
-Los links de las dos están en la bio.
+Link en la bio.
 
 ## 3. Aire acondicionado
 
@@ -33,7 +33,7 @@ El inverter, unos ciento veintiuno. Treinta por ciento menos.
 Ocho horas por día, cinco meses al año…
 en el mes veintidós se da vuelta. Desde ahí, gana el caro.
 En cinco años, ahorrás casi doscientos mil.
-Los links de los dos están en la bio.
+Link en la bio.
 
 ---
 
@@ -48,6 +48,6 @@ Los links de los dos están en la bio.
 | 5 (el uso) | 13,25 s | 15,7 s |
 | 6 (se da vuelta) | 15,85 s | 19,7 s |
 | 7 (el ahorro) | 19,8 s | 22,3 s |
-| 8 (los links) | 22,4 s | 24,3 s |
+| 8 (link en la bio) | 22,4 s | 24,3 s |
 
 Para regenerar la voz automática: `python3 voz.py datos/02-cafetera.json 02-cafetera` (voz es-AR-TomasNeural; con `--voz es-AR-ElenaNeural` usa la voz femenina) y después `python3 generar.py` + render.
