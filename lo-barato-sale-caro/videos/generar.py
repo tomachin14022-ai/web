@@ -92,6 +92,17 @@ def main():
     (salida / "compositions" / "comparacion.html").write_text(plantilla, encoding="utf-8")
     raiz = (Path(__file__).parent / "plantilla-index.html").read_text(encoding="utf-8")
     (salida / "index.html").write_text(raiz, encoding="utf-8")
+    # Texto para la publicación de Instagram (los links van en la bio, no son clicables en el texto)
+    caption = (
+        f"{' '.join(datos['hook']).capitalize()} 👀\n\n"
+        f"{a['nombre']}: {ars(a['precio'])} al comprar, pero {ars(a['porUso'])} por {datos['unidadSing']}.\n"
+        f"{b['nombre']}: {ars(b['precio'])} al comprar, y {ars(b['porUso'])} por {datos['unidadSing']}.\n\n"
+        f"En {meses // 12} años: {ars(a['total'])} contra {ars(b['total'])}. Ahorrás {ars(ahorro)}.\n"
+        + (f"Desde el mes {cruce}, la que cuesta más ya te salió más barata.\n" if cruce else "")
+        + f"\n¿Cuál comprarías? Los links de las dos están en la bio.\n"
+        f"Contiene links de afiliado de Mercado Libre. {datos['nota']}"
+    )
+    (salida / "caption.txt").write_text(caption, encoding="utf-8")
     print(json.dumps({"cruceMes": cruce, "ratio": ratio, "ahorro": round(ahorro),
                       "porUsoA": round(a["porUso"], 2), "porUsoB": round(b["porUso"], 2),
                       "totalA": round(a["total"]), "totalB": round(b["total"])}, ensure_ascii=False))
