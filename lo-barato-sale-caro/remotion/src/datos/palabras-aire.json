@@ -1,0 +1,282 @@
+[
+ {
+  "texto": "El",
+  "desde": 0.05,
+  "hasta": 0.16
+ },
+ {
+  "texto": "aire",
+  "desde": 0.16,
+  "hasta": 0.47
+ },
+ {
+  "texto": "barato",
+  "desde": 0.47,
+  "hasta": 0.88
+ },
+ {
+  "texto": "te",
+  "desde": 0.98,
+  "hasta": 1.1
+ },
+ {
+  "texto": "sale",
+  "desde": 1.1,
+  "hasta": 1.41
+ },
+ {
+  "texto": "más",
+  "desde": 1.41,
+  "hasta": 1.65
+ },
+ {
+  "texto": "caro.",
+  "desde": 1.65,
+  "hasta": 2.085
+ },
+ {
+  "texto": "¿Cuál",
+  "desde": 2.085,
+  "hasta": 2.52
+ },
+ {
+  "texto": "comprás?",
+  "desde": 2.52,
+  "hasta": 3.32
+ },
+ {
+  "texto": "Mirá",
+  "desde": 3.37,
+  "hasta": 3.68
+ },
+ {
+  "texto": "cuánta",
+  "desde": 3.68,
+  "hasta": 4.21
+ },
+ {
+  "texto": "luz",
+  "desde": 4.31,
+  "hasta": 4.49
+ },
+ {
+  "texto": "gasta",
+  "desde": 4.49,
+  "hasta": 4.94
+ },
+ {
+  "texto": "cada",
+  "desde": 4.94,
+  "hasta": 5.16
+ },
+ {
+  "texto": "uno.",
+  "desde": 5.52,
+  "hasta": 5.63
+ },
+ {
+  "texto": "El",
+  "desde": 5.69,
+  "hasta": 5.84
+ },
+ {
+  "texto": "común,",
+  "desde": 5.84,
+  "hasta": 6.52
+ },
+ {
+  "texto": "$173",
+  "desde": 6.62,
+  "hasta": 7.44
+ },
+ {
+  "texto": "por",
+  "desde": 7.44,
+  "hasta": 7.84
+ },
+ {
+  "texto": "hora.",
+  "desde": 7.84,
+  "hasta": 8.2
+ },
+ {
+  "texto": "El",
+  "desde": 8.25,
+  "hasta": 8.37
+ },
+ {
+  "texto": "inverter,",
+  "desde": 8.37,
+  "hasta": 9.24
+ },
+ {
+  "texto": "unos",
+  "desde": 9.24,
+  "hasta": 9.59
+ },
+ {
+  "texto": "$121.",
+  "desde": 9.59,
+  "hasta": 10.67
+ },
+ {
+  "texto": "30%",
+  "desde": 10.73,
+  "hasta": 11.49
+ },
+ {
+  "texto": "menos.",
+  "desde": 11.49,
+  "hasta": 12.43
+ },
+ {
+  "texto": "8",
+  "desde": 12.49,
+  "hasta": 12.72
+ },
+ {
+  "texto": "horas",
+  "desde": 12.72,
+  "hasta": 13.08
+ },
+ {
+  "texto": "por",
+  "desde": 13.21,
+  "hasta": 13.46
+ },
+ {
+  "texto": "día,",
+  "desde": 13.46,
+  "hasta": 13.89
+ },
+ {
+  "texto": "5",
+  "desde": 13.91,
+  "hasta": 14.19
+ },
+ {
+  "texto": "meses",
+  "desde": 14.2,
+  "hasta": 14.66
+ },
+ {
+  "texto": "al",
+  "desde": 14.66,
+  "hasta": 14.84
+ },
+ {
+  "texto": "año.",
+  "desde": 14.84,
+  "hasta": 15.22
+ },
+ {
+  "texto": "En",
+  "desde": 15.49,
+  "hasta": 15.58
+ },
+ {
+  "texto": "el",
+  "desde": 15.58,
+  "hasta": 15.72
+ },
+ {
+  "texto": "mes",
+  "desde": 15.72,
+  "hasta": 15.93
+ },
+ {
+  "texto": "22",
+  "desde": 15.93,
+  "hasta": 16.32
+ },
+ {
+  "texto": "se",
+  "desde": 16.42,
+  "hasta": 16.49
+ },
+ {
+  "texto": "da",
+  "desde": 16.5,
+  "hasta": 16.64
+ },
+ {
+  "texto": "vuelta.",
+  "desde": 16.64,
+  "hasta": 17.24
+ },
+ {
+  "texto": "Desde",
+  "desde": 17.37,
+  "hasta": 17.7
+ },
+ {
+  "texto": "ahí",
+  "desde": 17.7,
+  "hasta": 17.92
+ },
+ {
+  "texto": "gana",
+  "desde": 17.92,
+  "hasta": 18.2
+ },
+ {
+  "texto": "el",
+  "desde": 18.3,
+  "hasta": 18.36
+ },
+ {
+  "texto": "caro.",
+  "desde": 18.36,
+  "hasta": 18.92
+ },
+ {
+  "texto": "En",
+  "desde": 18.97,
+  "hasta": 19.06
+ },
+ {
+  "texto": "5",
+  "desde": 19.06,
+  "hasta": 19.28
+ },
+ {
+  "texto": "años",
+  "desde": 19.28,
+  "hasta": 19.57
+ },
+ {
+  "texto": "ahorrás",
+  "desde": 19.57,
+  "hasta": 20.06
+ },
+ {
+  "texto": "casi",
+  "desde": 20.08,
+  "hasta": 20.37
+ },
+ {
+  "texto": "$200.000.",
+  "desde": 20.37,
+  "hasta": 21.96
+ },
+ {
+  "texto": "Link",
+  "desde": 22.01,
+  "hasta": 22.2
+ },
+ {
+  "texto": "en",
+  "desde": 22.2,
+  "hasta": 22.32
+ },
+ {
+  "texto": "la",
+  "desde": 22.32,
+  "hasta": 22.44
+ },
+ {
+  "texto": "bio.",
+  "desde": 22.44,
+  "hasta": 23.72
+ }
+]
