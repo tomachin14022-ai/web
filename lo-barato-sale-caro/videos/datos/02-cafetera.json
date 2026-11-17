@@ -1,0 +1,34 @@
+{
+  "hook": [
+    "LA CAFETERA",
+    "BARATA",
+    "TE SALE",
+    "MÁS DEL DOBLE"
+  ],
+  "pregunta": "¿Cuál comprás?",
+  "hint": "Ahora mirá cuánto cuesta cada café.",
+  "unidad": "cafés",
+  "unidadSing": "café",
+  "usoMes": 60,
+  "meses": 36,
+  "chartTitulo": "Si tomás 2 cafés por día",
+  "frasePorUso": "Por café, la Oster gasta {RATIO} veces menos.",
+  "nota": "Precios ML 17/11/26. Cápsulas originales, 9 g por café.",
+  "a": {
+    "nombre": "Nespresso Essenza Mini C30",
+    "corto": "Nespresso Essenza Mini",
+    "precio": 174400,
+    "consumible": "Cápsulas Nespresso x10",
+    "consPrecio": 24000,
+    "rinde": 10
+  },
+  "b": {
+    "nombre": "Oster espresso 15 bares EM6603SS",
+    "corto": "Oster EM6603SS",
+    "precio": 850000,
+    "consumible": "Café Lavazza 1 kg",
+    "consPrecio": 78000,
+    "rinde": 111
+  },
+  "notaCaption": "Precios de Mercado Libre del 17/11/26. Cápsulas Nespresso originales (las compatibles bajan el costo). Espresso de 9 g: 1 kg rinde unos 111 cafés. El grano hay que molerlo o comprarlo molido. Uso: 2 cafés por día durante 3 años."
+}

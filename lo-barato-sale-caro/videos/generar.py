@@ -75,11 +75,28 @@ def main():
         "PATH_A": path_a, "PATH_B": path_b,
         "CX": f"{cx:.1f}", "CY": f"{cy:.1f}",
         "AXE_X": f"{ax_end[0]:.1f}", "AXE_Y": f"{ax_end[1]:.1f}", "BXE_X": f"{bx_end[0]:.1f}", "BXE_Y": f"{bx_end[1]:.1f}",
-        "AXE_LY": f"{min(ax_end[1], bx_end[1] - 70) - 18:.1f}", "BXE_LY": f"{max(bx_end[1], ax_end[1] + 70) + 46:.1f}",
+        "AXE_LY": f"{min(ax_end[1], bx_end[1] - 70) - 18:.1f}", "BXE_LY": f"{min(max(bx_end[1] + 100, ax_end[1] + 120), 925):.1f}",
         "NOTA": datos["nota"],
         "PREGUNTA": datos["pregunta"],
         "HINT": datos["hint"],
         "CHART_TITULO": datos["chartTitulo"].replace("{USO}", f"{uso:,}".replace(",", ".")),
+        "A_L1": a.get("ticket", [a["consumible"]])[0],
+        "A_L2": (a.get("ticket") or [None, ars(a["consPrecio"])])[1],
+        "A_L3": (a.get("ticket") or [None, None, f"Rinde {a['rinde']:,} {datos['unidad']}".replace(",", ".")])[2],
+        "B_L1": b.get("ticket", [b["consumible"]])[0],
+        "B_L2": (b.get("ticket") or [None, ars(b["consPrecio"])])[1],
+        "B_L3": (b.get("ticket") or [None, None, f"Rinde {b['rinde']:,} {datos['unidad']}".replace(",", ".")])[2],
+        "H4_SIZE": str(min(128, int(760 / (len(datos["hook"][3]) * 0.72)))),
+        "TAGA_SIZE": str(min(54, int(256 / (len(ars(a["precio"])) * 0.72)))),
+        "TAGB_SIZE": str(min(54, int(256 / (len(ars(b["precio"])) * 0.72)))),
+        "AHORRO_SIZE": str(min(66, int(700 / ((8 + len(ars(ahorro))) * 0.66)))),
+        "AXIS_LABELS": "".join(
+            f'<line class="axis" x1="{X0 + (X1 - X0) * y / (meses // 12):.0f}" y1="950" x2="{X0 + (X1 - X0) * y / (meses // 12):.0f}" y2="964"></line>'
+            for y in range(meses // 12 + 1)) + "".join(
+            f'<text class="lbl" x="{X0 + (X1 - X0) * y / (meses // 12):.0f}" y="992" text-anchor="{"start" if y == 0 else ("end" if y == meses // 12 else "middle")}">'
+            + ("HOY" if y == 0 else (f"{y} AÑO" + ("" if y == 1 else "S") if meses // 12 <= 3 else str(y))) + "</text>"
+            for y in range(meses // 12 + 1))
+            + ('<text class="lbl" x="760" y="1024" text-anchor="end">AÑOS</text>' if meses // 12 > 3 else ""),
         "RATIO_HTML": " ".join('<span class="w">' + w + '</span>' for w in datos["frasePorUso"].replace("{RATIO}", str(ratio)).split()),
     }
     plantilla = (Path(__file__).parent / "plantilla-comparacion.html").read_text(encoding="utf-8")
@@ -100,7 +117,7 @@ def main():
         f"En {meses // 12} años: {ars(a['total'])} contra {ars(b['total'])}. Ahorrás {ars(ahorro)}.\n"
         + (f"Desde el mes {cruce}, la que cuesta más ya te salió más barata.\n" if cruce else "")
         + f"\n¿Cuál comprarías? Los links de las dos están en la bio.\n"
-        f"Contiene links de afiliado de Mercado Libre. {datos['nota']}"
+        f"Contiene links de afiliado de Mercado Libre. {datos.get('notaCaption', datos['nota'])}"
     )
     (salida / "caption.txt").write_text(caption, encoding="utf-8")
     print(json.dumps({"cruceMes": cruce, "ratio": ratio, "ahorro": round(ahorro),

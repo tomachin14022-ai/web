@@ -1,0 +1,44 @@
+{
+  "hook": [
+    "EL AIRE",
+    "BARATO",
+    "TE SALE",
+    "MÁS CARO"
+  ],
+  "pregunta": "¿Cuál comprás?",
+  "hint": "Ahora mirá cuánta luz gasta cada uno.",
+  "unidad": "horas",
+  "unidadSing": "hora",
+  "usoMes": 100,
+  "meses": 60,
+  "chartTitulo": "Si lo usás 8 horas por día, 5 meses al año",
+  "frasePorUso": "Por hora, el inverter gasta 30 % menos de luz.",
+  "nota": "Precios ML 17/11/26. Luz Edenor sin impuestos. Inverter estimado.",
+  "a": {
+    "nombre": "BGH Silent Air on/off BS35WCCR",
+    "corto": "BGH on/off",
+    "precio": 973000,
+    "consumible": "Luz por hora",
+    "consPrecio": 173.4,
+    "rinde": 1,
+    "ticket": [
+      "Consumo",
+      "1,06 kWh por hora",
+      "kWh a $163,6"
+    ]
+  },
+  "b": {
+    "nombre": "BGH Silent Air Inverter 3500 W",
+    "corto": "BGH inverter",
+    "precio": 1087000,
+    "consumible": "Luz por hora",
+    "consPrecio": 121.4,
+    "rinde": 1,
+    "ticket": [
+      "Consumo estimado",
+      "0,74 kWh por hora",
+      "30 % menos"
+    ]
+  },
+  "notaCaption": "Precios de Mercado Libre del 17/11/26. Luz: Edenor, noviembre 2026, $163,6 el kWh sin impuestos. On/off: 1,06 kW según ficha; inverter estimado 30 % menos (el ahorro publicado va de 30 % a 50 %). Uso: 8 horas por día, 5 meses al año, durante 5 años."
+}
