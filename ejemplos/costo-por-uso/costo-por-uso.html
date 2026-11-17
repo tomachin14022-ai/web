@@ -1,0 +1,722 @@
+<title>Costo por Uso</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+  /* Layout: una columna de herramienta; arriba la consulta, abajo el veredicto, las tarjetas tipo ticket y el gráfico acumulado. */
+  :root {
+    --bg: #f3f4f6;
+    --surface: #ffffff;
+    --surface-2: #eceef3;
+    --ink: #15171c;
+    --muted: #5a6072;
+    --line: #d7dae2;
+    --accent: #2346d4;
+    --accent-ink: #ffffff;
+    --good: #18794a;
+    --good-bg: #e3f3ea;
+    --warn: #a8510b;
+    --warn-bg: #fbeedf;
+    --s1: #2346d4;
+    --s2: #c2410c;
+    --s3: #0f766e;
+    --s4: #7c3aed;
+    --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111318; --surface: #1a1d24; --surface-2: #232733; --ink: #eceef3; --muted: #a3a9b8;
+      --line: #2d3240; --accent: #7f97ff; --accent-ink: #0c1022; --good: #5dc892; --good-bg: #16301f;
+      --warn: #f3a35f; --warn-bg: #352414; --s1: #7f97ff; --s2: #fb8a5a; --s3: #3cc8b6; --s4: #b495ff;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111318; --surface: #1a1d24; --surface-2: #232733; --ink: #eceef3; --muted: #a3a9b8;
+    --line: #2d3240; --accent: #7f97ff; --accent-ink: #0c1022; --good: #5dc892; --good-bg: #16301f;
+    --warn: #f3a35f; --warn-bg: #352414; --s1: #7f97ff; --s2: #fb8a5a; --s3: #3cc8b6; --s4: #b495ff;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; display: grid; gap: 20px; }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(30px, 5vw, 44px); letter-spacing: -0.02em; line-height: 1.05; }
+  h2 { font-size: 20px; letter-spacing: -0.01em; }
+  h3 { font-size: 17px; }
+  p { margin: 0; }
+  .muted { color: var(--muted); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  header.top { display: grid; gap: 10px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  }
+  .tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 999px; background: var(--surface-2); color: var(--muted);
+  }
+  .lede { max-width: 62ch; color: var(--muted); font-size: 16px; }
+
+  .panel {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 18px; display: grid; gap: 14px; min-width: 0;
+  }
+
+  /* Consulta */
+  .ask-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: stretch; }
+  @media (max-width: 640px) { .ask-row { grid-template-columns: 1fr; } }
+  label.field { display: grid; gap: 6px; font-size: 13px; font-weight: 600; color: var(--muted); min-width: 0; }
+  input[type="text"], input[type="number"], select {
+    font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+    border-radius: 10px; padding: 11px 12px; width: 100%; min-width: 0;
+  }
+  input[type="text"] { font-size: 16px; }
+  input:focus-visible, select:focus-visible, button:focus-visible, .chip:focus-visible, .file-btn:focus-within {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .btn {
+    font: inherit; font-weight: 600; border-radius: 10px; padding: 11px 16px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+  .file-btn {
+    position: relative; display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    font-weight: 600; border-radius: 10px; padding: 9px 14px; border: 1px dashed var(--line); color: var(--ink);
+  }
+  .file-btn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  }
+  .chip:hover { border-color: var(--accent); }
+  .settings { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+  .status { font-size: 14px; color: var(--muted); min-height: 1.5em; }
+  .status.error { color: var(--warn); }
+  .photo-name { font-size: 13px; color: var(--muted); }
+
+  /* Veredicto */
+  .verdict { display: grid; gap: 8px; }
+  .verdict-main { font-family: var(--font-display); font-size: clamp(20px, 3vw, 26px); line-height: 1.2; text-wrap: balance; }
+  .verdict-main strong { color: var(--good); }
+  .insight {
+    background: var(--warn-bg); color: var(--ink); border-radius: 10px; padding: 10px 12px; font-size: 14px;
+  }
+  .insight b { color: var(--warn); }
+  .source-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); }
+
+  /* Tarjetas tipo ticket */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px;
+    display: grid; gap: 12px; align-content: start; min-width: 0; position: relative;
+  }
+  .card.best { border-color: var(--good); box-shadow: 0 0 0 1px var(--good) inset; }
+  .card-head { display: grid; gap: 6px; }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; flex: none; }
+  .card-title { display: flex; gap: 8px; align-items: baseline; }
+  .card-title h3 { overflow-wrap: anywhere; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+  .badge { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; }
+  .badge.good { background: var(--good-bg); color: var(--good); }
+  .badge.plain { background: var(--surface-2); color: var(--muted); }
+  .per-use { display: grid; gap: 2px; }
+  .per-use .big { font-family: var(--font-display); font-weight: 700; font-size: 34px; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .per-use .unit { font-size: 13px; color: var(--muted); }
+  .receipt { font-family: var(--font-mono); font-size: 13px; display: grid; gap: 4px; border-top: 1px dashed var(--line); padding-top: 10px; }
+  .receipt .line { display: flex; gap: 6px; align-items: baseline; min-width: 0; }
+  .receipt .line span:first-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .receipt .dots { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-4px); min-width: 12px; }
+  .receipt .line span:last-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .receipt .total { font-weight: 500; border-top: 1px solid var(--line); padding-top: 6px; margin-top: 2px; }
+  .note { font-size: 13px; color: var(--muted); }
+  details.tweak { border-top: 1px solid var(--line); padding-top: 8px; }
+  details.tweak summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--accent); }
+  .tweak-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .tweak-grid label { display: grid; gap: 4px; font-size: 12px; color: var(--muted); min-width: 0; }
+  .tweak-grid input { padding: 8px 9px; font-size: 14px; }
+
+  /* Gráfico */
+  .chart-wrap { overflow-x: auto; }
+  .chart { width: 100%; min-width: 560px; height: auto; display: block; }
+  .chart .grid line { stroke: var(--line); stroke-width: 1; }
+  .chart text { fill: var(--muted); font-family: var(--font-body); font-size: 13px; }
+  .chart .series { fill: none; stroke-width: 2.5; stroke-linejoin: round; }
+  .chart .cross { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+  .chart .cross-label { fill: var(--ink); font-weight: 600; font-size: 14px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; }
+  .legend span { display: inline-flex; gap: 6px; align-items: center; }
+
+  ul.assumptions { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; color: var(--muted); }
+  .disclaimer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .card, .verdict { transition: border-color .2s ease; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Costo por uso <span class="tag">Prototipo</span></div>
+    <h1>¿Cuánto te cuesta cada vez que lo usás?</h1>
+    <p class="lede">Escribí un producto, pegá su link o subí una foto. Calculamos el precio de compra, los consumibles, la energía y la vida útil, y lo comparamos con dos alternativas que hacen lo mismo.</p>
+  </header>
+
+  <section class="panel" aria-labelledby="ask-title">
+    <h2 id="ask-title" class="sr-only" hidden>Consulta</h2>
+    <div class="ask-row">
+      <label class="field" for="producto">Producto o link
+        <input id="producto" type="text" autocomplete="off" placeholder="Ej.: Nespresso Vertuo Pop, o pegá el link del producto">
+      </label>
+      <div class="row" style="align-self:end">
+        <button id="analizar" class="btn primary" type="button">Calcular costo por uso</button>
+        <button id="detener" class="btn" type="button" hidden>Detener</button>
+      </div>
+    </div>
+    <div class="row">
+      <span class="muted" style="font-size:13px">Probá con:</span>
+      <div class="chips" id="chips">
+        <button class="chip" type="button">Cafetera de cápsulas</button>
+        <button class="chip" type="button">Impresora de tinta hogareña</button>
+        <button class="chip" type="button">Afeitadora de cartuchos</button>
+        <button class="chip" type="button">Cepillo de dientes eléctrico</button>
+        <button class="chip" type="button">Robot aspirador</button>
+      </div>
+    </div>
+    <div class="row" id="photo-row" hidden>
+      <label class="file-btn">Subir foto del producto
+        <input id="foto" type="file" accept="image/jpeg,image/png,image/webp">
+      </label>
+      <span id="foto-nombre" class="photo-name"></span>
+      <button id="foto-quitar" class="btn" type="button" hidden style="padding:6px 10px;font-size:13px">Quitar</button>
+    </div>
+    <div class="settings">
+      <label class="field" for="pais">País y moneda
+        <select id="pais">
+          <option value="AR">Argentina · ARS</option>
+          <option value="US" selected>Estados Unidos · USD</option>
+          <option value="ES">España · EUR</option>
+          <option value="MX">México · MXN</option>
+          <option value="CL">Chile · CLP</option>
+          <option value="CO">Colombia · COP</option>
+        </select>
+      </label>
+      <label class="field" for="usos"><span id="usos-label">Usos por día</span>
+        <input id="usos" type="number" min="0.05" step="0.5" value="2" inputmode="decimal">
+      </label>
+      <label class="field" for="anios">Comparar a
+        <select id="anios">
+          <option value="1">1 año</option><option value="2">2 años</option><option value="3" selected>3 años</option>
+          <option value="4">4 años</option><option value="5">5 años</option><option value="6">6 años</option>
+        </select>
+      </label>
+      <label class="field" for="kwh">Precio del kWh
+        <input id="kwh" type="number" min="0" step="0.01" value="0.17" inputmode="decimal">
+      </label>
+    </div>
+    <p id="estado" class="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="panel verdict" aria-live="polite">
+    <div class="source-line"><span id="fuente-tag" class="tag">Ejemplo</span><span id="fuente-texto">Números ilustrativos para mostrar la cuenta.</span></div>
+    <p id="veredicto" class="verdict-main"></p>
+    <p id="insight" class="insight" hidden></p>
+  </section>
+
+  <section id="tarjetas" class="cards" aria-label="Comparación de opciones"></section>
+
+  <section class="panel" aria-labelledby="graf-title">
+    <h2 id="graf-title">Cuánto llevás gastado, mes a mes</h2>
+    <p id="cruce" class="muted"></p>
+    <div class="chart-wrap"><svg id="grafico" class="chart" viewBox="0 0 680 300" role="img" aria-label="Costo acumulado de cada opción"></svg></div>
+    <div id="leyenda" class="legend"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="sup-title">
+    <h2 id="sup-title">Supuestos</h2>
+    <ul id="supuestos" class="assumptions"></ul>
+    <p class="disclaimer">Los precios, la vida útil y los consumibles son estimaciones hechas por IA con lo que sabe, sin consultar tiendas en vivo. Pueden estar desactualizados: abrí "Ajustar números" en cada opción para corregirlos y la cuenta se rehace sola. Fórmula: (compras + consumibles + energía + mantenimiento) ÷ cantidad de usos en el período.</p>
+  </section>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const COUNTRIES = {
+    AR: { name: "Argentina", currency: "ARS", locale: "es-AR" },
+    US: { name: "Estados Unidos", currency: "USD", locale: "es-US" },
+    ES: { name: "España", currency: "EUR", locale: "es-ES" },
+    MX: { name: "México", currency: "MXN", locale: "es-MX" },
+    CL: { name: "Chile", currency: "CLP", locale: "es-CL" },
+    CO: { name: "Colombia", currency: "COP", locale: "es-CO" },
+  };
+  const SERIES = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)"];
+
+  const EXAMPLE = {
+    producto: "Cafetera de cápsulas",
+    unidadDeUso: "café",
+    unidadDeUsoPlural: "cafés",
+    usosPorDiaTipico: 2,
+    precioKwh: 0.17,
+    confianza: "ejemplo",
+    costoEscondido: "En una cafetera de cápsulas, la máquina es lo barato: el 90 % de lo que gastás en 3 años son las cápsulas.",
+    supuestos: [
+      "Dos cafés por día, todos los días.",
+      "Cápsula a USD 0,50; café molido a USD 0,12 por taza; café en grano a USD 0,18 por taza.",
+      "Mantenimiento: descalcificador y filtros; la espresso incluye limpieza del molinillo.",
+      "Energía calculada con un kWh a USD 0,17.",
+    ],
+    opciones: [
+      { nombre: "Cafetera de cápsulas", tipo: "analizado", precio: 80, vidaUtilAnios: { min: 3, tipico: 4, max: 5 },
+        consumibles: [{ nombre: "Cápsula", costoUnidad: 0.5, unidadesPorUso: 1 }], kwhPorUso: 0.02, mantenimientoAnual: 10,
+        nota: "Barata de comprar, cara de usar." },
+      { nombre: "Cafetera de filtro", tipo: "alternativa", precio: 40, vidaUtilAnios: { min: 3, tipico: 5, max: 7 },
+        consumibles: [{ nombre: "Café molido (10 g)", costoUnidad: 0.12, unidadesPorUso: 1 }, { nombre: "Filtro de papel", costoUnidad: 0.03, unidadesPorUso: 0.5 }],
+        kwhPorUso: 0.05, mantenimientoAnual: 5, nota: "Hace varias tazas por vez; el café es más suave." },
+      { nombre: "Espresso con molinillo", tipo: "alternativa", precio: 300, vidaUtilAnios: { min: 5, tipico: 7, max: 10 },
+        consumibles: [{ nombre: "Café en grano (15 g)", costoUnidad: 0.18, unidadesPorUso: 1 }], kwhPorUso: 0.03, mantenimientoAnual: 20,
+        nota: "Cara de comprar; se paga sola frente a las cápsulas." },
+    ],
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const el = {
+    producto: $("producto"), analizar: $("analizar"), detener: $("detener"), estado: $("estado"),
+    pais: $("pais"), usos: $("usos"), usosLabel: $("usos-label"), anios: $("anios"), kwh: $("kwh"),
+    foto: $("foto"), fotoNombre: $("foto-nombre"), fotoQuitar: $("foto-quitar"), photoRow: $("photo-row"),
+    veredicto: $("veredicto"), insight: $("insight"), fuenteTag: $("fuente-tag"), fuenteTexto: $("fuente-texto"),
+    tarjetas: $("tarjetas"), grafico: $("grafico"), leyenda: $("leyenda"), cruce: $("cruce"), supuestos: $("supuestos"),
+  };
+
+  let state = { data: clone(EXAMPLE), country: "US", isExample: true };
+  let sample = null;
+  let controller = null;
+  let ticker = null;
+
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function esc(s) {
+    return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+  function num(v, fallback = 0, min = 0) {
+    const n = typeof v === "string" ? Number(v.replace(",", ".")) : Number(v);
+    return Number.isFinite(n) && n >= min ? n : fallback;
+  }
+
+  function money(v, perUse = false) {
+    const c = COUNTRIES[state.country] || COUNTRIES.US;
+    let digits;
+    if (perUse) digits = v < 0.1 ? 3 : v < 100 ? 2 : 0;
+    else digits = Math.abs(v) >= 1000 ? 0 : 2;
+    try {
+      return new Intl.NumberFormat(c.locale, { style: "currency", currency: c.currency, minimumFractionDigits: digits, maximumFractionDigits: digits }).format(v);
+    } catch { return c.currency + " " + v.toFixed(digits); }
+  }
+  function moneyShort(v) {
+    const c = COUNTRIES[state.country] || COUNTRIES.US;
+    try {
+      return new Intl.NumberFormat(c.locale, { style: "currency", currency: c.currency, notation: "compact", maximumFractionDigits: 1 }).format(v);
+    } catch { return Math.round(v).toString(); }
+  }
+
+  /* ---------- Normalizar lo que devuelve Claude (texto no confiable) ---------- */
+  function normalize(raw) {
+    if (!raw || typeof raw !== "object" || !Array.isArray(raw.opciones) || raw.opciones.length === 0) {
+      throw { code: "invalid_json" };
+    }
+    const unidad = String(raw.unidadDeUso || "uso").slice(0, 40);
+    const out = {
+      producto: String(raw.producto || "Producto").slice(0, 120),
+      unidadDeUso: unidad,
+      unidadDeUsoPlural: String(raw.unidadDeUsoPlural || unidad + "s").slice(0, 40),
+      usosPorDiaTipico: num(raw.usosPorDiaTipico, 1, 0.01),
+      precioKwh: num(raw.precioKwh, 0.17, 0),
+      confianza: String(raw.confianza || "media").toLowerCase().slice(0, 12),
+      costoEscondido: String(raw.costoEscondido || "").slice(0, 400),
+      supuestos: (Array.isArray(raw.supuestos) ? raw.supuestos : []).slice(0, 8).map((s) => String(s).slice(0, 300)),
+      opciones: raw.opciones.slice(0, 4).map((o, i) => {
+        const v = o && typeof o === "object" ? o : {};
+        const life = v.vidaUtilAnios && typeof v.vidaUtilAnios === "object" ? v.vidaUtilAnios : {};
+        const tip = num(life.tipico, 3, 0.1);
+        return {
+          nombre: String(v.nombre || "Opción " + (i + 1)).slice(0, 90),
+          tipo: v.tipo === "analizado" || i === 0 ? "analizado" : "alternativa",
+          precio: num(v.precio, 0, 0),
+          vidaUtilAnios: { min: num(life.min, tip, 0.1), tipico: tip, max: num(life.max, tip, 0.1) },
+          consumibles: (Array.isArray(v.consumibles) ? v.consumibles : []).slice(0, 5).map((c) => ({
+            nombre: String((c && c.nombre) || "Consumible").slice(0, 60),
+            costoUnidad: num(c && c.costoUnidad, 0, 0),
+            unidadesPorUso: num(c && c.unidadesPorUso, 1, 0),
+          })),
+          kwhPorUso: num(v.kwhPorUso, 0, 0),
+          mantenimientoAnual: num(v.mantenimientoAnual, 0, 0),
+          nota: String(v.nota || "").slice(0, 200),
+        };
+      }),
+    };
+    return out;
+  }
+
+  /* ---------- La cuenta ---------- */
+  function settings() {
+    return {
+      usosDia: num(el.usos.value, state.data.usosPorDiaTipico || 1, 0.01),
+      anios: Math.max(1, Math.min(10, Math.round(num(el.anios.value, 3, 1)))),
+      kwh: num(el.kwh.value, state.data.precioKwh || 0, 0),
+    };
+  }
+  function variablePerUse(o, kwh) {
+    const cons = o.consumibles.reduce((s, c) => s + c.costoUnidad * c.unidadesPorUso, 0);
+    return { cons, energy: o.kwhPorUso * kwh };
+  }
+  function purchasesAt(years, life) { return Math.max(1, Math.ceil(years / life - 1e-9)); }
+  function cumulativeAt(o, months, s) {
+    const years = months / 12;
+    const uses = s.usosDia * 365 * years;
+    const v = variablePerUse(o, s.kwh);
+    return purchasesAt(years, o.vidaUtilAnios.tipico) * o.precio + (v.cons + v.energy) * uses + o.mantenimientoAnual * years;
+  }
+  function analyze(o, s) {
+    const uses = s.usosDia * 365 * s.anios;
+    const v = variablePerUse(o, s.kwh);
+    const compras = purchasesAt(s.anios, o.vidaUtilAnios.tipico);
+    const parts = {
+      compra: compras * o.precio,
+      consumibles: v.cons * uses,
+      energia: v.energy * uses,
+      mantenimiento: o.mantenimientoAnual * s.anios,
+    };
+    const total = parts.compra + parts.consumibles + parts.energia + parts.mantenimiento;
+    return { compras, parts, total, uses, perUse: uses > 0 ? total / uses : 0 };
+  }
+
+  /* ---------- Render ---------- */
+  function renderAll(rebuildEditors) {
+    const d = state.data;
+    const s = settings();
+    el.usosLabel.textContent = "Usos por día (" + d.unidadDeUsoPlural + ")";
+    const results = d.opciones.map((o) => analyze(o, s));
+    const order = results.map((r, i) => i).sort((a, b) => results[a].perUse - results[b].perUse);
+    const best = order[0];
+    const worst = order[order.length - 1];
+    const cheapestBuy = d.opciones.map((o, i) => i).sort((a, b) => d.opciones[a].precio - d.opciones[b].precio)[0];
+
+    // Fuente
+    el.fuenteTag.textContent = state.isExample ? "Ejemplo" : "Estimado por IA";
+    el.fuenteTexto.textContent = state.isExample
+      ? "Números ilustrativos para mostrar la cuenta. Escribí un producto para calcular el tuyo."
+      : "Análisis de “" + d.producto + "” en " + (COUNTRIES[state.country] || COUNTRIES.US).name + " · confianza " + d.confianza + ".";
+
+    // Veredicto
+    const ahorro = results[worst].total - results[best].total;
+    let v = "Lo más barato por " + esc(d.unidadDeUso) + ": <strong>" + esc(d.opciones[best].nombre) + "</strong>, a " +
+      esc(money(results[best].perUse, true)) + " cada " + esc(d.unidadDeUso) + ".";
+    if (best !== worst && ahorro > 0) {
+      v += " En " + s.anios + (s.anios === 1 ? " año" : " años") + " te ahorra " + esc(money(ahorro)) + " frente a " + esc(d.opciones[worst].nombre) + ".";
+    }
+    el.veredicto.innerHTML = v;
+    if (d.costoEscondido) { el.insight.hidden = false; el.insight.innerHTML = "<b>Dónde está el costo escondido:</b> " + esc(d.costoEscondido); }
+    else el.insight.hidden = true;
+
+    // Tarjetas
+    if (rebuildEditors) {
+      el.tarjetas.innerHTML = d.opciones.map((o, i) => cardShell(o, i)).join("");
+    }
+    d.opciones.forEach((o, i) => fillCard(o, i, results[i], i === best, i === cheapestBuy, s));
+
+    // Gráfico
+    renderChart(s, best, cheapestBuy);
+
+    // Supuestos
+    el.supuestos.innerHTML = (d.supuestos.length ? d.supuestos : ["Sin supuestos adicionales."]).map((x) => "<li>" + esc(x) + "</li>").join("");
+  }
+
+  function cardShell(o, i) {
+    const cons = o.consumibles.map((c, k) =>
+      '<label for="c-' + i + "-" + k + '">' + esc(c.nombre) + ' (por unidad)<input id="c-' + i + "-" + k + '" data-opt="' + i + '" data-field="cons" data-k="' + k + '" type="number" min="0" step="any" value="' + c.costoUnidad + '" inputmode="decimal"></label>'
+    ).join("");
+    return '<article class="card" id="card-' + i + '">' +
+      '<div class="card-head"><div class="card-title"><span class="swatch" style="background:' + SERIES[i % 4] + '"></span><h3>' + esc(o.nombre) + "</h3></div>" +
+      '<div class="badges" id="badges-' + i + '"></div></div>' +
+      '<div class="per-use"><span class="big" id="pu-' + i + '"></span><span class="unit" id="pu-unit-' + i + '"></span></div>' +
+      '<div class="receipt" id="rc-' + i + '"></div>' +
+      (o.nota ? '<p class="note">' + esc(o.nota) + "</p>" : "") +
+      '<details class="tweak"><summary>Ajustar números</summary><div class="tweak-grid">' +
+      '<label for="p-' + i + '">Precio<input id="p-' + i + '" data-opt="' + i + '" data-field="precio" type="number" min="0" step="any" value="' + o.precio + '" inputmode="decimal"></label>' +
+      '<label for="l-' + i + '">Vida útil (años)<input id="l-' + i + '" data-opt="' + i + '" data-field="vida" type="number" min="0.1" step="0.5" value="' + o.vidaUtilAnios.tipico + '" inputmode="decimal"></label>' +
+      '<label for="m-' + i + '">Mantenimiento por año<input id="m-' + i + '" data-opt="' + i + '" data-field="mant" type="number" min="0" step="any" value="' + o.mantenimientoAnual + '" inputmode="decimal"></label>' +
+      '<label for="e-' + i + '">kWh por uso<input id="e-' + i + '" data-opt="' + i + '" data-field="kwh" type="number" min="0" step="any" value="' + o.kwhPorUso + '" inputmode="decimal"></label>' +
+      cons + "</div></details></article>";
+  }
+
+  function fillCard(o, i, r, isBest, isCheapBuy, s) {
+    const card = $("card-" + i);
+    if (!card) return;
+    card.classList.toggle("best", isBest);
+    const badges = [];
+    if (isBest) badges.push('<span class="badge good">Más barato por uso</span>');
+    if (isCheapBuy) badges.push('<span class="badge plain">Más barato al comprar</span>');
+    if (o.tipo === "analizado") badges.push('<span class="badge plain">Tu producto</span>');
+    $("badges-" + i).innerHTML = badges.join("");
+    $("pu-" + i).textContent = money(r.perUse, true);
+    $("pu-unit-" + i).textContent = "por " + state.data.unidadDeUso + " · " + Math.round(r.uses).toLocaleString("es") + " " + state.data.unidadDeUsoPlural + " en " + s.anios + (s.anios === 1 ? " año" : " años");
+    const life = o.vidaUtilAnios;
+    const lifeTxt = life.min !== life.max ? fmtYears(life.min) + "–" + fmtYears(life.max) + " años" : fmtYears(life.tipico) + " años";
+    const line = (label, value, cls = "") => '<div class="line ' + cls + '"><span>' + label + '</span><span class="dots"></span><span>' + value + "</span></div>";
+    $("rc-" + i).innerHTML =
+      line("Compra" + (r.compras > 1 ? " ×" + r.compras : ""), esc(money(r.parts.compra))) +
+      line("Consumibles", esc(money(r.parts.consumibles))) +
+      line("Energía", esc(money(r.parts.energia))) +
+      line("Mantenimiento", esc(money(r.parts.mantenimiento))) +
+      line("Total " + s.anios + (s.anios === 1 ? " año" : " años"), esc(money(r.total)), "total") +
+      line("Vida útil", esc(lifeTxt));
+  }
+  function fmtYears(y) { return (Math.round(y * 10) / 10).toString().replace(".", ","); }
+
+  function niceMax(v) {
+    if (v <= 0) return 1;
+    const p = Math.pow(10, Math.floor(Math.log10(v)));
+    const m = v / p;
+    const step = m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10;
+    return step * p;
+  }
+
+  function renderChart(s, best, cheapestBuy) {
+    const d = state.data;
+    const W = 680, H = 300, M = { l: 70, r: 20, t: 18, b: 40 };
+    const months = s.anios * 12;
+    const series = d.opciones.map((o) => {
+      const pts = [];
+      for (let m = 0; m <= months; m++) pts.push(cumulativeAt(o, m, s));
+      return pts;
+    });
+    const maxV = niceMax(Math.max(...series.map((p) => Math.max(...p))));
+    const x = (m) => M.l + (m / months) * (W - M.l - M.r);
+    const y = (v) => H - M.b - (v / maxV) * (H - M.t - M.b);
+    let svg = '<g class="grid">';
+    for (let k = 0; k <= 4; k++) {
+      const val = (maxV / 4) * k;
+      svg += '<line x1="' + M.l + '" x2="' + (W - M.r) + '" y1="' + y(val) + '" y2="' + y(val) + '"></line>';
+      svg += '<text x="' + (M.l - 8) + '" y="' + (y(val) + 4) + '" text-anchor="end">' + esc(moneyShort(val)) + "</text>";
+    }
+    svg += "</g>";
+    for (let yr = 0; yr <= s.anios; yr++) {
+      svg += '<text x="' + x(yr * 12) + '" y="' + (H - M.b + 20) + '" text-anchor="middle">' + (yr === 0 ? "Hoy" : "Año " + yr) + "</text>";
+    }
+    series.forEach((pts, i) => {
+      const dAttr = pts.map((v, m) => (m === 0 ? "M" : "L") + x(m).toFixed(1) + " " + y(v).toFixed(1)).join(" ");
+      svg += '<path class="series" d="' + dAttr + '" style="stroke:' + SERIES[i % 4] + '"></path>';
+      svg += '<circle cx="' + x(months) + '" cy="' + y(pts[months]) + '" r="4" style="fill:' + SERIES[i % 4] + '"></circle>';
+    });
+
+    // Punto de cruce: una alternativa más cara al comprar que, con el uso, termina gastando menos que tu producto
+    const mine = Math.max(0, d.opciones.findIndex((o) => o.tipo === "analizado"));
+    let found = null;
+    d.opciones.forEach((o, j) => {
+      if (j === mine || o.precio <= d.opciones[mine].precio) return;
+      for (let m = 1; m <= months; m++) {
+        if (series[j][m] <= series[mine][m]) { if (!found || m < found.m) found = { j, m }; break; }
+      }
+    });
+    let crossTxt = "";
+    if (found) {
+      const cy = y(series[found.j][found.m]);
+      svg += '<circle class="cross" cx="' + x(found.m) + '" cy="' + cy + '" r="6"></circle>';
+      const tx = Math.min(x(found.m) + 10, W - M.r - 120);
+      svg += '<text class="cross-label" x="' + tx + '" y="' + Math.max(M.t + 12, cy - 12) + '">Cruce: mes ' + found.m + "</text>";
+      crossTxt = esc(d.opciones[found.j].nombre) + " cuesta más al comprar, pero a los " + found.m + (found.m === 1 ? " mes" : " meses") +
+        " ya gastaste menos que con " + esc(d.opciones[mine].nombre) + ".";
+    } else if (best === mine) {
+      crossTxt = esc(d.opciones[mine].nombre) + " es la más barata por uso de las opciones comparadas.";
+    } else if (best === cheapestBuy) {
+      crossTxt = esc(d.opciones[best].nombre) + " es más barata al comprar y también por uso.";
+    } else {
+      crossTxt = "En " + s.anios + (s.anios === 1 ? " año" : " años") + " las curvas no se cruzan.";
+    }
+    el.grafico.innerHTML = svg;
+    el.cruce.innerHTML = crossTxt;
+    el.leyenda.innerHTML = d.opciones.map((o, i) => '<span><i class="swatch" style="background:' + SERIES[i % 4] + '"></i>' + esc(o.nombre) + "</span>").join("");
+  }
+
+  /* ---------- Edición de supuestos ---------- */
+  el.tarjetas.addEventListener("input", (ev) => {
+    const t = ev.target;
+    if (!(t instanceof HTMLInputElement) || !t.dataset.opt) return;
+    const o = state.data.opciones[Number(t.dataset.opt)];
+    if (!o) return;
+    const f = t.dataset.field;
+    if (f === "precio") o.precio = num(t.value, o.precio, 0);
+    else if (f === "vida") { const v = num(t.value, o.vidaUtilAnios.tipico, 0.1); o.vidaUtilAnios = { min: v, tipico: v, max: v }; }
+    else if (f === "mant") o.mantenimientoAnual = num(t.value, o.mantenimientoAnual, 0);
+    else if (f === "kwh") o.kwhPorUso = num(t.value, o.kwhPorUso, 0);
+    else if (f === "cons") { const c = o.consumibles[Number(t.dataset.k)]; if (c) c.costoUnidad = num(t.value, c.costoUnidad, 0); }
+    renderAll(false);
+    save();
+  });
+  [el.usos, el.anios, el.kwh].forEach((x) => x.addEventListener("input", () => { renderAll(false); save(); }));
+
+  /* ---------- Guardar en este navegador (comodidad, opcional) ---------- */
+  function save() {
+    try {
+      localStorage.setItem("costo-por-uso:v1", JSON.stringify({ data: state.data, country: state.country, isExample: state.isExample, usos: el.usos.value, anios: el.anios.value, kwh: el.kwh.value }));
+    } catch {}
+  }
+  function load() {
+    try {
+      const raw = localStorage.getItem("costo-por-uso:v1");
+      if (!raw) return;
+      const v = JSON.parse(raw);
+      state.data = normalize(v.data);
+      state.country = COUNTRIES[v.country] ? v.country : "US";
+      state.isExample = !!v.isExample;
+      el.pais.value = state.country;
+      if (v.usos) el.usos.value = v.usos;
+      if (v.anios) el.anios.value = v.anios;
+      if (v.kwh) el.kwh.value = v.kwh;
+    } catch {}
+  }
+
+  /* ---------- Consultar a Claude ---------- */
+  const ERRORS = {
+    not_granted: "Este prototipo necesita permiso para usar Claude. Mientras, podés ajustar el ejemplo.",
+    sampling_disabled: "Claude no está disponible en esta cuenta. Podés ajustar el ejemplo.",
+    not_declared: "Esta página no tiene acceso a Claude.",
+    capability_disabled: "Claude no está disponible en esta vista.",
+    capability_removed: "Tu app de Claude necesita actualizarse para usar esta función.",
+    rate_limited: "Llegaste al límite de consultas por ahora. Probá de nuevo en unos minutos.",
+    session_expired: "Tu sesión venció. Volvé a iniciar sesión en Claude y probá de nuevo.",
+    image_rejected: "No pudimos usar esa foto. Probá con otra en JPG o PNG.",
+    images_unavailable: "En esta vista no se pueden enviar fotos. Escribí el nombre del producto.",
+    refused: "Claude no respondió esa consulta. Probá describiendo el producto de otra forma.",
+    empty_completion: "No llegó respuesta. Probá de nuevo con un nombre más concreto.",
+    invalid_json: "La respuesta no vino completa. Probá de nuevo.",
+    prompt_too_large: "El texto es demasiado largo. Pegá solo el nombre o el link del producto.",
+  };
+  const PERMANENT = new Set(["not_granted", "sampling_disabled", "not_declared", "capability_disabled", "capability_removed"]);
+
+  function buildPrompt(query, hasPhoto) {
+    const c = COUNTRIES[state.country];
+    return [
+      "Sos un analista de costos de productos de consumo. Calculá los datos para estimar el COSTO POR USO de un producto y compararlo con 2 alternativas que cumplen la misma función.",
+      "País: " + c.name + ". Moneda: " + c.currency + ". Usá precios típicos de ese país, en esa moneda, al mejor saber que tengas. No podés abrir links: si te pasan un link, deducí el producto por el texto del link.",
+      hasPhoto ? "El usuario adjuntó una foto: identificá el producto en la foto. Texto del usuario (puede estar vacío): " + JSON.stringify(query) : "Producto del usuario: " + JSON.stringify(query),
+      "Reglas:",
+      "- La primera opción es el producto del usuario (tipo \"analizado\"). Agregá exactamente 2 alternativas (tipo \"alternativa\") que hagan lo mismo con otra estructura de costos; si existe, una más cara al comprar pero más barata por uso.",
+      "- Consumibles: lo que se gasta en cada uso (cápsula, tinta por página con rendimiento real cerca del 65 % del declarado, cartucho o cuchilla por afeitada, cabezal por cepillado, bolsas y filtros, etc.). unidadesPorUso puede ser decimal (ej.: un cabezal cada 180 cepillados = 0.0056).",
+      "- kwhPorUso: energía de un uso. mantenimientoAnual: repuestos y service por año. vidaUtilAnios: con uso normal.",
+      "- precioKwh: precio típico residencial del kWh en ese país y moneda.",
+      "- No inventes marcas ni modelos que no existan. Si no estás seguro de un precio, estimalo y bajá la confianza.",
+      "- Textos en español, cortos. Números como números JSON, sin símbolos ni separadores de miles.",
+      "Respondé SOLO con un objeto JSON con esta forma exacta:",
+      '{"producto":"nombre identificado","unidadDeUso":"café","unidadDeUsoPlural":"cafés","usosPorDiaTipico":2,"precioKwh":0.17,"confianza":"alta|media|baja","costoEscondido":"una frase sobre dónde está el costo escondido","supuestos":["supuesto 1","supuesto 2"],"opciones":[{"nombre":"…","tipo":"analizado","precio":80,"vidaUtilAnios":{"min":3,"tipico":4,"max":5},"consumibles":[{"nombre":"Cápsula","costoUnidad":0.5,"unidadesPorUso":1}],"kwhPorUso":0.02,"mantenimientoAnual":10,"nota":"una frase"}]}',
+    ].join("\n");
+  }
+
+  function setBusy(busy) {
+    el.analizar.disabled = busy || !sample;
+    el.detener.hidden = !busy;
+    el.producto.disabled = busy;
+    if (!busy && ticker) { clearInterval(ticker); ticker = null; }
+  }
+
+  async function run() {
+    const query = el.producto.value.trim();
+    const file = el.foto.files && el.foto.files[0];
+    if (!query && !file) { el.estado.className = "status error"; el.estado.textContent = "Escribí un producto, pegá un link o subí una foto."; el.producto.focus(); return; }
+    if (!sample) return;
+    controller = new AbortController();
+    setBusy(true);
+    const t0 = Date.now();
+    el.estado.className = "status";
+    el.estado.textContent = "Calculando… suele tardar entre 20 y 60 segundos.";
+    ticker = setInterval(() => {
+      el.estado.textContent = "Calculando… " + Math.round((Date.now() - t0) / 1000) + " s (suele tardar entre 20 y 60).";
+    }, 1000);
+    try {
+      const opts = { signal: controller.signal, modelTier: "default" };
+      if (file) opts.images = [file];
+      const raw = await sample.json(buildPrompt(query, !!file), opts);
+      const data = normalize(raw);
+      state.data = data;
+      state.isExample = false;
+      state.country = el.pais.value;
+      el.usos.value = String(data.usosPorDiaTipico);
+      el.kwh.value = String(data.precioKwh);
+      renderAll(true);
+      save();
+      el.estado.className = "status";
+      el.estado.textContent = "Listo. Revisá los supuestos y ajustá los números si conocés el precio real.";
+      $("veredicto").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    } catch (e) {
+      const code = e && e.code ? e.code : "upstream_error";
+      if (code === "cancelled") { el.estado.className = "status"; el.estado.textContent = "Cancelado."; }
+      else {
+        el.estado.className = "status error";
+        el.estado.textContent = ERRORS[code] || "Se cortó la conexión. Probá de nuevo.";
+        if (PERMANENT.has(code)) { sample = null; }
+        if (code === "images_unavailable") el.photoRow.hidden = true;
+      }
+    } finally {
+      setBusy(false);
+      controller = null;
+    }
+  }
+
+  el.analizar.addEventListener("click", run);
+  el.producto.addEventListener("keydown", (ev) => { if (ev.key === "Enter") run(); });
+  el.detener.addEventListener("click", () => controller && controller.abort());
+  document.getElementById("chips").addEventListener("click", (ev) => {
+    const b = ev.target.closest(".chip");
+    if (!b) return;
+    el.producto.value = b.textContent;
+    el.producto.focus();
+  });
+  el.pais.addEventListener("change", () => {
+    const c = COUNTRIES[el.pais.value];
+    if (state.isExample) { el.estado.className = "status"; el.estado.textContent = "El ejemplo está en USD. Calculá un producto para verlo en " + c.currency + "."; }
+  });
+  el.foto.addEventListener("change", () => {
+    const f = el.foto.files && el.foto.files[0];
+    el.fotoNombre.textContent = f ? f.name : "";
+    el.fotoQuitar.hidden = !f;
+  });
+  el.fotoQuitar.addEventListener("click", () => { el.foto.value = ""; el.fotoNombre.textContent = ""; el.fotoQuitar.hidden = true; });
+
+  /* ---------- Inicio ---------- */
+  load();
+  renderAll(true);
+  el.analizar.disabled = true;
+  el.estado.textContent = "Conectando con Claude…";
+
+  (async () => {
+    try { sample = window.claude && window.claude.use ? await window.claude.use("sample") : null; } catch { sample = null; }
+    if (!sample) {
+      el.estado.textContent = "Para calcular productos nuevos, abrí esta página en Claude. Mientras, podés ajustar el ejemplo.";
+      return;
+    }
+    el.analizar.disabled = false;
+    el.estado.textContent = "";
+    try {
+      const lim = await sample.limits();
+      el.photoRow.hidden = !(lim && lim.images);
+    } catch { el.photoRow.hidden = true; }
+  })();
+})();
+</script>
