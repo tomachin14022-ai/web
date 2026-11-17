@@ -40,5 +40,40 @@
       "30 % menos"
     ]
   },
-  "notaCaption": "Precios de Mercado Libre del 17/11/26. Luz: Edenor, noviembre 2026, $163,6 el kWh sin impuestos. On/off: 1,06 kW según ficha; inverter estimado 30 % menos (el ahorro publicado va de 30 % a 50 %). Uso: 8 horas por día, 5 meses al año, durante 5 años."
+  "notaCaption": "Precios de Mercado Libre del 17/11/26. Luz: Edenor, noviembre 2026, $163,6 el kWh sin impuestos. On/off: 1,06 kW según ficha; inverter estimado 30 % menos (el ahorro publicado va de 30 % a 50 %). Uso: 8 horas por día, 5 meses al año, durante 5 años.",
+  "voz": [
+    [
+      0.05,
+      "El aire barato te sale más caro."
+    ],
+    [
+      2.7,
+      "¿Cuál comprás? Mirá cuánta luz gasta cada uno."
+    ],
+    [
+      6.2,
+      "El común: ciento setenta y tres por hora."
+    ],
+    [
+      8.75,
+      "El inverter, unos ciento veintiuno. Treinta por ciento menos."
+    ],
+    [
+      13.25,
+      "Ocho horas por día, cinco meses al año…"
+    ],
+    [
+      15.85,
+      "en el mes veintidós se da vuelta. Desde ahí, gana el caro."
+    ],
+    [
+      19.8,
+      "En cinco años, ahorrás casi doscientos mil."
+    ],
+    [
+      22.4,
+      "Los links de los dos están en la bio."
+    ]
+  ],
+  "genero": "m"
 }

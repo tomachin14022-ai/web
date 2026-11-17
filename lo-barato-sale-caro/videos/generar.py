@@ -97,6 +97,8 @@ def main():
             + ("HOY" if y == 0 else (f"{y} AÑO" + ("" if y == 1 else "S") if meses // 12 <= 3 else str(y))) + "</text>"
             for y in range(meses // 12 + 1))
             + ('<text class="lbl" x="760" y="1024" text-anchor="end">AÑOS</text>' if meses // 12 > 3 else ""),
+        "NOTA_CRUCE": "Desde ahí, el caro ya es el más barato." if datos.get("genero") == "m" else "Desde ahí, la cara ya es la más barata.",
+        "CTA_TEXTO": "Los links de los dos están en la bio." if datos.get("genero") == "m" else "Los links de las dos están en la bio.",
         "RATIO_HTML": " ".join('<span class="w">' + w + '</span>' for w in datos["frasePorUso"].replace("{RATIO}", str(ratio)).split()),
     }
     plantilla = (Path(__file__).parent / "plantilla-comparacion.html").read_text(encoding="utf-8")
@@ -108,6 +110,11 @@ def main():
     (salida / "compositions").mkdir(parents=True, exist_ok=True)
     (salida / "compositions" / "comparacion.html").write_text(plantilla, encoding="utf-8")
     raiz = (Path(__file__).parent / "plantilla-index.html").read_text(encoding="utf-8")
+    if datos.get("voz"):
+        # Voz en off (la genera voz.py en assets/voz.mp3): una sola pista desde el segundo 0
+        audio = ('      <audio id="voz" class="clip" src="assets/voz.mp3" data-start="0" '
+                 'data-duration="24.5" data-track-index="1" data-volume="1"></audio>\n')
+        raiz = raiz.replace("    </div>\n    <script>", audio + "    </div>\n    <script>", 1)
     (salida / "index.html").write_text(raiz, encoding="utf-8")
     # Texto para la publicación de Instagram (los links van en la bio, no son clicables en el texto)
     caption = (
@@ -116,7 +123,7 @@ def main():
         f"{b['nombre']}: {ars(b['precio'])} al comprar, y {ars(b['porUso'])} por {datos['unidadSing']}.\n\n"
         f"En {meses // 12} años: {ars(a['total'])} contra {ars(b['total'])}. Ahorrás {ars(ahorro)}.\n"
         + (f"Desde el mes {cruce}, la que cuesta más ya te salió más barata.\n" if cruce else "")
-        + f"\n¿Cuál comprarías? Los links de las dos están en la bio.\n"
+        + f"\n¿Cuál comprarías? Los links de {'los dos' if datos.get('genero') == 'm' else 'las dos'} están en la bio.\n"
         f"Contiene links de afiliado de Mercado Libre. {datos.get('notaCaption', datos['nota'])}"
     )
     (salida / "caption.txt").write_text(caption, encoding="utf-8")

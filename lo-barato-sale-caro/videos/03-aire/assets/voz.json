@@ -1,0 +1,53 @@
+{
+  "voz": "es-AR-TomasNeural",
+  "frases": [
+    {
+      "inicio": 0.05,
+      "fin": 1.487,
+      "velocidad": 15,
+      "texto": "El aire barato te sale más caro."
+    },
+    {
+      "inicio": 2.7,
+      "fin": 5.807,
+      "velocidad": 15,
+      "texto": "¿Cuál comprás? Mirá cuánta luz gasta cada uno."
+    },
+    {
+      "inicio": 6.2,
+      "fin": 8.19,
+      "velocidad": 15,
+      "texto": "El común: ciento setenta y tres por hora."
+    },
+    {
+      "inicio": 8.75,
+      "fin": 12.314,
+      "velocidad": 15,
+      "texto": "El inverter, unos ciento veintiuno. Treinta por ciento menos."
+    },
+    {
+      "inicio": 13.25,
+      "fin": 15.306,
+      "velocidad": 15,
+      "texto": "Ocho horas por día, cinco meses al año…"
+    },
+    {
+      "inicio": 15.85,
+      "fin": 19.624,
+      "velocidad": 15,
+      "texto": "en el mes veintidós se da vuelta. Desde ahí, gana el caro."
+    },
+    {
+      "inicio": 19.8,
+      "fin": 22.178,
+      "velocidad": 15,
+      "texto": "En cinco años, ahorrás casi doscientos mil."
+    },
+    {
+      "inicio": 22.4,
+      "fin": 23.95,
+      "velocidad": 15,
+      "texto": "Los links de los dos están en la bio."
+    }
+  ]
+}

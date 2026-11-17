@@ -1,0 +1,53 @@
+{
+  "voz": "es-AR-TomasNeural",
+  "frases": [
+    {
+      "inicio": 0.05,
+      "fin": 1.927,
+      "velocidad": 15,
+      "texto": "La impresora barata te sale casi el doble."
+    },
+    {
+      "inicio": 2.7,
+      "fin": 5.443,
+      "velocidad": 15,
+      "texto": "¿Cuál comprás? Mirá cuánto cuesta usarla."
+    },
+    {
+      "inicio": 6.2,
+      "fin": 8.35,
+      "velocidad": 15,
+      "texto": "Con cartuchos: doscientos catorce por hoja."
+    },
+    {
+      "inicio": 8.75,
+      "fin": 12.813,
+      "velocidad": 15,
+      "texto": "Con tanque de tinta: menos de cinco. Cuarenta y cuatro veces menos."
+    },
+    {
+      "inicio": 13.25,
+      "fin": 14.705,
+      "velocidad": 15,
+      "texto": "Si imprimís cien hojas por mes…"
+    },
+    {
+      "inicio": 15.85,
+      "fin": 19.395,
+      "velocidad": 15,
+      "texto": "en el mes doce se da vuelta. Desde ahí, gana la cara."
+    },
+    {
+      "inicio": 19.8,
+      "fin": 22.076,
+      "velocidad": 15,
+      "texto": "En tres años, ahorrás más de quinientos mil."
+    },
+    {
+      "inicio": 22.4,
+      "fin": 23.97,
+      "velocidad": 15,
+      "texto": "Los links de las dos están en la bio."
+    }
+  ]
+}

@@ -30,5 +30,39 @@
     "consPrecio": 21700,
     "rinde": 4500
   },
-  "notaCaption": "Precios de Mercado Libre del 17/11/26. Rendimiento según el fabricante (cartucho HP 667 negro: 120 hojas; botella Epson T544 negra: 4.500 hojas), solo tinta negra. Uso: 100 hojas por mes durante 3 años."
+  "notaCaption": "Precios de Mercado Libre del 17/11/26. Rendimiento según el fabricante (cartucho HP 667 negro: 120 hojas; botella Epson T544 negra: 4.500 hojas), solo tinta negra. Uso: 100 hojas por mes durante 3 años.",
+  "voz": [
+    [
+      0.05,
+      "La impresora barata te sale casi el doble."
+    ],
+    [
+      2.7,
+      "¿Cuál comprás? Mirá cuánto cuesta usarla."
+    ],
+    [
+      6.2,
+      "Con cartuchos: doscientos catorce por hoja."
+    ],
+    [
+      8.75,
+      "Con tanque de tinta: menos de cinco. Cuarenta y cuatro veces menos."
+    ],
+    [
+      13.25,
+      "Si imprimís cien hojas por mes…"
+    ],
+    [
+      15.85,
+      "en el mes doce se da vuelta. Desde ahí, gana la cara."
+    ],
+    [
+      19.8,
+      "En tres años, ahorrás más de quinientos mil."
+    ],
+    [
+      22.4,
+      "Los links de las dos están en la bio."
+    ]
+  ]
 }

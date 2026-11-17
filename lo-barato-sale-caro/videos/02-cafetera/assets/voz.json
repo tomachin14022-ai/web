@@ -1,0 +1,53 @@
+{
+  "voz": "es-AR-TomasNeural",
+  "frases": [
+    {
+      "inicio": 0.05,
+      "fin": 1.889,
+      "velocidad": 15,
+      "texto": "La cafetera barata te sale más del doble."
+    },
+    {
+      "inicio": 2.7,
+      "fin": 5.632,
+      "velocidad": 15,
+      "texto": "¿Cuál comprás? Mirá cuánto cuesta cada café."
+    },
+    {
+      "inicio": 6.2,
+      "fin": 8.593,
+      "velocidad": 15,
+      "texto": "Con cápsulas: dos mil cuatrocientos por café."
+    },
+    {
+      "inicio": 8.75,
+      "fin": 12.709,
+      "velocidad": 15,
+      "texto": "Con café en grano: setecientos tres pesos. Tres veces menos."
+    },
+    {
+      "inicio": 13.25,
+      "fin": 14.511,
+      "velocidad": 15,
+      "texto": "Si tomás dos cafés por día…"
+    },
+    {
+      "inicio": 15.85,
+      "fin": 19.455,
+      "velocidad": 15,
+      "texto": "en el mes siete se da vuelta. Desde ahí, gana la cara."
+    },
+    {
+      "inicio": 19.8,
+      "fin": 22.011,
+      "velocidad": 15,
+      "texto": "En tres años, ahorrás casi tres millones."
+    },
+    {
+      "inicio": 22.4,
+      "fin": 23.97,
+      "velocidad": 15,
+      "texto": "Los links de las dos están en la bio."
+    }
+  ]
+}
