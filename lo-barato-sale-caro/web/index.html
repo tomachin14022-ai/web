@@ -1,0 +1,291 @@
+<title>Lo Barato Sale Caro</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  /* Layout: una columna para el celular (las visitas vienen de Instagram). Etiquetas de precio y tickets como en los videos. */
+  :root {
+    --amarillo: #ffd400;
+    --bg: #ffd400;
+    --surface: #ffffff;
+    --ink: #111111;
+    --muted: #3d3a2e;
+    --rojo: #d81e17;
+    --line: #111111;
+    --chip: #fff3a3;
+    --font-display: "Archivo Black", "Arial Black", system-ui, sans-serif;
+    --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17160f; --surface: #23211a; --ink: #f6f2df; --muted: #c9c3a6; --rojo: #ff5a4f; --line: #f6f2df; --chip: #3a3418;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17160f; --surface: #23211a; --ink: #f6f2df; --muted: #c9c3a6; --rojo: #ff5a4f; --line: #f6f2df; --chip: #3a3418;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 20px 56px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; display: grid; gap: 22px; }
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  .display { font-family: var(--font-display); letter-spacing: -0.01em; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  header { display: grid; gap: 10px; }
+  .brand {
+    justify-self: start; background: var(--ink); color: var(--amarillo); font-family: var(--font-display);
+    padding: 6px 12px 8px; border-radius: 8px; font-size: 15px; letter-spacing: 0.02em;
+  }
+  h1 { font-family: var(--font-display); font-size: clamp(32px, 8vw, 48px); line-height: 1.02; }
+  .lede { font-size: 17px; color: var(--muted); max-width: 52ch; }
+
+  nav.tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
+  nav.tabs a {
+    flex: none; text-decoration: none; color: var(--ink); font-weight: 800; font-size: 15px;
+    border: 3px solid var(--line); border-radius: 999px; padding: 7px 14px; background: var(--surface);
+  }
+  nav.tabs a[aria-current="page"] { background: var(--ink); color: var(--bg); }
+  nav.tabs a:focus-visible, button:focus-visible, a.btn:focus-visible, input:focus-visible { outline: 3px solid var(--rojo); outline-offset: 2px; }
+
+  .panel { background: var(--surface); border: 3px solid var(--line); border-radius: 16px; padding: 18px; display: grid; gap: 14px; min-width: 0; }
+  .q { font-family: var(--font-display); font-size: clamp(24px, 6vw, 32px); line-height: 1.05; }
+  .uso { display: grid; gap: 8px; }
+  .uso label { font-weight: 800; font-size: 17px; }
+  .uso output { font-family: var(--font-display); }
+  input[type="range"] { width: 100%; accent-color: var(--rojo); }
+  .verdict { font-size: 18px; line-height: 1.35; }
+  .verdict strong { font-family: var(--font-display); font-weight: 400; }
+  .ahorro {
+    justify-self: start; background: var(--ink); color: var(--bg); font-family: var(--font-display);
+    font-size: clamp(22px, 6vw, 30px); padding: 8px 14px 10px; border-radius: 10px; transform: rotate(-1.5deg);
+  }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .card { position: relative; background: var(--surface); border: 3px solid var(--line); border-radius: 16px; padding: 18px 16px 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+  .card::before { content: ""; position: absolute; top: 12px; right: 14px; width: 16px; height: 16px; border-radius: 50%; border: 3px solid var(--line); background: var(--bg); }
+  .card.best { box-shadow: 6px 6px 0 var(--ink); }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; padding-right: 26px; }
+  .badge { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; background: var(--chip); color: var(--ink); }
+  .badge.best { background: var(--ink); color: var(--bg); }
+  .card h3 { font-size: 18px; font-weight: 800; overflow-wrap: anywhere; }
+  .price { font-family: var(--font-display); font-size: 30px; line-height: 1; }
+  .per { display: grid; }
+  .per .big { font-family: var(--font-display); font-size: 40px; line-height: 1; }
+  .per .unit { font-size: 14px; color: var(--muted); font-weight: 600; }
+  .card.worse .per .big { color: var(--rojo); }
+  .ticket { font-family: var(--font-mono); font-size: 14px; display: grid; gap: 4px; border-top: 2px dashed var(--line); padding-top: 10px; }
+  .ticket .l { display: flex; gap: 6px; align-items: baseline; min-width: 0; }
+  .ticket .l span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ticket .dots { flex: 1; border-bottom: 2px dotted var(--muted); transform: translateY(-4px); min-width: 10px; }
+  .ticket .l span:last-child { white-space: nowrap; }
+  .ticket .t { border-top: 2px solid var(--line); padding-top: 6px; font-weight: 500; }
+  .btns { display: grid; gap: 8px; }
+  a.btn {
+    display: block; text-align: center; text-decoration: none; font-weight: 800; border-radius: 10px; padding: 12px 14px;
+    border: 3px solid var(--line); color: var(--ink); background: var(--surface);
+  }
+  a.btn.primary { background: var(--ink); color: var(--bg); }
+  .pending { font-size: 14px; color: var(--muted); font-weight: 600; }
+
+  .chart-wrap { overflow-x: auto; }
+  svg.chart { width: 100%; height: auto; display: block; }
+  svg.chart text { fill: var(--muted); font-family: var(--font-body); font-size: 15px; font-weight: 700; }
+  svg.chart .grid { stroke: var(--muted); stroke-opacity: 0.25; stroke-width: 1; }
+  svg.chart .a { fill: none; stroke: var(--rojo); stroke-width: 4; stroke-linejoin: round; }
+  svg.chart .b { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linejoin: round; }
+  svg.chart .x { fill: var(--surface); stroke: var(--ink); stroke-width: 3; }
+  svg.chart .xl { fill: var(--ink); font-size: 16px; font-weight: 800; }
+  .cross { font-weight: 700; }
+
+  details { border-top: 2px solid var(--line); padding-top: 10px; }
+  summary { cursor: pointer; font-weight: 800; }
+  ul.src { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; color: var(--muted); }
+  .soon { display: grid; gap: 8px; }
+  footer { font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="brand">LO BARATO SALE CARO</span>
+    <h1>Lo que pagás al comprar no es lo que te cuesta.</h1>
+    <p class="lede">Sumamos el precio, los repuestos y la luz, y lo dividimos por cada vez que lo usás. Elegí una comparación:</p>
+  </header>
+
+  <nav class="tabs" id="tabs" aria-label="Comparaciones"></nav>
+  <main id="vista"></main>
+
+  <footer>
+    <p>Si comprás desde nuestros links de Mercado Libre, recibimos una comisión. No te cuesta nada extra y no cambia la cuenta.</p>
+    <p>Los precios cambian: revisalos en la publicación antes de comprar.</p>
+  </footer>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  // ---------- Datos de cada comparación ----------
+  // Precios de ejemplo marcados con ejemplo:true hasta cargar los links de afiliado reales.
+  const COMPARACIONES = [
+    {
+      id: "impresora", tab: "Impresora", listo: true, ejemplo: true,
+      pregunta: "¿Qué impresora conviene?",
+      uso: { label: "Imprimo", unidad: "hojas por mes", min: 20, max: 500, step: 10, valor: 100 },
+      porUsoTexto: "por hoja", unidadPlural: "hojas", meses: 36, usosPorMes: (u) => u,
+      opciones: [
+        { nombre: "HP DeskJet Ink Advantage", precio: 180000, link: "",
+          consumible: { nombre: "Cartucho negro HP 664", precio: 30000, rinde: 120, link: "" } },
+        { nombre: "Epson EcoTank L3250", precio: 550000, link: "",
+          consumible: { nombre: "Botella negra Epson T544", precio: 25000, rinde: 4500, link: "" } },
+      ],
+      fuentes: [
+        "Rendimiento del cartucho HP 664 negro: hasta 120 páginas; botella Epson T544 negra: 4.500 páginas (datos de fabricante, cobertura estándar).",
+        "Costo por hoja = precio del cartucho o botella ÷ páginas que rinde. No incluye papel (es igual para las dos).",
+      ],
+    },
+    {
+      id: "aire", tab: "Aire acondicionado", listo: false,
+      pregunta: "¿Aire inverter o común?",
+      espera: "Estamos cargando los precios del inverter y del on/off de 3.000 frigorías, con el consumo real de cada modelo y la tarifa de luz de este mes.",
+    },
+    {
+      id: "cafetera", tab: "Cafetera", listo: false,
+      pregunta: "¿Cápsulas o espresso?",
+      espera: "Estamos cargando los precios de la Nespresso, la cafetera espresso, las cápsulas y el café en grano.",
+    },
+  ];
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const ars = (n) => {
+    if (n < 10) return "$" + n.toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    return "$" + Math.round(n).toLocaleString("es-AR");
+  };
+
+  function calcular(c, usoValor) {
+    const porMes = c.usosPorMes(usoValor);
+    return c.opciones.map((o) => {
+      const porUso = o.consumible.precio / o.consumible.rinde;
+      const usos = porMes * c.meses;
+      const consumibles = porUso * usos;
+      const repuestos = Math.ceil(usos / o.consumible.rinde);
+      const total = o.precio + consumibles;
+      return { porUso, usos, consumibles, repuestos, total, acum: (m) => o.precio + porUso * porMes * m };
+    });
+  }
+
+  function renderTabs(activo) {
+    $("#tabs").innerHTML = COMPARACIONES.map((c) =>
+      '<a href="#' + c.id + '"' + (c.id === activo ? ' aria-current="page"' : "") + ">" + esc(c.tab) + "</a>").join("");
+  }
+
+  function renderListo(c) {
+    const u = c.uso;
+    return '<section class="panel" aria-labelledby="q-' + c.id + '">' +
+      '<h2 class="q" id="q-' + c.id + '">' + esc(c.pregunta) + "</h2>" +
+      '<div class="uso"><label for="uso-' + c.id + '">' + esc(u.label) + ' <output id="out-' + c.id + '"></output> ' + esc(u.unidad) + "</label>" +
+      '<input id="uso-' + c.id + '" type="range" min="' + u.min + '" max="' + u.max + '" step="' + u.step + '" value="' + u.valor + '"></div>' +
+      '<p class="verdict" id="ver-' + c.id + '"></p>' +
+      '<p class="ahorro num" id="aho-' + c.id + '"></p>' +
+      "</section>" +
+      '<section class="cards" id="cards-' + c.id + '"></section>' +
+      '<section class="panel"><h2 class="q" style="font-size:22px">Cuánto llevás gastado</h2>' +
+      '<p class="cross" id="cruce-' + c.id + '"></p>' +
+      '<div class="chart-wrap"><svg class="chart" id="chart-' + c.id + '" viewBox="0 0 480 270" role="img" aria-label="Gasto acumulado de cada opción"></svg></div>' +
+      "<details><summary>De dónde salen los números</summary><ul class=\"src\">" +
+      c.fuentes.map((f) => "<li>" + esc(f) + "</li>").join("") +
+      (c.ejemplo ? "<li><strong>Precios de ejemplo:</strong> se reemplazan por los de Mercado Libre del día.</li>" : "") +
+      "</ul></details></section>";
+  }
+
+  function actualizar(c) {
+    const valor = Number($("#uso-" + c.id).value);
+    $("#out-" + c.id).textContent = valor.toLocaleString("es-AR");
+    const r = calcular(c, valor);
+    const best = r[0].porUso <= r[1].porUso ? 0 : 1;
+    const worst = 1 - best;
+    const cheapBuy = c.opciones[0].precio <= c.opciones[1].precio ? 0 : 1;
+    const anios = c.meses / 12;
+    $("#ver-" + c.id).innerHTML = "Más barata " + esc(c.porUsoTexto) + ": <strong>" + esc(c.opciones[best].nombre) + "</strong>, a " +
+      esc(ars(r[best].porUso)) + " " + esc(c.porUsoTexto) + ". La otra sale " + Math.round(r[worst].porUso / r[best].porUso) + " veces más.";
+    const ahorro = r[worst].total - r[best].total;
+    $("#aho-" + c.id).textContent = ahorro > 0 ? "En " + anios + " años ahorrás " + ars(ahorro) : "En " + anios + " años cuestan casi lo mismo";
+
+    $("#cards-" + c.id).innerHTML = c.opciones.map((o, i) => {
+      const x = r[i];
+      const badges = [];
+      if (i === best) badges.push('<span class="badge best">Más barata ' + esc(c.porUsoTexto) + "</span>");
+      if (i === cheapBuy) badges.push('<span class="badge">Más barata al comprar</span>');
+      const line = (a, b, cls = "") => '<div class="l ' + cls + '"><span>' + a + '</span><span class="dots"></span><span class="num">' + b + "</span></div>";
+      const btn = o.link
+        ? '<a class="btn primary" href="' + esc(o.link) + '" target="_blank" rel="noopener sponsored">Ver en Mercado Libre</a>'
+        : '<p class="pending">Link de Mercado Libre en camino.</p>';
+      const btnC = o.consumible.link
+        ? '<a class="btn" href="' + esc(o.consumible.link) + '" target="_blank" rel="noopener sponsored">Ver ' + esc(o.consumible.nombre) + "</a>" : "";
+      return '<article class="card ' + (i === best ? "best" : "worse") + '">' +
+        '<div class="badges">' + badges.join("") + "</div>" +
+        "<h3>" + esc(o.nombre) + "</h3>" +
+        '<div class="price num">' + esc(ars(o.precio)) + "</div>" +
+        '<div class="per"><span class="big num">' + esc(ars(x.porUso)) + '</span><span class="unit">' + esc(c.porUsoTexto) + " · " + esc(o.consumible.nombre) + "</span></div>" +
+        '<div class="ticket">' +
+        line("Compra", esc(ars(o.precio))) +
+        line(esc(o.consumible.nombre) + " ×" + x.repuestos, esc(ars(x.consumibles))) +
+        line("Total " + anios + " años", esc(ars(x.total)), "t") +
+        line("Rinde", esc(o.consumible.rinde.toLocaleString("es-AR")) + " " + esc(c.unidadPlural)) +
+        "</div>" +
+        '<div class="btns">' + btn + btnC + "</div></article>";
+    }).join("");
+
+    // Gráfico acumulado
+    const W = 480, H = 270, M = { l: 66, r: 8, t: 20, b: 34 };
+    const maxV = Math.max(r[0].total, r[1].total) * 1.08;
+    const xs = (m) => M.l + (m / c.meses) * (W - M.l - M.r);
+    const ys = (v) => H - M.b - (v / maxV) * (H - M.t - M.b);
+    let svg = "";
+    for (let k = 0; k <= 4; k++) {
+      const v = (maxV / 4) * k;
+      svg += '<line class="grid" x1="' + M.l + '" x2="' + (W - M.r) + '" y1="' + ys(v) + '" y2="' + ys(v) + '"></line>';
+      svg += '<text x="' + (M.l - 6) + '" y="' + (ys(v) + 4) + '" text-anchor="end">' + esc(v >= 1e6 ? "$" + (v / 1e6).toLocaleString("es-AR", { maximumFractionDigits: 1 }) + " M" : "$" + Math.round(v / 1000) + " mil") + "</text>";
+    }
+    for (let y = 0; y <= anios; y++) svg += '<text x="' + xs(y * 12) + '" y="' + (H - 10) + '" text-anchor="' + (y === 0 ? "start" : y === anios ? "end" : "middle") + '">' + (y === 0 ? "Hoy" : y + (y === 1 ? " año" : " años")) + "</text>";
+    r.forEach((x, i) => {
+      let d = "";
+      for (let m = 0; m <= c.meses; m++) d += (m ? "L" : "M") + xs(m).toFixed(1) + " " + ys(x.acum(m)).toFixed(1) + " ";
+      svg += '<path class="' + (i === best ? "b" : "a") + '" d="' + d + '"></path>';
+    });
+    let cruce = -1;
+    if (best !== cheapBuy) for (let m = 1; m <= c.meses; m++) if (r[best].acum(m) <= r[cheapBuy].acum(m)) { cruce = m; break; }
+    if (cruce > 0) {
+      svg += '<circle class="x" cx="' + xs(cruce) + '" cy="' + ys(r[best].acum(cruce)) + '" r="7"></circle>';
+      svg += '<text class="xl" x="' + Math.min(xs(cruce) + 10, W - 70) + '" y="' + (ys(r[best].acum(cruce)) - 12) + '">Mes ' + cruce + "</text>";
+      $("#cruce-" + c.id).textContent = c.opciones[best].nombre + " cuesta más al comprar, pero en el mes " + cruce + " ya gastaste menos que con " + c.opciones[cheapBuy].nombre + ".";
+    } else {
+      $("#cruce-" + c.id).textContent = best === cheapBuy ? c.opciones[best].nombre + " es la más barata al comprar y también por uso." : "Con este uso, las curvas no se cruzan en " + anios + " años.";
+    }
+    $("#chart-" + c.id).innerHTML = svg;
+  }
+
+  function mostrar() {
+    const id = (location.hash || "").replace("#", "");
+    const c = COMPARACIONES.find((x) => x.id === id) || COMPARACIONES[0];
+    renderTabs(c.id);
+    if (!c.listo) {
+      $("#vista").innerHTML = '<section class="panel soon"><h2 class="q">' + esc(c.pregunta) + "</h2><p>" + esc(c.espera) + '</p><span class="badge">Llega esta semana</span></section>';
+      return;
+    }
+    $("#vista").innerHTML = renderListo(c);
+    $("#uso-" + c.id).addEventListener("input", () => actualizar(c));
+    actualizar(c);
+  }
+  window.addEventListener("hashchange", mostrar);
+  mostrar();
+})();
+</script>

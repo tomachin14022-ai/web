@@ -1,0 +1,17 @@
+{
+  "_aviso": "PRECIOS DE EJEMPLO: reemplazar por los precios reales de los links de afiliado",
+  "hook": ["LA IMPRESORA", "BARATA", "TE SALE", "EL DOBLE"],
+  "pregunta": "¿Cuál comprás?",
+  "hint": "Ahora mirá cuánto cuesta usarla.",
+  "unidad": "hojas",
+  "unidadSing": "hoja",
+  "usoMes": 100,
+  "meses": 36,
+  "chartTitulo": "Si imprimís {USO} hojas por mes",
+  "frasePorUso": "Por hoja, la EcoTank gasta {RATIO} veces menos.",
+  "nota": "Precios de ejemplo. Rendimiento según el fabricante.",
+  "a": {"nombre": "HP DeskJet Ink Advantage", "corto": "HP DeskJet", "precio": 180000,
+        "consumible": "Cartucho negro HP 664", "consPrecio": 30000, "rinde": 120},
+  "b": {"nombre": "Epson EcoTank L3250", "corto": "Epson EcoTank", "precio": 550000,
+        "consumible": "Botella negra Epson T544", "consPrecio": 25000, "rinde": 4500}
+}
