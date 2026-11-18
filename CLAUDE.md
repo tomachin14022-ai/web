@@ -6,7 +6,7 @@
 > - **En claude.ai:** creá un Proyecto "Valparaiso Motors", subí este archivo en "Conocimiento del proyecto" y pegá la sección 0 en "Instrucciones del proyecto". Subí también el logo (PNG negro y PNG blanco) y los dos PDF de guiones.
 > - **En Claude Code:** guardá este archivo como `CLAUDE.md` en la carpeta o repositorio del proyecto. Claude lo lee solo al arrancar cada sesión.
 >
-> Última actualización: 18/11/2026 (se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
+> Última actualización: 18/11/2026 (se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
 
 ### En este repositorio
 - **Logo** (PNG con fondo transparente, solo letras, sin caja), en `valparaiso-motors/logo/`:
@@ -576,19 +576,21 @@ Deliver what `$LIB/DIRECTOR.md` §11 lists, in the project folder, and tell the 
 ## 11. Skill cartoon-3d-short (instalada el 18/11/2026)
 
 - **Qué es:** la skill gratuita "claude-animated-shorts" (github.com/mromidev/claude-animated-shorts, licencia MIT). Hace cortos verticales de 55 a 70 s: personajes 2D de dibujo animado en un mundo 3D pintado, con contorno negro, fondo desenfocado, cámaras que se deslizan, voz, música y efectos. Se renderiza con three.js dentro de Remotion, sin generadores de video con IA.
+- **Regla del dueño (18/11/2026): es una caja de herramientas, no un estilo.** Vio una prueba de 10 s en dibujo animado (playero con cabeza de poroto, signos «?» y «!») y la rechazó: "demasiado informal y poco profesional". **Nunca hacer videos de Valparaiso con personajes de dibujo animado.** El acabado sigue siendo el de la marca (sección 2): autos recortados de fotos reales, Anton e Inter, bordó, fondo blanco o papel, o #191814.
 - **Dónde está:** `.claude/skills/cartoon-3d-short/`.
   - Las imágenes de referencia (`references/frames/` y `references/sheets/`) no se suben al repositorio: son de un canal ajeno y la skill pide no publicarlas ni compartirlas.
   - Para tenerlas en otra sesión, clonar de nuevo el repositorio original.
-- **Qué sirve para Valparaiso:**
+- **Qué sirve para Valparaiso (las herramientas):**
+  - un mundo 3D de verdad con three.js dentro de Remotion, con cámaras que se deslizan y se acercan, desenfoque de fondo, brillo y corrección de color;
   - el guion por partes: gancho con un hecho que parece imposible, situación, escalada, quiebre, "Por suerte… / Por desgracia…", explicación con una analogía de todos los días, consecuencia y vuelta final;
-  - el mundo 3D pintado, los personajes, las cámaras y la revisión de cuadros.
+  - el control de calidad cuadro por cuadro (`short_qa.py`: negros, congelados, saltos y volumen) y la revisión de cuadros.
 - **Qué no sirve (mandan nuestras reglas):** sus "user rules" son del autor de la skill. Para Valparaiso valen las nuestras:
   - español rioplatense, no inglés;
   - subtítulos palabra por palabra, aunque la skill diga "sin subtítulos";
   - sonido real de Mixkit o Freesound, no sintetizado;
   - la voz de ElevenLabs que graba el dueño;
   - un solo CTA comercial, con palabra clave y letra chica.
-- **Autos:** siempre con su forma real. En el mundo de dibujo animado, el auto es una tarjeta hecha con la foto oficial recortada (contorno y colores planos), nunca un auto dibujado o generado.
+- **Autos:** siempre con su forma real. En una escena 3D, el auto es una tarjeta hecha con la foto oficial recortada, nunca un auto dibujado o generado. Como la foto es plana, la cámara se acerca o se desliza de costado, pero no gira alrededor del auto.
 - **Necesita:**
   - Node y Remotion, con `@remotion/three`, `@react-three/fiber`, `@react-three/postprocessing`, `postprocessing` y three;
   - Python 3 con numpy y scipy;
@@ -600,3 +602,4 @@ Deliver what `$LIB/DIRECTOR.md` §11 lists, in the project folder, and tell the 
   - WebGL por software: `chromiumOptions: { gl: "swangle" }` y el navegador `/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`.
   - Versiones que andan: remotion y @remotion/* 4.0.540, three 0.187.0, @react-three/fiber 9.8.2, postprocessing 6.39.6 y react 19.1.10.
   - Un cuadro de prueba a media escala tarda unos 25 a 30 s.
+  - Un video de 10 s (300 cuadros a 1080x1920, 30 fps) tarda unos 15 min con 3 pestañas (`renderMedia` con `concurrency: 3` y `muted: true`; el audio se mezcla aparte).
