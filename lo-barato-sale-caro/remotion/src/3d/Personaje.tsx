@@ -10,6 +10,7 @@ export type Pose = {
   readonly cabezaInclina?: number;
   readonly cabezaArriba?: number; // + mira hacia arriba
   readonly cejas?: number; // -1 enojado · 0 normal · 1 sorprendido
+  readonly cejasLado?: [number, number]; // una por ceja (izquierda y derecha de la pantalla): cara de desconfiado
   readonly parpadeo?: number; // 0 abierto · 1 cerrado
   readonly brazoDer?: number; // 0 abajo · 1 apuntando al frente
   readonly brazoIzq?: number;
@@ -53,6 +54,7 @@ export const Personaje: React.FC<Pose> = ({
   cabezaInclina = 0,
   cabezaArriba = 0,
   cejas = 0,
+  cejasLado,
   parpadeo = 0,
   brazoDer = 0,
   brazoIzq = 0,
@@ -64,8 +66,9 @@ export const Personaje: React.FC<Pose> = ({
   const aire = Math.sin(respira) * 0.012;
   const ojoY = 1 - parpadeo * 0.9;
   // Cejas: sorprendido = arriba y rectas; enojado = abajo e inclinadas hacia adentro
-  const cejaY = 1.535 + cejas * 0.04;
-  const cejaRot = cejas < 0 ? -cejas * 0.45 : -cejas * 0.12;
+  const cejaY = (c: number) => 1.535 + c * 0.04;
+  const cejaRot = (c: number) => (c < 0 ? -c * 0.45 : -c * 0.12);
+  const ceja = (l: number) => (cejasLado ? cejasLado[l < 0 ? 0 : 1] : cejas);
   return (
     <group position={[x, salto, z]} rotation={[0, giro, 0]} scale={escala}>
       {/* Piernas y zapatos */}
@@ -109,7 +112,7 @@ export const Personaje: React.FC<Pose> = ({
               <meshBasicMaterial color="#ffffff" />
             </mesh>
             {/* Ceja */}
-            <mesh position={[l * 0.11, cejaY - 1.36, 0.27]} rotation={[-0.25, 0, l * cejaRot]}>
+            <mesh position={[l * 0.11, cejaY(ceja(l)) - 1.36, 0.27]} rotation={[-0.25, 0, l * cejaRot(ceja(l))]}>
               <boxGeometry args={[0.12, 0.026, 0.03]} />
               <meshStandardMaterial color={NEGRO} roughness={0.4} />
             </mesh>

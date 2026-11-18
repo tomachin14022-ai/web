@@ -1,4 +1,5 @@
-import { Composition } from "remotion";
+import { Composition, Still } from "remotion";
+import { PerfilInstagram } from "./PerfilInstagram";
 import { Prueba } from "./Prueba";
 import { VideoComparacion } from "./VideoComparacion";
 
@@ -32,6 +33,20 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1920}
         defaultProps={{ video: "aire" }}
+      />
+      <Still
+        id="PerfilAmarillo"
+        component={PerfilInstagram}
+        width={1080}
+        height={1080}
+        defaultProps={{ fondo: "#f2b600", fondoCentro: "#ffd84a" }}
+      />
+      <Still
+        id="PerfilAzul"
+        component={PerfilInstagram}
+        width={1080}
+        height={1080}
+        defaultProps={{ fondo: "#141b36", fondoCentro: "#34457e" }}
       />
       <Composition id="Prueba" component={Prueba} durationInFrames={60} fps={30} width={1080} height={1920} />
     </>
