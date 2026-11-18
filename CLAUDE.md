@@ -93,6 +93,13 @@ Reglas fijas:
 - Mira la **gráfica de retención** de Instagram y la comparte: usala para diagnosticar (sección 4).
 - **Privacidad:** nunca mandes el email del dueño a servicios externos (ni en User-Agent, ni en formularios).
 - **Nuevo (nov. 2026): "andá mostrando y preguntando si me gusta".** Antes del render final, mostrale cuadros de prueba (una hoja con 9 a 18 cuadros del video) y hacé una sola pregunta. Pocas vueltas: cada render cuesta tiempo y el dueño es sensible al tiempo y al costo.
+- **Guiones para vendedor (nov. 2026): siempre con una vuelta de tuerca.** Lo dijo el dueño: "tenés que buscarle una vuelta de tuerca, no que sea genérico y hablar de la ficha técnica nomás".
+  - Cada guion tiene su idea propia: una prueba de verdad (medir, experimentar), un objeto (el avioncito con la ficha, la pinza de asado) o un personaje (el cuñado).
+  - La ficha técnica solo aparece para contestar la duda del que mira, nunca como lista de equipamiento.
+  - Antes de escribir, revisar lo ya entregado (sección 6) y no repetir ideas.
+  - Formato: Toma | Cómo se graba | Dice. El gancho y el cierre van palabra por palabra; el medio, con las palabras del vendedor.
+  - Una palabra clave distinta por video. Si un número sale de una medición, se escribe recién después de grabar, con lo que marcó.
+  - Antes de entregar el PDF, 10 rondas de revisión (generar, revisar, cambiar).
 
 ---
 
@@ -367,6 +374,12 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
   - Haval H7, "La SUV que ve a través del piso": dice el consumo de frente.
 
   El concesionario aparece **solo en el cierre**, dicho por el vendedor y con el logo chico.
+- **CS55 Plus PHEV · 5 guiones con vuelta de tuerca (nov. 2026), en el orden para publicar:**
+  1. "El lugar imposible" (COCHERA): un lugar donde no se abren las puertas; se baja y la estaciona con el estacionamiento remoto.
+  2. "Tu cuñado en el asado" (CUÑADO): tres frases del cuñado y cómo contestarlas; la cuarta es el precio y la contesta el vendedor.
+  3. "Sin batería, a propósito" (BATERÍA): salen con la batería casi vacía para ver cómo arranca el 1.5.
+  4. "No te leo la ficha" (FICHA): la tira hecha un avioncito y muestra lo que la ficha no cuenta.
+  5. "El silencio, medido" (SILENCIO): mide el ruido con una app de decibeles.
 - **Guía de grabación:** vertical 4K 9:16, micrófono corbatero, buena luz y estabilizador.
   - Grabar los **3 ganchos** seguidos, 3 tomas de cada uno. El resto, una vez.
   - **Bloquear palabra por palabra solo el gancho y el CTA.** El medio se dice con palabras propias, siguiendo los puntos.
@@ -517,7 +530,7 @@ Deliver what `$LIB/DIRECTOR.md` §11 lists, in the project folder, and tell the 
 
 ## 10. De un viral a un sistema (nov. 2026)
 
-> Pedido del dueño: "la plantilla es para que la tengas en cuenta para siempre". Se aplicó primero a la CS55 Plus PHEV (5 guiones de reel con puntaje y plan de lanzamiento).
+> Pedido del dueño: "la plantilla es para que la tengas en cuenta para siempre". Se aplicó primero a la CS55 Plus PHEV: 5 guiones para vendedor, cada uno con una vuelta de tuerca, con puntaje y plan de lanzamiento (sección 6). Si el guion lo graba un vendedor, valen además las reglas de la sección 2 ("Guiones para vendedor").
 
 ### Método: 8 pasos para cualquier viral, propio o ajeno
 1. **Autopsia del gancho:** qué frenó el dedo y de qué tipo es (curiosidad, contraria, número, estatus o miedo), y por qué le sirvió a ese público.
