@@ -595,3 +595,8 @@ Deliver what `$LIB/DIRECTOR.md` §11 lists, in the project folder, and tell the 
   - ffmpeg.
   - Los modelos 3D de Kenney (CC0) son opcionales: si faltan, la skill los saltea.
 - **Ojo con el disco:** cada render de Remotion copia la carpeta `public/` a una carpeta temporal. Mantener `public/` chica y borrar esas carpetas temporales al terminar.
+- **Probado en la nube el 18/11/2026** (sin placa de video, 4 núcleos). Funciona con estos dos ajustes:
+  - `@react-three/postprocessing` fijado en **3.0.4**. Desde la 3.1, la etapa de efectos se arma un instante tarde y Remotion saca cuadros vacíos (solo el color de fondo).
+  - WebGL por software: `chromiumOptions: { gl: "swangle" }` y el navegador `/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`.
+  - Versiones que andan: remotion y @remotion/* 4.0.540, three 0.187.0, @react-three/fiber 9.8.2, postprocessing 6.39.6 y react 19.1.10.
+  - Un cuadro de prueba a media escala tarda unos 25 a 30 s.
