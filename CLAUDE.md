@@ -6,7 +6,7 @@
 > - **En claude.ai:** creá un Proyecto "Valparaiso Motors", subí este archivo en "Conocimiento del proyecto" y pegá la sección 0 en "Instrucciones del proyecto". Subí también el logo (PNG negro y PNG blanco) y los dos PDF de guiones.
 > - **En Claude Code:** guardá este archivo como `CLAUDE.md` en la carpeta o repositorio del proyecto. Claude lo lee solo al arrancar cada sesión.
 >
-> Última actualización: 02/11/2026 (se sumaron las reglas nuevas de noviembre: algo cada 0,3 s, fórmula de retención, calidad de motion design, subtítulos palabra por palabra y sonido real).
+> Última actualización: 18/11/2026 (se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado», y los datos verificados de la CS55 Plus PHEV). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
 
 ### En este repositorio
 - **Logo** (PNG con fondo transparente, solo letras, sin caja), en `valparaiso-motors/logo/`:
@@ -43,6 +43,7 @@ Reglas fijas:
 - Sonido real, no sintetizado: voz > efectos > música. La música baja cuando habla la voz y nunca queda en silencio.
 - Antes del render final, mostrar cuadros de prueba y preguntar si le gusta (una sola pregunta).
 - Si un número es una cuenta propia, decirlo ("estimado" o "ejemplo") y mostrar la cuenta.
+- Ante un viral (propio o ajeno): sacar la plantilla, escribir 5 borradores con ganchos distintos, puntuarlos y elegir cuál va primero. Se copia la estructura, nunca las frases (ver sección 10).
 ```
 
 ---
@@ -133,6 +134,17 @@ Se usó como ejemplo de HEV en el reel EV/PHEV/HEV, **sin especificaciones** (el
 - **228 CV** (algunas notas dicen 243 CV: verificar según versión) · 4x4 con **bloqueo de diferencial trasero** · **8 modos de terreno** · cámara que "ve a través del piso" · pantalla de 15,6" · toma de **220 V** · consumo mixto **8,1 L/100 km** · **7 años de garantía**.
 - Lanzamiento (septiembre de 2026) desde USD 36.900. **Verificar.** Confirmar también que la versión que venden tiene el bloqueo y los 8 modos, y la potencia de la toma de 220 V.
 - Fuentes: 16valvulas, autotest.com.ar, elcerokm.com, monkeymotor.net, autoweb.com.ar, eleconomista.com.ar.
+
+### Changan CS55 Plus PHEV (híbrido enchufable · SUV)
+- 1.5 nafta **109 hp** + motor eléctrico **212 hp**, caja DHT. Batería LFP **18,4 kWh** · hasta **125 km eléctricos** · **1.215 km de autonomía total (CLTC, declarado por la marca)** · tanque de 50 L. Modos Pure, Mixed, Range e iEM.
+- 4.539 mm de largo y 2.656 mm entre ejes · llantas R19 · pantalla de 12,3" y tablero LCD de 10".
+- **Seguridad:** ACC e IACC, frenado autónomo de emergencia (también para peatones), centrado de carril, punto ciego, cámara 360° con grabación y 6 airbags.
+- Estacionamiento automático y **remoto** (avance y retroceso recto), techo panorámico eléctrico, portón eléctrico con sensor, carga inalámbrica y butaca eléctrica con memoria.
+- Al encenderse, el 1.5 a nafta mueve el auto y recarga la batería.
+- **Garantía:** 5 años / 150.000 km; **batería 8 años / 150.000 km**.
+- Precio en el sitio oficial: USD 31.990 (07/11/2026). **Verificar**; no va en las placas.
+- **No usar:** el 0-100 (las fuentes dan 7,3, 7,6 y 8,1 s), el baúl de 475 L (una sola fuente), CarPlay (no está en la ficha) ni los tiempos de carga.
+- Fuentes: ficha técnica oficial (Changan Argentina, oct. 2025), changan.com.ar/modelos/cs55, Autocosmos (19/11/2025), Parabrisas y 16 Válvulas.
 
 ### Changan Deepal S05 (PHEV · SUV)
 Según el video original del dueño: **218 CV** de motor eléctrico, 4,62 m de largo, tracción delantera, **hasta ~100 km sin nafta** (dato de la marca) y después sigue a nafta. Changan fabricó **243.894** autos en un año (dato del video original, **verificar** antes de reutilizar).
@@ -500,3 +512,48 @@ Deliver what `$LIB/DIRECTOR.md` §11 lists, in the project folder, and tell the 
 5. **Usar lemo-opuscar** (estilo `teardown` o `blueprint`) para el próximo educativo del Eado Plus. Así se diferencia en calidad de los que copian el formato.
 6. **Confirmar datos vigentes** (precios, promos, garantías del ORA 03, potencia de la H7, cómo se presentan para Changan) antes de cada publicación.
 7. **Próximo reel con las reglas nuevas:** algo cada 0,3 s, subtítulos palabra por palabra, sonido real y una promesa que se paga al final. Comparar su gráfica de retención con la de los anteriores (sobre todo la caída del segundo 5 al final).
+
+---
+
+## 10. De un viral a un sistema (nov. 2026)
+
+> Pedido del dueño: "la plantilla es para que la tengas en cuenta para siempre". Se aplicó primero a la CS55 Plus PHEV (5 guiones de reel con puntaje y plan de lanzamiento).
+
+### Método: 8 pasos para cualquier viral, propio o ajeno
+1. **Autopsia del gancho:** qué frenó el dedo y de qué tipo es (curiosidad, contraria, número, estatus o miedo), y por qué le sirvió a ese público.
+2. **Mapa de la estructura:** a cada línea, su función (gancho, tensión, prueba, lista, pago o CTA), con su largo y dónde se para el ojo.
+3. **Copiable o suerte:** se copian la estructura, el tipo de gancho, el formato y el pago. No se copian el momento, el tamaño de la cuenta ni el público que ya tenía.
+4. **Plantilla:** lo específico pasa a [ESPACIOS], con el mismo ritmo y la misma cantidad de líneas.
+5. **Voz:** la de la cuenta (abajo), no un tono genérico.
+6. **5 borradores**, cada uno con un tipo de gancho distinto, en el formato de la plataforma.
+7. **Puntaje** de 1 a 10 en gancho, claridad, voz y ganas de guardarlo. Se elige cuál va primero y por qué.
+8. **Lanzamiento:** el primer comentario (que aporte algo), un solo CTA y qué probar en reels de prueba.
+- **Reglas:**
+  - Se roba la estructura, nunca las palabras: ninguna frase del original.
+  - Lo específico va antes que lo ingenioso.
+  - Cada recomendación lleva el porqué, la evidencia, qué probar y el riesgo.
+
+### Plantilla «Elegí un lado» (sale del reel EV/PHEV/HEV, ~150 mil vistas)
+13 líneas, de 40 a 60 s, con una barra de progreso arriba (1 · 2 · 3).
+1. **Gancho:** pregunta de elección sobre la vida del espectador, con 2 o 3 opciones nombradas. Va escrita grande en el cuadro 0.
+2. Lo que las opciones tienen en común.
+3. **Pero** [la diferencia que importa].
+4. Opción 1 en pocas palabras, con su dato.
+5. Cómo funciona o qué le pasa al espectador (una imagen que lo muestra).
+6. La consecuencia concreta. El modelo se nombra recién al final del bloque.
+7. **Ahora,** [el cambio que lleva a la opción 2].
+8. Opción 2, con su beneficio.
+9. El caso límite y cómo lo resuelve. El modelo, al final.
+10. **¿Y** [la objeción o el caso que falta]?
+11. Opción 3: cómo lo resuelve.
+12. **Entonces,** la regla simple: cuándo conviene cada una.
+13. Vuelta a la pregunta del inicio, ahora con la respuesta "para tu caso", y **un solo CTA comercial** ("Pedinos precio y financiación" + palabra clave).
+- **Lo que no se copia del original:** el cierre que solo pedía opinar. Trajo comentarios de todo el país y ningún lead.
+
+### Voz de la cuenta (para escribir los borradores)
+- Voseo rioplatense y profesional: "hacé", "fijate", "cargás", "pedinos". Nunca "chicos", "posta", "brutal" ni "increíble".
+- Frases cortas, de 6 a 14 palabras, una idea por frase. Los dos puntos explican ("La desventaja: no sabés cuándo te lo dan.").
+- Números con unidad y fuente. Si es una cuenta propia, se dice "ejemplo" o "estimado".
+- Situaciones del día del espectador: ir a trabajar, la cochera, enchufar a la noche, las sierras el finde.
+- Los bloques se unen con "pero", "ahora" y "entonces".
+- Emojis y hashtags, solo en la descripción: pocos emojis y 5 hashtags.
