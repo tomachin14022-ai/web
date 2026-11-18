@@ -1,0 +1,1 @@
+origen: https://github.com/mromidev/claude-animated-shorts @ e3b817b
