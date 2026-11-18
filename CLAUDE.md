@@ -577,6 +577,7 @@ Deliver what `$LIB/DIRECTOR.md` §11 lists, in the project folder, and tell the 
 
 - **Qué es:** la skill gratuita "claude-animated-shorts" (github.com/mromidev/claude-animated-shorts, licencia MIT). Hace cortos verticales de 55 a 70 s: personajes 2D de dibujo animado en un mundo 3D pintado, con contorno negro, fondo desenfocado, cámaras que se deslizan, voz, música y efectos. Se renderiza con three.js dentro de Remotion, sin generadores de video con IA.
 - **Regla del dueño (18/11/2026): es una caja de herramientas, no un estilo.** Vio una prueba de 10 s en dibujo animado (playero con cabeza de poroto, signos «?» y «!») y la rechazó: "demasiado informal y poco profesional". **Nunca hacer videos de Valparaiso con personajes de dibujo animado.** El acabado sigue siendo el de la marca (sección 2): autos recortados de fotos reales, Anton e Inter, bordó, fondo blanco o papel, o #191814.
+  - Ese mismo día también rechazó una prueba en **estudio oscuro minimalista** (la camioneta sola, barras de luz y números grandes): "demasiado simple". Quiere piezas ricas, con capas y movimiento, al nivel de los rayos X del C4 o del mapa vivo, no más simples que eso.
 - **Dónde está:** `.claude/skills/cartoon-3d-short/`.
   - Las imágenes de referencia (`references/frames/` y `references/sheets/`) no se suben al repositorio: son de un canal ajeno y la skill pide no publicarlas ni compartirlas.
   - Para tenerlas en otra sesión, clonar de nuevo el repositorio original.
