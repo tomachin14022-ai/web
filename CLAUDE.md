@@ -6,7 +6,7 @@
 > - **En claude.ai:** creá un Proyecto "Valparaiso Motors", subí este archivo en "Conocimiento del proyecto" y pegá la sección 0 en "Instrucciones del proyecto". Subí también el logo (PNG negro y PNG blanco) y los dos PDF de guiones.
 > - **En Claude Code:** guardá este archivo como `CLAUDE.md` en la carpeta o repositorio del proyecto. Claude lo lee solo al arrancar cada sesión.
 >
-> Última actualización: 18/11/2026 (se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
+> Última actualización: 19/11/2026 (se sumó el reel de leads «¿Híbrido, eléctrico o enchufable?» en la sección 6, con su lección sobre el cierre. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
 
 ### En este repositorio
 - **Logo** (PNG con fondo transparente, solo letras, sin caja), en `valparaiso-motors/logo/`:
@@ -348,6 +348,20 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
    - **Variante de gancho para probar:** "Prendario, UVA, plan de ahorro o financiación de la marca. Fijate al final del video cuál conviene. Pero ojo: la cuota más baja puede ser la más cara." Retiene compradores; el final debe responder ("la de menor costo total **para tu caso**").
    - **Descripción usada:** "La cuota más baja no siempre es la que menos pagás 👀", los 4 puntos, el consejo del CFT, "¿Vos cuál creés que conviene? Contanos en los comentarios 👇" y "Pedinos precio y financiación… por mensaje 📩", más el aviso legal. Hashtags: #financiacion #autos #creditoprendario #plandeahorro #uva.
 5. **Placa animada ORA 03 + Santander** (historia, 10 s): primer plano del auto con brillo y faros, el 0 % cae con destello, monto con barrido. **El texto legal no se toca.**
+6. **Reel de leads «¿Híbrido, eléctrico o enchufable?»** (~58 s, 19/11/2026). Usa la plantilla «Elegí un lado» (sección 10) y la terminación de las fichas del reel CS55 dirigido: fondo #191814, autos reales con rayos X y barra 1 · 2 · 3 desde el cuadro 0.
+   - **Gancho:** los 3 autos andando en 3 carriles, con «¿Cuál es el tuyo?». Promesa: «Al final te digo cuál es el tuyo».
+   - **«Dos cosas cambian todo»:** dos lugares numerados (1 y 2) que se llenan, uno con un odómetro que rueda y otro con una batería que se carga.
+   - **Bloques:** uno por auto (Haval H6 Pro HEV, ORA 03 y CS55 Plus), y el nombre del auto va al final de cada bloque.
+   - **Pago:** vuelven los 3 carriles del primer cuadro, ahora con la condición y la respuesta (sin cochera → híbrido; solo ciudad → eléctrico; ciudad y sierras → enchufable). Así el final engancha con el principio.
+   - **Pedido, encima del pago:**
+     - los 3 autos en fila, cada uno con su nombre;
+     - una caja de comentario que escribe «40 km»;
+     - la burbuja «Valparaiso Motors te escribió por mensaje»;
+     - el botón «Pedinos precio y financiación» y el logo.
+   - **Mensaje automático:**
+     - cualquier comentario del reel dispara un DM con dos preguntas (¿cochera? ¿ciudad o ruta?);
+     - el DM contesta con el modelo que le conviene y un botón a WhatsApp.
+   - **Lección de la revisión propia:** la regla y el pedido habían quedado como tarjetas sobre fondo vacío, casi quietas. El cierre tiene que ser tan rico como el resto: autos reales, movimiento y el pago a la vista.
 
 ### Grabados con vendedores (PDFs de guiones, estructura de la curva de atención)
 - **MOF: 20 ideas**, cada una con 3 variantes de gancho, guion por tiempos, texto en pantalla, toma y CTA:
@@ -419,7 +433,7 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
 1. **Guion** → revisarlo cada 3 s y con la curva de atención. Entregar el texto limpio para ElevenLabs.
 2. **Voz:** el dueño la graba en ElevenLabs (voz "Tomas – Argentina / Uruguaya"). Por el nombre de sus archivos usa velocidad 0,89, estabilidad 34 y similitud 81; confirmalo con él. Después:
    - acelerarla a ×1,15–1,20 sin cambiar el tono (ffmpeg `rubberband=tempo=1.2:pitchq=quality:formant=preserved`);
-   - transcribirla con tiempos por palabra (`npx hyperframes transcribe`, whisper);
+   - transcribirla con tiempos por palabra (`npx hyperframes transcribe`, whisper). Pasarle `--timeout 1200000`: con la CPU ocupada (por ejemplo, durante un render), el tiempo límite automático corta la transcripción a la mitad;
    - sincronizar cada animación a su palabra;
    - **subtítulos:** alinear el texto del guion con las palabras de Whisper (difflib en Python, así los subtítulos muestran el texto correcto aunque Whisper oiga otra cosa), armar páginas de 1 a 4 palabras y hasta 20 letras, y dibujarlas en la capa de arriba con la palabra activa resaltada.
 3. **Composición:** **HyperFrames** (`npx --yes hyperframes@0.8.164`). Es HTML + GSAP con una sola línea de tiempo pausada, determinista (sin `Math.random`). Se usa también Three.js para 3D.
