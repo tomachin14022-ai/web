@@ -6,7 +6,7 @@
 > - **En claude.ai:** creá un Proyecto "Valparaiso Motors", subí este archivo en "Conocimiento del proyecto" y pegá la sección 0 en "Instrucciones del proyecto". Subí también el logo (PNG negro y PNG blanco) y los dos PDF de guiones.
 > - **En Claude Code:** guardá este archivo como `CLAUDE.md` en la carpeta o repositorio del proyecto. Claude lo lee solo al arrancar cada sesión.
 >
-> Última actualización: 19/11/2026 (se sumaron tres reels a la sección 6: el de leads «¿Híbrido, eléctrico o enchufable?», con su lección sobre el cierre; el del asesor «3 preguntas antes de firmar», con un personaje serio que el dueño pidió; y su versión 2, en la que el asesor explica el Eado Plus con rayos X. La sección 11 dice cuándo va un personaje. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
+> Última actualización: 19/11/2026 (se sumaron cuatro reels a la sección 6: el de leads «¿Híbrido, eléctrico o enchufable?», con su lección sobre el cierre; el del asesor «3 preguntas antes de firmar», con un personaje serio que el dueño pidió; su versión 2, en la que el asesor explica el Eado Plus con rayos X; y «Ramiro y sus tres miedos», con el personaje en el estilo de la skill y un guion con historia, que el dueño pidió después. La sección 11 dice qué personajes van. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
 
 ### En este repositorio
 - **Logo** (PNG con fondo transparente, solo letras, sin caja), en `valparaiso-motors/logo/`:
@@ -21,7 +21,7 @@
 
 ```
 Sos el director creativo y productor de contenido de Valparaiso Motors, concesionario oficial en Córdoba, Argentina.
-Es contenido de un concesionario oficial: el auto real bien mostrado, información que ayuda a decidir la compra y un motivo concreto para escribir. Nada de entretenimiento sin compra (dibujo animado informal, historias de personajes) ni piezas vacías. El asesor ilustrado serio, con la remera de la marca, sí va (pedido del dueño).
+Es contenido de un concesionario oficial: el auto real bien mostrado, información que ayuda a decidir la compra y un motivo concreto para escribir. Nada de entretenimiento sin compra ni piezas vacías. Personajes (pedido del dueño, 19/11/2026): el de cabeza tipo poroto en el estilo de la skill cartoon-3d-short, con una historia que lleva a la compra; los autos siguen siendo las fotos reales, cada dato lleva su letra chica y hay un solo pedido comercial.
 Hablás en español rioplatense, claro y profesional. Nunca informal de más: es un concesionario.
 Objetivo: reels que se vean hasta el final Y que traigan leads (mensajes pidiendo precio y financiación), no solo vistas.
 Reglas fijas:
@@ -393,6 +393,24 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
      - En los primeros planos, el logo de la remera choca con los subtítulos (franja de 1326 a 1394 px): encuadrar para que el logo quede arriba de ~1290 px.
      - La línea del borde de la ruta pasaba por la letra chica y parecía un tachado: nada que cruce la franja de los subtítulos.
      - Un haz de luz dibujado como triángulo gris lavó el escenario: se reemplazó por el halo en el fondo.
+9. **«Ramiro y sus tres miedos»** (~42 s, 19/11/2026). El dueño pidió que el personaje no fuera humano, «como el de la skill», y un guion menos aburrido. Reemplaza al reel 8: mismo auto (Eado Plus) y mismo pedido (ENCHUFE), contado como historia.
+   - **Guion** (fórmula de la skill adaptada):
+     - gancho absurdo: «A Ramiro se le terminó la batería en plena ruta. Y no pasó absolutamente nada.»;
+     - «Hace un mes, no se animaba a un auto que se enchufa. Tenía tres miedos, y el tercero seguro también es el tuyo.»;
+     - tres miedos que escalan, cada uno con su pesadilla y su respuesta a la vista (olvidarse de cargarlo → modo híbrido; quedarse tirado en las sierras → sigue a nafta, casi 1.000 km; que la batería se gaste como la del celular → 8 años o 150.000 km);
+     - la consecuencia: «Hoy lo carga a la noche, como el celular. Hasta 132 kilómetros sin una gota de nafta.»;
+     - la vuelta que engancha con el gancho: «Y en la ruta, lo único que se le termina es el mate.»;
+     - recién ahí el nombre y el pedido.
+   - **Ramiro:** cabeza tipo poroto con la cara color crema, suéter bordó sin logo (es un comprador). Se dibuja con `toon.ts` de la skill, al que se le sumaron el celular, el mate y la pistola de carga.
+   - **Escenas:** la ruta de noche (Ramiro manejando: se lo ve por el vidrio y en un círculo), el salón, los rayos X, la pesadilla (empuja el auto cuesta arriba, con borde de nube), la casa de noche (enchufa el auto) y el mate sentado en una piedra al costado de la ruta.
+   - **Técnica:** `src/videos/ramiro/` del proyecto de Remotion. El render a 30 fps es de unos 1,5 s por cuadro.
+   - **Lecciones:**
+     - La tapa redonda que se ve en la foto de costado es la de nafta. La de carga está del otro lado, así que la escena de carga usa la foto oficial del lado izquierdo. Esa foto traía una patente china, que se tapó.
+     - El cuadro vertical es angosto: a 7 m, con fov 36, se ven 2,6 m de ancho. Para mostrar al personaje con el auto, fov 40 y el personaje delante del auto.
+     - El piso de un lugar no puede meterse en otro: el asfalto de la ruta asomaba debajo del salón como una mancha negra.
+     - Los faros a la noche van chicos (0,5 m); más grandes parecen pelotas.
+     - Un objeto grande en pantalla (el celular) no puede tapar la cara: el personaje va en el tercio izquierdo.
+     - Para la regla de 0,3 s con un personaje: caras y gestos atados a palabras, números que bajan de a uno (batería, mate) y avisos que titilan.
 
 ### Grabados con vendedores (PDFs de guiones, estructura de la curva de atención)
 - **MOF: 20 ideas**, cada una con 3 variantes de gancho, guion por tiempos, texto en pantalla, toma y CTA:
@@ -625,7 +643,8 @@ Deliver what `$LIB/DIRECTOR.md` §11 lists, in the project folder, and tell the 
 ## 11. Skill cartoon-3d-short (instalada el 18/11/2026)
 
 - **Qué es:** la skill gratuita "claude-animated-shorts" (github.com/mromidev/claude-animated-shorts, licencia MIT). Hace cortos verticales de 55 a 70 s: personajes 2D de dibujo animado en un mundo 3D pintado, con contorno negro, fondo desenfocado, cámaras que se deslizan, voz, música y efectos. Se renderiza con three.js dentro de Remotion, sin generadores de video con IA.
-- **Regla del dueño (18/11/2026): es una caja de herramientas, no un estilo.** Vio una prueba de 10 s en dibujo animado (playero con cabeza de poroto, signos «?» y «!») y la rechazó: "demasiado informal y poco profesional". **Nunca hacer videos de Valparaiso con personajes de dibujo animado.** El acabado sigue siendo el de la marca (sección 2): autos recortados de fotos reales, Anton e Inter, bordó, fondo blanco o papel, o #191814.
+- **19/11/2026, el último pedido del dueño: «que el personaje no sea humano, que sea como el de la skill; también mejorá el guion aburrido».** Reemplaza a la regla del 18/11 de abajo. El personaje de cabeza tipo poroto va, con una historia (reel «Ramiro y sus tres miedos», sección 6). Lo que se mantiene: autos reales, datos con letra chica, tono de concesionario, un solo pedido comercial y nada de signos «?» y «!» flotando.
+- **Regla del dueño (18/11/2026, reemplazada el 19/11): es una caja de herramientas, no un estilo.** Vio una prueba de 10 s en dibujo animado (playero con cabeza de poroto, signos «?» y «!») y la rechazó: "demasiado informal y poco profesional". **Nunca hacer videos de Valparaiso con personajes de dibujo animado.** El acabado sigue siendo el de la marca (sección 2): autos recortados de fotos reales, Anton e Inter, bordó, fondo blanco o papel, o #191814.
   - Ese mismo día también rechazó una prueba en **estudio oscuro minimalista** (la camioneta sola, barras de luz y números grandes): "demasiado simple". Quiere piezas ricas, con capas y movimiento, al nivel de los rayos X del C4 o del mapa vivo, no más simples que eso.
   - **19/11/2026: el dueño pidió un personaje serio.** Es un asesor adulto con la remera bordó y el logo, que habla del concesionario y de temas que importan al comprar (reel «3 preguntas antes de firmar», sección 6). Ese personaje sí va. Lo que no va es el dibujo animado informal: cabeza de poroto, signos «?» y «!», chistes.
 - **Dónde está:** `.claude/skills/cartoon-3d-short/`.
