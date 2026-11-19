@@ -6,7 +6,7 @@
 > - **En claude.ai:** creá un Proyecto "Valparaiso Motors", subí este archivo en "Conocimiento del proyecto" y pegá la sección 0 en "Instrucciones del proyecto". Subí también el logo (PNG negro y PNG blanco) y los dos PDF de guiones.
 > - **En Claude Code:** guardá este archivo como `CLAUDE.md` en la carpeta o repositorio del proyecto. Claude lo lee solo al arrancar cada sesión.
 >
-> Última actualización: 19/11/2026 (se sumó el reel de leads «¿Híbrido, eléctrico o enchufable?» en la sección 6, con su lección sobre el cierre. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
+> Última actualización: 19/11/2026 (se sumaron dos reels a la sección 6: el de leads «¿Híbrido, eléctrico o enchufable?», con su lección sobre el cierre, y el del asesor «3 preguntas antes de firmar», con un personaje serio que el dueño pidió; la sección 11 dice cuándo va un personaje. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
 
 ### En este repositorio
 - **Logo** (PNG con fondo transparente, solo letras, sin caja), en `valparaiso-motors/logo/`:
@@ -21,7 +21,7 @@
 
 ```
 Sos el director creativo y productor de contenido de Valparaiso Motors, concesionario oficial en Córdoba, Argentina.
-Es contenido de un concesionario oficial: el auto real bien mostrado, información que ayuda a decidir la compra y un motivo concreto para escribir. Nada de entretenimiento sin compra (dibujo animado, historias de personajes) ni piezas vacías.
+Es contenido de un concesionario oficial: el auto real bien mostrado, información que ayuda a decidir la compra y un motivo concreto para escribir. Nada de entretenimiento sin compra (dibujo animado informal, historias de personajes) ni piezas vacías. El asesor ilustrado serio, con la remera de la marca, sí va (pedido del dueño).
 Hablás en español rioplatense, claro y profesional. Nunca informal de más: es un concesionario.
 Objetivo: reels que se vean hasta el final Y que traigan leads (mensajes pidiendo precio y financiación), no solo vistas.
 Reglas fijas:
@@ -362,6 +362,21 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
      - cualquier comentario del reel dispara un DM con dos preguntas (¿cochera? ¿ciudad o ruta?);
      - el DM contesta con el modelo que le conviene y un botón a WhatsApp.
    - **Lección de la revisión propia:** la regla y el pedido habían quedado como tarjetas sobre fondo vacío, casi quietas. El cierre tiene que ser tan rico como el resto: autos reales, movimiento y el pago a la vista.
+7. **Reel del asesor «3 preguntas antes de firmar»** (~29 s, 19/11/2026). Lo hizo la skill cartoon-3d-short con un personaje serio, pedido por el dueño: un asesor adulto con remera bordó y el logo blanco, en un salón 3D con los autos reales.
+   - **Gancho:** «Antes de firmar un 0 km, hacé estas tres preguntas. La tercera es la que más plata te puede ahorrar.»
+   - **Las tres preguntas y su prueba en pantalla:**
+     1. ¿Es concesionario oficial? Se ven la pared de la marca y tres respaldos: garantía, service y repuestos.
+     2. ¿Cuál es el precio final? Una hoja de presupuesto suma flete, formularios y patentamiento.
+     3. ¿Cuánto pagás en total? Una pantalla muestra la misma cuota y un costo total distinto, con el sello «PEDÍ EL CFT».
+   - **Pedido:** «Comentá PRECIO y te pasamos el precio final y el costo total de cualquiera de nuestros autos.» La respuesta automática pregunta la marca y si es contado o financiado.
+   - **Técnica:** el dibujo del asesor, el salón y el plan están en el proyecto de Remotion (`src/videos/asesor/`).
+     - El asesor mide 6,6 cabezas, tiene contorno de tinta y poses que cambian en cada frase. La boca se mueve con la voz.
+     - Los autos son tarjetas con la foto real recortada.
+     - El render a 30 fps tardó unos 53 minutos para 29 s (4 núcleos, sin placa de video).
+   - **Lecciones:**
+     - En el formato vertical, el logo de la pared y los títulos compiten: el logo va solo en el plano que habla de la marca.
+     - Los acercamientos de cámara corren hacia afuera lo que está arriba del cuadro.
+     - Las palabras largas («concesionario», «patentamiento») dejan huecos de más de 0,3 s: se cubren con gestos del asesor y con pasos de la hoja y de la pantalla.
 
 ### Grabados con vendedores (PDFs de guiones, estructura de la curva de atención)
 - **MOF: 20 ideas**, cada una con 3 variantes de gancho, guion por tiempos, texto en pantalla, toma y CTA:
@@ -596,6 +611,7 @@ Deliver what `$LIB/DIRECTOR.md` §11 lists, in the project folder, and tell the 
 - **Qué es:** la skill gratuita "claude-animated-shorts" (github.com/mromidev/claude-animated-shorts, licencia MIT). Hace cortos verticales de 55 a 70 s: personajes 2D de dibujo animado en un mundo 3D pintado, con contorno negro, fondo desenfocado, cámaras que se deslizan, voz, música y efectos. Se renderiza con three.js dentro de Remotion, sin generadores de video con IA.
 - **Regla del dueño (18/11/2026): es una caja de herramientas, no un estilo.** Vio una prueba de 10 s en dibujo animado (playero con cabeza de poroto, signos «?» y «!») y la rechazó: "demasiado informal y poco profesional". **Nunca hacer videos de Valparaiso con personajes de dibujo animado.** El acabado sigue siendo el de la marca (sección 2): autos recortados de fotos reales, Anton e Inter, bordó, fondo blanco o papel, o #191814.
   - Ese mismo día también rechazó una prueba en **estudio oscuro minimalista** (la camioneta sola, barras de luz y números grandes): "demasiado simple". Quiere piezas ricas, con capas y movimiento, al nivel de los rayos X del C4 o del mapa vivo, no más simples que eso.
+  - **19/11/2026: el dueño pidió un personaje serio.** Es un asesor adulto con la remera bordó y el logo, que habla del concesionario y de temas que importan al comprar (reel «3 preguntas antes de firmar», sección 6). Ese personaje sí va. Lo que no va es el dibujo animado informal: cabeza de poroto, signos «?» y «!», chistes.
 - **Dónde está:** `.claude/skills/cartoon-3d-short/`.
   - Las imágenes de referencia (`references/frames/` y `references/sheets/`) no se suben al repositorio: son de un canal ajeno y la skill pide no publicarlas ni compartirlas.
   - Para tenerlas en otra sesión, clonar de nuevo el repositorio original.
