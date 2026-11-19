@@ -6,7 +6,7 @@
 > - **En claude.ai:** creá un Proyecto "Valparaiso Motors", subí este archivo en "Conocimiento del proyecto" y pegá la sección 0 en "Instrucciones del proyecto". Subí también el logo (PNG negro y PNG blanco) y los dos PDF de guiones.
 > - **En Claude Code:** guardá este archivo como `CLAUDE.md` en la carpeta o repositorio del proyecto. Claude lo lee solo al arrancar cada sesión.
 >
-> Última actualización: 19/11/2026 (se sumaron dos reels a la sección 6: el de leads «¿Híbrido, eléctrico o enchufable?», con su lección sobre el cierre, y el del asesor «3 preguntas antes de firmar», con un personaje serio que el dueño pidió; la sección 11 dice cuándo va un personaje. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
+> Última actualización: 19/11/2026 (se sumaron tres reels a la sección 6: el de leads «¿Híbrido, eléctrico o enchufable?», con su lección sobre el cierre; el del asesor «3 preguntas antes de firmar», con un personaje serio que el dueño pidió; y su versión 2, en la que el asesor explica el Eado Plus con rayos X. La sección 11 dice cuándo va un personaje. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
 
 ### En este repositorio
 - **Logo** (PNG con fondo transparente, solo letras, sin caja), en `valparaiso-motors/logo/`:
@@ -377,6 +377,22 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
      - En el formato vertical, el logo de la pared y los títulos compiten: el logo va solo en el plano que habla de la marca.
      - Los acercamientos de cámara corren hacia afuera lo que está arriba del cuadro.
      - Las palabras largas («concesionario», «patentamiento») dejan huecos de más de 0,3 s: se cubren con gestos del asesor y con pasos de la hoja y de la pantalla.
+8. **Reel del asesor v2 «3 dudas antes de comprar un auto que se enchufa»** (~31 s, 19/11/2026). El dueño pidió mejorar el reel 7 y que el asesor explique uno de los autos. Es el Changan Eado Plus PHEV, y el nombre recién se dice en el segundo ~27.
+   - **Gancho:** «¿Pensás en un auto que se enchufa? Tres dudas antes de comprarlo, y la tercera es la más importante.»
+   - **Tres lugares:** el salón (el asesor pregunta), un escenario oscuro con el Eado real en rayos X (la respuesta) y una ruta de noche entre sierras.
+   - **Las tres dudas y su respuesta a la vista:**
+     1. ¿Y si no tengo dónde cargarlo? El motor a nafta arranca en los rayos X: «Modo híbrido».
+     2. ¿Y si se acaba la batería en la ruta? La batería baja a 0 % y una barra cuenta hasta casi 1.000 km (letra chica: 995 km declarados).
+     3. ¿Cuánto dura la batería? Un sello que cuenta «8 años o 150.000 km». Después, a la noche, la batería se carga y aparecen los 132 km sin nafta.
+   - **Pedido:** «Comentá ENCHUFE y te pasamos precio y financiación», en una sola tarjeta oscura que crece a medida que aparece cada cosa. La respuesta automática pregunta si tiene cochera, cuántos km hace por día y si es contado o financiado.
+   - **Técnica:** `src/videos/asesor2/` del proyecto de Remotion. Usa el mismo asesor (`asesor/persona.ts`). El render a 30 fps tardó unos 70 minutos para 31 s.
+   - **Lecciones:**
+     - Un auto de 4,77 m de costado entra en la zona segura si ocupa unos 800 px centrados en x 480 (cámara a ~17,5 m con fov 36). Así queda chico: las etiquetas de los rayos X van al doble y un halo suave en el fondo lo despega.
+     - Un piso que termina contra un fondo sin tinta dibuja una raya negra que cruza el auto: el piso del escenario también va sin tinta.
+     - En Anton con interlineado 1,0, las tildes de «HÍBRIDO», «BATERÍA» y «AÑOS» se meten en la línea de arriba: dejar 12–20 px de margen.
+     - En los primeros planos, el logo de la remera choca con los subtítulos (franja de 1326 a 1394 px): encuadrar para que el logo quede arriba de ~1290 px.
+     - La línea del borde de la ruta pasaba por la letra chica y parecía un tachado: nada que cruce la franja de los subtítulos.
+     - Un haz de luz dibujado como triángulo gris lavó el escenario: se reemplazó por el halo en el fondo.
 
 ### Grabados con vendedores (PDFs de guiones, estructura de la curva de atención)
 - **MOF: 20 ideas**, cada una con 3 variantes de gancho, guion por tiempos, texto en pantalla, toma y CTA:
