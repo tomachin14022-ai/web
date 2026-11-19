@@ -385,7 +385,7 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
      2. ¿Y si se acaba la batería en la ruta? La batería baja a 0 % y una barra cuenta hasta casi 1.000 km (letra chica: 995 km declarados).
      3. ¿Cuánto dura la batería? Un sello que cuenta «8 años o 150.000 km». Después, a la noche, la batería se carga y aparecen los 132 km sin nafta.
    - **Pedido:** «Comentá ENCHUFE y te pasamos precio y financiación», en una sola tarjeta oscura que crece a medida que aparece cada cosa. La respuesta automática pregunta si tiene cochera, cuántos km hace por día y si es contado o financiado.
-   - **Técnica:** `src/videos/asesor2/` del proyecto de Remotion. Usa el mismo asesor (`asesor/persona.ts`). El render a 30 fps tardó unos 70 minutos para 31 s.
+   - **Técnica:** `src/videos/asesor2/` del proyecto de Remotion. Usa el mismo asesor (`asesor/persona.ts`). El render a 30 fps tardó 52 minutos para 31 s.
    - **Lecciones:**
      - Un auto de 4,77 m de costado entra en la zona segura si ocupa unos 800 px centrados en x 480 (cámara a ~17,5 m con fov 36). Así queda chico: las etiquetas de los rayos X van al doble y un halo suave en el fondo lo despega.
      - Un piso que termina contra un fondo sin tinta dibuja una raya negra que cruza el auto: el piso del escenario también va sin tinta.
