@@ -550,6 +550,8 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
     - Comparar siempre con la foto del dueño: el azul oficial se veía petróleo, y hubo que correrle el tono unos 13° hacia el azul marino.
     - La patente de las fotos de estudio dice «ORA 03»: en las placas que van antes de la revelación del nombre, dejarla lisa (degradé de metal sacado de la misma patente, sin ruido, porque el ruido se ve como un pixelado).
     - Sobre fondo oscuro, las ruedas del auto se pierden: un charco de luz suave en el piso las despega.
+    - Pasar una foto celeste a blanco (placas 2 y 3, de costado y de atrás, que solo existen en celeste): máscara de la pintura por tono (165–240°), saturación (más de 0,1) y brillo; el brillo se lleva a 0,58–0,98 y se le da el tono frío del blanco oficial. Se ve real y conserva las luces y sombras. Desde ahí, todo el carrusel muestra el auto blanco, salvo la placa de colores.
+    - Las patentes «ORA 03» quedaron lisas en las placas 1, 3, 4 y 6, antes de la revelación del nombre.
     - En esta sesión, `rm` con comodines en rutas relativas lo bloquea el control de seguridad: usar carpetas nuevas para cada prueba en lugar de borrar.
 
 ---
