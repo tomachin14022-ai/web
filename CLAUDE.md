@@ -136,7 +136,7 @@ Reglas fijas:
 - **De serie:**
   - seguridad: frenado autónomo ante vehículos, peatones y ciclistas; 7 airbags (frontales, laterales, de cortina y central); cámara 360°; crucero adaptativo; aviso y asistente de mantenimiento de carril;
   - interior: pantalla de 10,25" y tablero digital de 10,25"; CarPlay y Android Auto inalámbricos; climatizador automático; tapizado de cuero; butaca del conductor eléctrica (6 posiciones); acceso sin llave; manejo con un solo pedal y regeneración ajustable.
-- Colores: celeste, blanco, negro, rojo y verde.
+- Colores en la ficha: celeste (azul con techo blanco), blanco, negro, rojo y verde. **El dueño pidió mostrar solo Hamilton White, rojo y azul con techo blanco** (20/11/2026). La foto «celeste» de la ficha es la del azul con techo blanco.
 - **Garantía: 7 años o 150.000 km; batería, 8 años o 150.000 km** (lo que ocurra primero). Así se resolvió el "5 o 7 años según la fuente".
 - "5 plazas" no figura en la ficha: no usarlo.
 - Precio de lanzamiento USD 31.000 (bonificado 29.900). **Verificar.**
@@ -494,7 +494,7 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
   3. Almacenamiento: 858 L, con una línea que sale del portón y una barra como la de memoria del celular (282 L + 576 L). Abajo, largo, ancho y entre ejes.
   4. Seguridad: «Todo activado», con interruptores bordó. Una línea sale del frente y otra del espejo (cámara 360°).
   5. Por dentro: el tablero con «2 pantallas de 10,25"», las butacas de cuero y una lista de equipamiento.
-  6. Fondo de pantalla: los 5 colores, como si eligieras el fondo del teléfono.
+  6. Fondo de pantalla: los colores, como si eligieras el fondo del teléfono. Desde el 20/11 van solo Hamilton White, rojo y azul con techo blanco (pedido del dueño).
   7. Salud de la batería: recién acá va el nombre del auto. Rayos X con líneas que salen de la batería y del motor, «8 AÑOS» y la garantía del auto.
   8. Chat con Valparaiso Motors: la foto del auto, «Comentá ORA», la barra de comentario con «ORA», el botón «Pedinos precio y financiación» y el logo.
 - **Técnica:**
@@ -517,7 +517,7 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
     3. 282 L y después 858 L, con la barra que se llena en dos partes.
     4. Los interruptores se prenden uno por uno y el radar manda ondas.
     5. La foto del interior se acerca hacia las pantallas.
-    6. El auto cambia de color detrás de una línea de luz y el marco bordó viaja de tarjeta en tarjeta.
+    6. El auto cambia de color detrás de una línea de luz (Hamilton White, rojo y azul con techo blanco) y el marco bordó viaja de tarjeta en tarjeta.
     7. Una banda de energía recorre la batería y el 8 gira como un rodillo.
     8. El chat se escribe solo.
   - **Técnica:** un proyecto de HyperFrames con las 8 escenas una detrás de la otra (51 s), un solo render (1 min 34 s para los 51 s a 1080x1350, 30 fps) y ffmpeg corta cada placa. Todas las animaciones van con `fromTo` e `immediateRender: false`, y los estados iniciales con `gsap.set`, porque varias animaciones tocan la misma propiedad.
