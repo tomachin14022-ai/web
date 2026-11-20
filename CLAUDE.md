@@ -6,7 +6,7 @@
 > - **En claude.ai:** creá un Proyecto "Valparaiso Motors", subí este archivo en "Conocimiento del proyecto" y pegá la sección 0 en "Instrucciones del proyecto". Subí también el logo (PNG negro y PNG blanco) y los dos PDF de guiones.
 > - **En Claude Code:** guardá este archivo como `CLAUDE.md` en la carpeta o repositorio del proyecto. Claude lo lee solo al arrancar cada sesión.
 >
-> Última actualización: 19/11/2026 (se sumaron cuatro reels a la sección 6: el de leads «¿Híbrido, eléctrico o enchufable?», con su lección sobre el cierre; el del asesor «3 preguntas antes de firmar», con un personaje serio que el dueño pidió; su versión 2, en la que el asesor explica el Eado Plus con rayos X; y «Ramiro y sus tres miedos», con el personaje en el estilo de la skill y un guion con historia, que el dueño pidió después. La sección 11 dice qué personajes van. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
+> Última actualización: 20/11/2026 (los datos del ORA 03 de la sección 3 ahora salen de la ficha técnica oficial, y la sección 6 suma el carrusel «Tu auto se carga como tu celular» del ORA 03, con sus lecciones). Antes, 19/11/2026 (se sumaron cuatro reels a la sección 6: el de leads «¿Híbrido, eléctrico o enchufable?», con su lección sobre el cierre; el del asesor «3 preguntas antes de firmar», con un personaje serio que el dueño pidió; su versión 2, en la que el asesor explica el Eado Plus con rayos X; y «Ramiro y sus tres miedos», con el personaje en el estilo de la skill y un guion con historia, que el dueño pidió después. La sección 11 dice qué personajes van. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
 
 ### En este repositorio
 - **Logo** (PNG con fondo transparente, solo letras, sin caja), en `valparaiso-motors/logo/`:
@@ -123,13 +123,25 @@ Reglas fijas:
 - Fuentes: parabrisas.perfil.com, minutomotor.com.ar, automundo.com.ar, 16valvulas.com.ar.
 
 ### GWM ORA 03 (100 % eléctrico)
-- Batería LFP **48 kWh** · **310 km WLTP** · 16,7 kWh/100 km.
-- 126 kW (**169 CV**; el sitio oficial dice 170 HP), 250 Nm, 160 km/h.
-- Carga rápida DC 20–80 % en **36 min** (oficial; otras fuentes dicen 10–80 % en ~40 min).
-- Batería con 8 años de garantía. **Garantía del vehículo: 5 o 7 años según la fuente, verificar.**
+- **Fuente principal: la ficha técnica oficial de GWM Argentina** ("FT - ORA - En Alta", en el Drive del concesionario) y la capacitación de producto "GWM Ora 03". Manda sobre las notas de prensa.
+- Batería LFP **48 kWh** · **310 km WLTP** (370 km NEDC) · 16,7 kWh/100 km.
+- 126 kW (**169 HP**, como dice la ficha; en CV serían 171), 250 Nm, 160 km/h.
+- **Carga:**
+  - AC hasta **11 kW**, del 15 al 80 % en **5,5 h**;
+  - DC hasta **60 kW**, del 10 al 80 % en **40 min**;
+  - conector CCS2.
+  - **No juntar "11 kW" con "5,5 h":** a 11 kW tardaría unas 3 h, así que la ficha mide con un cargador más chico.
+  - Para cargar a 11 kW hace falta conexión trifásica. En una casa monofásica, el cargador de pared habitual es de unos 7 kW (que lo confirme el instalador).
+- Baúl de **282 L** (858 L con los asientos rebatidos) · 4.235 x 1.825 x 1.603 mm · **2.650 mm entre ejes** · 1.540 kg · llantas de 18" (215/50 R18).
+- **De serie:**
+  - seguridad: frenado autónomo ante vehículos, peatones y ciclistas; 7 airbags (frontales, laterales, de cortina y central); cámara 360°; crucero adaptativo; aviso y asistente de mantenimiento de carril;
+  - interior: pantalla de 10,25" y tablero digital de 10,25"; CarPlay y Android Auto inalámbricos; climatizador automático; tapizado de cuero; butaca del conductor eléctrica (6 posiciones); acceso sin llave; manejo con un solo pedal y regeneración ajustable.
+- Colores: celeste, blanco, negro, rojo y verde.
+- **Garantía: 7 años o 150.000 km; batería, 8 años o 150.000 km** (lo que ocurra primero). Así se resolvió el "5 o 7 años según la fuente".
+- "5 plazas" no figura en la ficha: no usarlo.
 - Precio de lanzamiento USD 31.000 (bonificado 29.900). **Verificar.**
 - Promo de una placa de historia que animamos: Santander, tasa fija 0 %, hasta $20.000.000 en 18 meses, préstamo en pesos **ajustable por CER**. Era promo del día: no reutilizar sin confirmar.
-- Fuentes: noticias.autocosmos.com.ar, automundo.com.ar, gwm.com.ar/modelos/ora, parabrisas, 16valvulas.
+- Otras fuentes (prensa): noticias.autocosmos.com.ar, automundo.com.ar, gwm.com.ar/modelos/ora, parabrisas, 16valvulas.
 
 ### GWM ORA 05 HEV (híbrido, no se enchufa)
 - 1.5 turbo 150 CV + eléctrico 190 CV · **223 CV combinados**, 475 Nm · **0–100 en 7,7 s** · 185 km/h.
@@ -474,6 +486,29 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
   - "este sedán **SE ENCHUFA**".
 - Sobre fondo gris, el bordó como **placa de fondo con letras blancas** (texto bordó solo no se lee).
 
+### Carrusel ORA 03 «Tu auto se carga como tu celular» (8 placas, 20/11/2026)
+- **Idea:** cada placa es una pantalla del celular, de las 7:30 a las 7:36 de un lunes. El que no sabe de autos reconoce su teléfono y sigue pasando. Las fotos y los datos son todos oficiales de GWM Argentina.
+- **Placas:**
+  1. Pantalla bloqueada (portada): la notificación «Cargado al 100 % mientras dormías. Tenés 310 km listos para hoy, sin pasar por la estación de servicio», sobre la foto oficial verde.
+  2. Cargando: un anillo al 80 % y dos tarjetas, en casa (15→80 % en 5,5 h) y carga rápida (10→80 % en 40 min).
+  3. Almacenamiento: 858 L, con una línea que sale del portón y una barra como la de memoria del celular (282 L + 576 L). Abajo, largo, ancho y entre ejes.
+  4. Seguridad: «Todo activado», con interruptores bordó. Una línea sale del frente y otra del espejo (cámara 360°).
+  5. Por dentro: el tablero con «2 pantallas de 10,25"», las butacas de cuero y una lista de equipamiento.
+  6. Fondo de pantalla: los 5 colores, como si eligieras el fondo del teléfono.
+  7. Salud de la batería: recién acá va el nombre del auto. Rayos X con líneas que salen de la batería y del motor, «8 AÑOS» y la garantía del auto.
+  8. Chat con Valparaiso Motors: la foto del auto, «Comentá ORA», la barra de comentario con «ORA», el botón «Pedinos precio y financiación» y el logo.
+- **Técnica:**
+  - un HTML con las 8 placas de 1080x1350 una al lado de la otra;
+  - Playwright saca cada placa a 2x y se achica a JPG 1080x1350;
+  - la mejor calidad sale de las fotos de la capacitación y de la ficha (PDF): `pdfimages` y la carpeta `ppt/media` del pptx.
+- **Lecciones:**
+  - La fuente Inter (subconjunto latino) no trae la flecha «→»: sale chica y baja. Dibujarla en SVG.
+  - Los recortes traen la sombra del piso y se corta en seco en el borde de la imagen. Apagarla hacia los bordes sin tocar el auto.
+  - El desenfoque de fondo (backdrop-filter) sobre un fondo liso deja bloques tenues en el render: ahí van tarjetas sin desenfoque, y el desenfoque solo sobre fotos.
+  - En Anton, la tilde de la Ñ («AÑOS») sube unos 30 px por encima de la caja: dejar margen con lo que está arriba.
+  - Cada número, contra la ficha: «5 plazas» no estaba, y «11 kW» con «5,5 h» no van juntos.
+  - Palabra clave corta (ORA): en ManyChat, la regla va como palabra exacta, porque «ahora» contiene «ora».
+
 ---
 
 ## 7. Cómo se producen los videos (pipeline técnico)
@@ -591,7 +626,7 @@ Deliver what `$LIB/DIRECTOR.md` §11 lists, in the project folder, and tell the 
 3. **Grabar los guiones MOF con vendedores**, empezando por el Eado ("La cuenta de la nafta") y el debate ORA 03 vs ORA 05 HEV.
 4. **Respuesta automática por DM** con palabra clave por video, para medir qué contenido trae compradores.
 5. **Usar lemo-opuscar** (estilo `teardown` o `blueprint`) para el próximo educativo del Eado Plus. Así se diferencia en calidad de los que copian el formato.
-6. **Confirmar datos vigentes** (precios, promos, garantías del ORA 03, potencia de la H7, cómo se presentan para Changan) antes de cada publicación.
+6. **Confirmar datos vigentes** (precios, promos, potencia de la H7, cómo se presentan para Changan; la garantía del ORA 03 ya está confirmada en la ficha oficial) antes de cada publicación.
 7. **Próximo reel con las reglas nuevas:** algo cada 0,3 s, subtítulos palabra por palabra, sonido real y una promesa que se paga al final. Comparar su gráfica de retención con la de los anteriores (sobre todo la caída del segundo 5 al final).
 
 ---
