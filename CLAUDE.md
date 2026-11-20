@@ -6,7 +6,7 @@
 > - **En claude.ai:** creá un Proyecto "Valparaiso Motors", subí este archivo en "Conocimiento del proyecto" y pegá la sección 0 en "Instrucciones del proyecto". Subí también el logo (PNG negro y PNG blanco) y los dos PDF de guiones.
 > - **En Claude Code:** guardá este archivo como `CLAUDE.md` en la carpeta o repositorio del proyecto. Claude lo lee solo al arrancar cada sesión.
 >
-> Última actualización: 20/11/2026 (los datos del ORA 03 de la sección 3 ahora salen de la ficha técnica oficial, y la sección 6 suma el carrusel «Tu auto se carga como tu celular» del ORA 03, con sus lecciones). Antes, 19/11/2026 (se sumaron cuatro reels a la sección 6: el de leads «¿Híbrido, eléctrico o enchufable?», con su lección sobre el cierre; el del asesor «3 preguntas antes de firmar», con un personaje serio que el dueño pidió; su versión 2, en la que el asesor explica el Eado Plus con rayos X; y «Ramiro y sus tres miedos», con el personaje en el estilo de la skill y un guion con historia, que el dueño pidió después. La sección 11 dice qué personajes van. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
+> Última actualización: 20/11/2026 (los datos del ORA 03 de la sección 3 ahora salen de la ficha técnica oficial, y la sección 6 suma el carrusel «Tu auto se carga como tu celular» del ORA 03, con sus lecciones y su versión animada: 8 videos cortos, interior negro). Antes, 19/11/2026 (se sumaron cuatro reels a la sección 6: el de leads «¿Híbrido, eléctrico o enchufable?», con su lección sobre el cierre; el del asesor «3 preguntas antes de firmar», con un personaje serio que el dueño pidió; su versión 2, en la que el asesor explica el Eado Plus con rayos X; y «Ramiro y sus tres miedos», con el personaje en el estilo de la skill y un guion con historia, que el dueño pidió después. La sección 11 dice qué personajes van. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
 
 ### En este repositorio
 - **Logo** (PNG con fondo transparente, solo letras, sin caja), en `valparaiso-motors/logo/`:
@@ -508,6 +508,24 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
   - En Anton, la tilde de la Ñ («AÑOS») sube unos 30 px por encima de la caja: dejar margen con lo que está arriba.
   - Cada número, contra la ficha: «5 plazas» no estaba, y «11 kW» con «5,5 h» no van juntos.
   - Palabra clave corta (ORA): en ManyChat, la regla va como palabra exacta, porque «ahora» contiene «ora».
+- **Versión animada (20/11/2026, pedido del dueño):** «cambiá el interior al color más simple, animá la placa de los colores y animá lo que quede bien».
+  - Cada placa pasa a ser un video de 6 a 8 s (1080x1350, 30 fps, sin sonido) que vuelve a empezar solo. Se suben los 8 en orden, como un carrusel común.
+  - **Interior:** la foto negra de la capacitación (con detalles rojos), recortada para que no se vea el borde del techo. Se puso «verificar» que sea el interior de las unidades que venden (la capacitación muestra las versiones SKIN, SR y GT).
+  - **Qué se mueve:**
+    1. El reloj pasa de 7:29 a 7:30 y un brillo recorre «Deslizá para desbloquear».
+    2. El anillo se carga del 15 al 80 % con el número contando.
+    3. 282 L y después 858 L, con la barra que se llena en dos partes.
+    4. Los interruptores se prenden uno por uno y el radar manda ondas.
+    5. La foto del interior se acerca hacia las pantallas.
+    6. El auto cambia de color detrás de una línea de luz y el marco bordó viaja de tarjeta en tarjeta.
+    7. Una banda de energía recorre la batería y el 8 gira como un rodillo.
+    8. El chat se escribe solo.
+  - **Técnica:** un proyecto de HyperFrames con las 8 escenas una detrás de la otra (51 s), un solo render (1 min 34 s para los 51 s a 1080x1350, 30 fps) y ffmpeg corta cada placa. Todas las animaciones van con `fromTo` e `immediateRender: false`, y los estados iniciales con `gsap.set`, porque varias animaciones tocan la misma propiedad.
+  - **Lecciones:**
+    - Cambio de color: las 5 fotos de la ficha tienen exactamente el mismo encuadre. Con `mix-blend-mode: multiply` sobre fondo claro y dos `clip-path` complementarios (el color viejo y el nuevo nunca se pisan), se ve como pintura que cambia.
+    - Reflejo de luz sobre la carrocería: la máscara toma solo la pintura (alfa alto y luminancia alta). Con el alfa del recorte, el reflejo pasaba por la sombra negra del piso, que el recorte trae sólida. Sobre un auto blanco no se ve: ahí no va.
+    - El vidrio de la notificación sobre una foto que se mueve: una copia desenfocada de la foto adentro de la tarjeta, con el mismo movimiento (sin backdrop-filter).
+    - Contadores con `textContent` y `snap`, sin funciones que se llamen en cada cuadro. Rodillos de números: una tira con `overflow: hidden` y una máscara que suaviza los bordes.
 
 ---
 
