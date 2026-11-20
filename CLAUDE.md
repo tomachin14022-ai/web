@@ -6,7 +6,7 @@
 > - **En claude.ai:** creá un Proyecto "Valparaiso Motors", subí este archivo en "Conocimiento del proyecto" y pegá la sección 0 en "Instrucciones del proyecto". Subí también el logo (PNG negro y PNG blanco) y los dos PDF de guiones.
 > - **En Claude Code:** guardá este archivo como `CLAUDE.md` en la carpeta o repositorio del proyecto. Claude lo lee solo al arrancar cada sesión.
 >
-> Última actualización: 20/11/2026 (los datos del ORA 03 de la sección 3 ahora salen de la ficha técnica oficial, y la sección 6 suma el carrusel «Tu auto se carga como tu celular» del ORA 03, con sus lecciones y su versión animada: 8 videos cortos, interior negro; después, la portada nueva con el auto delante del reloj). Antes, 19/11/2026 (se sumaron cuatro reels a la sección 6: el de leads «¿Híbrido, eléctrico o enchufable?», con su lección sobre el cierre; el del asesor «3 preguntas antes de firmar», con un personaje serio que el dueño pidió; su versión 2, en la que el asesor explica el Eado Plus con rayos X; y «Ramiro y sus tres miedos», con el personaje en el estilo de la skill y un guion con historia, que el dueño pidió después. La sección 11 dice qué personajes van. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
+> Última actualización: 20/11/2026 (los datos del ORA 03 de la sección 3 ahora salen de la ficha técnica oficial, y la sección 6 suma el carrusel «Tu auto se carga como tu celular» del ORA 03, con sus lecciones y su versión animada: 8 videos cortos, interior negro; después, la portada con el auto delante del reloj, y al final la portada-gancho «¿Y si nunca más cargás nafta?» con el auto blanco y los 4 colores que pidió el dueño). Antes, 19/11/2026 (se sumaron cuatro reels a la sección 6: el de leads «¿Híbrido, eléctrico o enchufable?», con su lección sobre el cierre; el del asesor «3 preguntas antes de firmar», con un personaje serio que el dueño pidió; su versión 2, en la que el asesor explica el Eado Plus con rayos X; y «Ramiro y sus tres miedos», con el personaje en el estilo de la skill y un guion con historia, que el dueño pidió después. La sección 11 dice qué personajes van. Antes, 18/11/2026: se sumaron la sección 10, "De un viral a un sistema", con la plantilla «Elegí un lado»; los datos verificados de la CS55 Plus PHEV; las reglas para guiones de vendedor; y la sección 11, la skill cartoon-3d-short, que se usa como caja de herramientas: el dueño descartó el dibujo animado por informal). Antes, 02/11/2026: las reglas de noviembre (algo cada 0,3 s, fórmula de retención, motion design, subtítulos palabra por palabra y sonido real).
 
 ### En este repositorio
 - **Logo** (PNG con fondo transparente, solo letras, sin caja), en `valparaiso-motors/logo/`:
@@ -136,7 +136,11 @@ Reglas fijas:
 - **De serie:**
   - seguridad: frenado autónomo ante vehículos, peatones y ciclistas; 7 airbags (frontales, laterales, de cortina y central); cámara 360°; crucero adaptativo; aviso y asistente de mantenimiento de carril;
   - interior: pantalla de 10,25" y tablero digital de 10,25"; CarPlay y Android Auto inalámbricos; climatizador automático; tapizado de cuero; butaca del conductor eléctrica (6 posiciones); acceso sin llave; manejo con un solo pedal y regeneración ajustable.
-- Colores en la ficha: celeste (azul con techo blanco), blanco, negro, rojo y verde. **El dueño pidió mostrar solo Hamilton White, rojo y azul con techo blanco** (20/11/2026). La foto «celeste» de la ficha es la del azul con techo blanco.
+- **Colores:**
+  - La ficha (nov. 2025) muestra celeste, blanco, negro, rojo y verde oscuro.
+  - El sitio oficial (gwm.com.ar/modelos/ora, revisado el 20/11/2026) ofrece Azul (#032f42), Azul/Negro, Blanco, Blanco/Negro, Rojo (#a51f39) y Rojo/Negro. Tiene fotos de estudio de 4096 px con el mismo encuadre: `gwm.com.ar/ora3-azul.png`, `ora3-blanco.png`, `ora3-rojo.png` y sus versiones `-negro`. Los nombres de archivo salen del JS de la página.
+  - **El dueño pidió mostrar blanco, rojo, azul con techo blanco y verde claro** (20/11/2026, con fotos de sus unidades). El azul con techo blanco es **azul marino con techo, parantes y espejos blancos**, no el celeste de la ficha. El verde claro es un verde grisáceo pálido; en otros mercados GWM le dice «Pistachio Green» (verificar el nombre).
+  - Ni el azul con techo blanco ni el verde claro figuran en el sitio: verificar que estén disponibles antes de cada publicación.
 - **Garantía: 7 años o 150.000 km; batería, 8 años o 150.000 km** (lo que ocurra primero). Así se resolvió el "5 o 7 años según la fuente".
 - "5 plazas" no figura en la ficha: no usarlo.
 - Precio de lanzamiento USD 31.000 (bonificado 29.900). **Verificar.**
@@ -494,7 +498,7 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
   3. Almacenamiento: 858 L, con una línea que sale del portón y una barra como la de memoria del celular (282 L + 576 L). Abajo, largo, ancho y entre ejes.
   4. Seguridad: «Todo activado», con interruptores bordó. Una línea sale del frente y otra del espejo (cámara 360°).
   5. Por dentro: el tablero con «2 pantallas de 10,25"», las butacas de cuero y una lista de equipamiento.
-  6. Fondo de pantalla: los colores, como si eligieras el fondo del teléfono. Desde el 20/11 van solo Hamilton White, rojo y azul con techo blanco (pedido del dueño).
+  6. Fondo de pantalla: los colores, como si eligieras el fondo del teléfono. Desde el 20/11 van blanco, rojo, azul con techo blanco y verde claro (pedido del dueño).
   7. Salud de la batería: recién acá va el nombre del auto. Rayos X con líneas que salen de la batería y del motor, «8 AÑOS» y la garantía del auto.
   8. Chat con Valparaiso Motors: la foto del auto, «Comentá ORA», la barra de comentario con «ORA», el botón «Pedinos precio y financiación» y el logo.
 - **Técnica:**
@@ -517,7 +521,7 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
     3. 282 L y después 858 L, con la barra que se llena en dos partes.
     4. Los interruptores se prenden uno por uno y el radar manda ondas.
     5. La foto del interior se acerca hacia las pantallas.
-    6. El auto cambia de color detrás de una línea de luz (Hamilton White, rojo y azul con techo blanco) y el marco bordó viaja de tarjeta en tarjeta.
+    6. El auto cambia de color detrás de una línea de luz (blanco, rojo, azul con techo blanco y verde claro) y el marco bordó viaja de tarjeta en tarjeta.
     7. Una banda de energía recorre la batería y el 8 gira como un rodillo.
     8. El chat se escribe solo.
   - **Técnica:** un proyecto de HyperFrames con las 8 escenas una detrás de la otra (51 s), un solo render (1 min 34 s para los 51 s a 1080x1350, 30 fps) y ffmpeg corta cada placa. Todas las animaciones van con `fromTo` e `immediateRender: false`, y los estados iniciales con `gsap.set`, porque varias animaciones tocan la misma propiedad.
@@ -535,6 +539,18 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
     - Para agrandar el auto, la foto no alcanzaba abajo: se completó con un espejo desenfocado y oscuro, tapado por la tarjeta y la letra chica.
     - Con el auto delante del reloj asoman pedacitos de los números (el punto de abajo de los dos puntos, la punta del «3») que parecen una antena. Revisarlo con zoom en varios momentos, porque el fondo se mueve, y bajar el reloj hasta que no asome nada (quedó en top 214 px con letra de 300 px).
     - Un reflejo de luz sobre pintura oscura (el verde) parece niebla: se sacó.
+- **Portada v3, la que quedó (20/11/2026, «cambiá la placa por completo, que sea un hook, con el auto blanco»):**
+  - La pantalla bloqueada no era un gancho: lo más grande era el reloj. Ahora el gancho escrito es lo más grande: «¿Y SI NUNCA MÁS CARGÁS NAFTA?» en Anton de 136 px, con «NUNCA MÁS» en una placa #c42c46, sobre fondo oscuro.
+  - Debajo, el auto blanco (foto oficial de estudio) delante de una **batería de celular gigante, cargada**: adelanta la respuesta sin decirla («se carga como tu celular» recién aparece en la placa 2).
+  - Se probaron 3 portadas lado a lado antes de animar: batería gigante, estudio con luz y fondo bordó. Ganó la batería: es la que más frena el dedo y la que conecta con el resto del carrusel.
+  - Movimiento: una franja de luz recorre la batería, el rayo late, las luces del auto titilan dos veces y un brillo pasa por «NUNCA MÁS». El primer cuadro ya muestra todo.
+  - La foto del chat (placa 8) también pasó al auto blanco.
+  - **Lecciones:**
+    - Fotos alineadas del mismo auto en distintos colores: restándolas salen máscaras exactas. Azul menos azul/negro da el techo, los parantes y los espejos; blanco menos rojo da la pintura. Con eso se arma un bitono que no tiene foto (el techo del blanco sobre el azul) o un color claro (el blanco teñido con el tono de una foto real, sin tocar los brillos).
+    - Comparar siempre con la foto del dueño: el azul oficial se veía petróleo, y hubo que correrle el tono unos 13° hacia el azul marino.
+    - La patente de las fotos de estudio dice «ORA 03»: en las placas que van antes de la revelación del nombre, dejarla lisa (degradé de metal sacado de la misma patente, sin ruido, porque el ruido se ve como un pixelado).
+    - Sobre fondo oscuro, las ruedas del auto se pierden: un charco de luz suave en el piso las despega.
+    - En esta sesión, `rm` con comodines en rutas relativas lo bloquea el control de seguridad: usar carpetas nuevas para cada prueba en lugar de borrar.
 
 ---
 
