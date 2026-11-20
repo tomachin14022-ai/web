@@ -403,11 +403,12 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
      - recién ahí el nombre y el pedido.
    - **Ramiro:** cabeza tipo poroto con la cara color crema, suéter bordó sin logo (es un comprador). Se dibuja con `toon.ts` de la skill, al que se le sumaron el celular, el mate y la pistola de carga.
    - **Escenas:** la ruta de noche (Ramiro manejando: se lo ve por el vidrio y en un círculo), el salón, los rayos X, la pesadilla (empuja el auto cuesta arriba, con borde de nube), la casa de noche (enchufa el auto) y el mate sentado en una piedra al costado de la ruta.
-   - **Técnica:** `src/videos/ramiro/` del proyecto de Remotion. El render a 30 fps es de unos 1,5 s por cuadro.
+   - **Técnica:** `src/videos/ramiro/` del proyecto de Remotion. El render a 30 fps tardó 45 minutos para 42 s. Si se corrige un solo plano, se renderiza ese tramo (`ramiro-render.mjs salida.mp4 desde-hasta`) y se empalma con ffmpeg, sin rehacer todo.
    - **Lecciones:**
      - La tapa redonda que se ve en la foto de costado es la de nafta. La de carga está del otro lado, así que la escena de carga usa la foto oficial del lado izquierdo. Esa foto traía una patente china, que se tapó.
      - El cuadro vertical es angosto: a 7 m, con fov 36, se ven 2,6 m de ancho. Para mostrar al personaje con el auto, fov 40 y el personaje delante del auto.
      - El piso de un lugar no puede meterse en otro: el asfalto de la ruta asomaba debajo del salón como una mancha negra.
+     - En los planos bajos de la ruta (la pesadilla y el mate), la línea del carril volvió a pasar por los subtítulos: se vio recién a tamaño real. Revisar cada plano de la ruta a tamaño real, no solo en la hoja chica.
      - Los faros a la noche van chicos (0,5 m); más grandes parecen pelotas.
      - Un objeto grande en pantalla (el celular) no puede tapar la cara: el personaje va en el tercio izquierdo.
      - Para la regla de 0,3 s con un personaje: caras y gestos atados a palabras, números que bajan de a uno (batería, mate) y avisos que titilan.
