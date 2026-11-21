@@ -139,7 +139,7 @@ Reglas fijas:
 - **Colores:**
   - La ficha (nov. 2025) muestra celeste, blanco, negro, rojo y verde oscuro.
   - El sitio oficial (gwm.com.ar/modelos/ora, revisado el 20/11/2026) ofrece Azul (#032f42), Azul/Negro, Blanco, Blanco/Negro, Rojo (#a51f39) y Rojo/Negro. Tiene fotos de estudio de 4096 px con el mismo encuadre: `gwm.com.ar/ora3-azul.png`, `ora3-blanco.png`, `ora3-rojo.png` y sus versiones `-negro`. Los nombres de archivo salen del JS de la página.
-  - **El dueño pidió mostrar blanco, rojo, azul con techo blanco y verde claro** (20/11/2026, con fotos de sus unidades). El azul con techo blanco es **azul marino con techo, parantes y espejos blancos**, no el celeste de la ficha. El verde claro es un verde grisáceo pálido; en otros mercados GWM le dice «Pistachio Green» (verificar el nombre).
+  - **El dueño pidió mostrar blanco, rojo, azul con techo blanco y verde claro** (20/11/2026, con fotos de sus unidades). El azul con techo blanco es **azul marino con techo, parantes y espejos blancos**, no el celeste de la ficha. El verde claro es un verde grisáceo pálido; en otros mercados GWM le dice «Pistachio Green» (verificar el nombre). **Como el dueño no sabe cómo se llama, va sin nombre** (21/11/2026): en la placa de colores solo su tarjeta y su punto de color, y en la descripción «Cuatro colores para elegir».
   - Ni el azul con techo blanco ni el verde claro figuran en el sitio: verificar que estén disponibles antes de cada publicación.
 - **Garantía: 7 años o 150.000 km; batería, 8 años o 150.000 km** (lo que ocurra primero). Así se resolvió el "5 o 7 años según la fuente".
 - "5 plazas" no figura en la ficha: no usarlo.
@@ -498,7 +498,7 @@ Sale de un problema concreto: el gancho funciona, pero después la gente se va (
   3. Almacenamiento: 858 L, con una línea que sale del portón y una barra como la de memoria del celular (282 L + 576 L). Abajo, largo, ancho y entre ejes.
   4. Seguridad: «Todo activado», con interruptores bordó. Una línea sale del frente y otra del espejo (cámara 360°).
   5. Por dentro: el tablero con «2 pantallas de 10,25"», las butacas de cuero y una lista de equipamiento.
-  6. Fondo de pantalla: los colores, como si eligieras el fondo del teléfono. Desde el 20/11 van blanco, rojo, azul con techo blanco y verde claro (pedido del dueño).
+  6. Fondo de pantalla: los colores, como si eligieras el fondo del teléfono. Desde el 20/11 van blanco, rojo, azul con techo blanco y verde claro (pedido del dueño); el verde, sin nombre (21/11). El nombre de cada color va centrado, con su punto adelante.
   7. Salud de la batería: recién acá va el nombre del auto. Rayos X con líneas que salen de la batería y del motor, «8 AÑOS» y la garantía del auto.
   8. Chat con Valparaiso Motors: la foto del auto, «Comentá ORA», la barra de comentario con «ORA», el botón «Pedinos precio y financiación» y el logo.
 - **Técnica:**
