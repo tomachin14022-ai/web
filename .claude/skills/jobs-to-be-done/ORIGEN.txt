@@ -1,0 +1,1 @@
+origen: https://github.com/wondelai/skills (jobs-to-be-done) @ c376781 — licencia: LICENSE

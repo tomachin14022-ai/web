@@ -1,0 +1,1 @@
+origen: https://github.com/wondelai/skills (lean-startup) @ c376781 — licencia: LICENSE

@@ -1,0 +1,1 @@
+origen: https://github.com/refoundai/lenny-skills (skills/measuring-pmf) @ 13598cc — licencia: LICENSE

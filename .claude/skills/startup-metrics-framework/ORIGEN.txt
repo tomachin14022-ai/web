@@ -1,0 +1,1 @@
+origen: https://github.com/wshobson/agents (plugins/startup-business-analyst/skills/startup-metrics-framework) @ 12bcec7 — licencia: LICENSE

@@ -1,0 +1,1 @@
+origen: https://github.com/coreyhaines31/marketingskills (skills/pricing) @ 5b2b400 — licencia: LICENSE
