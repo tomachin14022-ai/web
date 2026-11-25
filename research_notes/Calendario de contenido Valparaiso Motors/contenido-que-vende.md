@@ -1,4 +1,4 @@
-# Contenido que vende para Valparaiso Motors: formatos, cómo rankean las plataformas, contenido local, mecánica de leads, producción y medición (2025–2026)
+# Contenido que vende para Valparaiso Motors: formatos, cómo rankean las plataformas, contenido local, mecánica de leads, producción, medición y la mezcla "entretener, educar, vender" (2025–2026)
 
 > Notas de investigación (25/11/2026). Alcance: cómo **ejecutar el contenido** (orgánico y promocionado) para que traiga leads y ventas, canal por canal, para armar un calendario completo. No repito lo que ya está en `reports/Plan de leads para Valparaiso Motors.md` ni en `research_notes/Plan de leads para Valparaiso Motors/` (George Saliba, Andrea Anderson, Russ Richardson, Clara Cecilia, Kia Italia, Kavak, Toyota Zento, ManyChat "solo el primer comentario", BrightLocal, Whitespark, anuncios a WhatsApp en 50 km, retargeting, CRM): cuando hace falta, los menciono con un puntero.
 >
@@ -434,3 +434,100 @@ Hay **un solo benchmark serio de concesionarias**: Emplifi, del tercer trimestre
 - No hay benchmarks de **Historias, Estados de WhatsApp ni vivos** de concesionarias.
 - Emplifi no publica datos de TikTok ni de YouTube para concesionarias. Las cifras de TikTok de otros proveedores (4–8 %) usan métricas distintas y no se pueden comparar.
 - No sé cuántos seguidores tiene hoy la cuenta de Instagram @valparaiso.motors, que hace falta para elegir la fila correcta de Socialinsider: pedírselo al dueño.
+
+## 7. "Entretené a las masas, educá a los interesados, vendele a los comprometidos": de dónde sale, qué evidencia hay sobre la mezcla por etapa y cómo se entretiene sin perder el tono de concesionario
+
+### Takeaway
+La frase es una **regla práctica de creadores, sin datos detrás**. La difunde sobre todo **Adley Kinsman (Viralish)**, que la usa sin decir que es suya y sin atribuírsela a nadie. Lo mismo vale para las proporciones populares:
+- el **70/20/10** salió de una regla de **presupuesto** de Coca-Cola de 2011–2012, no de redes;
+- "Jab, Jab, Jab, Right Hook" (Gary Vaynerchuk, 2013) es un principio **sin un número fijo**;
+- la relación "dar:pedir" de Hormozi sale de su observación de la TV y de Facebook.
+
+Lo que **sí tiene datos** es más general:
+- Binet y Field (IPA): ~60 % marca y ~40 % activación, como pauta que varía según el contexto;
+- Ehrenberg-Bass y el B2B Institute: en B2B solo ~5 % de los compradores está en el mercado en un momento dado;
+- la encuesta de Sprout (2025): el consumidor pide contenido **auténtico y entretenido**, y un tercio cree que subirse a tendencias da vergüenza.
+
+En concesionarias, **no hay ninguna prueba de que el contenido de entretenimiento traiga leads por sí solo**: Mohawk y los posts virales de Emplifi tienen vistas, no ventas. La versión que conviene a Valparaiso es **"entretener con el auto y con información"**, y que cada semana tenga piezas de las tres etapas, con promoción paga en Córdoba sobre todo para educar y vender.
+
+### Cited Findings
+**De dónde sale la frase**
+- Adley Kinsman (fundadora de Viralish) la dice en el pódcast de Russell Brunson (episodio 25), mientras asesora a una clienta: "¿cómo podés entretener a las masas, después educar a los interesados y venderles a los comprometidos?". **No dice que la inventó ni se la atribuye a nadie.**
+  - En el mismo episodio, recomienda que **~50 % del contenido sea de arriba del embudo**, sin dar el reparto del resto;
+  - fija como meta **75 % de retención en los primeros 6 s** (90 % ideal);
+  - dice que en 30 días sacó más de **100 millones de vistas con Reels de prueba**.
+
+  Son cifras suyas, de creadora y no de un negocio de autos. — [Transcripción del pódcast](https://podcasttranscript.ai/library/the-queen-of-viral-content-adley-kinsman-breaks); [Russell Brunson Show, ep. 25](https://pod.wave.co/podcast/the-russell-brunson-show/the-queen-of-viral-content-adley-kinsman-breaks-it-all-down-marketing-ep-25-c17df721) **[solo resumen]**
+- La frase aparece además como título de un episodio del pódcast *Creator Unplugged* y en publicaciones de TikTok que la ubican en la conferencia "LevelUp 2026". Un post de LinkedIn le asigna **50 % arriba, 40 % al medio y 10 % abajo del embudo**, pero es la opinión de una persona, sin datos. — [Apple Podcasts: Creator Unplugged](https://podcasts.apple.com/my/podcast/creator-unplugged/id1896912377); [TikTok: Adley Kinsman](https://www.tiktok.com/discover/adley-kinsman); [Media Maven](https://www.mediamavenandmore.com/youtube-paid-me-700-instagram-paid-me-pennies/) **[solo resumen]**
+- No encontré ninguna fuente académica ni estudio independiente sobre la frase. (Es una conclusión de la búsqueda, no la afirmación de una fuente.)
+
+**Las proporciones populares y qué respaldo tienen**
+
+| Regla | Origen | ¿Hay datos? | Fuente |
+|---|---|---|---|
+| **70/20/10** | Jonathan Mildenhall, Coca-Cola, "Content 2020" (2011–2012): **70 % del presupuesto a lo probado, 20 % a innovar sobre lo que funciona y 10 % a ideas de alto riesgo**. La versión de redes (70 % valor, 20 % contenido de terceros, 10 % promoción) es una adaptación posterior de blogs | **No**: es una regla de reparto de inversión, no un estudio de redes | [Content Marketing Institute, 2012](https://contentmarketinginstitute.com/2012/01/coca-cola-content-marketing-20-20/) **[viejo]**; [Smart Insights](https://www.smartinsights.com/content-management/content-marketing-strategy/coke-case-study-content-marketing/) **[solo resumen]** |
+| **"Jab, Jab, Jab, Right Hook"** | Libro de Gary Vaynerchuk de fines de 2013: "dar, dar, dar y después pedir", con contenido nativo de cada plataforma. El propio autor aclaró que dar no te asegura el derecho a pedir. La regla de "3 a 5 golpes por cada gancho" **no está en el libro**: viene de terceros | **No**: es un principio, no un número | [Gary Vaynerchuk](https://garyvaynerchuk.com/the-one-thing-i-didnt-clarify-enough-in-jab-jab-jab-right-hook/); [Inc.](https://www.inc.com/inc-masters/gary-vaynerchuk-at-his-best-jab-jab-jab-right-hook.html) **[viejo / solo resumen]** |
+| **Dar:pedir de Hormozi** | *$100M Leads*: "dar hasta que te pidan". Compara la TV, con **~3,5 de contenido por cada pedido**, y el feed de Facebook, con **~4 posts por cada anuncio**. Un resumen del libro habla de un mínimo de 3:1, y en un episodio de pódcast de 2025 Hormozi menciona **98 % de valor y 2 % de pedidos** para creadores | **No**: es observación del autor | [Goodreads (citas del libro)](https://www.goodreads.com/work/quotes/170084407); [Margin Notes](https://margin-notes-600.pages.dev/books/100m-leads/ch-7); [Shortform, ep. 892](https://www.shortform.com/podcast/episode/the-game-w-alex-hormozi-2025-05-23-episode-summary-give-more-ask-less-ep-892) **[solo resumen]** |
+| **60/40 marca y activación** | Les Binet y Peter Field, con la base de datos de efectividad del IPA: el óptimo es "algo más de 60 %" en construir marca y "algo menos de 40 %" en activación, como **pauta que varía según la categoría y la etapa**. En octubre de 2025, el IPA publicó *Effectiveness in Context*, sobre cómo cambia la mezcla según el tamaño de la marca, la madurez de la categoría y el precio. Byron Sharp lo criticó porque se basa en casos presentados a premios | **Sí, con límites**: casos del IPA, sobre todo marcas grandes y presupuesto de medios, no contenido orgánico | [IPA](https://ipa.co.uk/initiatives/effworks/effworks-ft-reports/eggs-in-two-baskets); [IPA: Binet y Field](https://ipa.co.uk/knowledge/effectiveness-research-analysis/les-binet-peter-field) **[solo resumen]** |
+| **95:5** | Ehrenberg-Bass y el B2B Institute de LinkedIn (2021): en B2B, ~5 % de los compradores está en el mercado en un momento dado; por eso hay que hablarles sobre todo a los que no van a comprar hoy. El propio B2B Institute dice que es una advertencia, no una fórmula de presupuesto | **Sí, para B2B**; no encontré la versión para autos | [LinkedIn B2B Institute](https://business.linkedin.com/advertise/resources/b2b-institute/b2b-research/trends/95-5-rule); [Marketing Week](https://www.marketingweek.com/peter-weinberg-jon-lombardo-95-5-rule) **[solo resumen]** |
+
+**Qué pide el consumidor (encuestas, no ventas)**
+- **Sprout Social Index 2025** (encuesta en línea de Glimpse para Sprout, del 13 al 27/09/2024, a 4.044 consumidores que siguen al menos 5 marcas, más 900 profesionales y 322 líderes de marketing):
+  - los consumidores ponen **la autenticidad y el valor de entretenimiento** arriba de todo lo que quieren en el contenido de marcas;
+  - lo reactivo, la alta producción y **lo centrado en el producto** les importa bastante menos;
+  - cerca de la mitad dice que lo que distingue a sus marcas favoritas es el contenido original;
+  - piden menos mensajes "vendedores" y "corporativos".
+
+  — [Sprout Social Index 2025](https://sproutsocial.com/insights/index/) **[solo resumen]**
+- **Tendencias** (misma encuesta):
+  - al **40 %** le parece bien que las marcas se suban a tendencias y al **33 % le da vergüenza**;
+  - el **27 %** cree que solo funciona si la marca entra en las primeras **24 a 48 horas**;
+  - cerca de 3 de cada 4 se pasan a la competencia si la marca no les responde en redes.
+
+  — [Marketing Dive](https://www.marketingdive.com/news/marketing-social-media-users-in-2025-heres-what-the-numbers-say/737519/)
+- En una encuesta Pulse de Sprout del segundo trimestre de 2025, lo más pedido a las marcas fue **interactuar con la audiencia (58 %)** y **publicar series de contenido original (57 %)**. — [Sprout Social](https://sproutsocial.com/insights/index/) **[solo resumen]**
+
+**Entretenimiento y leads en concesionarias**
+- **Mohawk Chevrolet:** millones de vistas con una serie de humor. El objetivo declarado era reconocimiento, "no tanto ventas puntuales", y no hay ventas publicadas (sección 1).
+- **Emplifi, tercer trimestre de 2026:** los posts con más interacción de las concesionarias son clips virales y de superautos, sin datos de leads (sección 1).
+- **MG Chile:** los vivos mezclan las tres etapas en una sola pieza (mostrar, explicar, manejar y que el vendedor contacte), con 30 ventas en 8 semanas según la marca (sección 1).
+- **Saliba:** creció con el "detrás de escena" de la concesionaria y medía con un número de llamadas (ver `marca-local-y-nacional.md`).
+- **Base de Valparaiso:** el reel educativo-viral de ~150 mil vistas, sin etapa de venta, trajo 0 leads (CLAUDE.md).
+
+### Inferences
+- **Cómo traducir la frase al embudo que ya usa el dueño (TOF/MOF/BOF del CLAUDE.md):**
+  - **Entretener = TOF.** Alcance y "envíos": juegos, desafíos, series, educativo animado que se manda.
+  - **Educar = MOF.** Comparativas, objeciones, recorridos explicados, posventa: los que guardan, comentan y preguntan.
+  - **Vender = BOF.** Unidad del día, cuota con CFT, vivo, entrega, "pedinos precio y financiación".
+
+  La frase solo agrega un orden y un recordatorio: **sin la etapa de venta, el entretenimiento no paga**, que es exactamente la lección del reel de 150 mil vistas.
+- **Mezcla propuesta** (inferencia, no un dato), sobre ~18–20 piezas de feed por mes más las Historias:
+
+  | Etapa | % de las piezas de feed | Dónde se distribuye | Pauta paga |
+  |---|---|---|---|
+  | **Entretener (TOF)** | ~40 % | Orgánico nacional y Reels de prueba para elegir el gancho | Poca: solo para "sembrar" público en Córdoba, y después retargeting de quienes la vieron (ver el plan) |
+  | **Educar (MOF)** | ~35 % | Orgánico + promoción en 50 km de las que mejor retienen | Media |
+  | **Vender (BOF)** | ~25 % de feed + **Historias y Estados de WhatsApp todos los días** + vivos | Orgánico para seguidores + **anuncios a WhatsApp en 50 km** | **La mayor parte** |
+
+  El 40/35/25 de las piezas no es el reparto del presupuesto. Como la cuenta es chica y local, y como el 60/40 de Binet y Field es de marcas grandes y de medios (el propio IPA dice que varía según el contexto), **la pauta paga se carga hacia educar y vender en Córdoba**. Lo de entretener se gana sobre todo en orgánico.
+- **La relación dar:pedir se cumple sola** si las Historias y los Estados llevan la venta diaria y el feed respeta ~3 piezas de valor por cada pieza de venta (el ~3:1 a 4:1 de Hormozi). Igual, **cada pieza de valor cierra con el único CTA comercial chico** (palabra clave), porque el reel sin paso siguiente es lo que falló.
+- **"Entretener" sin romper el tono profesional:** la regla es que **el auto, la compra o la vida del espectador estén en el centro**, que siempre se aprenda algo, y nada de bailes ni bromas sobre precios, clientes o los autos de la casa (riesgo de reputación, ver `marca-local-y-nacional.md`). Ideas que encajan con las reglas del CLAUDE.md:
+
+  | Tipo | Ejemplo para Valparaiso | Qué aprende el espectador | Cuidado |
+  |---|---|---|---|
+  | **Juego de adivinar** | "¿Adiviná el 0 a 100?" (ORA 05 HEV, idea MOF n.º 9); "¿Cuántas valijas entran?"; "¿Cuántos km hace con lo que cuesta un café?" | Prestaciones, baúl, costo por km | El dato con su fuente; la cuenta propia dice "estimado" o "ejemplo" |
+  | **Desafío o prueba** | "Ida y vuelta a Carlos Paz sin nafta" (Eado o ORA 03); "¿Entra en una cochera de edificio de Nueva Córdoba?"; "Un día entero sin nafta" (idea MOF n.º 17) | Autonomía real, medidas, uso diario | Números medidos ese día; sin maniobras peligrosas (idea MOF n.º 15) |
+  | **Serie fija con nombre** | "Llegó al salón" (unidades nuevas); "El vendedor responde" (comentarios); "Mitos del auto chino" (posventa, repuestos, reventa) | Stock, objeciones, confianza | Los mismos días y la misma placa de apertura; Sprout: los consumidores piden series originales |
+  | **Detrás de escena** | Preparar una entrega; el camión que trae las unidades; el taller y los repuestos | Que hay posventa real en Córdoba | Clientes solo con autorización firmada (art. 53 del Código Civil y Comercial) |
+  | **POV** | "POV: es tu primera vez cargando un enchufable en casa"; "POV: venís a buscar tu 0 km" (con permiso) | Cómo es usarlo y cómo es comprar | Sin actuar de cliente ni simular testimonios |
+  | **Personalidad del vendedor** | Siempre las mismas caras, cada una con su especialidad: el que sabe de eléctricos, la que explica la financiación | Confianza en una persona | "Soy [nombre], vendedor de Valparaiso Motors"; regla escrita de qué no se dice |
+  | **"Vs" lúdico** | "Este sedán es más largo que esta SUV" (Eado vs Deepal, idea MOF n.º 10); "Enchufe o nafta" con dos vendedores (idea n.º 2) | Comparar antes de decidir | Sin nombrar otras marcas en lo propio (regla del dueño) |
+  | **Tendencia adaptada** | Un formato o audio en tendencia aplicado al auto, publicado en **24–48 h** | Lo que el formato permita | Un tercio de los consumidores siente vergüenza ajena (Sprout): solo si encaja con el tono y suma información |
+
+### Gaps
+- **Quién acuñó la frase:** no encontré el primer uso con fecha. Kinsman es quien más la difunde, pero no dice que sea suya.
+- **No hay datos de la mezcla óptima por etapa en contenido orgánico**, ni en general ni en concesionarias. Las proporciones 70/20/10, 50/40/10, 3:1 y 98:2 son opiniones o reglas de presupuesto.
+- No abrí el informe *Effectiveness in Context* (IPA, 2025), así que no sé qué reparto recomienda para marcas chicas o para el comercio local.
+- No encontré la versión de **"95:5" para autos** (qué parte de los cordobeses está "en el mercado" en un mes dado). Se podría estimar con patentamientos y transferencias de Córdoba contra el parque, pero esa cuenta no está hecha.
+- No hay **ninguna prueba de que el contenido de entretenimiento de una concesionaria haya traído leads medidos**: solo vistas (Mohawk, Emplifi) o casos que mezclan las tres etapas (MG Chile, Saliba).
+- No pude abrir el PDF completo del Sprout Index 2025 (pesa demasiado), así que los porcentajes de "autenticidad" y "entretenimiento" como rasgos preferidos no están confirmados.
