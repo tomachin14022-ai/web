@@ -36,12 +36,13 @@ DATOS_INICIO = [
     (None, "Vendedor en cámara 1", "COMPLETAR", None, "Especialidad sugerida: eléctricos e híbridos."),
     (None, "Vendedor en cámara 2", "COMPLETAR", None, "Especialidad sugerida: financiación y usados."),
     (None, "Responsable de primer contacto", "COMPLETAR", None, "Responde WhatsApp y mensajes en menos de 5 minutos en horario."),
+    ("Capacidad", "Horas por semana de la persona de contenido", 25, "0", "La hoja Carga compara las horas de cada semana con este número."),
     (None, "Seguidores de Instagram hoy", None, "#,##0", "Para elegir la referencia de vistas por reel (Socialinsider: ~580 con 1.000–5.000 seguidores; ~1.000 con 5.000–10.000)."),
 ]
 
 COMO_SE_USA = [
     "Escribí en la celda amarilla 'Día D' la fecha real del día abierto, y completá la dirección nueva, el WhatsApp y los nombres. Las fechas de Calendario, Tareas y Anuncios se recalculan solas.",
-    "Cada lunes, en Calendario filtrá la columna 'Semana del' por la semana que empieza, y en Tareas mirá las fechas de los próximos 7 días. Eso es todo lo que hay que hacer en la semana.",
+    "Cada lunes, en Calendario filtrá la columna 'Semana del' por la semana que empieza, y en Tareas mirá las fechas de los próximos 7 días. Para saber qué se graba el martes, filtrá 'Se graba o se arma' por esa fecha. Mirá también la hoja Carga: si la semana se pasa de horas, se graba antes o se pide ayuda.",
     "Cada pieza tiene un guion (columna 'Guion'). En la hoja Guiones está el resumen: para quién es, la idea en una frase, el gancho, las tomas, la descripción para pegar, los hashtags, el comentario fijado y el código. En la hoja Escenas está escena por escena: qué se dice, qué se ve, el texto en pantalla y el sonido.",
     "Todo se escribe para que lo entienda alguien de 15 años: frases cortas, palabras de todos los días y cada cosa que se dice, se ve. Antes de grabar y antes de publicar, pasá la prueba de la hoja 'Cómo escribir'.",
     "Columna 'Objetivo': Entretener a las masas (alcance), Educar a los interesados (comparar y sacar dudas) y Vender a los comprometidos (precio, cuota, turno). Cada semana tiene de las tres; las historias, los Estados y los vivos venden todos los días.",
@@ -78,9 +79,12 @@ HOJAS = [
     ("Escenas", "Cada guion escena por escena: qué se dice, qué se ve, el texto en pantalla y el sonido. Es lo que usa el que graba y edita."),
     ("Público", "A quién le hablamos: 7 públicos con lo que quieren, lo que los frena, los modelos y las piezas para cada uno."),
     ("Cómo escribir", "La prueba de los 15 años, el diccionario de palabras difíciles y las reglas de ritmo y visuales."),
-    ("Códigos", "Un código por pieza o canal para saber qué trajo cada consulta. Se cargan los resultados acá."),
+    ("Códigos", "Un código por pieza o canal para saber qué trajo cada consulta. Se cargan los resultados y se suman solos por objetivo."),
     ("Anuncios", "Campañas de Meta y Google con fechas, público, presupuesto diario y regla de corte."),
-    ("Evento", "Minuto a minuto de la noche VIP y del día abierto: quién hace qué y qué se graba."),
+    ("Evento", "Minuto a minuto de la noche VIP y del día abierto, y el presupuesto con sus cotizaciones."),
+    ("Carga", "Horas de cada semana de la persona de contenido contra su capacidad. En rojo, la semana que se pasa."),
+    ("Reserva", "Piezas para tener grabadas por si una del Calendario no puede salir."),
+    ("Pruebas", "Las 6 pruebas A/B del trimestre: qué se compara, cómo y cómo se mide."),
     ("Tablero", "Números de cada semana. Las tasas y los costos se calculan solos."),
     ("Fuentes", "La evidencia detrás de cada decisión, con su link y qué tan firme es."),
 ]
@@ -147,8 +151,8 @@ reel("S03-1", ("F", d(2026, 12, 15)), E1, "Educar", "¿Con el aguinaldo te alcan
 reel("S04-1", ("F", d(2026, 12, 22)), E4, "Vender", "Entregas antes de Navidad", "G19", "Clientes con autorización + vendedor",
      "ESTA SEMANA SE FUERON [N] AUTOS A [BARRIOS]", "ENTREGA", serie="Entregas",
      materiales="Autorizaciones de imagen firmadas. Número real de entregas.", evidencia="F23, F15")
-reel("S04-2", ("F", d(2026, 12, 24)), E4, "Entretener", "Felices fiestas desde el nuevo local", "G30", "Todo el equipo",
-     "FELICES FIESTAS DESDE EL NUEVO VALPARAISO", "", hora="12:00", horas=1.0, materiales="Horario de fiestas.")
+reel("S04-2", ("F", d(2026, 12, 23)), E4, "Entretener", "Felices fiestas desde el nuevo local", "G30", "Todo el equipo",
+     "FELICES FIESTAS DESDE EL NUEVO VALPARAISO", "", hora="19:30", horas=1.0, materiales="Horario de fiestas. Se graba en el armado del D-1 (T50).")
 
 # --- Semana del 28/12 (Año Nuevo)
 reel("S05-1", ("F", d(2026, 12, 28)), E4, "Entretener", "¿Entra todo para las vacaciones?", "G14", "Vendedor 2",
@@ -265,8 +269,8 @@ carrusel("S11-2", ("F", d(2027, 2, 10)), E6, "Educar", "¿Entendés el papel que
          materiales="Modelo de cotización aprobado por el abogado (sin datos de clientes).")
 reel("S11-1", ("F", d(2027, 2, 10)), E6, "Educar", "¿Auto chino? Repuestos y tiempos reales de un service", "G10", "Jefe de taller",
      "¿AUTO CHINO? ¿Y SI NECESITO UN REPUESTO?", "TALLER", serie="Mitos del auto chino", materiales="Tiempos reales de posventa de los últimos 3 meses.")
-reel("S11-3", ("F", d(2027, 2, 11)), E6, "Vender", "Llegó al salón: [unidad Mitsubishi con stock]", "G02", "Vendedor 2",
-     "[BENEFICIO PARA EL QUE MIRA]", "STOCK", serie="Llegó al salón", publico="Familia; Campo y pyme", materiales=CONF + "Datos de la ficha oficial con su fuente.")
+reel("S11-3", ("F", d(2027, 2, 11)), E6, "Vender", "Llegó al salón: la camioneta para el campo (Mitsubishi L200)", "G02", "Vendedor 2",
+     "¿TU CAMIONETA AGUANTA LO QUE LE CARGÁS?", "L200", serie="Llegó al salón", publico="Campo y pyme", materiales=CONF + "Datos de la ficha oficial de la L200 en stock (carga, tracción) con su fuente. Si no hay L200, la Poer.")
 reel("S11-4", ("F", d(2027, 2, 12)), E6, "Entretener", "Adiviná qué auto es por un detalle", "G04", "Vendedor 2",
      "¿QUÉ AUTO ES? ADIVINÁ POR EL DETALLE", "JUEGO", serie="Adiviná", materiales="5 primeros planos (llanta, faro, volante, tapa de carga, insignia tapada).")
 
@@ -278,10 +282,12 @@ reel("S12-2", ("F", d(2027, 2, 16)), E6, "Educar", "Auto para la familia: lo que
      "SI LLEVÁS CHICOS AL COLE, MIRÁ ESTO ANTES DE ELEGIR", "FAMILIA", materiales="Butaca infantil con ISOFIX. Sin chicos en cámara salvo autorización de los padres.")
 carrusel("S12-3", ("F", d(2027, 2, 17)), E6, "Vender", "Placas de financiación: los 5 modelos con más stock", "ELEGÍ EL TUYO Y TE DECIMOS LA CUOTA", "CUOTA",
          guion="G13", materiales=CONF, evidencia="F17, F18")
-reel("S12-4", ("F", d(2027, 2, 18)), E6, "Vender", "Llegó al salón: [unidad con más stock de febrero]", "G02", "Vendedor 1",
-     "[BENEFICIO PARA EL QUE MIRA]", "STOCK", serie="Llegó al salón", publico="Según la unidad", materiales=CONF)
-reel("S12-5", ("F", d(2027, 2, 19)), E6, "Entretener", "Adiviná cuánto mide la pantalla", "G04", "Vendedor 2",
-     "¿CUÁNTO MIDE ESTA PANTALLA?", "JUEGO", serie="Adiviná", materiales="Medida oficial de la ficha (ej.: Eado Plus 13,2 pulgadas; H7 15,6 pulgadas, verificar).")
+reel("S12-4", ("F", d(2027, 2, 18)), E6, "Vender", "Para empresas: autos que hacen muchos km por día gastando menos (Eado Plus)", "G02", "Vendedor 1",
+     "¿TU EMPRESA TIENE AUTOS QUE HACEN 100 KM POR DÍA?", "EMPRESA", serie="Llegó al salón", publico="Campo y pyme; Muchos km por día",
+     materiales=CONF + "Cuenta estimada para una empresa (km por día × días × litros ahorrados × precio del litro), con 'estimado' en pantalla y la cuenta en la descripción. Confirmar si se factura a empresa.")
+reel("S12-5", ("F", d(2027, 2, 19)), E6, "Entretener", "Adiviná cuánto carga esta camioneta", "G04", "Vendedor 2",
+     "¿CUÁNTO CARGA ESTA CAMIONETA?", "JUEGO", serie="Adiviná", publico="Campo y pyme; Todos (las masas)",
+     materiales="Carga útil oficial de la Poer o la L200 en stock (verificar en la ficha). Bolsas o cajas para mostrarlo sin pasarse del peso.")
 pz("S12-6", ("F", d(2027, 2, 18)), E6, "Educar", "YouTube (+ 3 Shorts)", "Video largo", "Recorrido completo: Haval H7 4x4", "G21", "Contenido",
    aparece="Vendedor 1", gancho="Haval H7 4x4 en Córdoba: recorrido completo y consumo real", cta="Link de WhatsApp con YT-H7", hora="18:00", horas=4.0,
    metrica="Retención media · clics al link", evidencia="F09", serie="YouTube cada 2 semanas")
@@ -359,6 +365,7 @@ pz("INA-17", ("D", 0), E3, "Vender", "Estados de WhatsApp", "Estado de WhatsApp"
    gancho="Hoy abrimos de [hora] a [hora]", cta="Respondé este estado", hora="09:00", horas=0.2, metrica="Respuestas al estado", serie="Inauguración")
 reel("INA-18", ("D", 1), E4, "Entretener", "Así fue la inauguración", "G08", "Equipo e invitados con autorización",
      "[N] PERSONAS VINIERON A VER ESTO", "ABRIMOS", horas=2.0, materiales="Número real de check-ins. Clips de todo el equipo.", evidencia="F02")
+PIEZAS[-1]["domingo_ok"] = True  # el resumen sale al día siguiente del evento, aunque sea domingo
 reel("INA-19", ("D", 2), E4, "Educar", "Cómo llegar al nuevo local", "G09", "Sin personas",
      "DE [PUNTO CONOCIDO] AL NUEVO VALPARAISO EN [N] MINUTOS", "", horas=1.0, materiales="Recorrido grabado desde 2 puntos conocidos con el celular en soporte.")
 pz("INA-20", ("D", 2), E4, "Vender", "WhatsApp (difusión)", "Mensaje de WhatsApp", "Gracias + turno de prueba (a los que vinieron) y pedido de reseña (a los que compraron o hicieron service)", "G29", "Primer contacto",
@@ -371,7 +378,7 @@ carrusel("INA-21", ("D", 4), E4, "Entretener", "Así quedó: el nuevo local en 8
 SEMANAS = [d(2026, 11, 30) + dt.timedelta(days=7 * k) for k in range(13)]
 ETAPA_SEMANA = [E1, E1, E2, E4, E4, E5, E5, E5, E5, E6, E6, E6, E6]
 GOOGLE = [
-    ("Oferta", "Unidad con más stock con cuota y legal"),
+    ("Novedad", "Autos que llegaron (sin cuotas hasta que esté aprobado el legal)"),
     None,  # semana de la publicación de evento (INA-05)
     None,  # semana del día abierto (INA-10)
     ("Novedad", "Horario de fiestas en el local nuevo"),
@@ -396,7 +403,7 @@ for k, lunes in enumerate(SEMANAS):
        materiales="En la semana de la cuenta regresiva se suman las de G06." if k in (1, 2) else "")
     pz(f"S{n}-W", ("F", lunes), etapa, "Vender", "Estados de WhatsApp", "Estado de WhatsApp", "Estados de WhatsApp de la semana (1–3 por día hábil)", "G27", "Primer contacto",
        gancho="La unidad del día", cta="Respondé este estado", hora="09:00", horas=0.5, metrica="Respuestas al estado", serie="Todas las semanas",
-       materiales=CONF if k != 0 else CONF + "Primera semana: avisar en el estado que pueden guardar el número.")
+       materiales=CONF if k != 0 else "Primera semana: sin cuotas hasta que el abogado apruebe el legal (T13). Avisar en el estado que pueden guardar el número.")
     jueves = semana + dt.timedelta(days=3)
     if not (jueves.month == 12 and jueves.day in (24, 31)):
         pz(f"S{n}-ML", ("F", jueves), etapa, "Vender", "Mercado Libre", "Aviso de Mercado Libre",
@@ -435,19 +442,19 @@ tarea("T03", ("F", d(2026, 11, 27)), "Decisiones", "Verificar Changan y Bancor a
 tarea("T04", ("F", d(2026, 11, 27)), "Producción", "Primera sesión de grabación (para la semana del 30/11)",
       "Grabar en 2–3 h: G01 (patentar), G02 con el Eado Plus, G03 ep. 1 (obra), tomas de apoyo de 3 unidades con las tomas fijas del G02 y fotos para el carrusel del 2/12. 3 tomas de cada gancho; el resto una vez.",
       "Contenido", "Alta", "Sección 5")
-tarea("T05", ("F", d(2026, 11, 30)), "Equipo", "Nombrar responsables y hacer la reunión de arranque",
+tarea("T05", ("F", d(2026, 11, 26)), "Equipo", "Nombrar responsables y hacer la reunión de arranque",
       "1) Nombrar responsable de contenido, 2 vendedores en cámara y responsable de primer contacto; escribirlos en Inicio. 2) Reunión de 45 min con esta planilla y la guía: rutina semanal, reglas que no se negocian, qué no se dice en cámara (nada de bromas sobre precios, clientes ni autos de la casa).",
       "Dueño", "Alta", "Secciones 1 y 3")
-tarea("T06", ("F", d(2026, 11, 30)), "Medición", "Tomar la línea de base",
+tarea("T06", ("F", d(2026, 11, 27)), "Medición", "Tomar la línea de base",
       "Anotar hoy: seguidores de Instagram, TikTok y Facebook; alcance de los últimos 30 días; reseñas y calificación en Google; búsquedas y llamadas del Perfil de Google (últimos 3 meses); chats de WhatsApp por semana; tiempo de primera respuesta (hacer 3 consultas de prueba). Guardar captura de todo.",
       "Contenido", "Alta", "Sección 12", "F15")
-tarea("T07", ("F", d(2026, 11, 30)), "Producción", "Comprar el kit de grabación",
-      "2 micrófonos corbateros inalámbricos (para las piezas con dos vendedores), 1 luz LED con difusor, 1 estabilizador de mano, 1 trípode con soporte de celular, 1 batería externa, paño de limpieza de lente. Celular con cámara trasera en 4K a 30 o 60 fps.",
+tarea("T07", ("F", d(2026, 11, 26)), "Producción", "Comprar el kit de grabación",
+      "Antes de la primera grabación (27/11); si no llega, grabar igual con el celular cerca y en un lugar sin eco. 2 micrófonos corbateros inalámbricos (para las piezas con dos vendedores), 1 luz LED con difusor, 1 estabilizador de mano, 1 trípode con soporte de celular, 1 batería externa, paño de limpieza de lente. Celular con cámara trasera en 4K a 30 o 60 fps.",
       "Contenido", "Alta", "Sección 5")
-tarea("T08", ("F", d(2026, 12, 1)), "WhatsApp", "Configurar WhatsApp Business",
+tarea("T08", ("F", d(2026, 11, 27)), "WhatsApp", "Configurar WhatsApp Business",
       "1) Catálogo con al menos un producto por modelo (lo pide el agente de IA de WhatsApp). 2) Mensaje de bienvenida y de ausencia. 3) Respuestas rápidas: cuota (con legal), turno de prueba, usado, cómo llegar, horario. 4) Etiquetas: una por código y A/B/C. 5) Link corto con mensaje ya escrito para la bio (código BIO).",
       "Primer contacto", "Alta", "Sección 7")
-tarea("T09", ("F", d(2026, 12, 1)), "Medición", "Planilla de leads (o CRM)",
+tarea("T09", ("F", d(2026, 11, 27)), "Medición", "Planilla de leads (o CRM)",
       "Columnas: fecha y hora, canal, código, nombre, teléfono, modelo, cómo paga (contado, financiado, usado), plazo, letra A/B/C, vendedor, etapa (consulta, calificado, turno, prueba, venta), próximo paso y fecha. Regla: primera respuesta humana en menos de 5 minutos en horario.",
       "Primer contacto", "Alta", "Sección 7", "F32")
 tarea("T10", ("D", -18), "Decisiones", "Decidir beneficio directo o sorteo",
@@ -459,8 +466,8 @@ tarea("T11", ("D", -18), "Evento", "Cotizar el evento",
 tarea("T12", ("D", -18), "Google", "Preparar el Perfil de Google para la mudanza",
       "1) Confirmar quién es el propietario y que haya 2 administradores. 2) Exportar estadísticas y reseñas. 3) Buscar en Maps la dirección nueva y alrededores: si hay pines viejos, pedir que se marquen como cerrados o mudados. 4) Juntar pruebas para la reverificación: fotos del cartel instalado, interior y exterior, habilitación. 5) Mismo nombre, teléfono y web.",
       "Contenido", "Alta", "Sección 10", "F12, F13, F14")
-tarea("T13", ("D", -17), "Legal", "Revisión del abogado: legales de las piezas y página de condiciones",
-      "1) Modelo de legal para piezas con precio o cuota: en digital, cuotas y CFTEA dentro de la pieza (Res. 446/2025); precio final en pesos y precio sin impuestos nacionales (Res. 4/2025); frase 'PARA MÁS INFORMACIÓN…' al menos 5 s. 2) Leer la nota de Beccar Varela de julio de 2026 sobre la simplificación. 3) Página www.valparaisomotors.com.ar/condiciones con vigencia, CUIT, domicilio, condiciones y stock. 4) Plantilla de cotización con CFT.",
+tarea("T13", ("F", d(2026, 11, 27)), "Legal", "Revisión del abogado: legales de las piezas y página de condiciones",
+      "Urgente: hasta que esté aprobado, ninguna pieza muestra cuotas (los Estados y Google de la primera semana van sin números). 1) Modelo de legal para piezas con precio o cuota: en digital, cuotas y CFTEA dentro de la pieza (Res. 446/2025); precio final en pesos y precio sin impuestos nacionales (Res. 4/2025); frase 'PARA MÁS INFORMACIÓN…' al menos 5 s. 2) Leer la nota de Beccar Varela de julio de 2026 sobre la simplificación. 3) Página www.valparaisomotors.com.ar/condiciones con vigencia, CUIT, domicilio, condiciones y stock. 4) Plantilla de cotización con CFT.",
       "Abogado", "Alta", "Sección 3", "F17, F18")
 tarea("T14", ("D", -17), "Legal", "Autorización de imagen (entregas y evento)",
       "Texto con alcance (redes y anuncios pagos), plazo y que se puede revocar. Versión en papel (50 copias), casilla en el check-in con QR y versión para padres de menores. Si alguien la revoca, se baja la pieza.",
@@ -474,8 +481,8 @@ tarea("T16", ("D", -16), "Evento", "Pedir el permiso eventual al municipio",
 tarea("T17", ("D", -16), "Instagram", "Ordenar el perfil de Instagram",
       "Bio: 'Concesionario Oficial · Córdoba' (con las marcas confirmadas en T03) + qué resolvés + link de WhatsApp con código BIO. Destacadas: Financiación, Stock por marca, Entregas, Taller, Cómo llegar, Preguntas y Nuevo local. 3 fijados: financiación vigente, el reel que más chats trajo y 'cómo comprar en Valparaiso'.",
       "Contenido", "Media", "Sección 6")
-tarea("T18", ("D", -16), "Instagram", "Automatizar comentario → mensaje (ManyChat u otra)",
-      "Una palabra por pieza (hoja Códigos). El único mensaje permitido (Meta: uno por comentario, dentro de 7 días) trae 2 botones que abren WhatsApp con el código. Probarlo desde una cuenta que no sigue (le llega a Solicitudes). A la semana de publicada cada pieza, cambiar el fijado a 'escribinos por WhatsApp (link en la bio)'.",
+tarea("T18", ("F", d(2026, 11, 30)), "Instagram", "Automatizar comentario → mensaje (ManyChat u otra)",
+      "Lista antes del primer reel (1/12). Si no llega, la persona de contenido responde a mano cada comentario con el mismo mensaje y link durante esa semana. Una palabra por pieza (hoja Códigos). El único mensaje permitido (Meta: uno por comentario, dentro de 7 días) trae 2 botones que abren WhatsApp con el código. Probarlo desde una cuenta que no sigue (le llega a Solicitudes). A la semana de publicada cada pieza, cambiar el fijado a 'escribinos por WhatsApp (link en la bio)'.",
       "Contenido", "Alta", "Sección 7", "F05, F06")
 tarea("T19", ("D", -16), "Producción", "Plantillas de edición y música",
       "1) Plantilla en CapCut o Edits: subtítulos palabra por palabra en la letra de la marca (palabra activa en bordó), placa final con el CTA y el logo, legal de 5 s, guía de zonas seguras. 2) Elegir 10 temas de la Sound Collection de Meta (Instagram y Facebook) y 10 de la Commercial Music Library de TikTok y anotarlos en un archivo de créditos. Nada de canciones de moda. 3) Exportar siempre el video final sin marca de agua.",
@@ -530,7 +537,7 @@ for n, dias in enumerate((7, 14, 21, 30, 60), start=1):
           "Buscar en Google Maps 'concesionaria GWM Córdoba', 'Haval Córdoba', 'Changan Córdoba' y 'Mitsubishi Córdoba' desde 5 puntos de la ciudad y anotar la posición. Revisar si apareció un perfil duplicado en la dirección vieja o la nueva (si no tiene reseñas, pedir que se borre; si tiene, pedir la fusión a soporte).",
           "Contenido", "Media", "Sección 10", "F12, F14")
 tarea("T36", ("F", d(2026, 12, 28)), "Promo", "Confirmar por escrito la promo de apertura",
-      "Condición (de la importadora o de la casa), modelos, inicio 4/1, fin, stock. Subir las bases a la página de condiciones. Sin esto, la pieza S06-1 no sale.",
+      "Condición (de la importadora o de la casa), modelos, inicio 4/1, fin, stock. Subir las bases a la página de condiciones. Plan B si no hay condición: la pieza S06-1 pasa a 'Enero en el local nuevo: tasación de tu auto en el día y prueba de manejo con turno', sin descuento.",
       "Dueño", "Alta", "Sección 3", "F17")
 tarea("T37", ("F", d(2027, 1, 2)), "Promo", "Listas de precios de enero",
       "Antes del 4/1: actualizar placas, carrusel de financiación, avisos de Mercado Libre, respuestas rápidas de WhatsApp y el anuncio de retargeting.",
@@ -544,6 +551,12 @@ tarea("T39", ("F", d(2027, 1, 30)), "Decisiones", "Evaluar los 4 vivos del sába
 tarea("T40", ("F", d(2027, 1, 13)), "Importadora", "Cupo 2027: qué llega y cuándo",
       "Preguntar a la importadora qué unidades del cupo 2027 llegan a Córdoba y cuándo. Si llegan en febrero, preparar la pieza 'Llegó al salón' y la publicación de Google de la semana del 1/2.",
       "Dueño", "Media", "", "F38")
+tarea("T50", ("D", -12), "Producción", "Grabar por adelantado las piezas de la semana del Día D",
+      "La semana del Día D la persona de contenido tiene unas 20 horas solo de piezas, más el evento. Grabar y editar antes: el taller nuevo (INA-07), el aguinaldo (S03-1) y la prueba de manejo (INA-11). Dejar listas las placas de la cuenta regresiva. Esa semana no hay grabación de martes: 'Cómo llegar' (INA-19) y el saludo de fin de año (S04-2) se graban en el armado del D-1, con el local listo y todo el equipo. El dueño aprueba las piezas de esa semana el jueves (D-2), no el viernes de la noche VIP.",
+      "Contenido", "Alta", "Sección 9")
+tarea("T51", ("D", -15), "Evento", "Contratar foto y video para la noche VIP y el día abierto",
+      "Un fotógrafo o videógrafo externo para D-1 y D, así la persona de contenido maneja las historias y el vivo. Pedirle los clips cortos que necesita el resumen (INA-18) y la foto oficial para prensa.",
+      "Dueño", "Alta", "Sección 9", "F31")
 tarea("T41", ("D", 30), "Medición", "Revisión de 30 días de la inauguración",
       "Tablero del evento: check-ins, leads A/B, pruebas de manejo, ventas con código INAUGURACION, reseñas nuevas, búsquedas por nombre (Perfil de Google), posición en el mapa y notas de prensa, contra la línea de base (T06).",
       "Dueño", "Alta", "Sección 12")
@@ -655,7 +668,8 @@ CODIGOS = [
     ("H6", "Stock del Haval H6 PRO HEV", "S02-2", "Hola, vengo del video H6. Quiero precio y financiación."),
     ("ORA05", "Stock del ORA 05 HEV", "S06-4", "Hola, vengo del video ORA05. Quiero precio y financiación."),
     ("ORA03", "Stock del ORA 03", "S09-4", "Hola, vengo del video ORA03. Quiero precio y financiación."),
-    ("STOCK", "Otras unidades del 'Llegó al salón'", "S11-3, S12-4", "Hola, vengo del video STOCK. Quiero precio y financiación."),
+    ("L200", "Camioneta para el campo", "S11-3", "Hola, vengo del video L200. Quiero precio y financiación."),
+    ("EMPRESA", "Autos para empresas que hacen muchos km", "S12-4", "Hola, vengo del video EMPRESA. Quiero precio y financiación para mi empresa."),
     ("TALLER", "Taller, posventa y mitos del auto chino", "S02-1, INA-07, S10-5, S11-1", "Hola, vengo del video TALLER. Quiero precio y financiación."),
     ("AGUINALDO", "El aguinaldo como anticipo", "S03-1", "Hola, vengo del video AGUINALDO. Quiero precio y financiación."),
     ("ENTREGA", "Entregas y detrás de escena", "S04-1, S07-4, S07-5, S10-4, S13-4", "Hola, vengo del video ENTREGA. Quiero precio y financiación."),
@@ -887,4 +901,41 @@ FUENTES += [
     ("F49", "Explicar cómo se compra", "Una vendedora con ~480 mil seguidores mezcla entretenimiento con explicaciones del proceso de compra, los gastos y qué se negocia; le llegan compradores de otros estados (sin totales).", "CBT News, 19/11/2026", "https://cbtnews.com/used-car-week-2026-andrea-anderson", "Caso autorreportado"),
     ("F50", "Gastos además del precio", "Hay reclamos y un fallo judicial en la Argentina por flete, preentrega y patentamiento cobrados de más.", "Examedia; Unión de Consumidores (la nota ya no está online)", "https://examedia.com.ar/portada/post/88108648", "Prensa (sin fecha visible)"),
 ]
+
+# ---------------------------------------------------------------- carga de trabajo
+CARGA_FIJA = 5.0  # planificación 1 h + escucha 0,5 h + grabación 3 h + tablero 0,5 h
+CARGA_TAREAS = {d(2026, 11, 30): 8, d(2026, 12, 7): 9, d(2026, 12, 14): 6, d(2026, 12, 21): 4, d(2026, 12, 28): 2}  # 7/12 incluye 3 h de grabar por adelantado (T50)
+CARGA_FIJA_SEMANA = {d(2026, 12, 14): 2.0}  # la semana del Día D no hay grabación de martes: se adelantó (T50)
+
+# ---------------------------------------------------------------- banco de reserva
+RESERVA = [
+    ("G23", "Soy vendedor: haceme estas 3 preguntas", "Educar", "Falta la confirmación de un precio o una promo", "Cualquier martes de diciembre"),
+    ("G31", "¿Cuánto dura la batería?", "Educar", "No llegó la unidad del 'Llegó al salón'", "Cualquier martes de diciembre"),
+    ("G34", "Antes de salir a la ruta", "Educar", "Una semana sin unidades nuevas", "Semana del 7/12"),
+    ("G35", "Carrusel: las 5 preguntas del vendedor", "Educar", "Falta un carrusel", "Ya está escrito: solo fotos"),
+    ("G04", "Adiviná (un episodio extra)", "Entretener", "Se cae una pieza de Entretener", "Cualquier martes"),
+    ("G18", "El vendedor responde", "Educar", "Una pregunta se repite mucho en la escucha del lunes", "La misma semana"),
+]
+
+# ---------------------------------------------------------------- pruebas
+PRUEBAS = [
+    ("P1", "8/12 a 18/12", "Gancho A contra gancho B", "Dos reels de prueba con el mismo video y distinto gancho (S02-2 o INA-07)", "El gancho que habla de la vida del que mira retiene más que el que habla del auto", "Tasa de salto a 3 s"),
+    ("P2", "Enero", "Nombre del auto al principio o al final", "Dos versiones de un 'Llegó al salón' como reels de prueba", "Choca la regla del dueño (nombre tarde) con Meta y Toluna (marca en los primeros 5 s)", "Retención al final y chats con código"),
+    ("P3", "Enero", "Palabra clave en la voz o solo en el fijado", "Dos reels de Educar con y sin la palabra dicha", "Decirla trae más chats sin bajar el alcance", "Chats con código ÷ alcance"),
+    ("P4", "Enero y febrero", "Horario 12:30 contra 19:30", "Alternar el horario del reel de los jueves", "A la noche rinde más (estudios globales, sin dato argentino)", "Alcance en las primeras 24 h"),
+    ("P5", "11/1 a 7/2", "WhatsApp contra formulario", "Campaña A6 contra A1b, mismo creativo", "Ya está en Anuncios", "Costo por turno que asiste"),
+    ("P6", "9/1 a 30/1", "Vivos del sábado", "4 vivos con el código VIVO-SAB", "Traen al menos 1 turno (si no, se dejan)", "Turnos con VIVO-SAB"),
+]
+
+# ---------------------------------------------------------------- presupuesto del evento
+PRESUPUESTO_EVENTO = [
+    "Permiso eventual y tasa municipal", "Seguro de responsabilidad civil (con el Municipio)", "Área protegida o ambulancia",
+    "Sonido o DJ (y SADAIC/AADI-CAPIF o música con licencia el día abierto)", "Catering noche VIP", "Catering día abierto (sin alcohol)",
+    "Cartelería del local nuevo y del viejo", "QR de check-in impresos", "Foto y video externos", "Personal extra de recepción",
+    "Actividad para chicos", "Anuncio A2 (cerca del local)", "Radio o espacio de marca (si se hace)",
+]
+
+# Piezas que se graban o se arman la misma semana en que salen (no se pueden adelantar)
+MISMA_SEMANA = {"INA-18", "INA-21", "S09-5", "S13-5", "S04-1", "S07-4", "S10-4", "S13-4", "S06-5", "S08-5"}
+PRIMERA_GRABACION = d(2026, 11, 27)
 

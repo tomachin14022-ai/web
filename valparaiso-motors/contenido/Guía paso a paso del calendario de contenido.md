@@ -43,15 +43,18 @@ lang: es-AR
 | Hoja | Qué tiene |
 |---|---|
 | Inicio | Datos a completar, roles, la mezcla entretener-educar-vender (se recalcula sola) y las palabras del plan explicadas |
-| Calendario | 135 filas: 46 reels, 13 carruseles, 4 videos largos de YouTube, 6 vivos, historias, Estados, Google y Mercado Libre de cada semana, y todos los mensajes de la inauguración |
-| Tareas | 66 tareas: permisos, Google, web, WhatsApp, prensa, evento, anuncios, revisiones y la rutina de cada semana |
+| Calendario | 135 filas: 46 reels, 13 carruseles, 4 videos largos de YouTube, 6 vivos, historias, Estados, Google y Mercado Libre de cada semana, y todos los mensajes de la inauguración. Cada pieza dice qué día se graba y qué día la aprueba el dueño |
+| Tareas | 68 tareas: permisos, Google, web, WhatsApp, prensa, evento, anuncios, revisiones y la rutina de cada semana |
 | Guiones | 41 guiones: para quién es cada uno, la idea en una frase, gancho, gancho B para probar, tomas, lo que hay que confirmar antes, descripción para pegar, hashtags, comentario fijado y link de WhatsApp con el código |
 | Escenas | Cada guion escena por escena (258 escenas): qué se dice, qué se ve, el texto en pantalla y el sonido. Es la hoja del que graba y edita |
 | Público | Los 7 públicos: quiénes son, qué quieren, qué los frena, qué modelos y qué piezas les hablan |
 | Cómo escribir | La prueba de los 15 años, el diccionario de palabras difíciles y las reglas de ritmo y visuales |
-| Códigos | Un código por pieza o canal, con su mensaje ya escrito y su link |
+| Códigos | Un código por pieza o canal, con su mensaje ya escrito y su link. Los resultados se suman solos por objetivo (entretener, educar, vender) |
 | Anuncios | 8 campañas con fechas, público, presupuesto diario y regla de corte |
-| Evento | Minuto a minuto de la noche VIP y del día abierto |
+| Evento | Minuto a minuto de la noche VIP y del día abierto, y el presupuesto con 3 cotizaciones por partida |
+| Carga | Horas de cada semana de la persona de contenido contra su capacidad; en rojo, la semana que se pasa |
+| Reserva | Piezas para tener grabadas por si una del Calendario no puede salir |
+| Pruebas | Las 6 pruebas A/B del trimestre, con qué se compara y cómo se mide |
 | Tablero | Números semanales; las tasas y los costos se calculan solos |
 | Fuentes | La evidencia de cada decisión, con su link y qué tan firme es |
 
@@ -208,6 +211,10 @@ Hay dos cambios contra el Plan de leads: las cuotas y el CFT van **dentro** de l
 | Todos los días hábiles | Historias (3 a 7 cuadros), Estados de WhatsApp (1 a 3), respuestas en menos de 5 minutos | Contenido + primer contacto | |
 
 **Horarios.** Son una hipótesis para probar: no hay ningún estudio de horarios de la Argentina. Los estudios globales de Buffer y Sprout Social apuntan a martes a jueves, de 12 a 13 h y de 19 a 21 h. A las 6–8 semanas, reemplazalos por el horario de actividad que muestra Insights de la cuenta.
+
+**Qué se graba cada martes.** En el Calendario, la columna *Se graba o se arma* dice el día en que se graba cada pieza. Es el martes de la semana anterior, salvo feriados: el 9/12 y el 10/2 se graba el miércoles. La columna *Lo aprueba el dueño* dice el viernes en que el dueño la aprueba; en las fiestas pasa al miércoles. Filtrando la primera columna por una fecha se arma la lista de tomas del día. Las piezas que dicen "Misma semana" son las que solo se pueden hacer en el momento: entregas, viajes medidos, el resumen de la inauguración y los datos del mes.
+
+**La carga de la semana.** La hoja **Carga** suma las horas de cada semana y las compara con la capacidad de la persona de contenido (25 h, se cambia en Inicio). Las semanas más cargadas son la del 7/12 y la del 14/12, por la inauguración. Para que entren se graba por adelantado (T50) y se contrata foto y video externos para el evento (T51). Si una semana se pone en rojo, primero se graba antes, después se pide ayuda y recién después se corre una pieza de Entretener.
 
 **30 minutos de escucha, cada lunes.** Desde el navegador, leer lo que pregunta la gente con sus palabras:
 
@@ -487,11 +494,13 @@ Ninguna publicó asistencia ni ventas: **no hay datos públicos de resultados de
 
 | Cuándo | Qué | Tareas y piezas |
 |---|---|---|
-| Esta semana | Habilitación, dirección y fecha; pedido a la importadora; Changan y Bancor; primera grabación | T01–T04 |
+| Esta semana | Habilitación, dirección y fecha; responsables y kit; pedido a la importadora; Changan y Bancor; WhatsApp Business y planilla de leads; legal del abogado; línea de base; primera grabación | T01–T09, T13 |
+| Hasta el 30/11 | Mensajes automáticos de la palabra clave (si no llegan, se responde a mano la primera semana) | T18 |
 | Hasta el 3/12 (≥15 días antes) | Permiso eventual del municipio con seguro y área protegida | T16 |
 | D-18 a D-15 | Beneficio o sorteo; cotizaciones; Perfil de Google listo para mudar; abogado; base de clientes; lista VIP | T10–T15, T17–T21 |
 | D-14 | Invitación VIP por WhatsApp | INA-02 |
-| D-15 y D-10 | Serie "Se arma el nuevo Valparaiso" (ep. 1 y 2) | INA-01, INA-03 |
+| D-15 y D-10 | Serie "Se arma el nuevo Valparaiso" (ep. 1 y 2); contratar foto y video externos para D-1 y D | INA-01, INA-03, T51 |
+| D-12 | **Grabar por adelantado** las piezas de la semana del Día D: esa semana no hay grabación de martes | T50 |
 | D-12 a D-10 | Kit de prensa y envío; aviso de mudanza a clientes; publicación de evento en Google; QR de check-in | T22–T24, INA-04, INA-05 |
 | D-8 | **Anuncio oficial** (fecha, dirección, día abierto) + campaña A2 cerca del local | INA-06, A2 |
 | D-7 a D-1 | Cuenta regresiva diaria en historias; cartel en el local viejo; aviso a marcas y directorios | INA-CR1 a CR7, T25, T26 |
@@ -500,6 +509,22 @@ Ninguna publicó asistencia ni ventas: **no hay datos públicos de resultados de
 | **Día D** | Mudanza digital; día abierto con QR; vivo; historias cada hora; Google "nos mudamos" | T30, INA-14 a INA-17, hoja Evento |
 | D+1 a D+4 | Seguimiento de todos los leads en 72 h; resumen; cómo llegar; gracias y reseñas; directorios | T31–T34, INA-18 a INA-21 |
 | D+7 a D+60 | Control del mapa y de duplicados; revisiones de 30 y 60 días | T35, T41, T42 |
+
+## Si el Día D cae del 28 al 30/12
+
+La planilla corre sola las fechas, pero algunas caen en fiestas o en domingo (la columna *Aviso* las marca). Con el Día D el martes 29/12, así se resuelven:
+
+| Pieza o tarea | Cae el | Se pasa al |
+|---|---|---|
+| ¿Auto chino? El taller nuevo (INA-07) | Jueves 24/12 | Martes 22/12 |
+| Cuenta regresiva D-5 y D-4 (historias) | 24 y 25/12 | Se publican el 23 y el 26/12, más livianas |
+| Ensayo de las pruebas de manejo (T27) | Jueves 24/12 | Miércoles 23/12 |
+| Prueba de manejo con turno (INA-11) | Domingo 27/12 | Sábado 26/12 |
+| Cómo llegar (INA-19) y el mensaje de gracias (INA-20) | Jueves 31/12 | Miércoles 30/12 |
+| Directorios y Mercado Libre (T33) | Jueves 31/12 | Miércoles 30/12 |
+| Juntar las notas de prensa (T34) | Viernes 1/1 | Lunes 4/1 |
+
+Con esa fecha, la promo de apertura del 4/1 queda a 6 días de la inauguración: conviene anunciarla en el mismo evento.
 
 ## Lista legal del evento
 
@@ -862,4 +887,36 @@ La lista completa, con qué respalda cada una y qué tan firme es, está en la h
 | Retargeting | Mostrarle un anuncio a quien ya vio nuestros videos |
 | TOF, MOF, BOF | Arriba, medio y abajo del embudo: entretener, educar y vender |
 | Día D | El día abierto de la inauguración; D-7 es 7 días antes |
+
+# 17. Lo que se revisó y los riesgos que quedan
+
+El calendario se revisó con controles automáticos sobre la planilla: horas por semana, orden de las tareas, fechas que caen en feriados, cobertura de públicos y modelos, y coherencia de códigos y guiones.
+
+## Lo que se corrigió
+
+| Problema | Cómo quedó |
+|---|---|
+| La primera grabación (27/11) era antes de nombrar a los responsables y de comprar el micrófono (30/11) | Responsables y kit el 26/11 |
+| Las primeras piezas pedían "comentá ENERO" antes de tener los mensajes automáticos (3/12) | Mensajes automáticos para el 30/11; si no llegan, se responde a mano esa semana |
+| Los Estados y Google de la primera semana mostraban cuotas antes de que el abogado aprobara el legal (2/12) | Legal pedido para el 27/11; la primera semana va sin cuotas |
+| La semana de la inauguración tenía unas 35 horas para una persona | Se graba antes (T50), foto y video externos (T51) y no hay grabación de martes esa semana: queda en 24 h |
+| Las grabaciones del 8/12 y el 9/2 caían en feriado, y dos aprobaciones en Navidad y Año Nuevo | Se corren solas al día hábil siguiente o anterior |
+| Campo y pyme tenía 2 piezas en tres meses, siendo Córdoba una provincia agropecuaria | 3 piezas más: la L200 para el campo, el Eado para empresas que hacen muchos km y "¿Cuánto carga esta camioneta?" |
+| Si la importadora no daba una condición, la promo de apertura del 4/1 se caía | Plan B: tasación del usado en el día y prueba de manejo con turno, sin descuento |
+| No había forma de saber qué objetivo traía más chats | La hoja Códigos suma consultas, leads, turnos y ventas por objetivo |
+| No había plan si una pieza no podía salir | Hoja Reserva con 6 piezas para tener grabadas |
+| Las pruebas estaban sueltas en el texto | Hoja Pruebas con 6 pruebas A/B, una por vez |
+| El evento no tenía presupuesto | Partidas con 3 cotizaciones en la hoja Evento |
+
+## Riesgos que quedan
+
+| Riesgo | Cómo se ve venir | Plan B |
+|---|---|---|
+| El dueño no confirma la fecha, la dirección o la habilitación a tiempo | El 27/11 sigue sin fecha | Abrir "en silencio" a fin de diciembre y hacer el evento grande a fines de febrero o en marzo |
+| Todo depende de una sola persona de contenido | Se enferma o se va | Semana mínima: historias, Estados y 2 piezas de Reserva |
+| Un vendedor no quiere aparecer o se va | Faltas a la grabación | Rotar caras; el dueño o los videos animados con Claude cubren |
+| Las piezas de entretener traen vistas pero no chats de Córdoba | En la revisión del 11/1 | Correr 5–10 puntos de la mezcla a educar y vender |
+| La obra no está lista para las fotos del local (D-10 a D-3) | Una semana antes del anuncio | Mostrar al equipo, la fachada y los autos; nunca imágenes generadas |
+| Instagram cambia sus reglas (palabra clave, largo de los reels) | Bajan el alcance o los chats | Revisar la ayuda de Instagram una vez por mes |
+| No hay datos argentinos para casi nada | — | Los números propios de las primeras 6–8 semanas mandan sobre cualquier referencia |
 

@@ -143,7 +143,7 @@ def armar():
     primera = fila
     for obj, que in D.MEZCLA:
         celda(ws, fila, 2, obj, negrita=True)
-        f = "+".join(f'COUNTIFS(Calendario!$H$2:$H$600,"{obj}",Calendario!$K$2:$K$600,"{fmt}")' for fmt in ("Reel", "Carrusel"))
+        f = "+".join(f'COUNTIFS(Calendario!$J$2:$J$600,"{obj}",Calendario!$M$2:$M$600,"{fmt}")' for fmt in ("Reel", "Carrusel"))
         celda(ws, fila, 3, "=" + f, fmt="0")
         celda(ws, fila, 4, que)
         ws.row_dimensions[fila].height = 30
@@ -181,57 +181,82 @@ def armar():
     # ---------------- Calendario ----------------
     publico_de = {g["id"]: g["publico"] for g in D.GUIONES}
     wc = wb.create_sheet("Calendario")
-    cols = ["ID", "Fecha", "Día", "Día relativo", "Semana del", "Aviso", "Etapa", "Objetivo", "Para quién", "Canal", "Formato",
-            "Serie o tema", "Pieza", "Gancho o texto de portada", "CTA y código", "Responsable", "Aparece / graba",
-            "Materiales y datos a confirmar", "Guion", "Hora", "Horas de trabajo", "Métrica principal",
-            "Estado", "Link publicado", "Resultado", "Evidencia", "Tipo de fecha", "Días desde D", "Fecha fija"]
-    anchos = [9, 11, 6, 10, 10, 14, 15, 11, 18, 18, 13, 16, 34, 36, 26, 14, 16, 34, 8, 7, 8, 26, 13, 20, 14, 10, 8, 8, 11]
+    cols = ["ID", "Fecha", "Día", "Día relativo", "Semana del", "Se graba o se arma", "Lo aprueba el dueño", "Aviso", "Etapa",
+            "Objetivo", "Para quién", "Canal", "Formato", "Serie o tema", "Pieza", "Gancho o texto de portada", "CTA y código",
+            "Responsable", "Aparece / graba", "Materiales y datos a confirmar", "Guion", "Hora", "Horas de trabajo",
+            "Métrica principal", "Estado", "Link publicado", "Resultado", "Evidencia", "Tipo de fecha", "Días desde D", "Fecha fija"]
+    C = {n: get_column_letter(i) for i, n in enumerate(cols, start=1)}
+    anchos = [9, 11, 6, 10, 10, 11, 11, 16, 15, 11, 18, 18, 13, 16, 34, 36, 26, 14, 16, 34, 8, 7, 8, 26, 13, 20, 14, 10, 8, 8, 11]
     encabezado(wc, 1, cols, anchos)
     piezas = sorted(D.PIEZAS, key=lambda p: (D.fecha_estimada(p["cuando"]), p.get("hora", "")))
+    producir = ("Reel", "Carrusel", "Video largo")
     for i, p in enumerate(piezas, start=2):
         tipo, valor = p["cuando"]
+        B, E, M = f"B{i}", f"E{i}", f"M{i}"
         celda(wc, i, 1, p["id"], negrita=True)
-        celda(wc, i, 2, f'=IF($AA{i}="D",DiaD+$AB{i},$AC{i})', fmt="dd/mm/yyyy")
-        celda(wc, i, 3, f'=CHOOSE(WEEKDAY(B{i},2),"lun","mar","mié","jue","vie","sáb","dom")')
-        celda(wc, i, 4, f'=IF(B{i}=DiaD,"Día D","D"&TEXT(B{i}-DiaD,"+0;-0"))')
-        celda(wc, i, 5, f"=B{i}-WEEKDAY(B{i},2)+1", fmt="dd/mm")
-        celda(wc, i, 6, f'=IF(OR(AND(MONTH(B{i})=12,OR(DAY(B{i})=8,DAY(B{i})=24,DAY(B{i})=25,DAY(B{i})=31)),AND(MONTH(B{i})=1,DAY(B{i})=1),AND(MONTH(B{i})=2,OR(DAY(B{i})=8,DAY(B{i})=9))),"Feriado o fiesta: revisar","")', color="C00000")
+        celda(wc, i, 2, f'=IF(${C["Tipo de fecha"]}{i}="D",DiaD+${C["Días desde D"]}{i},${C["Fecha fija"]}{i})', fmt="dd/mm/yyyy")
+        celda(wc, i, 3, f'=CHOOSE(WEEKDAY({B},2),"lun","mar","mié","jue","vie","sáb","dom")')
+        celda(wc, i, 4, f'=IF({B}=DiaD,"Día D","D"&TEXT({B}-DiaD,"+0;-0"))')
+        celda(wc, i, 5, f"={B}-WEEKDAY({B},2)+1", fmt="dd/mm")
+        if p["formato"] in producir and p["id"] in D.MISMA_SEMANA:
+            celda(wc, i, 6, "Misma semana", color=BORDO)
+            celda(wc, i, 7, "El día antes", color=GRIS)
+        elif p["formato"] in producir:
+            pg = D.PRIMERA_GRABACION
+            martes = f"{E}-6"
+            feriado_m = f"OR(AND(MONTH({martes})=12,DAY({martes})=8),AND(MONTH({martes})=2,DAY({martes})=9))"
+            celda(wc, i, 6, f"=MAX({martes}+IF({feriado_m},1,0),DATE({pg.year},{pg.month},{pg.day}))", fmt="dd/mm")
+            viernes = f"{E}-3"
+            fiesta_v = f"OR(AND(MONTH({viernes})=12,DAY({viernes})=25),AND(MONTH({viernes})=1,DAY({viernes})=1))"
+            celda(wc, i, 7, f"=MAX({viernes}-IF({fiesta_v},2,0),DATE({pg.year},{pg.month},{pg.day}))", fmt="dd/mm")
+        else:
+            celda(wc, i, 6, "—", color=GRIS)
+            celda(wc, i, 7, "—", color=GRIS)
+        feriado = f"OR(AND(MONTH({B})=12,OR(DAY({B})=8,DAY({B})=24,DAY({B})=25,DAY({B})=31)),AND(MONTH({B})=1,DAY({B})=1),AND(MONTH({B})=2,OR(DAY({B})=8,DAY({B})=9)))"
+        if p.get("domingo_ok"):
+            celda(wc, i, 8, f'=IF({feriado},"Feriado o fiesta: revisar","")', color="C00000")
+        else:
+            celda(wc, i, 8, f'=IF({feriado},"Feriado o fiesta: revisar",IF(AND(WEEKDAY({B},2)=7,OR({M}="Reel",{M}="Carrusel")),"Domingo: pasarla al sábado o al lunes",""))', color="C00000")
         publico = p.get("publico") or publico_de.get(p.get("guion", ""), "")
         valores = [p["etapa"], p["objetivo"], publico, p["canal"], p["formato"], p.get("serie", ""), p["pieza"],
                    p.get("gancho", ""), p.get("cta", ""), p["resp"], p.get("aparece", ""), p.get("materiales", ""),
                    p.get("guion", ""), p.get("hora", "")]
-        for k, v in enumerate(valores, start=7):
-            celda(wc, i, k, v, negrita=(k == 13))
-        celda(wc, i, 21, p.get("horas", None), fmt="0.0")
-        celda(wc, i, 22, p.get("metrica", ""))
-        celda(wc, i, 23, "Pendiente", relleno=AMARILLO, color="0000FF")
-        celda(wc, i, 24, None, relleno=AMARILLO)
-        celda(wc, i, 25, None, relleno=AMARILLO)
-        celda(wc, i, 26, p.get("evidencia", ""))
-        celda(wc, i, 27, tipo, color=GRIS)
-        celda(wc, i, 28, valor if tipo == "D" else None, color=GRIS)
-        celda(wc, i, 29, valor if tipo == "F" else None, fmt="dd/mm/yyyy", color=GRIS)
+        for k, v in enumerate(valores, start=9):
+            celda(wc, i, k, v, negrita=(k == 15))
+        celda(wc, i, 23, p.get("horas", None), fmt="0.0")
+        celda(wc, i, 24, p.get("metrica", ""))
+        celda(wc, i, 25, "Pendiente", relleno=AMARILLO, color="0000FF")
+        celda(wc, i, 26, None, relleno=AMARILLO)
+        celda(wc, i, 27, None, relleno=AMARILLO)
+        celda(wc, i, 28, p.get("evidencia", ""))
+        celda(wc, i, 29, tipo, color=GRIS)
+        celda(wc, i, 30, valor if tipo == "D" else None, color=GRIS)
+        celda(wc, i, 31, valor if tipo == "F" else None, fmt="dd/mm/yyyy", color=GRIS)
         largo = max(len(str(p.get("materiales", ""))), len(str(p.get("gancho", ""))), len(p["pieza"]))
         wc.row_dimensions[i].height = min(160, max(48, 13 * (largo // 32 + 1)))
     ultima = len(piezas) + 1
-    lista(wc, D.ESTADOS, f"W2:W{ultima + 200}")
-    lista(wc, ["Entretener", "Educar", "Vender", "Operación"], f"H2:H{ultima + 200}")
-    lista(wc, ["D", "F"], f"AA2:AA{ultima + 200}")
-    wc.auto_filter.ref = f"A1:AC{ultima}"
-    rango = f"A2:Z{ultima}"
+    est, obj, tip = C["Estado"], C["Objetivo"], C["Tipo de fecha"]
+    lista(wc, D.ESTADOS, f"{est}2:{est}{ultima + 200}")
+    lista(wc, ["Entretener", "Educar", "Vender", "Operación"], f"{obj}2:{obj}{ultima + 200}")
+    lista(wc, ["D", "F"], f"{tip}2:{tip}{ultima + 200}")
+    wc.auto_filter.ref = f"A1:{C['Fecha fija']}{ultima}"
+    rango = f"A2:{C['Evidencia']}{ultima}"
     wc.conditional_formatting.add(rango, FormulaRule(formula=["$B2=DiaD"], fill=PatternFill("solid", fgColor=ROSA), font=Font(name=F, bold=True, color=BORDO)))
-    wc.conditional_formatting.add(rango, FormulaRule(formula=['OR($W2="Publicado",$W2="Medido",$W2="No va")'], font=Font(name=F, color=GRIS)))
-    wc.conditional_formatting.add(f"B2:B{ultima}", FormulaRule(formula=['AND($B2<TODAY(),$W2="Pendiente")'], font=Font(name=F, bold=True, color="C00000")))
+    wc.conditional_formatting.add(rango, FormulaRule(formula=[f'OR(${est}2="Publicado",${est}2="Medido",${est}2="No va")'], font=Font(name=F, color=GRIS)))
+    wc.conditional_formatting.add(f"B2:B{ultima}", FormulaRule(formula=[f'AND($B2<TODAY(),${est}2="Pendiente")'], font=Font(name=F, bold=True, color="C00000")))
+    wc.conditional_formatting.add(f"F2:F{ultima}", FormulaRule(formula=[f'AND(ISNUMBER($F2),$F2<TODAY(),${est}2="Pendiente")'], font=Font(name=F, bold=True, color="C00000"), fill=PatternFill("solid", fgColor=ROSA)))
     colores = {"Entretener": "E8EEF7", "Educar": "EEF5E9", "Vender": "F7E3E6"}
-    for obj, color in colores.items():
-        wc.conditional_formatting.add(f"H2:H{ultima}", FormulaRule(formula=[f'$H2="{obj}"'], fill=PatternFill("solid", fgColor=color)))
-    for col, texto in [(27, "D = la fecha se calcula desde el Día D (hoja Inicio). F = fecha fija del calendario."),
-                       (28, "Días antes (negativo) o después (positivo) del Día D. Cambiá este número para mover la pieza."),
-                       (29, "Solo para filas con tipo F."),
-                       (8, "Entretener a las masas (alcance), educar a los interesados (comparar y resolver dudas), vender a los comprometidos (precio, cuota, turno)."),
-                       (9, "A quién le habla la pieza. Ver la hoja Público."),
-                       (6, "Avisa si la fecha cae en un feriado o una fiesta. Si pasa, mové la pieza un día.")]:
-        wc.cell(row=1, column=col).comment = Comment(texto, "Valparaiso Motors")
+    for o, color in colores.items():
+        wc.conditional_formatting.add(f"{obj}2:{obj}{ultima}", FormulaRule(formula=[f'${obj}2="{o}"'], fill=PatternFill("solid", fgColor=color)))
+    for nombre, texto in [("Tipo de fecha", "D = la fecha se calcula desde el Día D (hoja Inicio). F = fecha fija del calendario."),
+                          ("Días desde D", "Días antes (negativo) o después (positivo) del Día D. Cambiá este número para mover la pieza."),
+                          ("Fecha fija", "Solo para filas con tipo F."),
+                          ("Objetivo", "Entretener a las masas (alcance), educar a los interesados (comparar y resolver dudas), vender a los comprometidos (precio, cuota, turno)."),
+                          ("Para quién", "A quién le habla la pieza. Ver la hoja Público."),
+                          ("Se graba o se arma", "El martes de la semana anterior. Filtrá esta columna por fecha y tenés la lista de lo que se graba ese día. En rojo: ya pasó y la pieza sigue pendiente."),
+                          ("Lo aprueba el dueño", "El viernes anterior, con la hoja de cuadros."),
+                          ("Aviso", "Avisa si la fecha cae en un feriado, una fiesta o un domingo. Si pasa, mové la pieza un día.")]:
+        wc.cell(row=1, column=cols.index(nombre) + 1).comment = Comment(texto, "Valparaiso Motors")
 
     # ---------------- Tareas ----------------
     wt = wb.create_sheet("Tareas")
@@ -363,19 +388,45 @@ def armar():
                 wx.row_dimensions[r].height = max(15, 13 * (max(len(x) for x in item) // 46 + 1))
 
     # ---------------- Códigos ----------------
+    import re as _re
+    from collections import Counter as _Counter
+    objetivo_de = {}
+    for p in D.PIEZAS:
+        m = _re.search(r"comentá ([A-Z0-9\-]+)", p.get("cta", ""))
+        if m:
+            objetivo_de.setdefault(m.group(1), _Counter())[p["objetivo"]] += 1
     wk = wb.create_sheet("Códigos")
-    cols = ["Código", "Para qué pieza o anuncio", "Dónde se usa", "Mensaje ya escrito", "Link (usa el WhatsApp de Inicio)", "Consultas", "Leads calificados", "Turnos", "Ventas"]
-    anchos = [16, 36, 30, 52, 18, 11, 11, 9, 9]
+    cols = ["Código", "Objetivo", "Para qué pieza o anuncio", "Dónde se usa", "Mensaje ya escrito", "Link (usa el WhatsApp de Inicio)", "Consultas", "Leads calificados", "Turnos", "Ventas"]
+    anchos = [16, 12, 36, 30, 50, 18, 11, 11, 9, 9]
     encabezado(wk, 1, cols, anchos)
     for i, (cod, para, donde, msg) in enumerate(D.CODIGOS, start=2):
+        o = objetivo_de[cod].most_common(1)[0][0] if cod in objetivo_de else "Vender"
         celda(wk, i, 1, cod, negrita=True)
-        celda(wk, i, 2, para)
-        celda(wk, i, 3, donde)
-        celda(wk, i, 4, msg)
-        celda(wk, i, 5, link_wa(msg), color="0563C1")
-        for col in range(6, 10):
+        celda(wk, i, 2, o)
+        celda(wk, i, 3, para)
+        celda(wk, i, 4, donde)
+        celda(wk, i, 5, msg)
+        celda(wk, i, 6, link_wa(msg), color="0563C1")
+        for col in range(7, 11):
             celda(wk, i, col, None, fmt="0", relleno=AMARILLO)
         wk.row_dimensions[i].height = 40
+    n = len(D.CODIGOS) + 1
+    lista(wk, ["Entretener", "Educar", "Vender"], f"B2:B{n + 50}")
+    r = n + 2
+    wk.cell(row=r, column=1, value="Resultados por objetivo (se calculan solos)").font = fuente(size=12, bold=True)
+    r += 1
+    for k, t in enumerate(["Objetivo", "", "", "", "", "", "Consultas", "Leads calificados", "Turnos", "Ventas"], start=1):
+        if t:
+            celda(wk, r, k, t, negrita=True, color="FFFFFF", relleno=BORDO)
+    for o in ("Entretener", "Educar", "Vender"):
+        r += 1
+        celda(wk, r, 1, o, negrita=True)
+        for col in range(7, 11):
+            L = get_column_letter(col)
+            celda(wk, r, col, f'=SUMIF($B$2:$B${n},$A{r},{L}$2:{L}${n})', fmt="0", negrita=True)
+    r += 1
+    c = wk.cell(row=r, column=1, value="Es la cuenta que decide la mezcla el 11/1: el objetivo que trae más chats calificados con código gana 5–10 puntos.")
+    c.font = fuente(color=GRIS)
 
     # ---------------- Anuncios ----------------
     wa = wb.create_sheet("Anuncios")
@@ -419,6 +470,79 @@ def armar():
         for col, v in enumerate(e, start=1):
             c = celda(we, i, col, v, negrita=es_titulo or col == 1, relleno=ROSA if es_titulo else None, color=BORDO if es_titulo else TINTA)
         we.row_dimensions[i].height = 18 if es_titulo else max(30, 13 * (max(len(x) for x in e) // 50 + 1))
+
+    # presupuesto del evento
+    r = len(D.EVENTO) + 3
+    we.cell(row=r, column=1, value="Presupuesto del evento (completar con 2 o 3 cotizaciones)").font = fuente(size=12, bold=True)
+    r += 1
+    for k, t in enumerate(["Partida", "", "Cotización 1 ($)", "Cotización 2 ($)", "Cotización 3 ($)", "Elegida ($)"], start=1):
+        if t:
+            celda(we, r, k, t, negrita=True, color="FFFFFF", relleno=BORDO)
+    primera = r + 1
+    for partida in D.PRESUPUESTO_EVENTO:
+        r += 1
+        celda(we, r, 1, partida, negrita=True)
+        we.merge_cells(start_row=r, start_column=1, end_row=r, end_column=2)
+        for col in (3, 4, 5, 6):
+            celda(we, r, col, None, fmt="#,##0", relleno=AMARILLO)
+    r += 1
+    celda(we, r, 1, "Total", negrita=True)
+    celda(we, r, 6, f"=SUM(F{primera}:F{r - 1})", fmt="#,##0", negrita=True)
+    celda(we, r + 1, 1, "Pedirle a la importadora que ponga una parte (unidades, imagen, un directivo, una condición comercial). No hay presupuestos publicados de inauguraciones para comparar.", color=GRIS)
+    we.merge_cells(start_row=r + 1, start_column=1, end_row=r + 1, end_column=6)
+
+    # ---------------- Carga ----------------
+    wl = wb.create_sheet("Carga")
+    cols = ["Semana (lunes)", "Horas de piezas que se producen esa semana", "Horas fijas (plan, escucha, grabación, tablero)", "Horas de tareas (estimado)", "Total", "Capacidad", "Estado", "Horas del dueño con Claude"]
+    anchos = [14, 16, 22, 18, 10, 11, 34, 16]
+    encabezado(wl, 1, cols, anchos)
+    for k in range(13):
+        i = k + 2
+        lunes = D.TABLERO_INICIO + dt.timedelta(days=7 * k)
+        celda(wl, i, 1, lunes, fmt="dd/mm/yyyy", negrita=True)
+        celda(wl, i, 2, f'=SUMIFS(Calendario!$W$2:$W$600,Calendario!$F$2:$F$600,">="&A{i},Calendario!$F$2:$F$600,"<"&(A{i}+7),Calendario!$R$2:$R$600,"Contenido")'
+                         f'+SUMIFS(Calendario!$W$2:$W$600,Calendario!$E$2:$E$600,A{i},Calendario!$F$2:$F$600,"—",Calendario!$R$2:$R$600,"Contenido")'
+                         f'+SUMIFS(Calendario!$W$2:$W$600,Calendario!$E$2:$E$600,A{i},Calendario!$F$2:$F$600,"Misma semana",Calendario!$R$2:$R$600,"Contenido")', fmt="0.0")
+        celda(wl, i, 3, D.CARGA_FIJA_SEMANA.get(lunes, D.CARGA_FIJA), fmt="0.0", relleno=AMARILLO, color="0000FF")
+        celda(wl, i, 4, D.CARGA_TAREAS.get(lunes, 1), fmt="0.0", relleno=AMARILLO, color="0000FF")
+        celda(wl, i, 5, f"=B{i}+C{i}+D{i}", fmt="0.0", negrita=True)
+        celda(wl, i, 6, "=Capacidad", fmt="0")
+        celda(wl, i, 7, f'=IF(E{i}>F{i},"Se pasa: grabar antes, pedir ayuda o correr una pieza","OK")')
+        celda(wl, i, 8, f'=SUMIFS(Calendario!$W$2:$W$600,Calendario!$E$2:$E$600,A{i},Calendario!$R$2:$R$600,"Dueño + Claude")', fmt="0.0")
+    wl.conditional_formatting.add("G2:G14", FormulaRule(formula=['$E2>$F2'], font=Font(name=F, bold=True, color="C00000"), fill=PatternFill("solid", fgColor=ROSA)))
+    nota = wl.cell(row=16, column=1, value="Las horas de piezas salen solas del Calendario: los reels, carruseles y videos largos cuentan en la semana en que se graban y editan (la anterior a la publicación), y las historias, Estados, vivos y piezas del momento cuentan en su semana. Las horas de tareas son una estimación: cambialas. El evento en sí (noche VIP y día abierto) no está sumado: por eso hay foto y video externos (T51) y se graba antes (T50).")
+    nota.font = fuente(color=GRIS)
+    nota.alignment = Alignment(wrap_text=True, vertical="top")
+    wl.merge_cells("A16:H16")
+    wl.row_dimensions[16].height = 42
+
+    # ---------------- Reserva ----------------
+    wr = wb.create_sheet("Reserva")
+    cols = ["Guion", "Pieza", "Objetivo", "Se usa cuando…", "Cuándo dejarla grabada"]
+    encabezado(wr, 1, cols, [8, 40, 12, 44, 30])
+    for i, fila_r in enumerate(D.RESERVA, start=2):
+        for k, v in enumerate(fila_r, start=1):
+            celda(wr, i, k, v, negrita=(k == 1))
+        wr.row_dimensions[i].height = 30
+    c = wr.cell(row=len(D.RESERVA) + 3, column=1, value="Tener siempre 2 o 3 piezas de reserva grabadas y editadas. Cuando una pieza del Calendario no sale (falta un precio, no llegó la unidad, no llueve), se publica una de reserva del mismo objetivo y se graba otra para reponerla.")
+    c.font = fuente(color=GRIS)
+    c.alignment = Alignment(wrap_text=True)
+    wr.merge_cells(start_row=len(D.RESERVA) + 3, start_column=1, end_row=len(D.RESERVA) + 3, end_column=5)
+    wr.row_dimensions[len(D.RESERVA) + 3].height = 30
+
+    # ---------------- Pruebas ----------------
+    wpr = wb.create_sheet("Pruebas")
+    cols = ["Prueba", "Cuándo", "Qué se compara", "Cómo", "Qué creemos que pasa", "Cómo se mide", "Resultado A", "Resultado B", "Qué se decide"]
+    encabezado(wpr, 1, cols, [7, 14, 30, 40, 44, 26, 13, 13, 30])
+    for i, fila_p in enumerate(D.PRUEBAS, start=2):
+        for k, v in enumerate(fila_p, start=1):
+            celda(wpr, i, k, v, negrita=(k == 1))
+        for col in (7, 8, 9):
+            celda(wpr, i, col, None, relleno=AMARILLO)
+        wpr.row_dimensions[i].height = 45
+    c = wpr.cell(row=len(D.PRUEBAS) + 3, column=1, value="Una prueba por vez y con una sola diferencia entre A y B. Con reels de prueba se mide el gancho, no los leads: esos llegan de lo que se promociona en Córdoba.")
+    c.font = fuente(color=GRIS)
+    wpr.merge_cells(start_row=len(D.PRUEBAS) + 3, start_column=1, end_row=len(D.PRUEBAS) + 3, end_column=9)
 
     # ---------------- Tablero ----------------
     wtb = wb.create_sheet("Tablero")
@@ -484,7 +608,7 @@ def armar():
         wf.row_dimensions[i].height = max(30, 13 * (len(dato) // 55 + 1))
 
     for hoja in wb.worksheets:
-        hoja.sheet_properties.tabColor = BORDO if hoja.title in ("Inicio", "Calendario", "Tareas", "Escenas") else "C9C2B8"
+        hoja.sheet_properties.tabColor = BORDO if hoja.title in ("Inicio", "Calendario", "Tareas", "Escenas", "Carga") else "C9C2B8"
         hoja.page_setup.orientation = "landscape"
         hoja.sheet_properties.pageSetUpPr.fitToPage = True
         hoja.page_setup.fitToWidth = 1
