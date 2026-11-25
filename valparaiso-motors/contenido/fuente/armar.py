@@ -114,12 +114,11 @@ def armar():
     ws.cell(row=fila, column=2, value="Cómo se usa").font = fuente(size=12, bold=True)
     fila += 1
     for i, paso in enumerate(D.COMO_SE_USA, start=1):
-        celda(ws, fila, 2, f"{i}.", negrita=True)
-        ws.merge_cells(start_row=fila, start_column=3, end_row=fila, end_column=4)
-        c = ws.cell(row=fila, column=3, value=paso)
+        ws.merge_cells(start_row=fila, start_column=2, end_row=fila, end_column=4)
+        c = ws.cell(row=fila, column=2, value=f"{i}. {paso}")
         c.font = fuente()
         c.alignment = Alignment(wrap_text=True, vertical="top")
-        ws.row_dimensions[fila].height = max(15, 15 * (len(paso) // 95 + 1))
+        ws.row_dimensions[fila].height = max(15, 14 * (len(paso) // 135 + 1))
         fila += 1
 
     fila += 1
@@ -136,6 +135,26 @@ def armar():
         fila += 1
 
     fila += 1
+    ws.cell(row=fila, column=2, value="Mezcla del embudo en el feed (se recalcula sola)").font = fuente(size=12, bold=True)
+    fila += 1
+    for i, t in enumerate(["Objetivo", "Piezas de feed (reels y carruseles)", "Para qué sirve"], start=2):
+        celda(ws, fila, i, t, negrita=True, color="FFFFFF", relleno=BORDO)
+    fila += 1
+    primera = fila
+    for obj, que in D.MEZCLA:
+        celda(ws, fila, 2, obj, negrita=True)
+        f = "+".join(f'COUNTIFS(Calendario!$H$2:$H$600,"{obj}",Calendario!$J$2:$J$600,"{fmt}")' for fmt in ("Reel", "Carrusel"))
+        celda(ws, fila, 3, "=" + f, fmt="0")
+        celda(ws, fila, 4, que)
+        ws.row_dimensions[fila].height = 30
+        fila += 1
+    celda(ws, fila, 2, "Proporción", negrita=True)
+    celda(ws, fila, 3, f'=IFERROR(TEXT(C{primera}/SUM(C{primera}:C{fila - 1}),"0%")&" / "&TEXT(C{primera + 1}/SUM(C{primera}:C{fila - 1}),"0%")&" / "&TEXT(C{primera + 2}/SUM(C{primera}:C{fila - 1}),"0%"),"")')
+    celda(ws, fila, 4, D.MEZCLA_NOTA, color=GRIS)
+    ws.row_dimensions[fila].height = 64
+    fila += 1
+
+    fila += 1
     ws.cell(row=fila, column=2, value="Hojas de este archivo").font = fuente(size=12, bold=True)
     fila += 1
     for hoja, que in D.HOJAS:
@@ -149,53 +168,54 @@ def armar():
 
     # ---------------- Calendario ----------------
     wc = wb.create_sheet("Calendario")
-    cols = ["ID", "Fecha", "Día", "Día relativo", "Semana del", "Etapa", "Canal", "Formato", "Pilar",
-            "Pieza", "Gancho o texto de portada", "CTA y código", "Responsable", "Aparece / graba",
-            "Materiales", "Guion", "Hora sugerida", "Horas de trabajo", "Métrica principal",
+    cols = ["ID", "Fecha", "Día", "Día relativo", "Semana del", "Aviso", "Etapa", "Objetivo", "Canal", "Formato",
+            "Serie o tema", "Pieza", "Gancho o texto de portada", "CTA y código", "Responsable", "Aparece / graba",
+            "Materiales y datos a confirmar", "Guion", "Hora", "Horas de trabajo", "Métrica principal",
             "Estado", "Link publicado", "Resultado", "Evidencia", "Tipo de fecha", "Días desde D", "Fecha fija"]
-    anchos = [8, 11, 6, 10, 11, 16, 16, 16, 16, 34, 38, 30, 16, 18, 30, 9, 9, 8, 24, 13, 22, 14, 12, 8, 8, 11]
+    anchos = [9, 11, 6, 10, 10, 14, 15, 11, 18, 13, 16, 34, 36, 26, 14, 16, 34, 8, 7, 8, 26, 13, 20, 14, 10, 8, 8, 11]
     encabezado(wc, 1, cols, anchos)
-    piezas = sorted(D.PIEZAS, key=lambda p: D.fecha_estimada(p["cuando"]))
+    piezas = sorted(D.PIEZAS, key=lambda p: (D.fecha_estimada(p["cuando"]), p.get("hora", "")))
     for i, p in enumerate(piezas, start=2):
         tipo, valor = p["cuando"]
         celda(wc, i, 1, p["id"], negrita=True)
-        celda(wc, i, 2, f'=IF($X{i}="D",DiaD+$Y{i},$Z{i})', fmt="dd/mm/yyyy")
+        celda(wc, i, 2, f'=IF($Z{i}="D",DiaD+$AA{i},$AB{i})', fmt="dd/mm/yyyy")
         celda(wc, i, 3, f'=CHOOSE(WEEKDAY(B{i},2),"lun","mar","mié","jue","vie","sáb","dom")')
         celda(wc, i, 4, f'=IF(B{i}=DiaD,"Día D","D"&TEXT(B{i}-DiaD,"+0;-0"))')
         celda(wc, i, 5, f"=B{i}-WEEKDAY(B{i},2)+1", fmt="dd/mm")
-        celda(wc, i, 6, p["etapa"])
-        celda(wc, i, 7, p["canal"])
-        celda(wc, i, 8, p["formato"])
-        celda(wc, i, 9, p["pilar"])
-        celda(wc, i, 10, p["pieza"], negrita=True)
-        celda(wc, i, 11, p.get("gancho", ""))
-        celda(wc, i, 12, p.get("cta", ""))
-        celda(wc, i, 13, p["resp"])
-        celda(wc, i, 14, p.get("aparece", ""))
-        celda(wc, i, 15, p.get("materiales", ""))
-        celda(wc, i, 16, p.get("guion", ""))
-        celda(wc, i, 17, p.get("hora", ""))
-        celda(wc, i, 18, p.get("horas", None), fmt="0.0")
-        celda(wc, i, 19, p.get("metrica", ""))
-        celda(wc, i, 20, "Pendiente", relleno=AMARILLO, color="0000FF")
-        celda(wc, i, 21, None, relleno=AMARILLO)
-        celda(wc, i, 22, None, relleno=AMARILLO)
-        celda(wc, i, 23, p.get("evidencia", ""))
-        celda(wc, i, 24, tipo, color=GRIS)
-        celda(wc, i, 25, valor if tipo == "D" else None, color=GRIS)
-        celda(wc, i, 26, valor if tipo == "F" else None, fmt="dd/mm/yyyy", color=GRIS)
-        wc.row_dimensions[i].height = 62
+        celda(wc, i, 6, f'=IF(OR(AND(MONTH(B{i})=12,OR(DAY(B{i})=8,DAY(B{i})=24,DAY(B{i})=25,DAY(B{i})=31)),AND(MONTH(B{i})=1,DAY(B{i})=1),AND(MONTH(B{i})=2,OR(DAY(B{i})=8,DAY(B{i})=9))),"Feriado o fiesta: revisar","")', color="C00000")
+        valores = [p["etapa"], p["objetivo"], p["canal"], p["formato"], p.get("serie", ""), p["pieza"],
+                   p.get("gancho", ""), p.get("cta", ""), p["resp"], p.get("aparece", ""), p.get("materiales", ""),
+                   p.get("guion", ""), p.get("hora", "")]
+        for k, v in enumerate(valores, start=7):
+            celda(wc, i, k, v, negrita=(k == 12))
+        celda(wc, i, 20, p.get("horas", None), fmt="0.0")
+        celda(wc, i, 21, p.get("metrica", ""))
+        celda(wc, i, 22, "Pendiente", relleno=AMARILLO, color="0000FF")
+        celda(wc, i, 23, None, relleno=AMARILLO)
+        celda(wc, i, 24, None, relleno=AMARILLO)
+        celda(wc, i, 25, p.get("evidencia", ""))
+        celda(wc, i, 26, tipo, color=GRIS)
+        celda(wc, i, 27, valor if tipo == "D" else None, color=GRIS)
+        celda(wc, i, 28, valor if tipo == "F" else None, fmt="dd/mm/yyyy", color=GRIS)
+        largo = max(len(str(p.get("materiales", ""))), len(str(p.get("gancho", ""))), len(p["pieza"]))
+        wc.row_dimensions[i].height = min(160, max(48, 13 * (largo // 32 + 1)))
     ultima = len(piezas) + 1
-    lista(wc, D.ESTADOS, f"T2:T{ultima + 200}")
-    lista(wc, ["D", "F"], f"X2:X{ultima + 200}")
-    wc.auto_filter.ref = f"A1:Z{ultima}"
-    rango = f"A2:W{ultima}"
+    lista(wc, D.ESTADOS, f"V2:V{ultima + 200}")
+    lista(wc, ["Entretener", "Educar", "Vender", "Operación"], f"H2:H{ultima + 200}")
+    lista(wc, ["D", "F"], f"Z2:Z{ultima + 200}")
+    wc.auto_filter.ref = f"A1:AB{ultima}"
+    rango = f"A2:Y{ultima}"
     wc.conditional_formatting.add(rango, FormulaRule(formula=["$B2=DiaD"], fill=PatternFill("solid", fgColor=ROSA), font=Font(name=F, bold=True, color=BORDO)))
-    wc.conditional_formatting.add(rango, FormulaRule(formula=['OR($T2="Publicado",$T2="Medido",$T2="Hecho")'], font=Font(name=F, color=GRIS)))
-    wc.conditional_formatting.add(f"B2:B{ultima}", FormulaRule(formula=['AND($B2<TODAY(),$T2="Pendiente")'], font=Font(name=F, bold=True, color="C00000")))
-    for col, texto in [(24, "D = la fecha se calcula desde el Día D (hoja Inicio). F = fecha fija del calendario."),
-                       (25, "Días antes (negativo) o después (positivo) del Día D. Cambiá este número para mover la pieza."),
-                       (26, "Solo para filas con tipo F.")]:
+    wc.conditional_formatting.add(rango, FormulaRule(formula=['OR($V2="Publicado",$V2="Medido",$V2="No va")'], font=Font(name=F, color=GRIS)))
+    wc.conditional_formatting.add(f"B2:B{ultima}", FormulaRule(formula=['AND($B2<TODAY(),$V2="Pendiente")'], font=Font(name=F, bold=True, color="C00000")))
+    colores = {"Entretener": "E8EEF7", "Educar": "EEF5E9", "Vender": "F7E3E6"}
+    for obj, color in colores.items():
+        wc.conditional_formatting.add(f"H2:H{ultima}", FormulaRule(formula=[f'$H2="{obj}"'], fill=PatternFill("solid", fgColor=color)))
+    for col, texto in [(26, "D = la fecha se calcula desde el Día D (hoja Inicio). F = fecha fija del calendario."),
+                       (27, "Días antes (negativo) o después (positivo) del Día D. Cambiá este número para mover la pieza."),
+                       (28, "Solo para filas con tipo F."),
+                       (8, "Entretener a las masas (alcance), educar a los interesados (comparar y resolver dudas), vender a los comprometidos (precio, cuota, turno)."),
+                       (6, "Avisa si la fecha cae en un feriado o una fiesta. Si pasa, mové la pieza un día.")]:
         wc.cell(row=1, column=col).comment = Comment(texto, "Valparaiso Motors")
 
     # ---------------- Tareas ----------------
@@ -339,7 +359,8 @@ def armar():
                 fmt = "0%" if "%" in nombre else ("#,##0.0" if "USD" in nombre else "0")
                 celda(wtb, i, j, f, fmt=fmt)
             else:
-                celda(wtb, i, j, None, fmt="#,##0", relleno=AMARILLO)
+                fmt = "0%" if "%" in nombre else ("0.0" if agregado == "PROMEDIO" else "#,##0")
+                celda(wtb, i, j, None, fmt=fmt, relleno=AMARILLO)
     total = 16
     celda(wtb, total, 1, "Total", negrita=True)
     for j, (nombre, nota, formula, agregado) in enumerate(cols, start=1):
@@ -351,7 +372,8 @@ def armar():
             fmt = "0%" if "%" in nombre else ("#,##0.0" if "USD" in nombre else "0")
             celda(wtb, total, j, f, fmt=fmt, negrita=True)
         elif agregado == "PROMEDIO":
-            celda(wtb, total, j, f"=IFERROR(AVERAGE({L}2:{L}15),0)", fmt="0.0", negrita=True)
+            fmt = "0%" if "%" in nombre else "0.0"
+            celda(wtb, total, j, f"=IFERROR(AVERAGE({L}2:{L}15),0)", fmt=fmt, negrita=True)
         else:
             celda(wtb, total, j, f"=SUM({L}2:{L}15)", fmt="#,##0", negrita=True)
     wtb.freeze_panes = "B2"
@@ -384,7 +406,9 @@ def armar():
     for hoja in wb.worksheets:
         hoja.sheet_properties.tabColor = BORDO if hoja.title in ("Inicio", "Calendario", "Tareas") else "C9C2B8"
         hoja.page_setup.orientation = "landscape"
+        hoja.sheet_properties.pageSetUpPr.fitToPage = True
         hoja.page_setup.fitToWidth = 1
+        hoja.page_setup.fitToHeight = 0
     wb.save(SALIDA)
     print("ok", os.path.abspath(SALIDA), len(D.PIEZAS), "piezas", len(D.TAREAS), "tareas", len(D.GUIONES), "guiones")
 
