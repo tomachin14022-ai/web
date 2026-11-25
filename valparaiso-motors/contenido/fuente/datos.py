@@ -74,7 +74,7 @@ MEZCLA_NOTA = ("Meta de partida: ~40/35/25 en el feed (propuesta sin estudio que
 HOJAS = [
     ("Calendario", "Todas las piezas de contenido, día por día, con objetivo, canal, guion, responsable, materiales y métrica."),
     ("Tareas", "Todo lo que no es una publicación: permisos, Google, web, WhatsApp, prensa, evento, anuncios y revisiones."),
-    ("Guiones", "40 guiones: para quién es cada uno, la idea en una frase, gancho, tomas, descripción, hashtags, comentario fijado y código. El link de prueba abre WhatsApp con el mensaje."),
+    ("Guiones", "41 guiones: para quién es cada uno, la idea en una frase, gancho, tomas, descripción, hashtags, comentario fijado y código. El link de prueba abre WhatsApp con el mensaje."),
     ("Escenas", "Cada guion escena por escena: qué se dice, qué se ve, el texto en pantalla y el sonido. Es lo que usa el que graba y edita."),
     ("Público", "A quién le hablamos: 7 públicos con lo que quieren, lo que los frena, los modelos y las piezas para cada uno."),
     ("Cómo escribir", "La prueba de los 15 años, el diccionario de palabras difíciles y las reglas de ritmo y visuales."),
@@ -225,8 +225,9 @@ pz("S08-7", ("F", d(2027, 1, 21)), E5, "Educar", "YouTube (+ 3 Shorts)", "Video 
 reel("S09-1", ("F", d(2027, 1, 25)), E5, "Entretener", "Adiviná: ¿cuántos km hace con lo que sale un café?", "G04", "Vendedor 2",
      "¿CUÁNTOS KM HACE CON LO QUE SALE UN CAFÉ?", "JUEGO", serie="Adiviná",
      materiales="Tarifa de luz vigente (EPEC) y precio de un café en Córdoba ese día. Consumo ORA 03: 16,7 kWh/100 km WLTP. La cuenta va en la descripción ('estimado').")
-reel("S09-2", ("F", d(2027, 1, 26)), E5, "Educar", "El vendedor responde", "G18", "Vendedor 1",
-     "[EL COMENTARIO DE LA SEMANA]", "PREGUNTA", serie="El vendedor responde", materiales="Elegir el comentario el lunes 25/1.", evidencia="F34")
+reel("S09-2", ("F", d(2027, 1, 26)), E5, "Educar", "¿Cuánto pagás además del precio del auto?", "G41", "Vendedor 2",
+     "¿CUÁNTO PAGÁS ADEMÁS DEL PRECIO DEL AUTO?", "TOTAL", serie="Cómo se compra",
+     materiales="Montos reales de flete, patente y papeles, preparación y seguro, aprobados por Administración y el abogado.", evidencia="F50, F49")
 carrusel("S09-3", ("F", d(2027, 1, 27)), E5, "Educar", "Cómo comparar créditos (sin nombrar bancos)",
          "LA CUOTA MÁS BAJA PUEDE SER LA MÁS CARA", "CREDITO", guion="G38",
          materiales="Contenido del reel de créditos ya hecho (CLAUDE.md, sección 6): prendario, UVA, plan de ahorro, financiación de marca; CFT.")
@@ -245,7 +246,7 @@ reel("S10-1", ("F", d(2027, 2, 1)), E6, "Entretener", "Adiviná: ¿qué hay deba
      "¿QUÉ HAY DEBAJO DE ESTE AUTO?", "JUEGO", serie="Adiviná",
      materiales="Haval H7 con la cámara que 've a través del piso': confirmar que la versión en stock la tiene.")
 reel("S10-2", ("F", d(2027, 2, 2)), E6, "Educar", "Soy vendedor: haceme estas 3 preguntas", "G23", "Vendedor 2",
-     "SOY VENDEDOR: ANTES DE COMPRAR, HACEME ESTAS 3 PREGUNTAS", "PREGUNTAS")
+     "SOY VENDEDOR: ANTES DE COMPRAR, HACEME ESTAS 3 PREGUNTAS", "PREGUNTAS", serie="Cómo se compra", evidencia="F49")
 carrusel("S10-3", ("F", d(2027, 2, 3)), E6, "Vender", "Placas de financiación de febrero", "¿CUÁNTO QUEDA LA CUOTA DE CADA UNO?", "CUOTA",
          guion="G13", materiales=CONF, evidencia="F17, F18")
 reel("S10-4", ("F", d(2027, 2, 4)), E6, "Vender", "Entregas de la semana", "G19", "Clientes con autorización + vendedor",
@@ -572,7 +573,7 @@ tarea("T49", ("F", d(2027, 2, 1)), "Anuncios", "Bajar el presupuesto de febrero"
       "Contenido", "Media", "Sección 11", "F25")
 for k, lunes in enumerate(SEMANAS):
     tarea(f"R{k + 1:02d}", ("F", FERIADOS.get(lunes, lunes)), "Rutina", "Rutina de la semana",
-          "Lunes: 30 min de planificación (stock que entró, promos confirmadas, comentario para 'El vendedor responde') y tablero de la semana anterior. Martes a la mañana: grabación de 2–3 h. Martes a jueves: edición. Viernes: el dueño aprueba con la hoja de cuadros las piezas de la semana siguiente. Todos los días: historias, Estados y respuestas en menos de 5 minutos.",
+          "Lunes: 30 min de planificación (stock que entró, promos confirmadas) y tablero de la semana anterior. Lunes: 30 min de escucha: leer desde el navegador Reddit (r/argentina, r/Cordoba, r/RepublicaArgentina: 'Haval', 'Changan', 'GWM', 'auto chino', 'patentar enero', 'gastos de entrega'), los grupos de Facebook de dueños de Haval y Changan y las preguntas de Mercado Libre; anotar las preguntas textuales (sirven para 'El vendedor responde', G18). Martes a la mañana: grabación de 2–3 h; el responsable de primer contacto no graba y sigue con WhatsApp. Martes a jueves: edición. Viernes: el dueño aprueba con la hoja de cuadros las piezas de la semana siguiente. Todos los días: historias, Estados y respuestas en menos de 5 minutos.",
           "Contenido", "Media", "Sección 4")
 
 # ---------------------------------------------------------------- anuncios
@@ -581,7 +582,7 @@ ANUNCIOS = [
          publico="Personas que viven a 30–50 km del salón (hasta el Día D, la dirección actual; desde ahí, la nueva). 18+ años. Sin categoría especial (no es obligatoria en la Argentina).",
          creativos="S01-3, S02-2, INA-11 + placas de 6–8 s", destino="WhatsApp con bienvenida y 3 respuestas rápidas", usd_dia=12,
          desde=("F", d(2026, 12, 7)), hasta=("F", d(2027, 1, 3)), metrica="Costo por conversación · % calificado",
-         regla="En la semana 3, apagar el creativo con mayor costo por lead calificado y duplicar el mejor."),
+         regla="En la semana 3, apagar el creativo con mayor costo por lead calificado y duplicar el mejor. Si Meta ofrece optimizar por leads en los anuncios a WhatsApp en la Argentina, probarlo contra 'conversaciones' y quedarse con el de menor costo por turno que asiste."),
     dict(nombre="A1b · WhatsApp: stock real (enero, el pico)", objetivo="Mensajes (WhatsApp)", publico="Igual que A1a con la dirección nueva.",
          creativos="S06-1, S06-4, S08-4, S09-4 + placas", destino="WhatsApp", usd_dia=20, desde=("F", d(2027, 1, 4)), hasta=("F", d(2027, 1, 31)),
          metrica="Costo por turno que asiste", regla="Si el costo por turno que asiste es aceptable para el dueño, mantener; si no, bajar a 12."),
@@ -666,7 +667,8 @@ CODIGOS = [
     ("BATERIA", "¿Cuánto dura la batería?", "S07-2", "Hola, vengo del video BATERIA. Quiero precio y financiación."),
     ("TIPO", "Carrusel EV, PHEV o HEV para las sierras", "S07-3", "Hola, vengo del carrusel TIPO. Quiero precio y financiación."),
     ("LLUVIA", "Asistencias con lluvia", "S08-2", "Hola, vengo del video LLUVIA. Quiero precio y financiación."),
-    ("PREGUNTA", "El vendedor responde", "S09-2", "Hola, vengo del video PREGUNTA. Quiero precio y financiación."),
+    ("PREGUNTA", "El vendedor responde (plantilla G18, para cuando una pregunta se repite)", "Cualquier semana, en lugar de una pieza de Educar", "Hola, vengo del video PREGUNTA. Quiero precio y financiación."),
+    ("TOTAL", "¿Cuánto pagás además del precio del auto?", "S09-2", "Hola, vengo del video TOTAL. Quiero el total por escrito."),
     ("CREDITO", "Carruseles de créditos y cotización", "S09-3, S11-2", "Hola, vengo del carrusel CREDITO. Quiero precio y financiación."),
     ("DATO", "Los autos más vendidos del mes", "S09-5, S13-5", "Hola, vengo del video DATO. Quiero precio y financiación."),
     ("FAMILIA", "Auto para la familia", "S12-2", "Hola, vengo del video FAMILIA. Quiero precio y financiación."),
@@ -771,8 +773,8 @@ PUBLICO = [
      "¿Entra todo?, Auto para la familia, Lluvia, Antes de salir a la ruta, carrusel de las sierras",
      "Instagram, Facebook, WhatsApp", "Inferencia por las fechas (vacaciones de enero, vuelta a clases) y el pronóstico de un verano lluvioso (SMN)."),
     ("Cambia su usado", "Tiene un auto de hace 5 a 10 años y quiere uno nuevo. Es el comprador típico: el 51 % de los que compran un 0 km tiene 50 años o más (SIOMAA, 2025); en los autos chinos, 52 años en promedio, ~40 % mujeres y casi todos particulares.",
-     "Saber cuánto le toman su auto y cuánto queda la cuota.", "No entiende la financiación, le da miedo que la cuota suba y duda del 'auto chino'.",
-     "Todos", "¿Comprás ahora o en enero?, Aguinaldo, 3 preguntas, carruseles de créditos y de la cotización, ¿Auto chino?, placas de cuota",
+     "Saber cuánto le toman su auto y cuánto queda la cuota.", "No entiende la financiación, le da miedo que la cuota suba, desconfía de los gastos que aparecen al final y duda del 'auto chino'.",
+     "Todos", "¿Comprás ahora o en enero?, Aguinaldo, serie 'Cómo se compra' (3 preguntas, cuánto pagás además del auto, carruseles de créditos y de la cotización), ¿Auto chino?, placas de cuota",
      "Facebook, Instagram, WhatsApp, Mercado Libre", "SIOMAA 2025 (edades: más de 60 años 28,9 %, de 40 a 49 26 %, de 50 a 59 22 %, de 18 a 24 solo 1 %). Ámbito (autos chinos). Córdoba transfirió 81.699 usados en el primer semestre de 2026, más que la Ciudad de Buenos Aires (iProfesional)."),
     ("Campo y pyme", "Productor, contratista o empresa con camionetas.",
      "Una 4x4 que aguante, que cargue y que tenga enchufe para herramientas; factura.", "Repuestos y service lejos del campo.",
@@ -848,7 +850,8 @@ RITMO = [
     ("Re-gancho cada 5–8 segundos", "'Pero…', 'Entonces…', 'Y lo más importante…'.", "Cada parte abre la siguiente."),
     ("Sonido que acompaña", "Whoosh en los cortes grandes, pop cuando entra un número, impacto en la respuesta. Música baja, nunca en silencio.", "Marca el ritmo sin tapar la voz."),
     ("Final que vuelve al principio", "El último cuadro engancha con el primero.", "El video se vuelve a ver (loop)."),
-    ("Corto y completo", "Reels de 20 a 45 segundos. Si algo no explica nada, se corta.", "Mejor corto y completo que largo y lento."),
+    ("Corto y completo", "Reels de 20 a 45 segundos, nunca más de 90. Si algo no explica nada, se corta.", "Mejor corto y completo que largo y lento. En 2024 Instagram dijo que no recomienda reels de más de 90 s a quienes no siguen la cuenta (verificar si sigue)."),
+    ("La palabra clave es para pedir precio", "Siempre 'Si querés precio y cuota, comentá EADO'. En los videos de Entretener, la palabra va en la descripción y el comentario fijado, no en la voz. Nunca 'comentá SÍ' o 'comentá un emoji'.", "Instagram no recomienda publicaciones que piden comentar una palabra para ganar alcance, pero aclaró que usarlo para generar contactos no es trampa (2024)."),
 ]
 
 FUENTES += [
@@ -876,5 +879,12 @@ GLOSARIO = [
     ("Retargeting", "Mostrarle un anuncio a quien ya vio nuestros videos (por ejemplo, la cuota del auto que miró)."),
     ("Día D", "El día abierto de la inauguración. Todas las fechas de la inauguración se cuentan desde ahí (D-7 = 7 días antes)."),
     ("Entretener / Educar / Vender", "Para qué es cada pieza: atraer a mucha gente, explicarle al que está pensando en cambiar el auto, o cerrar con el que ya quiere precio."),
+]
+
+FUENTES += [
+    ("F47", "Palabra clave y largo de los reels", "Instagram no recomienda publicaciones que piden comentar una palabra, número o emoji para ganar alcance; usar comentarios y mensajes para generar contactos 'no se considera cebo'. Tampoco recomienda reels de más de 90 s a no seguidores.", "Social Media Today, 05/06/2024", "https://www.socialmediatoday.com/news/instagram-clarifies-advice-single-word-ctas-longer-reels/718151/", "Declaración de la plataforma (2024, verificar)"),
+    ("F48", "Vistas que no son compradores", "Foro de gerentes de concesionarias: 'la mayoría de esas vistas no está buscando comprar'; lo que funciona es lo pago y local, y atender rápido.", "DealerRefresh (EE. UU., 2023)", "https://forum.dealerrefresh.com/threads/any-dealers-using-tiktok-for-marketing-campaigns.7890/page-3", "Opiniones de un foro del rubro"),
+    ("F49", "Explicar cómo se compra", "Una vendedora con ~480 mil seguidores mezcla entretenimiento con explicaciones del proceso de compra, los gastos y qué se negocia; le llegan compradores de otros estados (sin totales).", "CBT News, 19/11/2026", "https://cbtnews.com/used-car-week-2026-andrea-anderson", "Caso autorreportado"),
+    ("F50", "Gastos además del precio", "Hay reclamos y un fallo judicial en la Argentina por flete, preentrega y patentamiento cobrados de más.", "Examedia; Unión de Consumidores (la nota ya no está online)", "https://examedia.com.ar/portada/post/88108648", "Prensa (sin fecha visible)"),
 ]
 

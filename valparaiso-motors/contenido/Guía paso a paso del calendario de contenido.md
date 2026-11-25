@@ -16,7 +16,7 @@ lang: es-AR
 5. El Perfil de Google se muda **sin crear un perfil nuevo**, para no perder las reseñas.
 6. Todo se escribe para que lo **entienda alguien de 15 años**: frases cortas, palabras de todos los días y cada cosa que se dice, se ve.
 
-> **Lo que respalda el plan, y lo que no.** La frecuencia (3 a 5 publicaciones por semana), lo que premia Instagram, las reglas legales, la estacionalidad y los pasos de Google tienen fuente (ver la sección 15 y la hoja Fuentes). Ningún estudio independiente une un formato de video con ventas de autos, ni en la Argentina ni afuera. Los casos con ventas los informan las propias marcas: MG Chile, con vivos en TikTok, o Kia Italia, con anuncios a WhatsApp. Por eso el plan **mide todo con códigos**: a las 6–8 semanas, los números propios reemplazan a las referencias.
+> **Lo que respalda el plan, y lo que no.** La frecuencia (3 a 5 publicaciones por semana), lo que premia Instagram, las reglas legales, la estacionalidad y los pasos de Google tienen fuente (ver la sección 15 y la hoja Fuentes). Ningún estudio independiente une un formato de video con ventas de autos, ni en la Argentina ni afuera. Los casos con ventas los informan las propias marcas: MG Chile, con vivos en TikTok, o Kia Italia, con anuncios a WhatsApp. Por eso el plan **mide todo con códigos**: a las 6–8 semanas, los números propios reemplazan a las referencias. Reddit no se pudo leer (rechazó el acceso a la API y a sus páginas): en su lugar se usaron foros de concesionarios y prensa, y el calendario suma 30 minutos por semana de lectura a mano (sección 4).
 
 # 1. Cómo se usa este calendario
 
@@ -45,8 +45,8 @@ lang: es-AR
 | Inicio | Datos a completar, roles, la mezcla entretener-educar-vender (se recalcula sola) y las palabras del plan explicadas |
 | Calendario | 135 filas: 46 reels, 13 carruseles, 4 videos largos de YouTube, 6 vivos, historias, Estados, Google y Mercado Libre de cada semana, y todos los mensajes de la inauguración |
 | Tareas | 66 tareas: permisos, Google, web, WhatsApp, prensa, evento, anuncios, revisiones y la rutina de cada semana |
-| Guiones | 40 guiones: para quién es cada uno, la idea en una frase, gancho, gancho B para probar, tomas, lo que hay que confirmar antes, descripción para pegar, hashtags, comentario fijado y link de WhatsApp con el código |
-| Escenas | Cada guion escena por escena (250 escenas): qué se dice, qué se ve, el texto en pantalla y el sonido. Es la hoja del que graba y edita |
+| Guiones | 41 guiones: para quién es cada uno, la idea en una frase, gancho, gancho B para probar, tomas, lo que hay que confirmar antes, descripción para pegar, hashtags, comentario fijado y link de WhatsApp con el código |
+| Escenas | Cada guion escena por escena (258 escenas): qué se dice, qué se ve, el texto en pantalla y el sonido. Es la hoja del que graba y edita |
 | Público | Los 7 públicos: quiénes son, qué quieren, qué los frena, qué modelos y qué piezas les hablan |
 | Cómo escribir | La prueba de los 15 años, el diccionario de palabras difíciles y las reglas de ritmo y visuales |
 | Códigos | Un código por pieza o canal, con su mensaje ya escrito y su link |
@@ -77,7 +77,7 @@ La regla del dueño, *"entertain the masses, educate the interested, sell to the
 | | Entretener | Educar | Vender |
 |---|---|---|---|
 | Para quién | Cualquier cordobés que mira reels | El que está pensando en cambiar el auto | El que ya eligió y quiere precio |
-| Formatos | Juegos ("Adiviná"), desafíos ("¿Entra todo?", "Ida y vuelta medida"), series, detrás de escena, inauguración | Comparativas, objeciones ("¿Auto chino?"), taller, créditos explicados, YouTube largo | Unidad real con precio y cuota, entregas, promo, vivos, historias, Estados |
+| Formatos | Juegos ("Adiviná"), desafíos ("¿Entra todo?", "Ida y vuelta medida"), series, detrás de escena, inauguración | Comparativas, objeciones ("¿Auto chino?"), taller, serie "Cómo se compra" (qué se paga aparte, qué preguntar, cómo leer la cotización), YouTube largo | Unidad real con precio y cuota, entregas, promo, vivos, historias, Estados |
 | Qué se mide | Tasa de salto a 3 s, envíos por DM, % del alcance en Córdoba | Guardados, comentarios con la palabra clave, chats con código | Chats de WhatsApp con código, leads calificados, turnos, ventas |
 | CTA | "Mandáselo a…" + el CTA comercial chico | El CTA comercial + palabra clave | El CTA comercial + palabra clave |
 | Pauta paga | Poca: promocionar en Córdoba el mejor de la semana | Media | La mayor parte |
@@ -199,8 +199,8 @@ Hay dos cambios contra el Plan de leads: las cuotas y el CFT van **dentro** de l
 
 | Día | Qué se hace | Quién | Se publica |
 |---|---|---|---|
-| Lunes | 30 min de planificación: stock que entró, promos confirmadas, el comentario para "El vendedor responde". Tablero de la semana anterior | Contenido | Reel (19:30) |
-| Martes | **Grabación de 2–3 h** a la mañana con los vendedores: todo lo de la semana siguiente. Edición a la tarde | Contenido + vendedores | Reel (19:30) |
+| Lunes | 30 min de planificación: stock que entró, promos confirmadas. Tablero de la semana anterior. **30 min de escucha** (abajo) | Contenido | Reel (19:30) |
+| Martes | **Grabación de 2–3 h** a la mañana con los vendedores: todo lo de la semana siguiente. El responsable de primer contacto **no graba**: sigue con WhatsApp. Edición a la tarde | Contenido + vendedores | Reel (19:30) |
 | Miércoles | Edición | Contenido | Carrusel y Google (12:30) |
 | Jueves | Edición. Mercado Libre | Contenido | Reel de venta (19:30) |
 | Viernes | El dueño recibe la hoja de cuadros de las piezas de la semana siguiente y contesta **una sola pregunta** | Dueño | Reel (19:30) |
@@ -208,6 +208,14 @@ Hay dos cambios contra el Plan de leads: las cuotas y el CFT van **dentro** de l
 | Todos los días hábiles | Historias (3 a 7 cuadros), Estados de WhatsApp (1 a 3), respuestas en menos de 5 minutos | Contenido + primer contacto | |
 
 **Horarios.** Son una hipótesis para probar: no hay ningún estudio de horarios de la Argentina. Los estudios globales de Buffer y Sprout Social apuntan a martes a jueves, de 12 a 13 h y de 19 a 21 h. A las 6–8 semanas, reemplazalos por el horario de actividad que muestra Insights de la cuenta.
+
+**30 minutos de escucha, cada lunes.** Desde el navegador, leer lo que pregunta la gente con sus palabras:
+
+- Reddit: r/argentina, r/Cordoba y r/RepublicaArgentina, buscando "Haval", "Changan", "GWM", "auto chino", "patentar enero", "gastos de entrega" y "concesionaria Córdoba";
+- los grupos de Facebook de dueños de Haval y Changan;
+- las preguntas de Mercado Libre y de los comentarios.
+
+Las preguntas que se repiten se anotan textuales. Cuando una aparece muchas veces, una pieza de Educar de esa semana se cambia por "El vendedor responde" (guion G18).
 
 **Constancia antes que volumen.** Buffer midió 2,1 millones de publicaciones: 3 a 5 por semana duplican el crecimiento contra 1 o 2, y las semanas en cero penalizan. Si una semana no se llega, se publican menos piezas, pero nunca cero.
 
@@ -412,6 +420,8 @@ El contenido no vende si nadie contesta a tiempo. Este es el frente con la evide
 - **El vendedor del video atiende los leads de su video:** "te escribe [nombre], el del video del Eado".
 - **Vivos:** en Instagram, el mensaje automático solo funciona mientras dura el vivo. Un segundo vendedor contesta el chat y el WhatsApp en ese momento.
 - **ManyChat (u otra herramienta):** el disparador solo funciona con el **primer** comentario de cada persona en cada publicación.
+- **La palabra clave es siempre un pedido de precio:** "Si querés precio y cuota, comentá EADO". Nunca "comentá SÍ", "comentá un emoji" ni "comentá para que llegue a más gente". En 2024, Instagram dijo que no recomienda publicaciones que piden comentar una palabra para ganar alcance, pero que usarlo para generar contactos no es trampa. En los videos de Entretener, la palabra va en la descripción y en el comentario fijado, no en la voz.
+- **El total, por escrito y antes:** a quien pide precio se le manda el total con flete, patente y papeles, y preparación, antes de que venga. En la Argentina hay reclamos y un fallo judicial por esos gastos cobrados de más en otras concesionarias: darlo claro desde el principio genera confianza (guion G41).
 
 ## Cómo responder comentarios
 
@@ -443,7 +453,7 @@ Fechas con el Día D de ejemplo, el sábado 19/12. Si cambia, las filas de la in
 | 4–10/1 | **Pico: vuelven los que esperaron a enero.** Jesús María desde el 7 | Enero | **Promo de apertura**, placas de financiación, primer vivo, primer YouTube largo, retargeting |
 | 11–17/1 | Jesús María hasta el 17 | Enero | Juegos, batería, entregas, vivo #2 |
 | 18–24/1 | Cosquín desde el 23; verano lluvioso | Enero | Lluvia y asistencias, la cuenta de la nafta, ida y vuelta a Cosquín, vivo #3 |
-| 25–31/1 | Sale el dato de enero (~29/1) | Enero | "Los más vendidos", vivo #4 y **decisión sobre los vivos** |
+| 25–31/1 | Sale el dato de enero (~29/1) | Enero | "Los más vendidos", cuánto pagás además del precio, vivo #4 y **decisión sobre los vivos** |
 | 1–7/2 | Cosquín Rock; empieza el fin de semana largo de Carnaval | Febrero | Pautar menos, producir más |
 | 8–14/2 | Carnaval (8 y 9); San Valentín | Febrero | Semana corta; grabar de más para marzo |
 | 15–21/2 | Posible vuelta a clases (sin calendario 2027 publicado) | Febrero | Familia y seguridad; revisión de D+60 |
@@ -641,7 +651,8 @@ En todo momento manda el **costo por turno que asiste**, no el costo por mensaje
 - **Una pieza con muchas vistas y pocos chats con código** no se repite tal cual: trajo gente de todo el país. Es la lección del reel de 150 mil vistas sin leads.
 - **Una pieza con pocas vistas y chats con código** se repite, se promociona en Córdoba y se usa en anuncios.
 - **Prueba del nombre del auto:** el dueño observó que la gente se va cuando se nombra el auto, y por eso el nombre va tarde. Meta y Toluna (2025) encontraron que los anuncios con más intención de compra muestran la marca y el mensaje en los primeros 5 segundos. Las dos cosas chocan, así que conviene probarlo: dos versiones de un "Llegó al salón" como reels de prueba, una con el nombre al principio y otra al final. Se queda la que retiene más y trae más chats.
-- **Lunes 11/1:** primera lectura de la mezcla. Ver qué objetivo (entretener, educar, vender) trae más chats con código y correr la mezcla 5–10 puntos hacia ese lado.
+- **Lunes 11/1:** primera lectura de la mezcla. Ver qué objetivo (entretener, educar, vender) trae más chats con código y correr la mezcla 5–10 puntos hacia ese lado. Si las piezas de Entretener no traen chats de Córdoba, se recortan: en un foro de gerentes de concesionarias, la opinión más apoyada fue que "la mayoría de esas vistas no está buscando comprar" (DealerRefresh).
+- **Largo:** ningún reel de más de 90 segundos. En 2024 Instagram dijo que no los recomienda a quienes no siguen la cuenta; verificar si sigue igual.
 - **Vivos (30/1, T39):** si en 4 vivos no hubo ni un turno con VIVO-SAB, se dejan. Si hubo, siguen todos los sábados.
 - **D+30 y D+60 (T41 y T42):** revisión de la inauguración y del trimestre, contra la línea de base (T06).
 
@@ -691,7 +702,7 @@ Los textos entre corchetes se completan. Antes de mandar mensajes masivos, la ba
 > Gracias por escribir. Nuestro horario es [horario]. Dejanos el modelo que te interesa y mañana a primera hora te escribe [vendedor de guardia].
 
 **Cuota**
-> El [modelo] sale $[precio final] de contado (precio sin impuestos nacionales $[..]). Un ejemplo en cuotas: [N] cuotas de $[..], TNA [..] %, CFTEA [..] % (el CFT es lo que pagás en total, con todo incluido), vigente hasta el [fecha]. ¿Querés que te arme la cuenta con lo que puedas poner al principio?
+> El [modelo] sale $[precio final] de contado (precio sin impuestos nacionales $[..]). Un ejemplo en cuotas: [N] cuotas de $[..], TNA [..] %, CFTEA [..] % (el CFT es lo que pagás en total, con todo incluido), vigente hasta el [fecha]. Además te mando por escrito lo que se paga aparte (flete, patente y papeles, preparación). ¿Querés que te arme la cuenta con lo que puedas poner al principio?
 
 **Turno de prueba**
 > ¡Buenísimo! ¿Qué día y horario te queda cómodo? Las pruebas duran unos 30 minutos y necesitás tu licencia vigente.
@@ -819,6 +830,13 @@ La lista completa, con qué respalda cada una y qué tan firme es, está en la h
 - [iProfesional: cupo 2027](https://www.iprofesional.com/negocios/468526-importacion-de-autos-electricos-el-gobierno-cambia-el-cupo-para-2027)
 - [Perfil: Jesús María 2027](https://www.perfil.com/noticias/cordoba/jesus-maria-2027-cuando-es-quienes-actuan-y-cuando-salen-a-la-venta-las-entradas.phtml)
 - [Meteored: pronóstico del SMN para el verano](https://www.meteored.com.ar/noticias/prediccion/se-viene-un-verano-raro-que-anticipa-el-smn-para-noviembre-diciembre-y-enero-y-como-planificar-las-vacaciones.html)
+
+**Foros y casos de vendedores (en lugar de Reddit)**
+
+- [Social Media Today: Instagram sobre la palabra clave y los reels de más de 90 s (2024)](https://www.socialmediatoday.com/news/instagram-clarifies-advice-single-word-ctas-longer-reels/718151/)
+- [DealerRefresh: concesionarios que usan TikTok](https://forum.dealerrefresh.com/threads/any-dealers-using-tiktok-for-marketing-campaigns.7890/page-3)
+- [CBT News: Andrea Anderson (2026)](https://cbtnews.com/used-car-week-2026-andrea-anderson)
+- [Examedia: fallo por patentamiento cobrado de más](https://examedia.com.ar/portada/post/88108648)
 
 **Inauguraciones**
 
