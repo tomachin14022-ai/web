@@ -1,7 +1,7 @@
 # Cómo se regenera el calendario
 
 - `datos.py`: piezas, tareas, anuncios, evento, códigos, tablero y fuentes. El Día D de ejemplo es el sábado 19/12/2026.
-- `guiones.py`: los 34 guiones.
+- `guiones.py`: los 40 guiones (resumen y escenas), escritos para que los entienda alguien de 15 años.
 - `armar.py`: arma `../Calendario de contenido Valparaiso Motors.xlsx` con openpyxl.
 
 ```sh

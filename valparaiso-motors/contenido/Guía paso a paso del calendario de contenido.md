@@ -7,13 +7,14 @@ lang: es-AR
 
 **Para quién es esta guía:** para la persona que va a ejecutar el contenido de Valparaiso Motors durante tres meses. Viene con una planilla, *Calendario de contenido Valparaiso Motors.xlsx*. La planilla dice **qué** se publica cada día, **quién** lo hace y con **qué guion**. Esta guía dice **cómo** se hace cada cosa.
 
-**El plan en cinco líneas:**
+**El plan en seis líneas:**
 
 1. Publicar 4 reels y 1 carrusel por semana, más historias y Estados de WhatsApp todos los días hábiles.
 2. Cada pieza tiene un objetivo: **entretener** a las masas, **educar** a los interesados o **vender** a los comprometidos.
 3. Todo lo que trae una consulta lleva un **código** para saber qué pieza la trajo. La primera respuesta se da en menos de 5 minutos.
 4. La inauguración: noche VIP con lista cerrada y día abierto a fin de diciembre. La promo de apertura arranca el lunes 4/1, cuando empieza el pico de enero.
 5. El Perfil de Google se muda **sin crear un perfil nuevo**, para no perder las reseñas.
+6. Todo se escribe para que lo **entienda alguien de 15 años**: frases cortas, palabras de todos los días y cada cosa que se dice, se ve.
 
 > **Lo que respalda el plan, y lo que no.** La frecuencia (3 a 5 publicaciones por semana), lo que premia Instagram, las reglas legales, la estacionalidad y los pasos de Google tienen fuente (ver la sección 15 y la hoja Fuentes). Ningún estudio independiente une un formato de video con ventas de autos, ni en la Argentina ni afuera. Los casos con ventas los informan las propias marcas: MG Chile, con vivos en TikTok, o Kia Italia, con anuncios a WhatsApp. Por eso el plan **mide todo con códigos**: a las 6–8 semanas, los números propios reemplazan a las referencias.
 
@@ -41,10 +42,13 @@ lang: es-AR
 
 | Hoja | Qué tiene |
 |---|---|
-| Inicio | Datos a completar, roles, la mezcla entretener-educar-vender (se recalcula sola) |
+| Inicio | Datos a completar, roles, la mezcla entretener-educar-vender (se recalcula sola) y las palabras del plan explicadas |
 | Calendario | 135 filas: 46 reels, 13 carruseles, 4 videos largos de YouTube, 6 vivos, historias, Estados, Google y Mercado Libre de cada semana, y todos los mensajes de la inauguración |
 | Tareas | 66 tareas: permisos, Google, web, WhatsApp, prensa, evento, anuncios, revisiones y la rutina de cada semana |
-| Guiones | 34 guiones listos: gancho, gancho B para probar, guion por tiempos, tomas, texto en pantalla, descripción para pegar, hashtags, comentario fijado y link de WhatsApp con el código |
+| Guiones | 40 guiones: para quién es cada uno, la idea en una frase, gancho, gancho B para probar, tomas, lo que hay que confirmar antes, descripción para pegar, hashtags, comentario fijado y link de WhatsApp con el código |
+| Escenas | Cada guion escena por escena (250 escenas): qué se dice, qué se ve, el texto en pantalla y el sonido. Es la hoja del que graba y edita |
+| Público | Los 7 públicos: quiénes son, qué quieren, qué los frena, qué modelos y qué piezas les hablan |
+| Cómo escribir | La prueba de los 15 años, el diccionario de palabras difíciles y las reglas de ritmo y visuales |
 | Códigos | Un código por pieza o canal, con su mensaje ya escrito y su link |
 | Anuncios | 8 campañas con fechas, público, presupuesto diario y regla de corte |
 | Evento | Minuto a minuto de la noche VIP y del día abierto |
@@ -102,6 +106,44 @@ Por eso, **cada pieza de entretenimiento termina con un paso comercial chico** y
 | Detrás de escena | Preparar una entrega, el taller a las 8 de la mañana | Clientes solo con autorización firmada |
 | "Vs" entre vendedores | "¿Enchufe o nafta?", "¿Cuál es más largo?" | Los dos autos de la casa; sin bajar a ninguno |
 | Tendencia | Un formato de moda aplicado al auto, dentro de las 24–48 h | Solo si encaja con el tono y suma información |
+
+## A quién le hablamos
+
+Quien compra es un adulto: el **51 % de los compradores de 0 km tiene 50 años o más** y el grupo más grande es el de más de 60 (SIOMAA, 2025). En los autos chinos, el promedio es de 52 años y ~40 % son mujeres (Ámbito). El calendario le habla a 7 públicos; cada pieza dice a cuál en la columna **Para quién**.
+
+| Público | Qué quiere | Qué lo frena | Modelos |
+|---|---|---|---|
+| Todos (las masas) | Entretenerse y aprender algo en pocos segundos | Que parezca publicidad | — |
+| Muchos km por día | Gastar menos nafta sin cambiar su rutina | "¿Dónde lo cargo?", la batería | Eado Plus, ORA 05 HEV, H6 PRO HEV |
+| Familia | Espacio, seguridad, que entre todo | La cuota y el total | H6, H7, Deepal S05, Outlander |
+| Cambia su usado | Saber cuánto le toman su auto y cuánto queda la cuota | No entiende la financiación; "¿auto chino?" | Todos |
+| Campo y pyme | Una 4x4 que aguante y cargue | Repuestos y service lejos | H7 4x4, Poer, L200 |
+| Curioso del eléctrico | No cargar nafta nunca | Cuántos km hace, dónde cargar en ruta | ORA 03 |
+| Los que ya nos siguen | Ver qué hay hoy, precio y cuota | Que no le contesten rápido | Todos |
+
+El detalle, con la evidencia de cada uno, está en la hoja **Público**. A las 6–8 semanas, se mira qué público trae más chats con código y se le dan más piezas.
+
+## Todo se entiende a los 15 años
+
+**La regla:** cada guion, texto en pantalla, descripción, placa y mensaje se escribe para que lo entienda alguien de 15 años en la primera mirada. No es hablarles a los chicos: si lo entiende un chico de 15 mirando sin sonido, lo entiende cualquiera, también el de 60 que mira apurado. El tono sigue siendo profesional.
+
+**Por qué:**
+
+- Nielsen Norman Group recomienda escribir para el público general al nivel de 11 a 14 años.
+- En los experimentos de Richard Mayer (2023), las palabras con imágenes se entienden mucho mejor que las palabras solas, sobre todo si aparecen al mismo tiempo. El estilo de conversación ("vos", "tu auto") también ayuda.
+- En la Argentina, solo el 22 % sabe calcular un interés simple y el 41 % escuchó hablar del crédito prendario (BCRA–CAF, 2017). Por eso las cuentas se muestran ya hechas y las palabras difíciles se explican.
+
+**Cómo se aplica (hoja Cómo escribir):**
+
+1. **Una idea por pieza**, que se pueda decir en una frase. Cada guion la trae en la columna *La idea en una frase*.
+2. **Frases de hasta 12 palabras**, una idea por frase.
+3. **Palabras de todos los días.** "Híbrido que se enchufa" en vez de "PHEV"; "lo que pagás en total" en vez de "costo financiero total"; "lo que ponés al principio" en vez de "anticipo". Las siglas, solo en letra chica.
+4. **Todo lo que se dice, se ve, al mismo tiempo.** Si se dice "baúl", se ve el baúl abriéndose. Si se dice un número, aparece grande.
+5. **Lo difícil, con una imagen:**
+   - el CFT es una barra que dice TOTAL;
+   - el crédito UVA es una cuota que sube;
+   - el híbrido son dos motores que empujan juntos.
+6. **La prueba final:** mostrarle el video a alguien que no sabe de autos. Si repite la idea en una frase, está listo.
 
 **Lo que no va:**
 
@@ -169,7 +211,7 @@ Hay dos cambios contra el Plan de leads: las cuotas y el CFT van **dentro** de l
 
 **Constancia antes que volumen.** Buffer midió 2,1 millones de publicaciones: 3 a 5 por semana duplican el crecimiento contra 1 o 2, y las semanas en cero penalizan. Si una semana no se llega, se publican menos piezas, pero nunca cero.
 
-**Un máster, cuatro redes.** El mismo video va a Instagram (con Facebook cruzado), TikTok y YouTube Shorts. Se exporta siempre **sin marca de agua**: Instagram muestra menos los videos con el logo de otra app. La música se agrega en cada app desde su biblioteca comercial.
+**Un video, cuatro redes.** El mismo video va a Instagram (con Facebook cruzado), TikTok y YouTube Shorts. Se exporta siempre **sin marca de agua**: Instagram muestra menos los videos con el logo de otra app. La música se agrega en cada app desde su biblioteca comercial.
 
 **Reels de prueba.** Para los de entretener, se pueden subir dos ganchos como reel de prueba (se muestran solo a no seguidores) y publicar en la grilla el que retenga más. Ojo: la prueba llega a gente de todo el país. Sirve para elegir el gancho, no para traer leads.
 
@@ -206,6 +248,18 @@ Hay dos cambios contra el Plan de leads: las cuotas y el CFT van **dentro** de l
 - Nunca grabar manejando: graba el acompañante o el celular va en un soporte fijo.
 - Clientes, invitados o chicos: solo con la autorización firmada.
 
+## Cómo se hace dinámico
+
+La hoja **Escenas** dice, para cada guion, qué se ve en cada momento. Al grabar y editar:
+
+- **Cada frase con su imagen.** Un objeto real (valija, café, enchufe, cinta métrica, almanaque, sobre) o un gráfico simple (barra, balanza, mapa plano).
+- **Cámara que se mueve:** caminar hacia el auto, abrir la puerta, entrar, ver desde el asiento.
+- **Cortes cada 1 a 2 segundos, pero sobre la misma idea.** Otro ángulo o un zoom sobre lo que se está diciendo, nunca una escena que no tiene que ver: los cortes sin relación saturan y hacen olvidar lo que se dice (Lang, 1999).
+- **El vendedor no queda quieto más de 3 segundos:** se intercalan tomas de lo que dice.
+- **Texto en pantalla corto:** la palabra o el número clave, no la frase entera.
+- **El auto desde el primer cuadro y varias veces.** El nombre puede ir tarde, como pide el dueño.
+- **Pantalla partida** para comparar: eléctrico contra híbrido, dos vendedores.
+
 ## Edición paso a paso (CapCut o Edits)
 
 1. Proyecto vertical 1080x1920.
@@ -221,15 +275,15 @@ Hay dos cambios contra el Plan de leads: las cuotas y el CFT van **dentro** de l
 7. **Cierre:** el CTA en pantalla y el logo chico, 1,5 segundos como máximo. El último cuadro engancha con el primero, para que el video se vea en loop.
 8. **Sonido:** primero la voz, después los efectos y por último la música, bajita. La música nunca queda en silencio en las pausas.
 9. **Zonas seguras:** comprobar con la guía de la plantilla que nada quede arriba de 260 px, abajo de 1440 px ni a la derecha de 900 px.
-10. **Exportar** el máster sin marca de agua. Sacar 9 capturas (principio, medio y final) para la hoja de cuadros del viernes.
+10. **Exportar** el video final sin marca de agua. Sacar 9 capturas (principio, medio y final) para la hoja de cuadros del viernes.
 
-**Videos animados** (educativos, "lo más patentado", placas para anuncios): los hace el dueño con Claude, con el proceso de `CLAUDE.md` (guion, voz de ElevenLabs, HyperFrames, hoja de cuadros, render). Están marcados como "Dueño + Claude" en la columna Responsable.
+**Videos animados** (educativos, "los más vendidos del mes", placas para anuncios): los hace el dueño con Claude, con el proceso de `CLAUDE.md` (guion, voz de ElevenLabs, HyperFrames, hoja de cuadros, render). Están marcados como "Dueño + Claude" en la columna Responsable.
 
 # 6. Cómo publicar en cada canal
 
 ## Instagram (reel o carrusel)
 
-1. Subir el máster.
+1. Subir el video final.
 2. **Portada:** el cuadro 0. Revisar que se lea recortada en la grilla (4:5).
 3. **Texto:** pegar la *Descripción* del guion. La primera línea es el gancho y no adelanta el final (no nombrar el auto si el video lo revela tarde). Escribir **"Córdoba"** en la primera o la segunda línea.
 4. **Hashtags:** como máximo 5, específicos. El último es local: #AutosCordoba.
@@ -244,13 +298,13 @@ Hay dos cambios contra el Plan de leads: las cuotas y el CFT van **dentro** de l
 
 ## TikTok
 
-- El mismo máster limpio, con música de la **Commercial Music Library**: la general no se puede usar en cuentas de empresa, ni siquiera en lo orgánico.
+- El mismo video final limpio, con música de la **Commercial Music Library**: la general no se puede usar en cuentas de empresa, ni siquiera en lo orgánico.
 - Descripción corta con "Córdoba" y la ubicación.
 - En los vivos, el código en pantalla y el WhatsApp en la bio.
 
 ## YouTube
 
-- **Shorts:** el mismo máster, con un título que lleve el modelo y "Córdoba".
+- **Shorts:** el mismo video final, con un título que lleve el modelo y "Córdoba".
 - **Video largo (G21):**
   - título con el modelo, "Córdoba" y la intención ("recorrido completo y consumo real");
   - en la primera línea de la descripción, el link de WhatsApp con su código (YT-…);
@@ -389,7 +443,7 @@ Fechas con el Día D de ejemplo, el sábado 19/12. Si cambia, las filas de la in
 | 4–10/1 | **Pico: vuelven los que esperaron a enero.** Jesús María desde el 7 | Enero | **Promo de apertura**, placas de financiación, primer vivo, primer YouTube largo, retargeting |
 | 11–17/1 | Jesús María hasta el 17 | Enero | Juegos, batería, entregas, vivo #2 |
 | 18–24/1 | Cosquín desde el 23; verano lluvioso | Enero | Lluvia y asistencias, la cuenta de la nafta, ida y vuelta a Cosquín, vivo #3 |
-| 25–31/1 | Sale el dato de enero (~29/1) | Enero | "Lo más patentado", vivo #4 y **decisión sobre los vivos** |
+| 25–31/1 | Sale el dato de enero (~29/1) | Enero | "Los más vendidos", vivo #4 y **decisión sobre los vivos** |
 | 1–7/2 | Cosquín Rock; empieza el fin de semana largo de Carnaval | Febrero | Pautar menos, producir más |
 | 8–14/2 | Carnaval (8 y 9); San Valentín | Febrero | Semana corta; grabar de más para marzo |
 | 15–21/2 | Posible vuelta a clases (sin calendario 2027 publicado) | Febrero | Familia y seguridad; revisión de D+60 |
@@ -586,6 +640,7 @@ En todo momento manda el **costo por turno que asiste**, no el costo por mensaje
 
 - **Una pieza con muchas vistas y pocos chats con código** no se repite tal cual: trajo gente de todo el país. Es la lección del reel de 150 mil vistas sin leads.
 - **Una pieza con pocas vistas y chats con código** se repite, se promociona en Córdoba y se usa en anuncios.
+- **Prueba del nombre del auto:** el dueño observó que la gente se va cuando se nombra el auto, y por eso el nombre va tarde. Meta y Toluna (2025) encontraron que los anuncios con más intención de compra muestran la marca y el mensaje en los primeros 5 segundos. Las dos cosas chocan, así que conviene probarlo: dos versiones de un "Llegó al salón" como reels de prueba, una con el nombre al principio y otra al final. Se queda la que retiene más y trae más chats.
 - **Lunes 11/1:** primera lectura de la mezcla. Ver qué objetivo (entretener, educar, vender) trae más chats con código y correr la mezcla 5–10 puntos hacia ese lado.
 - **Vivos (30/1, T39):** si en 4 vivos no hubo ni un turno con VIVO-SAB, se dejan. Si hubo, siguen todos los sábados.
 - **D+30 y D+60 (T41 y T42):** revisión de la inauguración y del trimestre, contra la línea de base (T06).
@@ -636,7 +691,7 @@ Los textos entre corchetes se completan. Antes de mandar mensajes masivos, la ba
 > Gracias por escribir. Nuestro horario es [horario]. Dejanos el modelo que te interesa y mañana a primera hora te escribe [vendedor de guardia].
 
 **Cuota**
-> El [modelo] sale $[precio final] de contado (precio sin impuestos nacionales $[..]). Un ejemplo de financiación: [N] cuotas de $[..], TNA [..] %, CFTEA [..] %, vigente hasta el [fecha]. ¿Querés que te arme la simulación con tu anticipo?
+> El [modelo] sale $[precio final] de contado (precio sin impuestos nacionales $[..]). Un ejemplo en cuotas: [N] cuotas de $[..], TNA [..] %, CFTEA [..] % (el CFT es lo que pagás en total, con todo incluido), vigente hasta el [fecha]. ¿Querés que te arme la cuenta con lo que puedas poner al principio?
 
 **Turno de prueba**
 > ¡Buenísimo! ¿Qué día y horario te queda cómodo? Las pruebas duran unos 30 minutos y necesitás tu licencia vigente.
@@ -747,6 +802,15 @@ La lista completa, con qué respalda cada una y qué tan firme es, está en la h
 - [Derecho en Zapatillas: música en locales (2026)](https://www.derechoenzapatillas.com/2026/musica-en-tu-local-que-se-paga-hoy-a-quien-cuando-y-cuanto/)
 - [Marval: condena por uso de imagen](https://www.marval.com/publicacion/condenan-a-una-aerolinea-por-uso-indebido-de-imagen-17415)
 
+**Público y lenguaje**
+
+- [Autoweb: edad de los compradores de 0 km (SIOMAA)](https://www.autoweb.com.ar/2025/10/23/los-mayores-de-60-anos-son-los-que-mas-autos-0km-compran-en-argentina/)
+- [Mayer: principios de diseño multimedia (APA, 2023)](https://www.unh.edu/teaching-learning-resource-hub/sites/default/files/media/2023-06/itow-research-based-principles-for-designing-multimedia-instruction-mayer.pdf)
+- [Nielsen Norman Group: lenguaje simple](https://www.nngroup.com/articles/plain-language-experts/)
+- [TikTok: buenas prácticas creativas](https://ads.tiktok.com/help/article/creative-best-practices?lang=en)
+- [Social Media Today: Meta y Toluna sobre reels](https://www.socialmediatoday.com/news/meta-shares-reels-tips-for-marketers/806808/)
+- [BCRA: encuesta de capacidades financieras](https://www.bcra.gob.ar/en/survey-on-the-measurement-of-financial-capabilities)
+
 **Mercado y fechas**
 
 - [Ámbito: patentamientos de diciembre y enero](https://www.ambito.com/autos/arranque-dispar-el-mercado-automotor-menos-patentamientos-que-2025-pero-suba-frente-diciembre-n6240858)
@@ -761,3 +825,23 @@ La lista completa, con qué respalda cada una y qué tan firme es, está en la h
 - [Cadena 3: inauguración de Familia Parra](https://www.cadena3.com/noticia/ahora-pais/familia-parra-inaugura-este-jueves-su-concesionario-oficial-byd-en-cordoba_496756)
 - [Infonegocios: inauguración de Autocity](https://infonegocios.info/plus/byd-llego-a-cordoba-autocity-inauguro-su-nuevo-salon-lider-en-la-preventa-de-la-marca-en-argentina)
 - [Air Fresh Marketing: personal para inauguraciones](https://www.airfreshmarketing.com/blog/how-to-staff-auto-dealership-grand-opening)
+
+# 16. Palabras del plan
+
+| Palabra | Qué quiere decir |
+|---|---|
+| Lead | Una persona que escribió y dejó sus datos porque le interesa un auto |
+| Lead calificado | Un lead que dijo qué auto quiere, cómo lo piensa pagar y para cuándo (letra A o B) |
+| CTA | El pedido que cierra cada pieza. Hay uno solo: "Pedinos precio y financiación de cualquiera de nuestros autos" |
+| Código | Una palabra (EADO, CUOTA, RUTA…) que viaja en el mensaje de WhatsApp para saber qué pieza trajo la consulta |
+| Gancho | Lo que se dice y se ve en los primeros 2 segundos para que la persona no pase de largo |
+| Re-gancho | Una frase en el medio ("pero…", "y lo más importante…") que da una razón nueva para seguir mirando |
+| Tomas de apoyo | Imágenes de lo que se está diciendo (el baúl, la pantalla, el enchufe) que se intercalan con el vendedor |
+| Video final | El video ya editado, sin marca de agua, que se sube igual a todas las redes |
+| Reel de prueba | Un reel que Instagram muestra primero solo a gente que no nos sigue, para elegir el mejor gancho |
+| Tasa de salto | El porcentaje de gente que pasa de largo un reel en los primeros 3 segundos: cuanto más baja, mejor |
+| Loop | Cuando el último cuadro engancha con el primero y el video se vuelve a ver solo |
+| Retargeting | Mostrarle un anuncio a quien ya vio nuestros videos |
+| TOF, MOF, BOF | Arriba, medio y abajo del embudo: entretener, educar y vender |
+| Día D | El día abierto de la inauguración; D-7 es 7 días antes |
+

@@ -42,7 +42,8 @@ DATOS_INICIO = [
 COMO_SE_USA = [
     "Escribí en la celda amarilla 'Día D' la fecha real del día abierto, y completá la dirección nueva, el WhatsApp y los nombres. Las fechas de Calendario, Tareas y Anuncios se recalculan solas.",
     "Cada lunes, en Calendario filtrá la columna 'Semana del' por la semana que empieza, y en Tareas mirá las fechas de los próximos 7 días. Eso es todo lo que hay que hacer en la semana.",
-    "Cada pieza tiene un guion en la hoja Guiones (columna 'Guion' del Calendario): gancho, guion por tiempos, tomas, texto en pantalla, descripción lista para pegar, hashtags, comentario fijado y código de WhatsApp.",
+    "Cada pieza tiene un guion (columna 'Guion'). En la hoja Guiones está el resumen: para quién es, la idea en una frase, el gancho, las tomas, la descripción para pegar, los hashtags, el comentario fijado y el código. En la hoja Escenas está escena por escena: qué se dice, qué se ve, el texto en pantalla y el sonido.",
+    "Todo se escribe para que lo entienda alguien de 15 años: frases cortas, palabras de todos los días y cada cosa que se dice, se ve. Antes de grabar y antes de publicar, pasá la prueba de la hoja 'Cómo escribir'.",
     "Columna 'Objetivo': Entretener a las masas (alcance), Educar a los interesados (comparar y sacar dudas) y Vender a los comprometidos (precio, cuota, turno). Cada semana tiene de las tres; las historias, los Estados y los vivos venden todos los días.",
     "Al publicar: Estado = 'Publicado' y pegá el link. El lunes siguiente cargá el resultado en la fila y los números de la semana en la hoja Tablero.",
     "Lo que tenga precio, cuota, CFT, promo o 'entrega inmediata' lo confirma Administración el mismo día. Sin confirmación no se publica (se cambia por otra pieza del mismo objetivo).",
@@ -73,7 +74,10 @@ MEZCLA_NOTA = ("Meta de partida: ~40/35/25 en el feed (propuesta sin estudio que
 HOJAS = [
     ("Calendario", "Todas las piezas de contenido, día por día, con objetivo, canal, guion, responsable, materiales y métrica."),
     ("Tareas", "Todo lo que no es una publicación: permisos, Google, web, WhatsApp, prensa, evento, anuncios y revisiones."),
-    ("Guiones", "Un guion por tipo de pieza, listo para grabar y publicar. El link de prueba abre WhatsApp con el mensaje y el código."),
+    ("Guiones", "40 guiones: para quién es cada uno, la idea en una frase, gancho, tomas, descripción, hashtags, comentario fijado y código. El link de prueba abre WhatsApp con el mensaje."),
+    ("Escenas", "Cada guion escena por escena: qué se dice, qué se ve, el texto en pantalla y el sonido. Es lo que usa el que graba y edita."),
+    ("Público", "A quién le hablamos: 7 públicos con lo que quieren, lo que los frena, los modelos y las piezas para cada uno."),
+    ("Cómo escribir", "La prueba de los 15 años, el diccionario de palabras difíciles y las reglas de ritmo y visuales."),
     ("Códigos", "Un código por pieza o canal para saber qué trajo cada consulta. Se cargan los resultados acá."),
     ("Anuncios", "Campañas de Meta y Google con fechas, público, presupuesto diario y regla de corte."),
     ("Evento", "Minuto a minuto de la noche VIP y del día abierto: quién hace qué y qué se graba."),
@@ -99,11 +103,11 @@ def pz(id_, cuando, etapa, objetivo, canal, formato, pieza, guion, resp, **kw):
     PIEZAS.append(fila)
 
 
-def reel(id_, cuando, etapa, objetivo, pieza, guion, aparece, gancho, codigo, materiales="", serie="", hora="19:30", horas=1.5, evidencia="F01, F02", resp="Contenido"):
+def reel(id_, cuando, etapa, objetivo, pieza, guion, aparece, gancho, codigo, materiales="", serie="", hora="19:30", horas=1.5, evidencia="F01, F02", resp="Contenido", publico=""):
     metrica = {"Entretener": M_ENT, "Educar": M_EDU, "Vender": M_VEN}[objetivo]
-    cta = CTA_CORTO.format(k=codigo) if codigo else "Mandáselo a… (sin CTA comercial)"
+    cta = CTA_CORTO.format(k=codigo) if codigo else "Mandáselo a… (sin pedido comercial)"
     pz(id_, cuando, etapa, objetivo, REELS, "Reel", pieza, guion, resp, aparece=aparece, gancho=gancho, cta=cta,
-       materiales=materiales, serie=serie, hora=hora, horas=horas, metrica=metrica, evidencia=evidencia)
+       materiales=materiales, serie=serie, hora=hora, horas=horas, metrica=metrica, evidencia=evidencia, publico=publico)
 
 
 def carrusel(id_, cuando, etapa, objetivo, pieza, gancho, codigo, materiales="", guion="G33", evidencia="F10"):
@@ -114,29 +118,29 @@ def carrusel(id_, cuando, etapa, objetivo, pieza, gancho, codigo, materiales="",
 E1, E2, E3, E4, E5, E6 = ("1. Preparación", "2. Cuenta regresiva", "3. Inauguración", "4. Después de abrir", "5. Enero: el pico", "6. Febrero")
 
 # --- Semana del 30/11
-reel("S01-1", ("F", d(2026, 12, 1)), E1, "Educar", "¿Patentás en diciembre o esperás a enero?", "G01", "Vendedor 1",
-     "¿PATENTÁS AHORA O ESPERÁS A ENERO?", "PATENTAR",
+reel("S01-1", ("F", d(2026, 12, 1)), E1, "Educar", "¿Comprás ahora o esperás a enero?", "G01", "Vendedor 1",
+     "¿COMPRÁS AHORA O ESPERÁS A ENERO?", "ENERO",
      materiales="Dato ACARA de noviembre (sale ~30/11). Bonificaciones de diciembre de cada marca (Administración). Cómo figura el año modelo de las unidades en stock.",
      evidencia="F24, F01")
 carrusel("S01-2", ("F", d(2026, 12, 2)), E1, "Educar", "Antes de cambiar el auto: las 5 preguntas que te hace un buen vendedor",
-         "¿SABÉS QUÉ TE VA A PREGUNTAR EL VENDEDOR?", "PREGUNTAS",
+         "¿SABÉS QUÉ TE VA A PREGUNTAR EL VENDEDOR?", "PREGUNTAS", guion="G35",
          materiales="Las 5 preguntas de calificación: uso y km por día; cochera con enchufe; usado; financiación y anticipo; para cuándo.")
-reel("S01-3", ("F", d(2026, 12, 3)), E1, "Vender", "Llegó al salón: la unidad con más stock (Eado Plus)", "G02", "Vendedor 1",
-     "SE ENCHUFA EN TU CASA Y NO TE DEJA A PIE EN LA RUTA", "EADO", serie="Llegó al salón",
+reel("S01-3", ("F", d(2026, 12, 3)), E1, "Vender", "Llegó al salón: el auto con más stock (Eado Plus)", "G02", "Vendedor 1",
+     "SE ENCHUFA EN TU CASA Y NO TE DEJA A PIE EN LA RUTA", "EADO", serie="Llegó al salón", publico="Muchos km por día",
      materiales=CONF + "Datos: hasta 132 km eléctricos (NEDC), 995 km de autonomía total declarada, batería con 8 años o 150.000 km de garantía. Verificar cómo se presenta el concesionario para Changan.",
      evidencia="F07, F08, F17")
 
 # --- Semana del 7/12 (7 no laborable, 8 feriado)
 reel("S02-2", ("F", d(2026, 12, 10)), E1, "Vender", "Llegó al salón: híbrido que se carga solo (Haval H6 PRO HEV)", "G02", "Vendedor 2",
-     "UN HÍBRIDO QUE NO SE ENCHUFA: SE CARGA SOLO", "H6", serie="Llegó al salón",
+     "UN HÍBRIDO QUE NO SE ENCHUFA: SE CARGA SOLO", "H6", serie="Llegó al salón", publico="Familia; Muchos km por día",
      materiales=CONF + "Sin especificaciones que no estén en la ficha oficial: buscarlas y citarlas.", evidencia="F07, F08, F17")
 carrusel("S02-1", ("F", d(2026, 12, 9)), E1, "Educar", "¿Auto chino? 5 respuestas sobre garantía, service y repuestos",
-         "¿AUTO CHINO? 5 PREGUNTAS QUE TODOS HACEN", "TALLER",
+         "¿AUTO CHINO? 5 PREGUNTAS QUE TODOS HACEN", "TALLER", guion="G36",
          materiales="Garantías exactas de cada modelo con su condición ('lo que ocurra primero'). Tiempo real de un repuesto común (posventa). Fotos del taller.")
 
 # --- Semana del 14/12 (aguinaldo 18/12, terminan las clases)
-reel("S03-1", ("F", d(2026, 12, 15)), E1, "Educar", "El aguinaldo como anticipo", "G11", "Vendedor 2",
-     "¿CON EL AGUINALDO TE ALCANZA PARA EL ANTICIPO?", "AGUINALDO",
+reel("S03-1", ("F", d(2026, 12, 15)), E1, "Educar", "¿Con el aguinaldo te alcanza para empezar?", "G11", "Vendedor 2",
+     "¿CON EL AGUINALDO TE ALCANZA PARA EMPEZAR?", "AGUINALDO",
      materiales=CONF + "Si no hay ejemplo confirmado, se reemplaza por G23.", evidencia="F26, F17")
 
 # --- Semana del 21/12 (Navidad)
@@ -166,7 +170,7 @@ reel("S06-2", ("F", d(2027, 1, 5)), E5, "Educar", "¿Enchufe o nafta? Dos vended
 carrusel("S06-3", ("F", d(2027, 1, 6)), E5, "Vender", "Placas de financiación de enero, un modelo por placa", "¿CUÁNTO QUEDA LA CUOTA DE CADA UNO?",
          "CUOTA", guion="G13", materiales=CONF + "Listas de enero (tarea T37).", evidencia="F17, F18")
 reel("S06-4", ("F", d(2027, 1, 7)), E5, "Vender", "Llegó al salón: gastar menos nafta sin enchufar nada (ORA 05 HEV)", "G02", "Vendedor 2",
-     "¿QUERÉS GASTAR MENOS NAFTA SIN ENCHUFAR NADA?", "ORA05", serie="Llegó al salón",
+     "¿QUERÉS GASTAR MENOS NAFTA SIN ENCHUFAR NADA?", "ORA05", serie="Llegó al salón", publico="Muchos km por día",
      materiales=CONF + "Dato: 5,1 L/100 km de consumo mixto declarado.", evidencia="F07, F08")
 reel("S06-5", ("F", d(2027, 1, 8)), E5, "Entretener", "Ida y vuelta a Jesús María: medimos lo que gasta", "G15", "Vendedor 1",
      "¿CUÁNTO GASTÁS PARA IR A JESÚS MARÍA Y VOLVER?", "RUTA", serie="Ida y vuelta medida",
@@ -185,7 +189,7 @@ reel("S07-1", ("F", d(2027, 1, 11)), E5, "Entretener", "Adiviná el 0 a 100", "G
 reel("S07-2", ("F", d(2027, 1, 12)), E5, "Educar", "¿Cuánto dura la batería?", "G31", "Vendedor 2",
      "¿Y CUANDO LA BATERÍA SE GASTA, QUÉ?", "BATERIA", materiales="Garantías de batería exactas por modelo (Eado Plus: 8 años o 150.000 km).")
 carrusel("S07-3", ("F", d(2027, 1, 13)), E5, "Educar", "Eléctrico, enchufable o híbrido: cuál te sirve para ir a las sierras",
-         "¿CON CUÁL TE VAS A LAS SIERRAS?", "TIPO", materiales="Explicación de EV, PHEV y HEV del reel ya hecho (CLAUDE.md, sección 6). Sin especificaciones que no estén verificadas.")
+         "¿CON CUÁL TE VAS A LAS SIERRAS?", "TIPO", guion="G37", materiales="Explicación de EV, PHEV y HEV del reel ya hecho (CLAUDE.md, sección 6). Sin especificaciones que no estén verificadas.")
 reel("S07-4", ("F", d(2027, 1, 14)), E5, "Vender", "Entregas de la semana", "G19", "Clientes con autorización + vendedor",
      "ESTA SEMANA SE FUERON [N] AUTOS A [BARRIOS]", "ENTREGA", serie="Entregas", materiales="Autorizaciones firmadas.", evidencia="F23")
 reel("S07-5", ("F", d(2027, 1, 15)), E5, "Entretener", "Así se prepara un auto antes de entregarlo", "G32", "Equipo",
@@ -205,7 +209,7 @@ carrusel("S08-3", ("F", d(2027, 1, 20)), E5, "Vender", "Eado Plus en 10 placas (
          "¿Y SI VAS A TRABAJAR SIN CARGAR NAFTA?", "EADO",
          materiales=CONF + "Reusar el carrusel de 10 placas del Eado (CLAUDE.md, sección 6) con la placa de precio actualizada.", evidencia="F17")
 reel("S08-4", ("F", d(2027, 1, 21)), E5, "Vender", "Llegó al salón: la cuenta de la nafta (Eado Plus)", "G02", "Vendedor 1",
-     "HACÉ ESTA CUENTA CONMIGO", "EADO", serie="Llegó al salón",
+     "HACÉ ESTA CUENTA CONMIGO", "EADO", serie="Llegó al salón", publico="Muchos km por día",
      materiales=CONF + "Guion MOF 'La cuenta de la nafta' del PDF de guiones. Las cuentas propias dicen 'estimado'.", evidencia="F07, F08")
 reel("S08-5", ("F", d(2027, 1, 22)), E5, "Entretener", "Ida y vuelta a Cosquín en modo eléctrico", "G15", "Vendedor 1",
      "¿CUÁNTO GASTÁS PARA IR A COSQUÍN Y VOLVER?", "RUTA", serie="Ida y vuelta medida",
@@ -223,13 +227,13 @@ reel("S09-1", ("F", d(2027, 1, 25)), E5, "Entretener", "Adiviná: ¿cuántos km 
      materiales="Tarifa de luz vigente (EPEC) y precio de un café en Córdoba ese día. Consumo ORA 03: 16,7 kWh/100 km WLTP. La cuenta va en la descripción ('estimado').")
 reel("S09-2", ("F", d(2027, 1, 26)), E5, "Educar", "El vendedor responde", "G18", "Vendedor 1",
      "[EL COMENTARIO DE LA SEMANA]", "PREGUNTA", serie="El vendedor responde", materiales="Elegir el comentario el lunes 25/1.", evidencia="F34")
-carrusel("S09-3", ("F", d(2027, 1, 27)), E5, "Educar", "Cómo comparar créditos en 5 pasos (sin nombrar bancos)",
-         "LA CUOTA MÁS BAJA PUEDE SER LA MÁS CARA", "CREDITO",
+carrusel("S09-3", ("F", d(2027, 1, 27)), E5, "Educar", "Cómo comparar créditos (sin nombrar bancos)",
+         "LA CUOTA MÁS BAJA PUEDE SER LA MÁS CARA", "CREDITO", guion="G38",
          materiales="Contenido del reel de créditos ya hecho (CLAUDE.md, sección 6): prendario, UVA, plan de ahorro, financiación de marca; CFT.")
 reel("S09-4", ("F", d(2027, 1, 28)), E5, "Vender", "Llegó al salón: si tenés cochera con enchufe (ORA 03)", "G02", "Vendedor 1",
-     "SI TENÉS COCHERA CON ENCHUFE, MIRÁ ESTO", "ORA03", serie="Llegó al salón",
+     "SI TENÉS COCHERA CON ENCHUFE, MIRÁ ESTO", "ORA03", serie="Llegó al salón", publico="Curioso del eléctrico",
      materiales=CONF + "Datos: 310 km WLTP, carga 20–80 % en 36 min (oficial). Garantía del vehículo: verificar (5 o 7 años según la fuente).", evidencia="F07, F08")
-reel("S09-5", ("F", d(2027, 1, 29)), E5, "Entretener", "Lo más patentado de enero", "G22", "Sin personas (voz del dueño)",
+reel("S09-5", ("F", d(2027, 1, 29)), E5, "Entretener", "Los autos más vendidos de enero", "G22", "Sin personas (voz del dueño)",
      "¿ADIVINÁS CUÁL FUE EL N.º 1 DE ENERO?", "DATO", resp="Dueño + Claude", horas=3.0,
      materiales="Dato de ACARA/DNRPA del 29/1 (último día hábil). Si el ranking es de otras marcas, revisar con el dueño la regla de no nombrarlas.", evidencia="F24")
 pz("S09-6", ("F", d(2027, 1, 30)), E5, "Vender", "TikTok + Instagram en vivo", "Vivo", "Vivo del sábado #4 desde el salón (y evaluación)", "G20", "Contenido",
@@ -256,12 +260,12 @@ pz("S10-7", ("F", d(2027, 2, 4)), E6, "Educar", "YouTube (+ 3 Shorts)", "Video l
    metrica="Retención media · clics al link", evidencia="F09", serie="YouTube cada 2 semanas")
 
 # --- Semana del 8/2 (Carnaval 8 y 9, San Valentín 14)
-carrusel("S11-2", ("F", d(2027, 2, 10)), E6, "Educar", "Cómo leer una cotización: las 6 líneas que importan", "¿SABÉS LEER UNA COTIZACIÓN?", "CREDITO",
+carrusel("S11-2", ("F", d(2027, 2, 10)), E6, "Educar", "¿Entendés el papel que te da el vendedor? Las 6 líneas que importan", "¿ENTENDÉS EL PAPEL QUE TE DA EL VENDEDOR?", "CREDITO", guion="G39",
          materiales="Modelo de cotización aprobado por el abogado (sin datos de clientes).")
 reel("S11-1", ("F", d(2027, 2, 10)), E6, "Educar", "¿Auto chino? Repuestos y tiempos reales de un service", "G10", "Jefe de taller",
      "¿AUTO CHINO? ¿Y SI NECESITO UN REPUESTO?", "TALLER", serie="Mitos del auto chino", materiales="Tiempos reales de posventa de los últimos 3 meses.")
 reel("S11-3", ("F", d(2027, 2, 11)), E6, "Vender", "Llegó al salón: [unidad Mitsubishi con stock]", "G02", "Vendedor 2",
-     "[BENEFICIO PARA EL QUE MIRA]", "STOCK", serie="Llegó al salón", materiales=CONF + "Datos de la ficha oficial con su fuente.")
+     "[BENEFICIO PARA EL QUE MIRA]", "STOCK", serie="Llegó al salón", publico="Familia; Campo y pyme", materiales=CONF + "Datos de la ficha oficial con su fuente.")
 reel("S11-4", ("F", d(2027, 2, 12)), E6, "Entretener", "Adiviná qué auto es por un detalle", "G04", "Vendedor 2",
      "¿QUÉ AUTO ES? ADIVINÁ POR EL DETALLE", "JUEGO", serie="Adiviná", materiales="5 primeros planos (llanta, faro, volante, tapa de carga, insignia tapada).")
 
@@ -274,7 +278,7 @@ reel("S12-2", ("F", d(2027, 2, 16)), E6, "Educar", "Auto para la familia: lo que
 carrusel("S12-3", ("F", d(2027, 2, 17)), E6, "Vender", "Placas de financiación: los 5 modelos con más stock", "ELEGÍ EL TUYO Y TE DECIMOS LA CUOTA", "CUOTA",
          guion="G13", materiales=CONF, evidencia="F17, F18")
 reel("S12-4", ("F", d(2027, 2, 18)), E6, "Vender", "Llegó al salón: [unidad con más stock de febrero]", "G02", "Vendedor 1",
-     "[BENEFICIO PARA EL QUE MIRA]", "STOCK", serie="Llegó al salón", materiales=CONF)
+     "[BENEFICIO PARA EL QUE MIRA]", "STOCK", serie="Llegó al salón", publico="Según la unidad", materiales=CONF)
 reel("S12-5", ("F", d(2027, 2, 19)), E6, "Entretener", "Adiviná cuánto mide la pantalla", "G04", "Vendedor 2",
      "¿CUÁNTO MIDE ESTA PANTALLA?", "JUEGO", serie="Adiviná", materiales="Medida oficial de la ficha (ej.: Eado Plus 13,2 pulgadas; H7 15,6 pulgadas, verificar).")
 pz("S12-6", ("F", d(2027, 2, 18)), E6, "Educar", "YouTube (+ 3 Shorts)", "Video largo", "Recorrido completo: Haval H7 4x4", "G21", "Contenido",
@@ -292,7 +296,7 @@ carrusel("S13-3", ("F", d(2027, 2, 24)), E6, "Educar", "Preguntas frecuentes del
          "TODO LO QUE NOS PREGUNTARON DESDE QUE ABRIMOS", "PREGUNTAS", materiales="Las 8 preguntas más repetidas en WhatsApp desde la inauguración.")
 reel("S13-4", ("F", d(2027, 2, 25)), E6, "Vender", "Entregas de febrero", "G19", "Clientes con autorización + vendedor",
      "EN FEBRERO SE FUERON [N] AUTOS A [BARRIOS]", "ENTREGA", serie="Entregas", evidencia="F23")
-reel("S13-5", ("F", d(2027, 2, 26)), E6, "Entretener", "Lo más patentado de febrero", "G22", "Sin personas (voz del dueño)",
+reel("S13-5", ("F", d(2027, 2, 26)), E6, "Entretener", "Los autos más vendidos de febrero", "G22", "Sin personas (voz del dueño)",
      "¿ADIVINÁS CUÁL FUE EL N.º 1 DE FEBRERO?", "DATO", resp="Dueño + Claude", horas=3.0, materiales="Dato de ACARA/DNRPA del 26/2.", evidencia="F24")
 
 # --- Inauguración (todas relativas al Día D)
@@ -307,7 +311,7 @@ reel("INA-03", ("D", -10), E2, "Entretener", "Se arma el nuevo Valparaiso, ep. 2
 pz("INA-04", ("D", -10), E2, "Vender", "WhatsApp (difusión)", "Mensaje de WhatsApp", "Aviso de mudanza a clientes de taller y compradores", "G29", "Primer contacto",
    gancho="Último turno en el local viejo y primero en el nuevo, con el mapa", cta="Respondé para pedir turno", hora="10:00", horas=1.0,
    metrica="Turnos de service pedidos", materiales="Base de clientes de taller con permiso.", serie="Mensajes de la inauguración")
-pz("INA-05", ("D", -10), E2, "Vender", "Perfil de Empresa de Google", "Publicación de Google", "Publicación de evento: inauguramos el [fecha]", "G26", "Contenido",
+pz("INA-05", ("D", -10), E2, "Vender", "Perfil de Empresa de Google", "Publicación de Google", "Publicación de evento: inauguramos el [fecha]", "G26", "Contenido", publico="Los que ya nos buscan en Google",
    gancho="Inauguramos el [fecha]: te esperamos", cta="Botón WhatsApp con código GBP", hora="12:30", horas=0.5, metrica="Clics en el botón · cómo llegar",
    materiales="Foto del local nuevo. No cambiar todavía la dirección del perfil (eso es el Día D).", evidencia="F11", serie="Google semanal")
 reel("INA-06", ("D", -8), E2, "Entretener", "Anuncio oficial: fecha, dirección y día abierto", "G05", "Dueño o vendedor 1",
@@ -329,9 +333,9 @@ reel("INA-07", ("D", -5), E2, "Educar", "¿Auto chino? ¿Y si se rompe? (el tall
      materiales="El taller nuevo armado. Garantías exactas con su condición. Tiempo real de un repuesto común.", evidencia="F02")
 pz("INA-08", ("D", -3), E2, "Vender", "WhatsApp (difusión)", "Mensaje de WhatsApp", "Recordatorio a los que confirmaron la noche VIP", "G29", "Primer contacto",
    gancho="Recordatorio con fecha, hora y dirección", cta="", hora="10:00", horas=0.5, metrica="Asistencia ÷ confirmados", serie="Mensajes de la inauguración")
-carrusel("INA-09", ("D", -3), E2, "Educar", "Lo que vas a encontrar en el nuevo local (8 placas)", "¿QUÉ CAMBIA PARA VOS CON EL LOCAL NUEVO?", "ABRIMOS",
+carrusel("INA-09", ("D", -3), E2, "Educar", "Lo que vas a encontrar en el nuevo local (8 placas)", "¿QUÉ CAMBIA PARA VOS CON EL LOCAL NUEVO?", "ABRIMOS", guion="G40",
          materiales="Fotos reales: salón, taller, entrega, estacionamiento, sala de espera, cargadores (si hay). Horario y dirección.")
-pz("INA-10", ("D", -3), E2, "Vender", "Perfil de Empresa de Google", "Publicación de Google", "Publicación de evento: día abierto del sábado", "G26", "Contenido",
+pz("INA-10", ("D", -3), E2, "Vender", "Perfil de Empresa de Google", "Publicación de Google", "Publicación de evento: día abierto del sábado", "G26", "Contenido", publico="Los que ya nos buscan en Google",
    gancho="Sábado [fecha] · día abierto de [hora] a [hora]", cta="Botón WhatsApp con código GBP", hora="12:30", horas=0.5, metrica="Clics en el botón", serie="Google semanal", evidencia="F11")
 reel("INA-11", ("D", -2), E2, "Vender", "Prueba de manejo con turno el sábado (y beneficio de inauguración si existe)", "G05", "Vendedor 1",
      "¿QUERÉS PROBARLO ANTES DE DECIDIR? EL SÁBADO TE LO PRESTAMOS", "TURNO",
@@ -347,7 +351,7 @@ pz("INA-14", ("D", 0), E3, "Vender", "TikTok + Instagram en vivo", "Vivo", "Día
 pz("INA-15", ("D", 0), E3, "Vender", "IG + FB Historias", "Historias", "Día abierto: historias cada hora", "G07", "Contenido",
    gancho="Lo que pasa en el salón", cta="Sticker de enlace a WhatsApp con INAUGURACION-QR", hora="10:00", horas=2.0,
    metrica="Toques en el sticker", serie="Inauguración", evidencia="F23")
-pz("INA-16", ("D", 0), E3, "Vender", "Perfil de Empresa de Google", "Publicación de Google", "Publicación 'Nos mudamos' con fotos reales (el día que cambia la dirección)", "G26", "Contenido",
+pz("INA-16", ("D", 0), E3, "Vender", "Perfil de Empresa de Google", "Publicación de Google", "Publicación 'Nos mudamos' con fotos reales (el día que cambia la dirección)", "G26", "Contenido", publico="Los que ya nos buscan en Google",
    gancho="Nos mudamos: ahora estamos en [dirección nueva]", cta="Botón 'Cómo llegar'", hora="09:00", horas=0.5,
    metrica="Pedidos de 'cómo llegar' · llamadas", materiales="Va junto con la tarea T30 (mudanza digital).", serie="Google semanal", evidencia="F12, F14")
 pz("INA-17", ("D", 0), E3, "Vender", "Estados de WhatsApp", "Estado de WhatsApp", "Hoy abrimos: dirección y horario", "G27", "Primer contacto",
@@ -396,14 +400,16 @@ for k, lunes in enumerate(SEMANAS):
     if not (jueves.month == 12 and jueves.day in (24, 31)):
         pz(f"S{n}-ML", ("F", jueves), etapa, "Vender", "Mercado Libre", "Aviso de Mercado Libre",
            "Mercado Libre: video de la unidad en 2 avisos, fotos propias y preguntas respondidas en minutos", "G02", "Contenido",
+           publico="Los que ya buscan en Mercado Libre",
            gancho="Primeros segundos con el auto real del salón", cta="'Consultá financiación' (confirmar si se puede derivar a WhatsApp)", hora="10:00", horas=1.0,
            metrica="Preguntas por aviso · tiempo de respuesta", serie="Todas las semanas",
-           materiales="Semana de la mudanza: cambiar la ubicación de todos los avisos (T33)." if k == 3 else "Usar el B-roll de la grabación del martes.")
+           materiales="Semana de la mudanza: cambiar la ubicación de todos los avisos (T33)." if k == 3 else "Usar el tomas de apoyo de la grabación del martes.")
     if GOOGLE[k]:
         tipo, tema = GOOGLE[k]
         miercoles = semana + dt.timedelta(days=2)
         pz(f"S{n}-G", ("F", miercoles), etapa, "Vender" if tipo == "Oferta" else "Educar", "Perfil de Empresa de Google", "Publicación de Google",
            f"Publicación de Google ({tipo.lower()}): {tema} + 5 fotos nuevas", "G26", "Contenido",
+           publico="Los que ya nos buscan en Google",
            gancho="Título en minúsculas normales, foto propia con texto", cta="Botón WhatsApp con código GBP", hora="12:30", horas=0.5,
            metrica="Clics en el botón · llamadas · cómo llegar", serie="Google semanal", evidencia="F11",
            materiales=CONF if tipo == "Oferta" else "")
@@ -426,7 +432,7 @@ tarea("T03", ("F", d(2026, 11, 27)), "Decisiones", "Verificar Changan y Bancor a
       "1) Cómo se presenta Valparaiso para Changan (¿'concesionario oficial'?): pedirlo por escrito a la marca. 2) Si la casa está adherida a Bancor 'De Una!' y qué parte de las ventas sale por ahí. 3) Si la red exige un CRM o portal de leads propio.",
       "Dueño", "Alta", "Sección 3")
 tarea("T04", ("F", d(2026, 11, 27)), "Producción", "Primera sesión de grabación (para la semana del 30/11)",
-      "Grabar en 2–3 h: G01 (patentar), G02 con el Eado Plus, G03 ep. 1 (obra), B-roll de 3 unidades con las tomas fijas del G02 y fotos para el carrusel del 2/12. 3 tomas de cada gancho; el resto una vez.",
+      "Grabar en 2–3 h: G01 (patentar), G02 con el Eado Plus, G03 ep. 1 (obra), tomas de apoyo de 3 unidades con las tomas fijas del G02 y fotos para el carrusel del 2/12. 3 tomas de cada gancho; el resto una vez.",
       "Contenido", "Alta", "Sección 5")
 tarea("T05", ("F", d(2026, 11, 30)), "Equipo", "Nombrar responsables y hacer la reunión de arranque",
       "1) Nombrar responsable de contenido, 2 vendedores en cámara y responsable de primer contacto; escribirlos en Inicio. 2) Reunión de 45 min con esta planilla y la guía: rutina semanal, reglas que no se negocian, qué no se dice en cámara (nada de bromas sobre precios, clientes ni autos de la casa).",
@@ -471,7 +477,7 @@ tarea("T18", ("D", -16), "Instagram", "Automatizar comentario → mensaje (ManyC
       "Una palabra por pieza (hoja Códigos). El único mensaje permitido (Meta: uno por comentario, dentro de 7 días) trae 2 botones que abren WhatsApp con el código. Probarlo desde una cuenta que no sigue (le llega a Solicitudes). A la semana de publicada cada pieza, cambiar el fijado a 'escribinos por WhatsApp (link en la bio)'.",
       "Contenido", "Alta", "Sección 7", "F05, F06")
 tarea("T19", ("D", -16), "Producción", "Plantillas de edición y música",
-      "1) Plantilla en CapCut o Edits: subtítulos palabra por palabra en la letra de la marca (palabra activa en bordó), placa final con el CTA y el logo, legal de 5 s, guía de zonas seguras. 2) Elegir 10 temas de la Sound Collection de Meta (Instagram y Facebook) y 10 de la Commercial Music Library de TikTok y anotarlos en un archivo de créditos. Nada de canciones de moda. 3) Exportar siempre el máster sin marca de agua.",
+      "1) Plantilla en CapCut o Edits: subtítulos palabra por palabra en la letra de la marca (palabra activa en bordó), placa final con el CTA y el logo, legal de 5 s, guía de zonas seguras. 2) Elegir 10 temas de la Sound Collection de Meta (Instagram y Facebook) y 10 de la Commercial Music Library de TikTok y anotarlos en un archivo de créditos. Nada de canciones de moda. 3) Exportar siempre el video final sin marca de agua.",
       "Contenido", "Media", "Sección 5", "F22, F39")
 tarea("T20", ("D", -16), "WhatsApp", "Armar la base de clientes con permiso",
       "Juntar compradores de los últimos 2–3 años, clientes de taller y leads A y B. Dejar solo a quienes aceptaron recibir mensajes. Cruzar con el Registro No Llame. Segmentar: VIP, taller, leads.",
@@ -642,7 +648,7 @@ CODIGOS = [
     ("VIVO-SAB", "Vivos de los sábados de enero", "Vivos", "Hola, vengo del vivo del sábado (VIVO-SAB). Quiero precio y financiación."),
     ("MUDANZA", "Aviso de mudanza a clientes de taller", "WhatsApp (difusión)", "Hola, quiero un turno de service en el local nuevo (MUDANZA)."),
     ("APERTURA", "Promo de apertura de enero", "S06-1, A3", "Hola, vengo del video de la promo de apertura (APERTURA). Quiero precio y financiación."),
-    ("PATENTAR", "¿Patentás ahora o en enero?", "S01-1", "Hola, vengo del video PATENTAR. Quiero precio y financiación."),
+    ("ENERO", "¿Comprás ahora o esperás a enero?", "S01-1", "Hola, vengo del video ENERO. Quiero precio y financiación."),
     ("PREGUNTAS", "5 preguntas / 3 preguntas / preguntas frecuentes", "S01-2, S10-2, S13-3", "Hola, vengo del video PREGUNTAS. Quiero precio y financiación."),
     ("EADO", "Stock y carrusel del Eado Plus", "S01-3, S08-3, S08-4", "Hola, vengo del video EADO. Quiero precio y financiación."),
     ("H6", "Stock del Haval H6 PRO HEV", "S02-2", "Hola, vengo del video H6. Quiero precio y financiación."),
@@ -662,7 +668,7 @@ CODIGOS = [
     ("LLUVIA", "Asistencias con lluvia", "S08-2", "Hola, vengo del video LLUVIA. Quiero precio y financiación."),
     ("PREGUNTA", "El vendedor responde", "S09-2", "Hola, vengo del video PREGUNTA. Quiero precio y financiación."),
     ("CREDITO", "Carruseles de créditos y cotización", "S09-3, S11-2", "Hola, vengo del carrusel CREDITO. Quiero precio y financiación."),
-    ("DATO", "Lo más patentado del mes", "S09-5, S13-5", "Hola, vengo del video DATO. Quiero precio y financiación."),
+    ("DATO", "Los autos más vendidos del mes", "S09-5, S13-5", "Hola, vengo del video DATO. Quiero precio y financiación."),
     ("FAMILIA", "Auto para la familia", "S12-2", "Hola, vengo del video FAMILIA. Quiero precio y financiación."),
     ("LARGO", "¿Cuál es más largo?", "S13-1", "Hola, vengo del video LARGO. Quiero precio y financiación."),
     ("CAMPO", "4x4 para el campo", "S13-2", "Hola, vengo del video CAMPO. Quiero precio y financiación."),
@@ -748,3 +754,127 @@ FUENTES = [
     ("F38", "Cupo 2027", "Disposición 451/2026: 50.000 unidades electrificadas sin arancel; entran desde enero de 2027.", "iProfesional", "https://www.iprofesional.com/negocios/468526-importacion-de-autos-electricos-el-gobierno-cambia-el-cupo-para-2027", "Prensa sobre norma"),
     ("F39", "Música en Instagram", "Las cuentas de empresa usan la Sound Collection de Meta (libre de regalías, también para anuncios).", "Instagram Help", "https://help.instagram.com/ipad-app/402084904469945", "Oficial (no leído completo)"),
 ]
+
+# ---------------------------------------------------------------- público
+PUBLICO = [
+    ("Todos (las masas)", "Cualquier cordobés que mira reels, de cualquier edad. Hoy no está por comprar, pero mira, comparte y se acuerda de nosotros cuando cambie el auto.",
+     "Entretenerse y aprender algo en pocos segundos.", "Que parezca una publicidad.", "—",
+     "Adiviná, ¿Entra todo?, Ida y vuelta medida, la obra, la inauguración, Un día en Valparaiso, los más vendidos del mes",
+     "Reels de Instagram y TikTok", "Las vistas sin paso comercial no traen leads (reel de 150 mil vistas, 0 leads). Estas piezas se miden por envíos y por chats con código."),
+    ("Muchos km por día", "Trabaja con el auto o viaja todos los días: al centro, a Carlos Paz, a Villa Allende, a Río Segundo. Visitadores, vendedores, profesionales.",
+     "Gastar menos nafta sin cambiar su rutina.", "'¿Dónde lo cargo?' y '¿cuánto dura la batería?'.",
+     "Eado Plus (se enchufa); ORA 05 HEV y H6 PRO HEV (se cargan solos)",
+     "Llegó al salón, ¿Enchufe o nafta?, Ida y vuelta medida, ¿Cuánto dura la batería?, YouTube",
+     "Instagram, YouTube, Google", "Córdoba depende del auto y tiene distancias largas (iProfesional, 2026). Con los que se enchufan y los que se cargan solos, la duda de dónde cargar casi desaparece."),
+    ("Familia", "Padres con chicos: vacaciones en las sierras, el cole, los fines de semana.",
+     "Espacio, seguridad y que entre todo.", "La cuota y cuánto pagan en total.", "Haval H6, Haval H7, Deepal S05, Outlander",
+     "¿Entra todo?, Auto para la familia, Lluvia, Antes de salir a la ruta, carrusel de las sierras",
+     "Instagram, Facebook, WhatsApp", "Inferencia por las fechas (vacaciones de enero, vuelta a clases) y el pronóstico de un verano lluvioso (SMN)."),
+    ("Cambia su usado", "Tiene un auto de hace 5 a 10 años y quiere uno nuevo. Es el comprador típico: el 51 % de los que compran un 0 km tiene 50 años o más (SIOMAA, 2025); en los autos chinos, 52 años en promedio, ~40 % mujeres y casi todos particulares.",
+     "Saber cuánto le toman su auto y cuánto queda la cuota.", "No entiende la financiación, le da miedo que la cuota suba y duda del 'auto chino'.",
+     "Todos", "¿Comprás ahora o en enero?, Aguinaldo, 3 preguntas, carruseles de créditos y de la cotización, ¿Auto chino?, placas de cuota",
+     "Facebook, Instagram, WhatsApp, Mercado Libre", "SIOMAA 2025 (edades: más de 60 años 28,9 %, de 40 a 49 26 %, de 50 a 59 22 %, de 18 a 24 solo 1 %). Ámbito (autos chinos). Córdoba transfirió 81.699 usados en el primer semestre de 2026, más que la Ciudad de Buenos Aires (iProfesional)."),
+    ("Campo y pyme", "Productor, contratista o empresa con camionetas.",
+     "Una 4x4 que aguante, que cargue y que tenga enchufe para herramientas; factura.", "Repuestos y service lejos del campo.",
+     "Haval H7 4x4, Poer, L200", "Para el campo, YouTube del H7, previa de Expoagro",
+     "Facebook, WhatsApp, Google, Expoagro", "Solo ~1 de cada 10 autos chinos se patenta a nombre de una empresa (Ámbito): hay menos competencia. Grupo Antelo apunta al agro (Expoagro 2026)."),
+    ("Curioso del eléctrico", "Vive en la ciudad y tiene cochera con enchufe.",
+     "No cargar nafta nunca; la tecnología.", "Cuántos km hace y dónde cargar en la ruta.", "ORA 03",
+     "¿Enchufe o nafta?, carrusel de las sierras, YouTube del ORA 03, Adiviná (el café)",
+     "Instagram, TikTok, YouTube", "~70 % de los cargadores públicos del país está en el AMBA (El Economista, 2026): en Córdoba conviene hablarle al que carga en su casa."),
+    ("Los que ya nos siguen", "Siguen la cuenta, tienen el número guardado o ya escribieron.",
+     "Ver qué hay hoy, el precio y la cuota.", "Que no le contesten rápido.", "Todos",
+     "Historias, Estados de WhatsApp, vivos, entregas, placas de cuota",
+     "Historias, WhatsApp, Google, Mercado Libre", "Las historias no traen gente nueva: sirven para cerrar con los que ya siguen (Mosseri)."),
+]
+PUBLICO_NOTAS = [
+    "Quién decide la compra: un adulto. El 51 % de los compradores de 0 km tiene 50 años o más y el grupo más grande es el de más de 60 (SIOMAA, 2025). En los autos chinos, 52 años en promedio y ~40 % mujeres (Ámbito). El tono es profesional y los argumentos son concretos: cuánto gasta, cuánto pagás en total, la garantía y la seguridad.",
+    "Por qué se escribe para alguien de 15 años: si lo entiende un chico de 15 mirando sin sonido, lo entiende cualquiera, también el de 60 que mira apurado. No es hablarles a los chicos: es que a nadie le cueste entender. Nielsen Norman Group recomienda escribir para el público general al nivel de 11 a 14 años, y en la Argentina solo el 22 % sabe calcular un interés simple y el 41 % escuchó hablar del crédito prendario (BCRA–CAF): por eso las cuentas se muestran ya hechas y las palabras difíciles se explican.",
+    "Cada pieza del Calendario dice a qué público le habla (columna 'Para quién'). A las 6–8 semanas, mirar qué público trae más chats con código y darle más piezas.",
+]
+
+# ---------------------------------------------------------------- cómo escribir
+ESCRIBIR_INTRO = ("Todo lo que se publica (guiones, textos en pantalla, descripciones, placas y mensajes) se escribe para que lo entienda "
+                  "alguien de 15 años en la primera mirada. No cambia a quién le vendemos: cambia cómo lo decimos. El tono sigue siendo profesional.")
+PRUEBA_15_TITULO = "La prueba de los 15 años (antes de grabar y antes de publicar)"
+PRUEBA_15 = [
+    "1. Una sola idea por pieza. Si no la podés decir en una frase (columna 'La idea en una frase' de Guiones), el video no está listo.",
+    "2. Frases cortas: hasta 12 palabras cada una, y una idea por frase.",
+    "3. Palabras de todos los días. Si un chico de 15 no la usaría, cambiala (diccionario de abajo). Las siglas, solo en letra chica.",
+    "4. Todo lo que se dice, se ve. Si decís 'baúl', se ve el baúl abriéndose. Si decís un número, el número aparece grande.",
+    "5. Números redondos y comparados con algo conocido: un café, el celular, un tanque de nafta, ida y vuelta a Carlos Paz.",
+    "6. Se entiende sin sonido: el gancho escrito desde el primer cuadro y subtítulos en todo.",
+    "7. Lo difícil, con una imagen: el CFT es la barra del total; el crédito UVA es la cuota que sube; el híbrido son dos motores que empujan juntos.",
+    "8. La prueba final: mostrale el video a alguien que no sabe de autos. Si te repite la idea en una frase, está listo. Si no, se simplifica.",
+    "9. Lo que no cambia: el tono profesional, los datos con su fuente, el único CTA comercial y la letra chica legal.",
+]
+DICCIONARIO_TITULO = "Diccionario: palabras difíciles y cómo decirlas"
+DICCIONARIO = [
+    ("PHEV, híbrido enchufable", "Híbrido que se enchufa (se enchufa y también usa nafta)", "PHEV"),
+    ("HEV, híbrido autorrecargable", "Híbrido que se carga solo (nunca se enchufa)", "HEV"),
+    ("EV, BEV", "Eléctrico", "100 % eléctrico"),
+    ("Autonomía", "Cuántos km hace", "Autonomía declarada (NEDC o WLTP)"),
+    ("Ciclo NEDC o WLTP", "No se dice", "Medido en laboratorio (NEDC o WLTP)"),
+    ("CFT, costo financiero total", "Lo que pagás en total, con todo incluido", "CFTEA [..] %"),
+    ("TNA", "El interés por año (solo si hace falta)", "TNA [..] %"),
+    ("Anticipo", "Lo que ponés al principio", ""),
+    ("Crédito prendario", "Crédito con el auto de garantía", "Prendario"),
+    ("Crédito UVA", "Crédito que sube con la inflación", "UVA"),
+    ("Adjudicación", "Cuando te dan el auto (en el plan de ahorro)", "Derecho de adjudicación"),
+    ("Tasación del usado", "Cuánto te tomamos tu auto", ""),
+    ("Posventa", "El service y el taller", ""),
+    ("ADAS, asistencias a la conducción", "Ayudas que te avisan y frenan solas", "ADAS"),
+    ("Equipamiento, prestaciones", "Lo que trae", ""),
+    ("Bonificación", "Descuento", ""),
+    ("Patentar en enero", "Que el auto figure del año nuevo", "Año de patentamiento"),
+    ("Vigencia", "Hasta cuándo vale", "Vigente del [..] al [..]"),
+    ("Torque, Nm", "Tiene fuerza / arranca rápido (con un dato simple, como el 0 a 100)", "Nm según la ficha"),
+    ("Unidad", "Auto", ""),
+    ("Entrega inmediata", "Está acá: te lo llevás [plazo real] (solo si es cierto ese día)", "Sujeto a stock"),
+]
+RITMO_TITULO = "Ritmo y visuales: cómo hacerlo dinámico"
+RITMO = [
+    ("El primer cuadro con todo", "El primer cuadro ya muestra lo más fuerte y el gancho escrito. Nada de logo ni fundido desde negro.", "La mitad mira sin sonido (Mosseri) y el primer cuadro es también la portada."),
+    ("Cambio de imagen cada 1–2 segundos, sobre la misma idea", "Corte, otro ángulo o un zoom del 110 % en la palabra clave, pero mostrando lo mismo de lo que se habla. El vendedor nunca más de 3 segundos quieto hablando: se intercala lo que dice.", "Los cortes que no tienen relación entre sí saturan, y con mucho ritmo se recuerda peor lo que se dice que lo que se ve (Lang, 1999): por eso cada corte muestra lo que se está diciendo."),
+    ("El auto desde el primer cuadro, varias veces", "El auto se ve desde el primer segundo y vuelve a aparecer varias veces. El nombre puede ir tarde (regla del dueño).", "En los anuncios con más intención de compra, mostrar el producto más de una vez y decir beneficios concretos pesa mucho (Meta y Toluna, 2025). Vale probar con reels de prueba una versión con el nombre en los primeros 5 segundos."),
+    ("Texto en pantalla corto", "En pantalla va la palabra o el número clave, no la frase entera. Los subtítulos van de 1 a 4 palabras.", "Repetir en pantalla toda la frase que se dice no ayuda a entender; el texto corto sí (Mayer, 2023)."),
+    ("Las cuentas, ya hechas", "Cuando hay números, la cuenta aparece armada en pantalla: no se le pide al que mira que la haga.", "Solo el 22 % de los argentinos sabe calcular un interés simple (BCRA–CAF)."),
+    ("Algo que aparece cada 0,3 segundos", "Subtítulos palabra por palabra, flechas, círculos que se dibujan, números que cuentan.", "Regla de la casa (CLAUDE.md)."),
+    ("Mostrar, no solo decir", "Cada frase tiene su imagen, al mismo tiempo que se dice: un objeto real (valija, café, enchufe, cinta métrica, almanaque, sobre) o un gráfico simple (barra, balanza, mapa plano).", "Palabras con imágenes se entienden mucho mejor que palabras solas, sobre todo si aparecen al mismo tiempo (Mayer, 2023)."),
+    ("Cámara que se mueve", "Caminar hacia el auto, abrir la puerta, entrar, ver desde el asiento. Celular en estabilizador.", "Ninguna escena sin movimiento (regla de la casa)."),
+    ("Comparar en pantalla partida", "Eléctrico contra híbrido, antes y después, dos vendedores.", "La diferencia se ve de un vistazo."),
+    ("Promesa al principio, respuesta al final", "'Al final te digo…' en los primeros 3 a 5 segundos, y el final lo cumple.", "TikTok pide presentar la propuesta en los primeros 3 segundos y el gancho en los primeros 6; retiene hasta el final (fórmula de retención)."),
+    ("Hablale al que mira, de vos", "'Si llevás chicos…', 'tu auto', 'te muestro'. Una persona real a cámara.", "El estilo de conversación ayuda a entender (Mayer, 2023), y TikTok recomienda mostrar personas."),
+    ("Re-gancho cada 5–8 segundos", "'Pero…', 'Entonces…', 'Y lo más importante…'.", "Cada parte abre la siguiente."),
+    ("Sonido que acompaña", "Whoosh en los cortes grandes, pop cuando entra un número, impacto en la respuesta. Música baja, nunca en silencio.", "Marca el ritmo sin tapar la voz."),
+    ("Final que vuelve al principio", "El último cuadro engancha con el primero.", "El video se vuelve a ver (loop)."),
+    ("Corto y completo", "Reels de 20 a 45 segundos. Si algo no explica nada, se corta.", "Mejor corto y completo que largo y lento."),
+]
+
+FUENTES += [
+    ("F40", "Quién compra (edad)", "Ene.–sept. 2025: el 51 % de los compradores de 0 km tiene 50 años o más; más de 60, 28,9 %; de 18 a 24, 1 %.", "SIOMAA, vía Autoweb e Infonegocios", "https://www.autoweb.com.ar/2025/10/23/los-mayores-de-60-anos-son-los-que-mas-autos-0km-compran-en-argentina/", "Dato del sector"),
+    ("F41", "Palabras + imágenes", "Experimentos de aprendizaje: palabras con imágenes (efecto 1,35), al mismo tiempo (1,31), estilo de conversación (1,00), sacar lo que sobra (0,86). Repetir en pantalla toda la frase dicha no ayuda.", "Mayer, APA, 2023", "https://www.unh.edu/teaching-learning-resource-hub/sites/default/files/media/2023-06/itow-research-based-principles-for-designing-multimedia-instruction-mayer.pdf", "Revisión de experimentos"),
+    ("F42", "Lenguaje simple", "Para el público general, escribir al nivel de 11 a 14 años (6.º a 8.º grado de EE. UU.).", "Nielsen Norman Group, 2017", "https://www.nngroup.com/articles/plain-language-experts/", "Guía de especialistas"),
+    ("F43", "Ritmo de cortes", "Los cortes sin relación saturan (10 o más en 30 s); con más ritmo se recuerda peor lo dicho que lo visto.", "Lang y otros, 1999 (fuente secundaria)", "", "Estudio académico viejo"),
+    ("F44", "Primeros segundos", "Presentar la propuesta en los primeros 3 s y el gancho en los primeros 6 s; mostrar personas; texto en pantalla.", "TikTok Ads Help, 2025", "https://ads.tiktok.com/help/article/creative-best-practices?lang=en", "Guía de la plataforma"),
+    ("F45", "Qué tienen los anuncios con más intención de compra", "Beneficios concretos (×5,3), marca en pantalla poco tiempo (×4,8), producto más de una vez (×2,7), marca y mensaje en los primeros 5 s (×1,7).", "Meta y Toluna, vía Social Media Today (02/12/2025)", "https://www.socialmediatoday.com/news/meta-shares-reels-tips-for-marketers/806808/", "Dato de la plataforma, sin muestra publicada"),
+    ("F46", "Qué entienden los argentinos de finanzas", "91 % entiende la inflación; solo 22 % calcula un interés simple; 41 % escuchó hablar del crédito prendario.", "BCRA–CAF, 2017", "https://www.bcra.gob.ar/en/survey-on-the-measurement-of-financial-capabilities", "Encuesta oficial (vieja)"),
+]
+
+GLOSARIO = [
+    ("Lead", "Una persona que escribió y dejó sus datos porque le interesa un auto."),
+    ("Lead calificado", "Un lead que dijo qué auto quiere, cómo lo piensa pagar y para cuándo (letra A o B)."),
+    ("CTA", "El pedido que cierra cada pieza. Hay uno solo: 'Pedinos precio y financiación de cualquiera de nuestros autos'."),
+    ("Código", "Una palabra (EADO, CUOTA, RUTA…) que viaja en el mensaje de WhatsApp para saber qué pieza trajo la consulta."),
+    ("Gancho", "Lo que se dice y se ve en los primeros 2 segundos para que la persona no pase de largo."),
+    ("Re-gancho", "Una frase en el medio ('pero…', 'y lo más importante…') que da una razón nueva para seguir mirando."),
+    ("Tomas de apoyo", "Imágenes de lo que se está diciendo (el baúl, la pantalla, el enchufe) que se intercalan con el vendedor."),
+    ("Video final", "El video ya editado, sin marca de agua, que se sube igual a Instagram, TikTok, YouTube y Facebook."),
+    ("Reel de prueba", "Un reel que Instagram muestra primero solo a gente que no nos sigue, para elegir el mejor gancho."),
+    ("Tasa de salto", "El porcentaje de gente que pasa de largo un reel en los primeros 3 segundos. Cuanto más baja, mejor el gancho."),
+    ("Loop", "Cuando el último cuadro engancha con el primero y el video se vuelve a ver solo."),
+    ("Retargeting", "Mostrarle un anuncio a quien ya vio nuestros videos (por ejemplo, la cuota del auto que miró)."),
+    ("Día D", "El día abierto de la inauguración. Todas las fechas de la inauguración se cuentan desde ahí (D-7 = 7 días antes)."),
+    ("Entretener / Educar / Vender", "Para qué es cada pieza: atraer a mucha gente, explicarle al que está pensando en cambiar el auto, o cerrar con el que ya quiere precio."),
+]
+

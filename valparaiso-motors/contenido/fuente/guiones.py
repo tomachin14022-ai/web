@@ -1,787 +1,649 @@
-"""Guiones de las piezas del calendario. Cada pieza del Calendario apunta a uno de estos por su ID."""
+"""Guiones del calendario, escritos para que los entienda alguien de 15 años.
+
+Cada guion trae: para quién es, la idea en una frase, y las escenas (tiempo, qué se dice, qué se ve,
+texto en pantalla, sonido). Las piezas del Calendario apuntan a estos guiones por su ID.
+"""
 
 CTA = "Pedinos precio y financiación de cualquiera de nuestros autos."
-LEGAL_CUOTA = (
-    "LEGAL EN PANTALLA (mínimo 5 segundos seguidos, abajo, letra legible en el celular): "
-    "Precio final de contado $[..] · Precio sin impuestos nacionales $[..] · [N] cuotas de $[..] · TNA [..] % · CFTEA [..] % · "
-    "[Si ajusta por UVA o CER: 'Cuota ajustable por UVA/CER'] · Vigente del [..] al [..] en Córdoba · "
-    "PARA MÁS INFORMACIÓN O LIMITACIONES APLICABLES CONSULTE EN www.valparaisomotors.com.ar/condiciones. "
-    "Todos los datos los da Administración el día que se publica. Precio en pesos; el dólar, solo como agregado y con la misma letra."
-)
+LEGAL = ("Placa legal, mínimo 5 segundos, abajo y legible: precio final de contado $[..] · precio sin impuestos nacionales $[..] · "
+         "[N] cuotas de $[..] · TNA [..] % · CFTEA [..] % · vigente del [..] al [..] en Córdoba · PARA MÁS INFORMACIÓN O LIMITACIONES "
+         "APLICABLES CONSULTE EN www.valparaisomotors.com.ar/condiciones. Los números los da Administración el día que se publica.")
 FIJADO = "Pedinos precio y financiación: comentá {k} y te escribimos por mensaje 📩 (si no nos seguís, te llega a Solicitudes)."
 MSG = "Hola, vengo del video {k}. Quiero precio y financiación."
 
+# Públicos (ver la hoja Público)
+TODOS = "Todos (las masas)"
+KM = "Muchos km por día"
+FAM = "Familia"
+USADO = "Cambia su usado"
+CAMPO = "Campo y pyme"
+ELEC = "Curioso del eléctrico"
+SEG = "Los que ya nos siguen"
+
+
+def g(id_, pieza, objetivo, publico, idea, formato, aparece, gancho, gancho_b, escenas, tomas, descripcion,
+      hashtags="", codigo="", ojo="", fijado=None, mensaje=None):
+    return dict(id=id_, pieza=pieza, objetivo=objetivo, publico=publico, idea=idea, formato=formato, aparece=aparece,
+                gancho=gancho, gancho_b=gancho_b, escenas=escenas, tomas=tomas, descripcion=descripcion, hashtags=hashtags,
+                codigo=codigo, ojo=ojo,
+                fijado=FIJADO.format(k=codigo) if fijado is None and codigo else (fijado or ""),
+                mensaje=MSG.format(k=codigo) if mensaje is None and codigo else (mensaje or ""))
+
+
 GUIONES = [
-    {
-        "id": "G01",
-        "pieza": "¿Patentás en diciembre o esperás a enero?",
-        "formato": "Reel 40–50 s, vendedor a cámara en el salón",
-        "aparece": "Vendedor 1",
-        "gancho": "¿PATENTÁS AHORA O ESPERÁS A ENERO?",
-        "gancho_b": "ESPERAR A ENERO PUEDE SALIRTE MÁS CARO… O NO",
-        "guion": (
-            "0–2 s (palabra por palabra): \"¿Estás por cambiar el auto y no sabés si patentarlo ahora o esperar a enero? Al final te digo cómo hacer la cuenta.\"\n"
-            "2–8 s: \"Soy [nombre], vendedor de Valparaiso Motors.\" Por qué mucha gente espera a enero: que el auto figure patentado en el año nuevo. Enero de 2026 tuvo casi el triple de patentamientos que diciembre de 2025 (dato ACARA en pantalla).\n"
-            "8–18 s (re-gancho: \"Pero…\"): lo que pasa en diciembre: las marcas suelen bonificar para cerrar el año. Solo decir una bonificación si Administración la confirma ese día.\n"
-            "18–30 s (\"Entonces…\"): la pregunta que hay que hacer: cómo figura el año modelo de esa unidad en el certificado de fábrica (verificarlo antes de grabar) y cuánto vale la bonificación de hoy contra la diferencia al revenderlo.\n"
-            "30–40 s (paga la promesa): \"La cuenta es simple: lo que te ahorrás hoy contra lo que vale de más un auto que figura 2027. Si te ahorrás más de lo que perdés, conviene ahora.\"\n"
-            "40–45 s (CTA, palabra por palabra): \"" + CTA + " Comentá PATENTAR y te hacemos la cuenta con tu auto.\""
-        ),
-        "tomas": "Plano medio del vendedor junto a una unidad (3 tomas del gancho) · plano detalle del parabrisas con la oblea o el papel del certificado (sin datos personales) · calendario de pared o del celular pasando de diciembre a enero · B-roll del salón.",
-        "texto": "Gancho fijo desde el cuadro 0 · 'Enero 2026: 66.080 patentamientos · Dic. 2025: 23.997 (ACARA/DNRPA)' · 'Bonificación de hoy vs. valor de reventa' · placa final con el CTA.",
-        "descripcion": (
-            "¿Patentás en diciembre o esperás a enero? 🗓️\n"
-            "En enero de 2026 se patentaron 66.080 autos, casi el triple que en diciembre de 2025 (23.997, datos ACARA/DNRPA). Mucha gente espera para que el auto figure en el año nuevo.\n"
-            "Pero en diciembre las marcas suelen bonificar para cerrar el año. La cuenta: lo que te ahorrás hoy contra lo que vale de más al revenderlo.\n"
-            "Comentá PATENTAR y te hacemos la cuenta con tu caso. Estamos en Córdoba.\n"
-            "Información general. No constituye oferta."
-        ),
-        "hashtags": "#0km #patentamiento #autosnuevos #financiacion #AutosCordoba",
-        "fijado": FIJADO.format(k="PATENTAR"),
-        "codigo": "PATENTAR",
-        "mensaje": MSG.format(k="PATENTAR"),
-    },
-    {
-        "id": "G02",
-        "pieza": "Llegó al salón (serie de stock real)",
-        "formato": "Reel 30–45 s, vendedor recorre una unidad real",
-        "aparece": "Vendedor 1 o 2 (se turnan)",
-        "gancho": "[BENEFICIO PARA EL QUE MIRA], EJ.: 'SE ENCHUFA EN TU CASA Y NO TE DEJA A PIE EN LA RUTA'",
-        "gancho_b": "PREGUNTA SOBRE LA VIDA DEL QUE MIRA, EJ.: '¿CUÁNTOS KM HACÉS POR DÍA?'",
-        "guion": (
-            "Plantilla para todas las semanas: cambia la unidad, la estructura no.\n"
-            "0–2 s (palabra por palabra): el beneficio escrito y dicho, con la unidad andando o abriéndose una puerta. Sin el nombre del modelo.\n"
-            "2–6 s: \"Soy [nombre], vendedor de Valparaiso Motors, y esta unidad está hoy en el salón.\" Promesa: \"Al final te digo cuánto queda la cuota.\"\n"
-            "6–25 s: 3 cosas que se ven, de la menos a la más importante (anunciar 'la tercera es la que más importa'). Solo datos verificados de la ficha (ver CLAUDE.md, sección 3) con su aclaración chica (NEDC, WLTP, 'declarado por la marca').\n"
-            "25–35 s: el nombre del modelo recién acá + precio de contado y cuota con su legal (pagar la promesa).\n"
-            "35–40 s (palabra por palabra): \"" + CTA + " Comentá [PALABRA] y te mando la cuota por mensaje.\"\n"
-            "Reglas: 'entrega inmediata' solo si es verdad ese día; nada de 'el mejor' o 'el más completo'; si la unidad es Changan, verificar antes cómo se presenta el concesionario."
-        ),
-        "tomas": "Siempre las mismas, para armar plantilla: frente 3/4 · lateral con llanta · interior desde la puerta del conductor · pantallas encendidas · baúl abierto · tapa de carga o motor · vendedor a cámara (3 tomas del gancho) · vendedor señalando el detalle n.º 3.",
-        "texto": "Gancho fijo · 3 etiquetas de detalle que entran con cada punto · nombre del modelo en el segundo 25 · " + LEGAL_CUOTA,
-        "descripcion": (
-            "[Gancho de la pieza, sin nombrar el modelo] 👀\n"
-            "Esta unidad está hoy en nuestro salón de Córdoba. [3 datos con su aclaración: NEDC, WLTP o 'declarado por la marca'].\n"
-            "Comentá [PALABRA] y te mandamos precio y cuota por mensaje.\n"
-            "[Legal completo con precio, cuotas, TNA, CFTEA, vigencia y la frase de la web]."
-        ),
-        "hashtags": "#[modelo] #0km #financiacion #[tipo: hibrido / electrico / 4x4] #AutosCordoba",
-        "fijado": FIJADO.format(k="[PALABRA]"),
-        "codigo": "STOCK-[MODELO]",
-        "mensaje": "Hola, vengo del video de la unidad [MODELO] (STOCK-[MODELO]). Quiero precio y financiación.",
-    },
-    {
-        "id": "G03",
-        "pieza": "Se arma el nuevo Valparaiso (serie de la obra)",
-        "formato": "Reel 20–30 s, celular, sin vendedor o con una cara del equipo",
-        "aparece": "Equipo (opcional)",
-        "gancho": "EP. 1: '¿ADIVINÁS DÓNDE QUEDA?' · EP. 2: '¿CUÁNTOS AUTOS ENTRAN ACÁ?'",
-        "gancho_b": "'ESTO EN [N] DÍAS VA A SER UN CONCESIONARIO'",
-        "guion": (
-            "Ep. 1 (D-15): 0–2 s plano que avanza hacia la obra con el texto del gancho. 2–12 s: 4 o 5 detalles que dan pistas del lugar sin decirlo (un cartel de calle tapado, la vista, un edificio conocido). 12–18 s: 'Te lo decimos el [fecha del anuncio]. Escribí en los comentarios dónde creés que es'. Sin CTA comercial: este video entretiene.\n"
-            "Ep. 2 (D-10): 0–2 s el salón vacío con el gancho. 2–15 s: llegan las primeras unidades o se arma el taller (cortes cada 1–2 s). 15–20 s: la respuesta ('entran [N] autos en exhibición') y 'el [fecha] te mostramos todo'.\n"
-            "Las pistas y los números tienen que ser reales. La dirección exacta se publica recién en el anuncio oficial (INA-03), cuando el Perfil de Google esté listo."
-        ),
-        "tomas": "Caminata hacia la obra (estabilizador) · 5 detalles cerrados (pistas) · timelapse de 20–30 min del armado · llegada de un auto (si coincide) · el cartel nuevo tapado o a medio poner.",
-        "texto": "Gancho fijo · etiquetas cortas por pista · 'Ep. 1/2 · Se arma el nuevo Valparaiso' chico arriba (dentro de la zona segura) · 'Mandáselo a alguien que vive cerca'.",
-        "descripcion": "¿Adivinás dónde va a estar el nuevo Valparaiso Motors? 👀 Dejá tu respuesta en los comentarios. Mandáselo a alguien que vive cerca. Córdoba.",
-        "hashtags": "#Cordoba #concesionaria #0km #detrasdeescena #AutosCordoba",
-        "fijado": "Te lo contamos el [fecha]. Mientras, comentá tu apuesta 👇",
-        "codigo": "",
-        "mensaje": "",
-    },
-    {
-        "id": "G04",
-        "pieza": "Adiviná (serie de juego)",
-        "formato": "Reel 20–35 s, vendedor + unidad",
-        "aparece": "Vendedor 2",
-        "gancho": "EP. 1: '¿EN CUÁNTOS SEGUNDOS LLEGA A 100?' · EP. 2: '¿CUÁNTOS KM HACE CON LO QUE SALE UN CAFÉ?' · EP. 3: '¿QUÉ HAY DEBAJO DE ESTE AUTO?'",
-        "gancho_b": "'NADIE ACIERTA ESTE NÚMERO'",
-        "guion": (
-            "0–2 s: la pregunta escrita y dicha, con la unidad en movimiento lento (sin maniobras en la calle).\n"
-            "2–8 s: 3 opciones en pantalla (A/B/C), una cuenta regresiva corta y '¿cuál decís?'.\n"
-            "8–15 s (re-gancho): una pista que enseña algo (ej.: 'tiene un motor naftero y otro eléctrico que empujan juntos').\n"
-            "15–25 s: la respuesta con su fuente chica. Ep. 1: ORA 05 HEV, 7,7 s declarados por la marca (no medirlo en la calle). Ep. 2: estimado con la tarifa de luz vigente y el consumo declarado (ORA 03: 16,7 kWh/100 km WLTP); la cuenta completa va en la descripción. Ep. 3: Haval H7 con la cámara que 've a través del piso' (confirmar que la versión en stock la tiene).\n"
-            "25–30 s: nombre del modelo y CTA corto: \"" + CTA + " Comentá [PALABRA].\""
-        ),
-        "tomas": "Unidad estática con luz lateral · pantalla o tablero con el dato · vendedor haciendo la pregunta (3 tomas) · reacción del vendedor 2 si está · placa de opciones (la hace el editor).",
-        "texto": "Pregunta fija · opciones A/B/C con un 'pop' · respuesta grande en bordó · fuente chica ('declarado por la marca' / 'estimado: ver la cuenta en la descripción').",
-        "descripcion": "[Pregunta del juego] 🤔 Dejá tu respuesta antes de que termine el video. [Si es una cuenta propia: la cuenta completa, ej.: '16,7 kWh cada 100 km × $[tarifa] el kWh = $[..] cada 100 km'.] Comentá [PALABRA] y te mandamos precio y financiación. Córdoba.",
-        "hashtags": "#autos #0km #[hibrido o electrico] #juego #AutosCordoba",
-        "fijado": FIJADO.format(k="[PALABRA]"),
-        "codigo": "JUEGO-[N]",
-        "mensaje": "Hola, vengo del juego del video (JUEGO-[N]). Quiero precio y financiación.",
-    },
-    {
-        "id": "G05",
-        "pieza": "Anuncio oficial de la inauguración",
-        "formato": "Reel 25–35 s + misma pieza en Historias, Facebook, TikTok y Estados",
-        "aparece": "Dueño o vendedor 1",
-        "gancho": "'¿CUÁNTO TARDÁS EN LLEGAR A [REFERENCIA DE LA ZONA NUEVA]?'",
-        "gancho_b": "'EL [DÍA] TE ESPERAMOS EN [REFERENCIA]'",
-        "guion": (
-            "0–2 s: imagen del local nuevo terminado (lo más fuerte primero) con el gancho escrito: una referencia que el cordobés conoce (avenida, rotonda, Circunvalación).\n"
-            "2–8 s: \"Desde el [fecha] nos encontrás acá, en [dirección nueva].\" Qué gana el que viene: más unidades para ver y probar, taller, entrega (solo lo que sea cierto).\n"
-            "8–18 s (re-gancho \"Y el sábado [fecha]…\"): el día abierto: horario, qué va a haber, que la prueba de manejo es con turno.\n"
-            "18–25 s: cómo llegar en una frase y el mapa.\n"
-            "25–30 s: \"Pedí tu turno de prueba de manejo por WhatsApp\" no es un CTA nuevo: el botón va dentro del chat. En el video se dice el CTA único: \"" + CTA + "\" y en pantalla 'Comentá ABRIMOS'."
-        ),
-        "tomas": "Fachada con cartel (de día) · el salón con las unidades · el taller · la entrada al estacionamiento · un plano desde la avenida para mostrar la referencia · dueño o vendedor a cámara.",
-        "texto": "Gancho · 'Desde el [fecha] · [dirección nueva]' · 'Sábado [fecha] · día abierto · [horario]' · 'Prueba de manejo con turno' · mapa simple (dibujado plano, no 3D) · logo chico al final.",
-        "descripcion": (
-            "¿Cuánto tardás en llegar a [referencia]? 🚗\n"
-            "Desde el [fecha] Valparaiso Motors atiende en [dirección nueva], Córdoba. El sábado [fecha] hacemos el día abierto de [hora] a [hora]: [lo que va a haber].\n"
-            "La prueba de manejo es con turno: comentá ABRIMOS y te lo damos por mensaje.\n"
-            "[Si hay beneficio de inauguración: condición breve + 'PARA MÁS INFORMACIÓN O LIMITACIONES APLICABLES CONSULTE EN www.valparaisomotors.com.ar/condiciones'. Si hay sorteo: 'Sin obligación de compra'.]"
-        ),
-        "hashtags": "#Cordoba #inauguracion #concesionaria #0km #AutosCordoba",
-        "fijado": FIJADO.format(k="ABRIMOS"),
-        "codigo": "ABRIMOS",
-        "mensaje": "Hola, vengo del video de la inauguración (ABRIMOS). Quiero un turno de prueba de manejo.",
-    },
-    {
-        "id": "G06",
-        "pieza": "Cuenta regresiva en Historias (D-7 a D-1)",
-        "formato": "Historias, 3–5 cuadros por día",
-        "aparece": "Equipo",
-        "gancho": "Sticker de cuenta regresiva de Instagram 'Inauguración' (el que lo toca recibe el recordatorio)",
-        "gancho_b": "",
-        "guion": (
-            "D-7: foto de la fachada + sticker de cuenta regresiva + 'falta una semana'.\n"
-            "D-6: detrás de escena (limpieza, llegada de unidades) + encuesta '¿qué querés ver primero? Salón / Taller'.\n"
-            "D-5: el equipo de ventas, una foto por vendedor con su nombre ('Soy [nombre], vendedor').\n"
-            "D-4: cómo llegar: captura del mapa + sticker de enlace a Google Maps.\n"
-            "D-3: sticker de pregunta '¿qué le querés preguntar al taller?'.\n"
-            "D-2: 'la prueba de manejo es con turno' + sticker de enlace a WhatsApp con el código TURNO.\n"
-            "D-1: cobertura de la noche VIP (si los invitados firmaron la autorización de imagen) + 'mañana abrimos de [hora] a [hora]'.\n"
-            "Repetir el sticker de cuenta regresiva todos los días. Guardar todo en la destacada 'Nuevo local'."
-        ),
-        "tomas": "Fotos y videos de 3–8 s con el celular, verticales, con luz natural. Nada de clientes sin autorización.",
-        "texto": "Letra de la marca, texto corto, zona segura de Historias (nada arriba de 250 px ni abajo de 340 px).",
-        "descripcion": "",
-        "hashtags": "",
-        "fijado": "",
-        "codigo": "TURNO",
-        "mensaje": "Hola, vengo de las historias (TURNO). Quiero un turno de prueba de manejo.",
-    },
-    {
-        "id": "G07",
-        "pieza": "Cobertura de la noche VIP y del día abierto",
-        "formato": "Historias + vivo de 30–45 min el día abierto (Instagram y TikTok a la vez si hay dos celulares)",
-        "aparece": "Dueño, vendedores, importadora",
-        "gancho": "Vivo: 'Estamos abiertos: te muestro el salón nuevo en vivo'",
-        "gancho_b": "",
-        "guion": (
-            "Noche VIP (lista cerrada): historias cada 20–30 min: llegada, palabras del dueño (1 clip de 15 s), corte de cinta, foto oficial. Solo personas que firmaron la autorización de imagen.\n"
-            "Día abierto, vivo a las 11 h (30–45 min): 0–3 min saludo y qué se va a ver · 3–15 min recorrido del salón por marca · 15–25 min taller y entrega · 25–35 min preguntas del chat · cierre con el código VIVO en pantalla y 'escribinos por WhatsApp'. Un segundo vendedor responde el chat y el WhatsApp durante el vivo (el mensaje automático de Instagram solo funciona mientras dura el vivo).\n"
-            "Historias cada hora con lo que pasa. Nada de primeros planos de chicos sin autorización de los padres."
-        ),
-        "tomas": "Celular en estabilizador con micrófono corbatero inalámbrico · un segundo celular para historias · batería externa.",
-        "texto": "En el vivo: cartel físico o en pantalla con 'Código VIVO · WhatsApp [número]'.",
-        "descripcion": "",
-        "hashtags": "",
-        "fijado": "",
-        "codigo": "VIVO",
-        "mensaje": "Hola, vengo del vivo (VIVO). Quiero precio y financiación.",
-    },
-    {
-        "id": "G08",
-        "pieza": "Así fue la inauguración (resumen)",
-        "formato": "Reel 25–35 s",
-        "aparece": "Equipo e invitados con autorización",
-        "gancho": "'[N] PERSONAS VINIERON A VER ESTO'",
-        "gancho_b": "'ASÍ QUEDÓ EL NUEVO VALPARAISO'",
-        "guion": (
-            "0–2 s: el plano más lleno del día con el número real de asistentes (sale del check-in con QR; si no se midió, usar el gancho B).\n"
-            "2–20 s: cortes cada 1–1,5 s: corte de cinta, recorrido, taller, test drives con turno, familias (solo con autorización).\n"
-            "20–28 s: 'Gracias, Córdoba' + dirección nueva + horario.\n"
-            "28–32 s: \"" + CTA + "\" y 'Comentá ABRIMOS'."
-        ),
-        "tomas": "Todo lo grabado en la noche VIP y el día abierto (pedir a cada persona que filme 10 clips de 3–5 s).",
-        "texto": "Número real o gancho B · 'Gracias, Córdoba' · dirección y horario · logo chico al final.",
-        "descripcion": "Así fue la inauguración del nuevo Valparaiso Motors en [dirección nueva], Córdoba. Gracias a todos los que vinieron 🙌 Comentá ABRIMOS y te mandamos precio y financiación. Mandáselo a alguien que no pudo venir.",
-        "hashtags": "#Cordoba #inauguracion #concesionaria #0km #AutosCordoba",
-        "fijado": FIJADO.format(k="ABRIMOS"),
-        "codigo": "ABRIMOS",
-        "mensaje": "Hola, vengo del video de la inauguración (ABRIMOS). Quiero precio y financiación.",
-    },
-    {
-        "id": "G09",
-        "pieza": "Cómo llegar al nuevo local",
-        "formato": "Reel 15–20 s + carrusel de 4 placas",
-        "aparece": "Sin personas o vendedor al final",
-        "gancho": "'DE [PUNTO CONOCIDO] AL NUEVO VALPARAISO EN [N] MINUTOS'",
-        "gancho_b": "'¿VENÍS POR [AVENIDA]? DOBLÁ ACÁ'",
-        "guion": (
-            "0–2 s: el giro clave grabado desde el auto (con soporte, nunca con el celular en la mano del que maneja) y el gancho escrito.\n"
-            "2–12 s: el recorrido acelerado con 3 referencias marcadas.\n"
-            "12–16 s: la entrada y el estacionamiento.\n"
-            "16–20 s: dirección, horario y 'buscanos en Google Maps como Valparaiso Motors'.\n"
-            "Los minutos se miden ese día con el GPS: decir 'en un día normal, a la hora [..]'."
-        ),
-        "tomas": "Recorrido desde 2 puntos conocidos con el celular en soporte · fachada · entrada al estacionamiento · cartel.",
-        "texto": "Gancho · 3 referencias · dirección y horario · mapa plano dibujado.",
-        "descripcion": "Así se llega al nuevo Valparaiso Motors: [dirección nueva], Córdoba. Horario: [..]. Buscanos en Google Maps como Valparaiso Motors. Guardalo para cuando vengas.",
-        "hashtags": "#Cordoba #comollegar #concesionaria #0km #AutosCordoba",
-        "fijado": "Horario: [..] · WhatsApp en la bio.",
-        "codigo": "",
-        "mensaje": "",
-    },
-    {
-        "id": "G10",
-        "pieza": "¿Auto chino? ¿Y si se rompe? (taller y posventa)",
-        "formato": "Reel 40–50 s con el jefe de taller o un vendedor",
-        "aparece": "Jefe de taller o técnico + vendedor",
-        "gancho": "'¿AUTO CHINO? ¿Y SI SE ROMPE?'",
-        "gancho_b": "'LA PREGUNTA QUE TODOS HACEN Y NADIE CONTESTA'",
-        "guion": (
-            "0–2 s: la pregunta, escrita y dicha por el vendedor, con el taller detrás.\n"
-            "2–6 s: \"Es la pregunta que más nos hacen. Te muestro tres cosas, y la tercera es la que más importa.\"\n"
-            "6–18 s: 1) el taller y los técnicos (cuántos, qué marcas atienden). 2) los repuestos: el depósito, cuánto tarda un repuesto común (dato real de posventa).\n"
-            "18–35 s (re-gancho \"Pero lo más importante…\"): 3) la garantía con su condición exacta ('5 años o 150.000 km, lo que ocurra primero'; batería 8 años o 150.000 km en el Eado Plus) y dónde se hace el service.\n"
-            "35–45 s: \"" + CTA + " Comentá TALLER y te contamos cómo es el service de tu modelo.\"\n"
-            "Ep. 2 (febrero): mismos pasos con repuestos y tiempos reales de un service."
-        ),
-        "tomas": "Técnico trabajando (sin caras de clientes ni patentes) · estanterías de repuestos · elevador · herramienta de diagnóstico · placa de garantía.",
-        "texto": "Gancho · 1, 2, 3 que entran con cada punto · garantía con su condición en letra chica.",
-        "descripcion": "¿Auto chino? ¿Y si se rompe? 🔧 Te mostramos el taller de Valparaiso Motors en Córdoba, los repuestos y cómo funciona la garantía (con sus condiciones: [garantía exacta de cada modelo, 'lo que ocurra primero']). Comentá TALLER y te contamos cómo es el service de tu modelo.",
-        "hashtags": "#autoschinos #service #garantia #0km #AutosCordoba",
-        "fijado": FIJADO.format(k="TALLER"),
-        "codigo": "TALLER",
-        "mensaje": MSG.format(k="TALLER"),
-    },
-    {
-        "id": "G11",
-        "pieza": "El aguinaldo como anticipo",
-        "formato": "Reel 35–45 s, vendedor + placa con un ejemplo",
-        "aparece": "Vendedor 2",
-        "gancho": "'¿CON EL AGUINALDO TE ALCANZA PARA EL ANTICIPO?'",
-        "gancho_b": "'TU AGUINALDO PUEDE SER LA PRIMERA CUOTA DE TU AUTO NUEVO'",
-        "guion": (
-            "0–2 s: el gancho con un sobre o un celular con la notificación de sueldo (sin datos reales).\n"
-            "2–8 s: \"Soy [nombre], vendedor de Valparaiso Motors. Te muestro un ejemplo, y al final te digo qué tenés que mirar antes de firmar.\"\n"
-            "8–25 s: ejemplo con números reales de Administración: anticipo de $[..], [N] cuotas de $[..], TNA y CFTEA. Si el crédito ajusta por UVA, decirlo ('la cuota se ajusta con la inflación').\n"
-            "25–35 s (paga la promesa): 'No mires solo la cuota: mirá el CFT, que incluye gastos, seguros e impuestos'.\n"
-            "35–42 s: \"" + CTA + " Comentá AGUINALDO y te armamos el ejemplo con tu auto.\"\n"
-            "Si no hay números confirmados, no se publica: se cambia por G23."
-        ),
-        "tomas": "Vendedor a cámara · placa con el ejemplo (la arma el editor) · unidad de fondo.",
-        "texto": "Gancho · 'EJEMPLO' en la placa · " + LEGAL_CUOTA,
-        "descripcion": "¿Con el aguinaldo te alcanza para el anticipo? 💸 Ejemplo: [anticipo, cuotas, TNA, CFTEA]. No mires solo la cuota: pedí el costo financiero total. Comentá AGUINALDO y te armamos el ejemplo con tu caso. Córdoba. [Legal completo.]",
-        "hashtags": "#aguinaldo #financiacion #0km #cuotas #AutosCordoba",
-        "fijado": FIJADO.format(k="AGUINALDO"),
-        "codigo": "AGUINALDO",
-        "mensaje": MSG.format(k="AGUINALDO"),
-    },
-    {
-        "id": "G12",
-        "pieza": "Promo de apertura (enero)",
-        "formato": "Reel 25–30 s con vendedor + placa animada de 6–8 s para anuncios",
-        "aparece": "Vendedor 1",
-        "gancho": "'SI ESPERASTE A ENERO PARA CAMBIAR EL AUTO, ESTO ES PARA VOS'",
-        "gancho_b": "'[BENEFICIO CONCRETO] HASTA EL [FECHA]'",
-        "guion": (
-            "Solo se publica si la condición está confirmada por escrito (importadora o Administración) con fecha de inicio y de fin y stock.\n"
-            "0–2 s: el gancho con la unidad en el salón nuevo.\n"
-            "2–10 s: \"Soy [nombre], de Valparaiso Motors. Para arrancar el año en el salón nuevo tenemos [beneficio concreto: ej. service bonificado, accesorio o tasa de la marca].\"\n"
-            "10–20 s: para qué modelos, hasta cuándo y con qué stock.\n"
-            "20–28 s: \"" + CTA + " Comentá APERTURA y te mandamos las condiciones.\"\n"
-            "Placa de 6–8 s para retargeting: unidad + beneficio + legal + botón 'Pedinos precio y financiación'."
-        ),
-        "tomas": "Vendedor junto a 2 o 3 unidades · detalle de la unidad · fachada del local nuevo.",
-        "texto": "Gancho · beneficio en bordó · 'Válido del [..] al [..] · Stock: [N] unidades' · 'Sin obligación de compra' si hay azar · " + LEGAL_CUOTA,
-        "descripcion": "Si esperaste a enero para cambiar el auto, esto es para vos. [Beneficio] para [modelos], del [..] al [..] o hasta agotar [N] unidades, en Valparaiso Motors Córdoba. Comentá APERTURA y te mandamos las condiciones. PARA MÁS INFORMACIÓN O LIMITACIONES APLICABLES CONSULTE EN www.valparaisomotors.com.ar/condiciones",
-        "hashtags": "#0km #financiacion #enero #concesionaria #AutosCordoba",
-        "fijado": FIJADO.format(k="APERTURA"),
-        "codigo": "APERTURA",
-        "mensaje": MSG.format(k="APERTURA"),
-    },
-    {
-        "id": "G13",
-        "pieza": "Placas de financiación por modelo (carrusel)",
-        "formato": "Carrusel 1080x1350, 6–8 placas: portada + una placa por modelo + CTA",
-        "aparece": "Sin personas (fotos propias de las unidades)",
-        "gancho": "Portada: '¿CUÁNTO QUEDA LA CUOTA DE CADA UNO?'",
-        "gancho_b": "Portada: 'ELEGÍ EL TUYO Y TE DECIMOS LA CUOTA'",
-        "guion": (
-            "Placa 1: portada con 3 autos recortados de fotos propias.\n"
-            "Placas 2–7: un modelo por placa: foto propia, 1 beneficio, precio de contado en pesos, cuota de ejemplo, TNA, CFTEA y vigencia.\n"
-            "Placa final: 'Pedinos precio y financiación de cualquiera de nuestros autos' + 'comentá CUOTA' + logo chico.\n"
-            "'deslizá →' chico abajo a la derecha en todas menos la última. Fondo papel o estudio blanco; bordó solo como placa con letras blancas."
-        ),
-        "tomas": "Fotos propias de cada unidad en el salón nuevo (frente 3/4, misma luz y misma altura de cámara).",
-        "texto": "En cada placa de modelo, el legal completo: " + LEGAL_CUOTA,
-        "descripcion": "¿Cuánto queda la cuota de cada uno? Deslizá y elegí 👉 Comentá CUOTA y te mandamos la simulación de tu modelo. Córdoba. [Legal completo por modelo.]",
-        "hashtags": "#financiacion #0km #cuotas #concesionaria #AutosCordoba",
-        "fijado": FIJADO.format(k="CUOTA"),
-        "codigo": "CUOTA",
-        "mensaje": MSG.format(k="CUOTA"),
-    },
-    {
-        "id": "G14",
-        "pieza": "¿Entra todo? (desafío de baúl y medidas)",
-        "formato": "Reel 25–35 s",
-        "aparece": "Vendedor 2 (y vendedor 1 si hace de 'familia')",
-        "gancho": "EP. 1: '¿ENTRA TODO PARA LAS VACACIONES?' · EP. 2: '¿ENTRA EN UNA COCHERA DE NUEVA CÓRDOBA?'",
-        "gancho_b": "'NADIE CREE QUE ENTRE TODO ESTO'",
-        "guion": (
-            "Ep. 1: 0–2 s la pila de cosas al lado del baúl (2 valijas grandes, conservadora, cochecito, bolso) y el gancho. 2–20 s: se carga de a una, con un contador en pantalla. 20–28 s: el resultado real (si no entra todo, se dice: da credibilidad) + el nombre del modelo. 28–32 s: CTA corto.\n"
-            "Ep. 2: medidas reales del auto (largo, ancho con espejos) contra una cochera medida con cinta. Mostrar la cinta. Cuenta propia: 'estimado' si corresponde.\n"
-            "CTA: \"" + CTA + " Comentá VALIJAS.\""
-        ),
-        "tomas": "Plano fijo del baúl (trípode) · cenital de la pila · detalle de cada objeto al entrar · vendedor reaccionando.",
-        "texto": "Gancho · contador '1, 2, 3…' · resultado grande · nombre del modelo al final · litros de baúl solo si están en la ficha oficial.",
-        "descripcion": "¿Entra todo para las vacaciones? 🧳 Lo probamos en el salón de Córdoba con [lista]. Resultado: [real]. Comentá VALIJAS y te mandamos precio y financiación. Mandáselo a quien siempre lleva de más.",
-        "hashtags": "#vacaciones #baul #0km #familia #AutosCordoba",
-        "fijado": FIJADO.format(k="VALIJAS"),
-        "codigo": "VALIJAS",
-        "mensaje": MSG.format(k="VALIJAS"),
-    },
-    {
-        "id": "G15",
-        "pieza": "Ida y vuelta medida (Jesús María, Cosquín, un día sin nafta)",
-        "formato": "Reel 40–55 s (o animado con Claude si no se puede grabar)",
-        "aparece": "Vendedor 1 manejando con soporte de celular (o voz del dueño si es animado)",
-        "gancho": "'¿CUÁNTO GASTÁS PARA IR A [DESTINO] Y VOLVER?'",
-        "gancho_b": "'FUIMOS A [DESTINO] Y VOLVIMOS. ESTO GASTAMOS'",
-        "guion": (
-            "Prueba real, sin estimar lo que se puede medir.\n"
-            "0–2 s: el tablero al salir del salón (km y batería o nafta) con el gancho.\n"
-            "2–6 s: \"Fuimos de Valparaiso Motors a [destino] y volvimos. Al final te muestro cuánto gastamos de verdad.\"\n"
-            "6–25 s: 3 momentos del viaje (salida, ruta, llegada), con el tablero en cada uno. Nada de grabar manejando: graba el acompañante o el soporte fijo.\n"
-            "25–40 s (re-gancho \"Pero ojo…\"): lo que cambia el resultado: velocidad, aire acondicionado, subidas. Si es un PHEV: cuántos km hizo en eléctrico y cuántos a nafta.\n"
-            "40–50 s (paga la promesa): el costo real del viaje con la cuenta en pantalla (km × consumo medido × precio del litro o del kWh de ese día).\n"
-            "50–55 s: \"" + CTA + " Comentá RUTA.\" Línea chica: 'Mandáselo a quien va a [destino] este verano'."
-        ),
-        "tomas": "Tablero al salir, en la ruta y al volver (con fecha y hora) · ruta desde el acompañante · cartel del destino (sin logos del festival) · surtidor o cargador si se usó.",
-        "texto": "Gancho · km y consumo de cada tramo · cuenta final en bordó · 'medido el [fecha], con [condiciones]'.",
-        "descripcion": "¿Cuánto gastás para ir a [destino] y volver? Lo medimos el [fecha]: [km] km, [consumo] → $[..] (cuenta: [km] × [consumo] × $[precio] = $[..]). Mandáselo a quien va este verano. Comentá RUTA y te mandamos precio y financiación. Córdoba.",
-        "hashtags": "#ruta #consumo #hibrido #verano #AutosCordoba",
-        "fijado": FIJADO.format(k="RUTA"),
-        "codigo": "RUTA",
-        "mensaje": MSG.format(k="RUTA"),
-    },
-    {
-        "id": "G16",
-        "pieza": "¿Enchufe o nafta? Dos vendedores, dos autos",
-        "formato": "Reel 45–60 s, debate entre dos vendedores (ORA 03 eléctrico vs ORA 05 HEV)",
-        "aparece": "Vendedor 1 y vendedor 2",
-        "gancho": "'¿ENCHUFE O NAFTA? ELLOS NO SE PONEN DE ACUERDO'",
-        "gancho_b": "'NO TE COMPRES UN ELÉCTRICO SI…'",
-        "guion": (
-            "0–2 s: los dos vendedores, cada uno con su auto, y el gancho.\n"
-            "2–6 s: \"Soy [nombre 1] y defiendo el eléctrico. Soy [nombre 2] y defiendo el híbrido. Al final te decimos cuál te conviene a vos.\"\n"
-            "6–40 s: 3 rounds (ciudad, ruta, cochera). Cada uno con 1 dato verificado: ORA 03, 310 km WLTP y carga rápida 20–80 % en 36 min (oficial); ORA 05 HEV, 5,1 L/100 km mixto y no se enchufa.\n"
-            "40–52 s (paga la promesa): el veredicto: 'depende de tu vida: ciudad y cochera con enchufe → el eléctrico; ruta seguido o sin cargador → el híbrido'.\n"
-            "52–58 s: \"" + CTA + " Comentá ENCHUFE.\"\n"
-            "Tono: discusión amable, sin bajar al otro auto (son los dos de la casa)."
-        ),
-        "tomas": "Plano de los dos con los autos · plano de cada uno por separado (3 tomas de cada línea clave) · enchufe · surtidor (sin marca de petrolera) · tablero de cada auto.",
-        "texto": "Gancho · 'ROUND 1/2/3' · datos con su aclaración (WLTP, 'mixto declarado') · veredicto en dos líneas.",
-        "descripcion": "¿Enchufe o nafta? ⚡⛽ Dos vendedores, dos autos y un veredicto: depende de tu vida. Ciudad y cochera con enchufe → eléctrico. Ruta seguido o sin cargador → híbrido. Comentá ENCHUFE y te ayudamos a elegir. Córdoba.",
-        "hashtags": "#autoelectrico #hibrido #0km #GWM #AutosCordoba",
-        "fijado": FIJADO.format(k="ENCHUFE"),
-        "codigo": "ENCHUFE",
-        "mensaje": MSG.format(k="ENCHUFE"),
-    },
-    {
-        "id": "G17",
-        "pieza": "Lo que ve este auto que vos no ves (asistencias con lluvia)",
-        "formato": "Reel 35–45 s (animado con Claude o vendedor en el salón)",
-        "aparece": "Vendedor 1 o animado",
-        "gancho": "'CON ESTA LLUVIA, ¿VOS VES ESTO?'",
-        "gancho_b": "'LO QUE VE ESTE AUTO Y VOS NO'",
-        "guion": (
-            "El SMN anticipa un verano más lluvioso y con tormentas más fuertes en Córdoba: esta pieza se publica una semana de lluvia.\n"
-            "0–2 s: parabrisas con lluvia (grabado con el auto quieto) y el gancho.\n"
-            "2–30 s: 3 asistencias, mostradas en la pantalla con el auto detenido: cámara 360, alerta de colisión, frenado autónomo, centrado de carril (las que tenga la unidad según su ficha).\n"
-            "30–38 s: 'No reemplazan al que maneja: te avisan antes'.\n"
-            "38–44 s: nombre del modelo + \"" + CTA + " Comentá LLUVIA.\"\n"
-            "Nunca demostrar el frenado autónomo con personas ni en la calle."
-        ),
-        "tomas": "Lluvia sobre el parabrisas (manguera si no llueve, aclarándolo) · pantalla de la cámara 360 · luces de alerta en el espejo · vendedor explicando.",
-        "texto": "Gancho · nombre de cada asistencia · 'no reemplaza al conductor'.",
-        "descripcion": "Con esta lluvia, ¿vos ves todo? 🌧️ Te mostramos 3 asistencias que te avisan antes: [lista de la ficha]. No reemplazan al que maneja. Comentá LLUVIA y te mandamos precio y financiación. Córdoba.",
-        "hashtags": "#seguridadvial #lluvia #0km #asistencias #AutosCordoba",
-        "fijado": FIJADO.format(k="LLUVIA"),
-        "codigo": "LLUVIA",
-        "mensaje": MSG.format(k="LLUVIA"),
-    },
-    {
-        "id": "G18",
-        "pieza": "El vendedor responde (comentarios)",
-        "formato": "Reel 30–45 s con la función 'responder comentario' de Instagram o TikTok",
-        "aparece": "Vendedor 1 o 2",
-        "gancho": "El comentario real en pantalla (con el permiso que da la función de responder)",
-        "gancho_b": "'ME PREGUNTARON ESTO Y LA RESPUESTA SORPRENDE'",
-        "guion": (
-            "0–2 s: el comentario elegido de la semana (una objeción real: repuestos, reventa, carga, consumo).\n"
-            "2–30 s: respuesta corta con 1 dato verificado o algo que se muestra (la unidad, el taller, el cargador).\n"
-            "30–38 s: \"" + CTA + " Comentá PREGUNTA y te respondo por mensaje.\"\n"
-            "Elegir el comentario el lunes. Nunca responder a un insulto ni ridiculizar al que pregunta."
-        ),
-        "tomas": "Vendedor a cámara al lado de la unidad o en el taller.",
-        "texto": "Burbuja del comentario · dato con su fuente chica.",
-        "descripcion": "Nos preguntaron: '[comentario]'. Te respondemos. Dejá tu pregunta y la contestamos en el próximo video. Comentá PREGUNTA y te escribimos por mensaje. Córdoba.",
-        "hashtags": "#preguntas #0km #autos #concesionaria #AutosCordoba",
-        "fijado": FIJADO.format(k="PREGUNTA"),
-        "codigo": "PREGUNTA",
-        "mensaje": MSG.format(k="PREGUNTA"),
-    },
-    {
-        "id": "G19",
-        "pieza": "Entregas de la semana",
-        "formato": "Reel 15–25 s o Historias",
-        "aparece": "Clientes que firmaron la autorización + vendedor",
-        "gancho": "'ESTA SEMANA SE FUERON [N] AUTOS A [BARRIOS O CIUDADES]'",
-        "gancho_b": "'EL MOMENTO QUE MÁS NOS GUSTA'",
-        "guion": (
-            "Solo con la autorización de imagen firmada (alcance: redes y anuncios; plazo; se puede revocar). Si un cliente la revoca, se baja.\n"
-            "0–2 s: la entrega más linda de la semana con el gancho.\n"
-            "2–18 s: 3 a 5 entregas cortas: llave, foto, auto saliendo. Sin patentes legibles.\n"
-            "18–22 s: el cliente puede decir algo con sus palabras, nunca un texto escrito por la concesionaria. Si no quiere hablar, no habla.\n"
-            "22–25 s: \"" + CTA + "\""
-        ),
-        "tomas": "Entrega de llaves · foto con el vendedor · auto saliendo del salón · moño o detalle (si se usa).",
-        "texto": "Gancho con el número real · nombres de pila solo si el cliente lo autoriza · logo chico.",
-        "descripcion": "Esta semana se fueron [N] autos a [barrios]. Gracias por elegirnos 🙌 Comentá ENTREGA y te mandamos precio y financiación. Córdoba.",
-        "hashtags": "#entrega #0km #Cordoba #concesionaria #AutosCordoba",
-        "fijado": FIJADO.format(k="ENTREGA"),
-        "codigo": "ENTREGA",
-        "mensaje": MSG.format(k="ENTREGA"),
-    },
-    {
-        "id": "G20",
-        "pieza": "Vivo del sábado desde el salón",
-        "formato": "Vivo de 45–60 min en TikTok e Instagram (prueba de 4 sábados)",
-        "aparece": "Vendedor 1 en cámara + vendedor 2 en el chat y el WhatsApp",
-        "gancho": "Título del vivo: 'Preguntame lo que quieras de [2 modelos] · en vivo desde el salón'",
-        "gancho_b": "",
-        "guion": (
-            "Modelo: vivos con vendedor desde el salón (caso MG Chile: 30 autos vendidos en 8 semanas con vivos, dato de la marca).\n"
-            "Antes: anunciarlo en historias el jueves y el viernes. Celular en trípode, corbatero, wifi probado.\n"
-            "0–5 min: saludo, qué se va a mostrar, código VIVO-SAB en pantalla.\n"
-            "5–20 min: unidad 1 completa (por fuera, por dentro, cómo funciona, prueba corta en el estacionamiento si el lugar lo permite).\n"
-            "20–35 min: unidad 2.\n"
-            "35–50 min: preguntas del chat. Precios y cuotas solo los publicados con su vigencia; para el resto, 'te lo paso por WhatsApp'.\n"
-            "Cierre: 'escribinos por WhatsApp con el código VIVO-SAB'.\n"
-            "Después: el vendedor 2 escribe ese mismo día a todos los que dejaron contacto. Regla del 30/1: si en 4 vivos no hubo al menos 1 turno con el código, se deja."
-        ),
-        "tomas": "Plano general del vendedor con la unidad · detalles a mano · estacionamiento para la prueba corta.",
-        "texto": "Cartel fijo: 'Código VIVO-SAB · WhatsApp [número]'.",
-        "descripcion": "",
-        "hashtags": "",
-        "fijado": "",
-        "codigo": "VIVO-SAB",
-        "mensaje": "Hola, vengo del vivo del sábado (VIVO-SAB). Quiero precio y financiación.",
-    },
-    {
-        "id": "G21",
-        "pieza": "Video largo de YouTube: recorrido completo",
-        "formato": "YouTube 6–10 min horizontal o vertical + 3 o 4 Shorts cortados de ahí",
-        "aparece": "Vendedor 1",
-        "gancho": "Título: '[Modelo] en Córdoba: recorrido completo y consumo real | Valparaiso Motors'",
-        "gancho_b": "Título B: '¿Vale la pena el [modelo]? Lo que tenés que saber antes de comprarlo'",
-        "guion": (
-            "Capítulos (YouTube los muestra si están en la descripción):\n"
-            "0:00 Para quién es este auto (la vida del que mira, no la ficha).\n"
-            "0:40 Por fuera: medidas y llantas con la ficha.\n"
-            "2:00 Por dentro: plazas, pantallas, baúl.\n"
-            "4:00 Cómo funciona (modos EV, HEV, motor) con un dibujo simple.\n"
-            "5:30 Manejo: prueba en ruta desde el acompañante, sin maniobras peligrosas, con consumo medido.\n"
-            "7:30 Garantía (con su condición) y dónde se hace el service.\n"
-            "8:30 Cómo pedir precio y financiación (sin cuotas en el video largo, salvo con el legal completo).\n"
-            "Fuente: el estudio de Google y Kantar dice que los compradores usan recorridos, pruebas, comparativas y guías por versión."
-        ),
-        "tomas": "Las mismas del G02 en versión larga + prueba en ruta + 3 tomas del vendedor por capítulo.",
-        "texto": "Capítulos · datos con aclaración · placa final con el CTA.",
-        "descripcion": "Primera línea: 'Pedinos precio y financiación por WhatsApp: [link con el código YT-[MODELO]]'. Después: resumen, capítulos, datos con su aclaración (NEDC, WLTP, declarado) y 'Valparaiso Motors · Córdoba'.",
-        "hashtags": "#[modelo] #Cordoba #0km (YouTube: hasta 3 en la descripción)",
-        "fijado": "Pedinos precio y financiación: [link de WhatsApp con YT-[MODELO]]",
-        "codigo": "YT-[MODELO]",
-        "mensaje": "Hola, vengo del video de YouTube del [modelo] (YT-[MODELO]). Quiero precio y financiación.",
-    },
-    {
-        "id": "G22",
-        "pieza": "Lo más patentado del mes (dato ACARA)",
-        "formato": "Reel 25–35 s animado (Claude) o placa animada",
-        "aparece": "Sin personas (voz del dueño)",
-        "gancho": "'ESTOS FUERON LOS AUTOS QUE MÁS SE PATENTARON EN [MES]'",
-        "gancho_b": "'¿ADIVINÁS CUÁL FUE EL N.º 1?'",
-        "guion": (
-            "Se publica el día que sale el dato (ACARA publica el último día hábil del mes).\n"
-            "0–2 s: el ranking tapado y el gancho.\n"
-            "2–20 s: del 5.º al 1.º (dejar el n.º 1 para el final), con el dato de patentamientos y la fuente en pantalla.\n"
-            "20–28 s: un dato de Córdoba si está publicado (en enero de 2026, Córdoba patentó 7.585).\n"
-            "28–32 s: \"" + CTA + "\"\n"
-            "Sin opinar sobre otras marcas: solo el dato con su fuente. Si el ranking es de otras marcas, revisar con el dueño (regla de no nombrar otras marcas en videos propios)."
-        ),
-        "tomas": "No hace falta grabar: se arma con el dato.",
-        "texto": "Ranking con barras · 'Fuente: ACARA/DNRPA, [fecha]'.",
-        "descripcion": "Estos fueron los más patentados de [mes] según ACARA/DNRPA ([link]). ¿Cuál te sorprendió? Comentá DATO y te mandamos precio y financiación de cualquiera de nuestros autos. Córdoba.",
-        "hashtags": "#patentamientos #autos #0km #mercadoautomotor #AutosCordoba",
-        "fijado": FIJADO.format(k="DATO"),
-        "codigo": "DATO",
-        "mensaje": MSG.format(k="DATO"),
-    },
-    {
-        "id": "G23",
-        "pieza": "Soy vendedor: haceme estas 3 preguntas",
-        "formato": "Reel 35–45 s",
-        "aparece": "Vendedor 2",
-        "gancho": "'SOY VENDEDOR: ANTES DE COMPRAR, HACEME ESTAS 3 PREGUNTAS'",
-        "gancho_b": "'LA TERCERA PREGUNTA ES LA QUE MÁS TE AHORRA'",
-        "guion": (
-            "0–2 s: el gancho.\n"
-            "2–6 s: \"Soy [nombre], vendedor de Valparaiso Motors. La tercera es la que más plata te ahorra.\"\n"
-            "6–15 s: 1) '¿Esta unidad está en el salón o hay que pedirla?' (y para cuándo).\n"
-            "15–25 s: 2) '¿Cuánto me tomás mi usado y por cuánto tiempo vale esa tasación?'.\n"
-            "25–36 s (paga la promesa): 3) '¿Cuál es el CFT?': el costo total, con gastos, seguros e impuestos, no solo la tasa.\n"
-            "36–42 s: \"" + CTA + " Comentá PREGUNTAS.\""
-        ),
-        "tomas": "Vendedor a cámara caminando por el salón · detalle de una carpeta de cotización (sin datos reales).",
-        "texto": "Gancho · 1, 2, 3 · 'CFT = costo financiero total'.",
-        "descripcion": "Soy vendedor: antes de comprar un 0 km, haceme estas 3 preguntas. 1) ¿Está en el salón? 2) ¿Cuánto me tomás el usado y hasta cuándo vale? 3) ¿Cuál es el CFT? Comentá PREGUNTAS y te respondemos por mensaje. Córdoba.",
-        "hashtags": "#0km #consejos #financiacion #usado #AutosCordoba",
-        "fijado": FIJADO.format(k="PREGUNTAS"),
-        "codigo": "PREGUNTAS",
-        "mensaje": MSG.format(k="PREGUNTAS"),
-    },
-    {
-        "id": "G24",
-        "pieza": "Auto para la familia: lo que hay que mirar si llevás chicos",
-        "formato": "Reel 35–45 s",
-        "aparece": "Vendedor 1 (sin chicos en cámara salvo autorización de los padres)",
-        "gancho": "'SI LLEVÁS CHICOS AL COLE, MIRÁ ESTO ANTES DE ELEGIR EL AUTO'",
-        "gancho_b": "'3 COSAS QUE NADIE MIRA EN EL SALÓN Y IMPORTAN CON CHICOS'",
-        "guion": (
-            "0–2 s: el gancho con una butaca infantil al lado del auto.\n"
-            "2–30 s: 3 cosas, la última la más importante: 1) espacio atrás y baúl para el cochecito; 2) ISOFIX, cómo se ve y cómo se engancha; 3) airbags y asistencias según la ficha de la unidad.\n"
-            "30–36 s: nombre del modelo.\n"
-            "36–42 s: \"" + CTA + " Comentá FAMILIA.\""
-        ),
-        "tomas": "Butaca infantil enganchándose al ISOFIX · plazas traseras · baúl con cochecito · pantalla de asistencias.",
-        "texto": "Gancho · 1, 2, 3 · datos de la ficha.",
-        "descripcion": "Si llevás chicos al cole, mirá esto antes de elegir el auto 👨‍👩‍👧 Espacio atrás, ISOFIX y [airbags y asistencias de la ficha]. Comentá FAMILIA y te mandamos precio y financiación. Córdoba.",
-        "hashtags": "#familia #seguridad #vueltaalcole #0km #AutosCordoba",
-        "fijado": FIJADO.format(k="FAMILIA"),
-        "codigo": "FAMILIA",
-        "mensaje": MSG.format(k="FAMILIA"),
-    },
-    {
-        "id": "G25",
-        "pieza": "Para el campo (4x4 antes de Expoagro)",
-        "formato": "Reel 35–45 s en un camino de tierra (con permiso del lugar)",
-        "aparece": "Vendedor 1",
-        "gancho": "'¿TE QUEDASTE ENCAJADO ALGUNA VEZ EN EL CAMPO?'",
-        "gancho_b": "'LO QUE TIENE QUE TENER UNA 4X4 PARA EL CAMPO DE VERDAD'",
-        "guion": (
-            "0–2 s: rueda en el barro o la tierra, con el gancho.\n"
-            "2–30 s: 3 cosas según la ficha de la unidad en stock (verificar antes): bloqueo de diferencial trasero, modos de terreno, cámara que 've a través del piso', toma de 220 V (potencia a confirmar).\n"
-            "30–36 s: consumo dicho de frente (H7: 8,1 L/100 km mixto declarado, verificar), porque da credibilidad.\n"
-            "36–42 s: \"" + CTA + " Comentá CAMPO.\"\n"
-            "Expoagro 2027 es del 9 al 12/3 en San Nicolás: sirve de referencia, sin usar su logo."
-        ),
-        "tomas": "Camino de tierra · selector de modos · pantalla de la cámara · toma de 220 V con una herramienta enchufada · vendedor a cámara.",
-        "texto": "Gancho · 3 puntos · consumo con 'mixto declarado'.",
-        "descripcion": "¿Te quedaste encajado alguna vez en el campo? [3 puntos de la ficha.] Consumo mixto declarado: [dato]. Comentá CAMPO y te mandamos precio y financiación. Córdoba.",
-        "hashtags": "#4x4 #campo #agro #0km #AutosCordoba",
-        "fijado": FIJADO.format(k="CAMPO"),
-        "codigo": "CAMPO",
-        "mensaje": MSG.format(k="CAMPO"),
-    },
-    {
-        "id": "G26",
-        "pieza": "Publicación semanal del Perfil de Google",
-        "formato": "Publicación del Perfil de Empresa (oferta, novedad o evento)",
-        "aparece": "Foto propia",
-        "gancho": "Título en minúsculas normales (nada en mayúsculas sostenidas)",
-        "gancho_b": "",
-        "guion": (
-            "Las publicaciones de oferta tuvieron más clics que las de novedades (Sterling Sky, datos de 2021 de pequeños negocios de EE. UU.). No mueven el ranking: sirven para convertir al que ya encontró el perfil.\n"
-            "1) Elegir el tipo: Oferta (cuota o beneficio con su legal), Evento (inauguración, vivo) o Novedad (llegó una unidad).\n"
-            "2) Foto propia con texto en la imagen (sin fotos de stock).\n"
-            "3) Texto de 2–3 líneas con 'Córdoba' y el modelo.\n"
-            "4) Botón: 'Llamar' o 'Más información' con el link de WhatsApp con código GBP.\n"
-            "5) Subir además 5 fotos nuevas de unidades o del local."
-        ),
-        "tomas": "Foto horizontal 4:3 de la unidad o del local, de día.",
-        "texto": "Texto en la imagen: 1 línea + logo chico.",
-        "descripcion": "[2–3 líneas: qué es, para quién, hasta cuándo] + legal si hay precio o cuota.",
-        "hashtags": "",
-        "fijado": "",
-        "codigo": "GBP",
-        "mensaje": "Hola, los encontré en Google (GBP). Quiero precio y financiación.",
-    },
-    {
-        "id": "G27",
-        "pieza": "Estados de WhatsApp de la semana",
-        "formato": "Estados de WhatsApp Business, 1–3 por día hábil",
-        "aparece": "Fotos o videos propios",
-        "gancho": "La unidad del día",
-        "gancho_b": "",
-        "guion": (
-            "Los ven los contactos que guardaron el número (verificar). Cada respuesta a un estado abre el chat con el contexto.\n"
-            "Lun: unidad que entró · Mar: detalle que nadie mira (baúl, enchufe) · Mié: placa de cuota con su legal · Jue: entrega (con autorización) · Vie: 'mañana abrimos de [..] a [..]' + cómo llegar · Sáb: lo que pasa en el salón.\n"
-            "Texto: 'Respondé este estado y te mando precio y cuota'. Con cuota, el legal completo en la imagen."
-        ),
-        "tomas": "Fotos y videos verticales de 5–15 s.",
-        "texto": "1 línea + legal si hay cuota.",
-        "descripcion": "",
-        "hashtags": "",
-        "fijado": "",
-        "codigo": "ESTADO",
-        "mensaje": "",
-    },
-    {
-        "id": "G28",
-        "pieza": "Historias de la semana",
-        "formato": "Historias de Instagram (y Facebook), 3–7 cuadros por día hábil",
-        "aparece": "Equipo",
-        "gancho": "",
-        "gancho_b": "",
-        "guion": (
-            "Las historias no sirven para llegar a gente nueva (Mosseri): sirven para los que ya siguen y para cerrar. Por eso venden.\n"
-            "Lun: stock que entró (foto + precio o cuota con legal) · Mar: detrás de escena de la grabación · Mié: encuesta '¿cuál te llevás?' entre 2 unidades · Jue: sticker de pregunta 'preguntale al vendedor' · Vie: entregas (con autorización) · Sáb: 'hoy abrimos hasta las [..]' + cómo llegar o el vivo.\n"
-            "Siempre: un sticker de enlace a WhatsApp con el mensaje ya escrito y el código HISTORIA. Responder cada respuesta en menos de 5 minutos en horario.\n"
-            "Compartir en historias cada reel nuevo del feed."
-        ),
-        "tomas": "Celular, vertical, sin edición.",
-        "texto": "Zona segura de Historias: nada importante arriba de 250 px ni abajo de 340 px.",
-        "descripcion": "",
-        "hashtags": "",
-        "fijado": "",
-        "codigo": "HISTORIA",
-        "mensaje": "Hola, vengo de las historias (HISTORIA). Quiero precio y financiación.",
-    },
-    {
-        "id": "G29",
-        "pieza": "Mensajes de WhatsApp de la inauguración (base con permiso)",
-        "formato": "Mensaje de difusión de WhatsApp Business a clientes con permiso (opt-in)",
-        "aparece": "",
-        "gancho": "",
-        "gancho_b": "",
-        "guion": (
-            "Antes: cruzar la base con el Registro No Llame y mandar solo a quien aceptó recibir mensajes. Textos listos en la guía (sección Plantillas).\n"
-            "D-14 Invitación VIP: 'Hola [nombre], soy [vendedor] de Valparaiso Motors. El viernes [fecha] a las [hora] inauguramos el nuevo local en [dirección] y queremos que estés. ¿Te anotamos? Respondé SÍ y te mandamos la ubicación.'\n"
-            "D-12 Aviso de mudanza a clientes de taller: último turno en el local viejo y primero en el nuevo, con el mapa.\n"
-            "D-3 Recordatorio a los que dijeron SÍ.\n"
-            "D-1 (mañana): ubicación, horario y estacionamiento.\n"
-            "D+2 Gracias: a los que vinieron, con el link para pedir turno de prueba; a los que compraron o hicieron un service, el pedido de reseña (a todos, sin premio)."
-        ),
-        "tomas": "",
-        "texto": "",
-        "descripcion": "",
-        "hashtags": "",
-        "fijado": "",
-        "codigo": "INAUGURACION-VIP",
-        "mensaje": "",
-    },
-    {
-        "id": "G30",
-        "pieza": "Saludo de fin de año del equipo",
-        "formato": "Reel 12–15 s",
-        "aparece": "Todo el equipo en el local nuevo",
-        "gancho": "'FELICES FIESTAS DESDE EL NUEVO VALPARAISO'",
-        "gancho_b": "",
-        "guion": (
-            "0–2 s: el equipo completo en el salón nuevo, ya en cuadro (sin fundido desde negro).\n"
-            "2–10 s: cada uno dice su nombre y área en 1 segundo (corte por persona).\n"
-            "10–14 s: 'Gracias, Córdoba. Nos vemos en [mes]' + horario de las fiestas."
-        ),
-        "tomas": "Un plano por persona, mismo encuadre · plano grupal.",
-        "texto": "Nombre y área de cada uno · horario de fiestas.",
-        "descripcion": "Felices fiestas desde el nuevo Valparaiso Motors 🎄 Horario de fiestas: [..]. Córdoba.",
-        "hashtags": "#felicesfiestas #Cordoba #concesionaria #equipo #AutosCordoba",
-        "fijado": "Horario de fiestas: [..]",
-        "codigo": "",
-        "mensaje": "",
-    },
-    {
-        "id": "G31",
-        "pieza": "¿Cuánto dura la batería?",
-        "formato": "Reel 35–45 s (vendedor o animado con Claude)",
-        "aparece": "Vendedor 2",
-        "gancho": "'¿Y CUANDO LA BATERÍA SE GASTA, QUÉ?'",
-        "gancho_b": "'LA PREGUNTA QUE FRENA A TODOS LOS QUE QUIEREN UN HÍBRIDO'",
-        "guion": (
-            "0–2 s: el gancho con la tapa de carga o el tablero de batería.\n"
-            "2–6 s: 'Al final te digo lo que dice la garantía, que es lo que importa'.\n"
-            "6–25 s: cómo se cuida una batería (cargas, temperatura) en lenguaje simple, sin números que no estén en una fuente.\n"
-            "25–35 s (paga la promesa): la garantía de batería con su condición exacta (ej.: Eado Plus, 8 años o 150.000 km, lo que ocurra primero).\n"
-            "35–42 s: \"" + CTA + " Comentá BATERIA.\""
-        ),
-        "tomas": "Tapa de carga · cargador · pantalla de energía · vendedor a cámara.",
-        "texto": "Gancho · garantía en grande con su condición en chico.",
-        "descripcion": "¿Y cuando la batería se gasta, qué? 🔋 Te contamos cómo se cuida y qué cubre la garantía ([garantía exacta, 'lo que ocurra primero']). Comentá BATERIA y te mandamos precio y financiación. Córdoba.",
-        "hashtags": "#bateria #hibridoenchufable #autoelectrico #garantia #AutosCordoba",
-        "fijado": FIJADO.format(k="BATERIA"),
-        "codigo": "BATERIA",
-        "mensaje": MSG.format(k="BATERIA"),
-    },
-    {
-        "id": "G32",
-        "pieza": "Un día en Valparaiso (detrás de escena)",
-        "formato": "Reel 25–35 s, estilo diario",
-        "aparece": "Equipo",
-        "gancho": "EP. 1: 'ASÍ SE PREPARA UN AUTO ANTES DE ENTREGARLO' · EP. 2: 'LO QUE PASA EN EL TALLER A LAS 8 DE LA MAÑANA'",
-        "gancho_b": "'NADIE VE ESTA PARTE'",
-        "guion": (
-            "0–2 s: el momento más visual (el auto con lona, el lavado, el elevador) y el gancho.\n"
-            "2–25 s: 6 a 10 pasos reales, uno por corte de 2–3 s, con una etiqueta por paso ('control de 100 puntos', 'carga de batería', 'tutorial de CarPlay').\n"
-            "25–32 s: el auto listo y 'mañana se lo lleva [nombre de pila, con autorización]' o 'mañana se entrega'.\n"
-            "CTA chico al final: \"" + CTA + "\""
-        ),
-        "tomas": "Cada paso de la preparación o del taller, 3–5 s, desde 2 ángulos.",
-        "texto": "Gancho · etiqueta por paso · logo chico.",
-        "descripcion": "Así se prepara un auto antes de entregarlo en Valparaiso Motors, Córdoba. [Pasos reales.] Comentá ENTREGA y te mandamos precio y financiación.",
-        "hashtags": "#detrasdeescena #entrega #0km #taller #AutosCordoba",
-        "fijado": FIJADO.format(k="ENTREGA"),
-        "codigo": "ENTREGA",
-        "mensaje": MSG.format(k="ENTREGA"),
-    },
-    {
-        "id": "G33",
-        "pieza": "Carrusel educativo (plantilla)",
-        "formato": "Carrusel 1080x1350, 8 a 10 placas",
-        "aparece": "Fotos propias o placas de texto",
-        "gancho": "Portada para todo público: una pregunta sobre la vida del que mira (el tema de cada semana está en el Calendario)",
-        "gancho_b": "Portada B: el número o la promesa ('5 preguntas…', 'lo que nadie te dice de…')",
-        "guion": (
-            "Placa 1: portada con la pregunta en Inter Black, foto propia, 'deslizá →'.\n"
-            "Placas 2 a 8: un punto por placa, de lo menos a lo más importante (el último es el mejor y se anuncia en la portada). Una idea y una foto por placa; datos con su aclaración chica.\n"
-            "Placa 9: resumen en 3 líneas (para guardar).\n"
-            "Placa 10: CTA: 'Pedinos precio y financiación de cualquiera de nuestros autos' + 'comentá [PALABRA]' + logo chico (versión negra sobre claro).\n"
-            "Estilo: fondo papel o estudio blanco; bordó como placa con letras blancas; 'deslizá →' en todas menos la última.\n"
-            "Si muestra cuotas, cada placa con cuota lleva el legal completo."
-        ),
-        "tomas": "Fotos propias de las unidades y del local (mismo fondo, misma luz).",
-        "texto": "Máximo 20 palabras por placa.",
-        "descripcion": "[Primera línea = la pregunta de la portada, sin adelantar el final] Guardalo para cuando cambies el auto. Comentá [PALABRA] y te mandamos precio y financiación. Córdoba.",
-        "hashtags": "#[tema] #0km #consejos #autos #AutosCordoba",
-        "fijado": FIJADO.format(k="[PALABRA]"),
-        "codigo": "[PALABRA]",
-        "mensaje": "Hola, vengo del carrusel ([PALABRA]). Quiero precio y financiación.",
-    },
-    {
-        "id": "G34",
-        "pieza": "Antes de salir a la ruta: lo que revisa el taller",
-        "formato": "Reel 30–40 s con un técnico",
-        "aparece": "Técnico o jefe de taller",
-        "gancho": "'¿SALÍS DE VACACIONES? ESTO ES LO QUE REVISARÍA UN TÉCNICO'",
-        "gancho_b": "'5 COSAS QUE TENÉS QUE MIRAR ANTES DE IR A LAS SIERRAS'",
-        "guion": (
-            "0–2 s: el técnico con el capó abierto y el gancho.\n"
-            "2–6 s: \"Soy [nombre], del taller de Valparaiso Motors. La quinta es la que más se olvida.\"\n"
-            "6–30 s: 5 controles, de a uno, con la mano señalando: presión y estado de cubiertas (con la de auxilio), luces, frenos, líquidos, y la quinta: [la que el técnico diga que más se olvida, ej. escobillas o batería de 12 V].\n"
-            "30–38 s: 'Si tu auto es de la casa, pedí turno de service antes de viajar' (botón dentro del WhatsApp) y el CTA único: \"" + CTA + "\""
-        ),
-        "tomas": "Manómetro en la cubierta · luces encendidas · disco de freno · varilla de aceite · el quinto control · técnico a cámara.",
-        "texto": "Gancho · 1 a 5 con 'pop' · 'Mandáselo a quien sale a la ruta'.",
-        "descripcion": "¿Salís de vacaciones? 5 cosas que revisaría un técnico antes de ir a las sierras: [lista]. Mandáselo a quien sale a la ruta. Si tu auto es de la casa, escribinos con el código RUTA y te damos turno de service. Córdoba.",
-        "hashtags": "#vacaciones #ruta #service #Cordoba #AutosCordoba",
-        "fijado": "Mandáselo a quien sale a la ruta este verano. Turnos de service por WhatsApp (link en la bio).",
-        "codigo": "RUTA",
-        "mensaje": "Hola, vengo del video del taller (RUTA). Quiero un turno de service.",
-    },
+    g("G01", "¿Comprás ahora o esperás a enero?", "Educar", f"{USADO}; {KM}",
+      "Comprar en diciembre y esperar a enero tienen cada uno una ventaja: hacé la cuenta antes de elegir.",
+      "Reel 40–45 s · vendedor en el salón", "Vendedor 1",
+      "¿COMPRÁS AHORA O ESPERÁS A ENERO?", "ESPERAR A ENERO PUEDE SALIRTE MÁS CARO… O NO",
+      [("0–2 s", "¿Comprás el auto ahora o esperás a enero?", "El vendedor arranca la hoja de diciembre de un almanaque grande y aparece enero. Corte a una unidad.", "¿AHORA O EN ENERO?", "Whoosh al arrancar la hoja"),
+       ("2–5 s", "Las dos tienen una ventaja. Al final te digo cómo elegir.", "Camina hacia la cámara entre dos autos. Zoom en 'al final'.", "AL FINAL: CÓMO ELEGIR", "Pop"),
+       ("5–10 s", "En enero se venden casi tres veces más autos que en diciembre.", "Dos barras que crecen: diciembre chiquita, enero el triple.", "DIC. 23.997 → ENE. 66.080 · fuente: ACARA", "Pop en cada barra"),
+       ("10–15 s", "¿Por qué? Muchos esperan para que el auto figure del año nuevo.", "Un cartel '2026' que gira y queda '2027'.", "QUE FIGURE 2027", "Whoosh"),
+       ("15–22 s", "Pero en diciembre las marcas suelen hacer descuentos para cerrar el año.", "Etiqueta de precio. Si hay descuento confirmado, cae un sello 'DESCUENTO'; si no, un signo de pregunta.", "DICIEMBRE: ¿HAY DESCUENTO?", "Impacto en el sello"),
+       ("22–32 s", "Entonces hacé esta cuenta: lo que te ahorrás hoy, contra lo que vale de más un auto 2027 cuando lo vendas.", "Una balanza dibujada: de un lado 'AHORRO HOY', del otro 'VALE MÁS AL VENDERLO'. Se mueve.", "AHORRO HOY vs. VALE MÁS DESPUÉS", "Pop en cada platillo"),
+       ("32–38 s", "Si te ahorrás más de lo que perdés, comprá ahora. Si no, esperá.", "La balanza se inclina. Aparece un tilde bordó.", "AHORRÁS MÁS → COMPRÁ AHORA", "Impacto"),
+       ("38–44 s", CTA + " Comentá ENERO y te hacemos la cuenta con tu caso.", "El vendedor señala abajo (los comentarios). Placa final con el logo chico. El último cuadro vuelve al almanaque (loop).", "COMENTÁ ENERO", "Música baja")],
+      "Vendedor a cámara (3 tomas del gancho) · almanaque grande de diciembre · dos unidades de fondo · tomas de apoyo del salón.",
+      "¿Comprás ahora o esperás a enero? 🗓️\nEn enero de 2026 se patentaron 66.080 autos, casi el triple que en diciembre de 2025 (23.997, datos de ACARA). Mucha gente espera para que el auto figure del año nuevo.\nPero en diciembre las marcas suelen hacer descuentos. La cuenta: lo que te ahorrás hoy contra lo que vale de más al venderlo.\nComentá ENERO y te hacemos la cuenta con tu caso. Estamos en Córdoba.\nInformación general. No constituye oferta.",
+      "#0km #autos #consejos #financiacion #AutosCordoba", "ENERO",
+      ojo="Decir 'descuento' solo si Administración lo confirma ese día. Antes de grabar, preguntar cómo figura el año modelo de las unidades en stock (lo dice el certificado de fábrica)."),
+
+    g("G02", "Llegó al salón (unidad real)", "Vender", f"{KM}; {FAM}; {ELEC} (según la unidad)",
+      "Esta unidad está acá hoy, tiene tres cosas que te sirven, y al final sabés cuánto queda la cuota.",
+      "Reel 35–42 s · vendedor recorre una unidad", "Vendedor 1 o 2 (se turnan)",
+      "EJEMPLO EADO PLUS: 'SE ENCHUFA EN TU CASA Y NO TE DEJA A PIE EN LA RUTA'", "'¿CUÁNTOS KM HACÉS POR DÍA?'",
+      [("0–2 s", "Se enchufa en tu casa y no te deja a pie en la ruta.", "El auto avanza hacia la cámara. Corte a la mano que enchufa el cable.", "SE ENCHUFA · NO TE DEJA A PIE", "Whoosh"),
+       ("2–5 s", "Soy [nombre], vendedor de Valparaiso Motors. Este está hoy en el salón, y al final te digo cuánto queda la cuota.", "El vendedor apoyado en el auto. Zoom en 'cuota'.", "AL FINAL: LA CUOTA", "Pop"),
+       ("5–11 s", "Uno: a la noche lo enchufás como el celular.", "Pantalla partida: un celular cargando y el auto cargando.", "1 · SE CARGA EN TU CASA", "Pop"),
+       ("11–17 s", "Dos: con la batería llena hace hasta 132 km sin gastar nafta.", "Un contador de km que sube de 0 a 132 sobre el auto andando.", "2 · HASTA 132 KM SIN NAFTA* · *medido en laboratorio (NEDC)", "Tic de contador"),
+       ("17–24 s", "Pero lo más importante es el tres: si se acaba la batería, sigue a nafta. No te quedás a pie.", "Mapa plano dibujado: Córdoba → Carlos Paz. La batería se vacía y aparece un surtidor; el auto sigue.", "3 · SIGUE A NAFTA", "Impacto"),
+       ("24–29 s", "Es el Changan Eado Plus.", "Giro rápido alrededor del auto y plano de la cola con el nombre.", "CHANGAN EADO PLUS", "Impacto"),
+       ("29–36 s", "Sale [precio] de contado o desde [N] cuotas de [..]. Abajo tenés todos los datos.", "Placa con el precio y la cuota grandes. La placa legal queda 5 segundos.", LEGAL, "Música baja"),
+       ("36–40 s", CTA + " Comentá EADO y te mando la cuota.", "El vendedor señala abajo. Logo chico.", "COMENTÁ EADO", "")],
+      "Siempre las mismas tomas: frente 3/4 · lateral con llanta · interior desde la puerta · pantallas prendidas · baúl abierto · tapa de carga o motor · el detalle n.º 3 · vendedor a cámara (3 tomas del gancho).",
+      "[El gancho, sin el nombre del modelo] 👀\nEsta unidad está hoy en nuestro salón de Córdoba. [3 cosas, con su aclaración: 'medido en laboratorio (NEDC o WLTP)' o 'según la marca'.]\nComentá [PALABRA] y te mandamos precio y cuota por mensaje.\n[Legal completo.]",
+      "#[modelo] #0km #financiacion #[hibrido / electrico / 4x4] #AutosCordoba", "[PALABRA]",
+      ojo=("Para otras unidades se cambian las 3 cosas: ORA 05 HEV: no se enchufa, se carga solo; gasta 5,1 litros cada 100 km (mixto, según la marca); "
+           "arranca rápido. ORA 03: es eléctrico; hasta 310 km (WLTP); carga rápida del 20 al 80 % en 36 min. H6 PRO HEV: se carga sola al frenar; "
+           "sin otros datos hasta tener la ficha oficial. 'Entrega inmediata' solo si es verdad ese día. Si es Changan, verificar cómo se presenta el concesionario."),
+      mensaje="Hola, vengo del video de la unidad [MODELO]. Quiero precio y financiación."),
+
+    g("G03", "Se arma el nuevo Valparaiso (serie de la obra)", "Entretener", TODOS,
+      "Vamos a abrir un local nuevo y te invitamos a adivinar dónde y cómo queda.",
+      "Reel 15–20 s · celular", "Equipo (sin vendedor o con una cara del equipo)",
+      "EP. 1: '¿ADIVINÁS DÓNDE QUEDA?' · EP. 2: '¿CUÁNTOS AUTOS ENTRAN ACÁ?'", "'ESTO EN [N] DÍAS VA A SER UN CONCESIONARIO'",
+      [("Ep. 1 · 0–2 s", "(sin voz o) ¿Adivinás dónde queda?", "La cámara camina rápido hacia la obra. Polvo, ruido, el cartel tapado.", "¿ADIVINÁS DÓNDE QUEDA?", "Sonido real de la obra"),
+       ("Ep. 1 · 2–10 s", "Te dejo tres pistas.", "3 pistas reales, una cada 2–3 s: algo que se ve desde la puerta, un edificio conocido, la avenida. Un círculo bordó se dibuja en cada pista.", "PISTA 1 · PISTA 2 · PISTA 3", "Pop en cada círculo"),
+       ("Ep. 1 · 10–15 s", "Escribí en los comentarios dónde creés que es.", "El salón vacío. Una flecha apunta abajo, a los comentarios.", "COMENTÁ TU APUESTA 👇", "Whoosh"),
+       ("Ep. 1 · 15–18 s", "El [fecha] te contamos.", "Una lona que baja y tapa la cámara (vuelve al principio).", "LO CONTAMOS EL [FECHA]", "Impacto"),
+       ("Ep. 2 · 0–2 s", "¿Cuántos autos entran acá?", "Paneo rápido del salón vacío.", "¿CUÁNTOS AUTOS ENTRAN?", "Whoosh"),
+       ("Ep. 2 · 2–12 s", "", "Video acelerado: entran los autos uno por uno. Un contador sube con cada auto.", "1 · 2 · 3 …", "Pop por auto"),
+       ("Ep. 2 · 12–16 s", "Entran [N]. Y esto es solo el salón.", "Corte al taller con las luces que se prenden.", "ENTRAN [N]", "Impacto"),
+       ("Ep. 2 · 16–20 s", "El [fecha] te mostramos todo. Mandáselo a alguien que vive cerca.", "La fachada.", "MANDÁSELO A ALGUIEN QUE VIVE CERCA", "Música baja")],
+      "Caminata hacia la obra con estabilizador · 5 detalles cerrados (pistas reales) · video acelerado de 20–30 min del armado · llegada de autos · el cartel tapado.",
+      "¿Adivinás dónde va a estar el nuevo Valparaiso Motors? 👀 Dejá tu respuesta en los comentarios. Mandáselo a alguien que vive cerca. Córdoba.",
+      "#Cordoba #concesionaria #0km #detrasdeescena #AutosCordoba", "",
+      ojo="Las pistas y el número de autos tienen que ser reales. La dirección exacta se dice recién en el anuncio oficial.",
+      fijado="Te lo contamos el [fecha]. Mientras, comentá tu apuesta 👇"),
+
+    g("G04", "Adiviná (serie de juego)", "Entretener", TODOS,
+      "Un juego de adivinar un número del auto: te divertís y aprendés algo.",
+      "Reel 20–28 s · vendedor + unidad", "Vendedor 2",
+      "EP. 1: '¿EN CUÁNTOS SEGUNDOS LLEGA A 100?' · EP. 2: '¿CUÁNTOS KM HACE CON LO QUE SALE UN CAFÉ?' · EP. 3: '¿QUÉ HAY DEBAJO DE ESTE AUTO?' · EP. 4: '¿QUÉ AUTO ES?' · EP. 5: '¿CUÁNTO MIDE ESTA PANTALLA?'",
+      "'NADIE ACIERTA ESTE NÚMERO'",
+      [("0–2 s", "[La pregunta del episodio].", "El auto entra a cuadro o un detalle muy cerca.", "[LA PREGUNTA]", "Whoosh"),
+       ("2–6 s", "¿A, B o C? Pensalo rápido.", "Entran 3 opciones grandes, una por una. Un cronómetro 3-2-1.", "A · B · C", "Tic-tac"),
+       ("6–12 s", "Te doy una pista…", "La pista en imagen. Ep. 1: dos flechas (un motor a nafta y uno eléctrico) que empujan juntas. Ep. 2: una taza de café al lado del enchufe.", "PISTA", "Pop"),
+       ("12–18 s", "La respuesta es…", "Redoble. El número gigante. La opción correcta se pinta bordó y las otras se tachan.", "[RESPUESTA]", "Impacto"),
+       ("18–23 s", "[Un dato extra simple que explica la respuesta].", "Plano del detalle que lo prueba (tablero, pantalla, cámara del piso).", "[DATO + FUENTE CHICA]", "Pop"),
+       ("23–28 s", "Es el [modelo]. " + CTA + " Comentá JUEGO.", "Nombre del modelo y logo chico. Vuelve a la pregunta (loop).", "COMENTÁ JUEGO", "")],
+      "Unidad quieta con luz de costado · pantalla o tablero con el dato · vendedor haciendo la pregunta (3 tomas) · reacción.",
+      "[La pregunta] 🤔 Dejá tu respuesta antes de ver el final. [Si es una cuenta propia, la cuenta completa.] Comentá JUEGO y te mandamos precio y financiación. Córdoba.",
+      "#autos #juego #0km #[hibrido o electrico] #AutosCordoba", "JUEGO",
+      ojo=("Respuestas: Ep. 1 ORA 05 HEV: 7,7 segundos, según la marca (opciones: 7,7 / 10,5 / 13); no medirlo en la calle. "
+           "Ep. 2 ORA 03: estimado con la tarifa de luz de ese día y el consumo de 16,7 kWh cada 100 km (WLTP); la cuenta va en la descripción. "
+           "Ep. 3 Haval H7: la cámara que 've a través del piso' (confirmar que la versión en stock la tiene). Ep. 4: 5 detalles cerrados y el auto al final. "
+           "Ep. 5: medida de la ficha (Eado Plus 13,2 pulgadas).")),
+
+    g("G05", "Anuncio oficial de la inauguración", "Entretener", TODOS,
+      "Desde tal día estamos en un lugar nuevo, más cerca, y el sábado te invitamos a conocerlo.",
+      "Reel 25–30 s + historias, Facebook, TikTok y Estados", "Dueño o vendedor 1",
+      "'¿CUÁNTO TARDÁS EN LLEGAR A [REFERENCIA]?'", "'EL [DÍA] TE ESPERAMOS EN [REFERENCIA]'",
+      [("0–2 s", "¿Cuánto tardás en llegar a [referencia]?", "Desde un auto que llega a la avenida: se ve el cartel de la calle.", "¿CUÁNTO TARDÁS EN LLEGAR A [REFERENCIA]?", "Whoosh"),
+       ("2–6 s", "Desde el [fecha] estamos acá.", "La cámara dobla la esquina y aparece la fachada con el cartel.", "DESDE EL [FECHA]", "Impacto"),
+       ("6–12 s", "Más autos para ver y probar, taller y entrega en el mismo lugar.", "3 cortes rápidos: salón lleno, taller, zona de entrega. Un ícono por corte.", "VER · PROBAR · TALLER", "Pop ×3"),
+       ("12–18 s", "Y el sábado [fecha] hacemos el día abierto.", "Un almanaque con el sábado marcado en bordó.", "SÁBADO [FECHA] · [HORARIO]", "Pop"),
+       ("18–24 s", "¿Querés manejar uno? Es con turno: pedilo por WhatsApp.", "Una mano agarra la llave. Un reloj.", "PRUEBA DE MANEJO CON TURNO", "Whoosh"),
+       ("24–30 s", CTA + " Comentá ABRIMOS.", "Mapa plano dibujado con el punto del local. Logo chico.", "[DIRECCIÓN] · COMENTÁ ABRIMOS", "Música baja")],
+      "Fachada con cartel, de día · salón con unidades · taller · entrada al estacionamiento · un plano desde la avenida · dueño o vendedor a cámara.",
+      "¿Cuánto tardás en llegar a [referencia]? 🚗\nDesde el [fecha] Valparaiso Motors atiende en [dirección nueva], Córdoba. El sábado [fecha] hacemos el día abierto de [hora] a [hora].\nLa prueba de manejo es con turno: comentá ABRIMOS y te lo damos por mensaje.\n[Si hay beneficio: condición corta + la frase de la web. Si hay sorteo: 'Sin obligación de compra'.]",
+      "#Cordoba #inauguracion #concesionaria #0km #AutosCordoba", "ABRIMOS",
+      ojo="Solo lo que sea cierto del local (taller, entrega, estacionamiento).",
+      mensaje="Hola, vengo del video de la inauguración (ABRIMOS). Quiero un turno de prueba de manejo."),
+
+    g("G06", "Cuenta regresiva en historias (D-7 a D-1)", "Vender", SEG,
+      "Todos los días, una razón nueva para venir el sábado.",
+      "Historias, 3–5 por día", "Equipo",
+      "Sticker de cuenta regresiva 'Inauguración' (el que lo toca recibe el aviso)", "",
+      [("D-7", "", "Foto de la fachada + sticker de cuenta regresiva.", "FALTA UNA SEMANA", ""),
+       ("D-6", "", "Detrás de escena (limpieza, llegan autos) + encuesta.", "¿QUÉ QUERÉS VER PRIMERO? SALÓN / TALLER", ""),
+       ("D-5", "", "Una foto por vendedor, con su nombre.", "SOY [NOMBRE], VENDEDOR", ""),
+       ("D-4", "", "Captura del mapa + sticker de enlace a Google Maps.", "ASÍ SE LLEGA", ""),
+       ("D-3", "", "Sticker de pregunta.", "¿QUÉ LE QUERÉS PREGUNTAR AL TALLER?", ""),
+       ("D-2", "", "Una llave + sticker de enlace a WhatsApp con el código TURNO.", "PROBALO: PEDÍ TURNO", ""),
+       ("D-1", "", "La noche VIP (solo gente que firmó la autorización).", "MAÑANA ABRIMOS · [HORARIO]", "")],
+      "Fotos y videos de 3–8 s, verticales, con luz natural.",
+      "", "", "TURNO",
+      ojo="Repetir el sticker de cuenta regresiva todos los días. Guardar todo en la destacada 'Nuevo local'.",
+      fijado="", mensaje="Hola, vengo de las historias (TURNO). Quiero un turno de prueba de manejo."),
+
+    g("G07", "Cobertura de la noche VIP y del día abierto", "Vender", SEG,
+      "Mostrar en vivo cómo es el local nuevo y que te contesten las preguntas en el momento.",
+      "Historias + vivo de 30–45 min (Instagram y TikTok a la vez si hay dos celulares)", "Dueño, vendedores, importadora",
+      "Vivo: 'Estamos abiertos: te muestro el local nuevo en vivo'", "",
+      [("Noche VIP", "", "Historias cada 20–30 min: llegada, 15 s de las palabras del dueño, corte de cinta, foto oficial.", "", ""),
+       ("Vivo 0–3 min", "Hola, estamos abiertos. Te muestro el local nuevo y respondo lo que preguntes.", "El vendedor camina desde la puerta.", "CÓDIGO VIVO · WHATSAPP [NÚMERO]", ""),
+       ("Vivo 3–15 min", "Acá está cada marca…", "Recorrido del salón por marca.", "", ""),
+       ("Vivo 15–25 min", "Esto es el taller y acá se entregan los autos.", "Taller y zona de entrega.", "", ""),
+       ("Vivo 25–35 min", "Vamos con sus preguntas.", "Lee preguntas del chat; un segundo vendedor contesta el chat y WhatsApp.", "", ""),
+       ("Vivo cierre", "Escribinos por WhatsApp con el código VIVO.", "", "CÓDIGO VIVO", ""),
+       ("Día abierto", "", "Historias cada hora con lo que pasa.", "", "")],
+      "Celular en estabilizador con corbatero inalámbrico · segundo celular para historias · batería externa.",
+      "", "", "VIVO",
+      ojo="En Instagram, el mensaje automático solo funciona mientras dura el vivo. Nada de primeros planos de chicos sin autorización de los padres.",
+      fijado="", mensaje="Hola, vengo del vivo (VIVO). Quiero precio y financiación."),
+
+    g("G08", "Así fue la inauguración", "Entretener", TODOS,
+      "Mucha gente vino a conocer el local nuevo: mirá cómo fue.",
+      "Reel 25–30 s", "Equipo e invitados con autorización",
+      "'[N] PERSONAS VINIERON A VER ESTO'", "'ASÍ QUEDÓ EL NUEVO VALPARAISO'",
+      [("0–2 s", "", "El plano más lleno del día.", "[N] PERSONAS VINIERON A VER ESTO", "Impacto"),
+       ("2–20 s", "", "Cortes cada 1–1,5 s: corte de cinta, recorrido, taller, pruebas de manejo con turno, familias (solo con autorización).", "", "Música con un golpe en cada corte grande"),
+       ("20–26 s", "Gracias, Córdoba.", "El equipo saluda frente a la fachada.", "GRACIAS, CÓRDOBA · [DIRECCIÓN] · [HORARIO]", "Pop"),
+       ("26–30 s", CTA + " Comentá ABRIMOS.", "Logo chico. Vuelve al plano lleno (loop).", "COMENTÁ ABRIMOS", "")],
+      "Pedir a cada persona del equipo 10 clips de 3–5 s durante el evento.",
+      "Así fue la inauguración del nuevo Valparaiso Motors en [dirección], Córdoba. Gracias a todos los que vinieron 🙌 Comentá ABRIMOS y te mandamos precio y financiación. Mandáselo a alguien que no pudo venir.",
+      "#Cordoba #inauguracion #concesionaria #0km #AutosCordoba", "ABRIMOS",
+      ojo="El número sale del check-in con QR. Si no se midió, usar el gancho B."),
+
+    g("G09", "Cómo llegar al nuevo local", "Educar", TODOS,
+      "Así se llega al local nuevo desde un lugar que conocés.",
+      "Reel 15–20 s + carrusel de 4 placas", "Sin personas",
+      "'DE [LUGAR CONOCIDO] AL NUEVO VALPARAISO EN [N] MINUTOS'", "'¿VENÍS POR [AVENIDA]? DOBLÁ ACÁ'",
+      [("0–2 s", "", "El giro clave, grabado desde el auto con el celular en soporte.", "DE [LUGAR] AL NUEVO VALPARAISO EN [N] MIN", "Whoosh"),
+       ("2–12 s", "", "El recorrido acelerado. 3 referencias marcadas con un círculo.", "REFERENCIA 1 · 2 · 3", "Pop en cada una"),
+       ("12–16 s", "", "La entrada y el estacionamiento.", "ESTACIONAMIENTO", ""),
+       ("16–20 s", "", "Mapa plano + dirección + horario.", "BUSCANOS EN GOOGLE MAPS: VALPARAISO MOTORS", "")],
+      "Recorrido desde 2 lugares conocidos con el celular en soporte (nunca en la mano del que maneja) · fachada · entrada.",
+      "Así se llega al nuevo Valparaiso Motors: [dirección], Córdoba. Horario: [..]. Buscanos en Google Maps como Valparaiso Motors. Guardalo para cuando vengas.",
+      "#Cordoba #comollegar #concesionaria #0km #AutosCordoba", "",
+      ojo="Medir los minutos ese día con el GPS y decir a qué hora.", fijado="Horario: [..] · WhatsApp en la bio."),
+
+    g("G10", "¿Auto chino? ¿Y si se rompe?", "Educar", f"{USADO}; {KM}",
+      "Si se rompe, hay taller acá, repuestos y una garantía larga: te lo mostramos.",
+      "Reel 35–40 s · jefe de taller o vendedor", "Jefe de taller + vendedor",
+      "'¿AUTO CHINO? ¿Y SI SE ROMPE?'", "'LA PREGUNTA QUE TODOS HACEN'",
+      [("0–2 s", "¿Auto chino? ¿Y si se rompe?", "El vendedor con cara de duda frente al auto. Corte: el capó se abre.", "¿AUTO CHINO? ¿Y SI SE ROMPE?", "Whoosh"),
+       ("2–5 s", "Es lo que más nos preguntan. Te muestro tres cosas. La tercera es la más importante.", "Caminan hacia el taller. La puerta se abre.", "3 COSAS", "Pop"),
+       ("5–11 s", "Uno: el taller está acá, en Córdoba.", "Técnicos trabajando. El elevador sube un auto.", "1 · TALLER EN CÓRDOBA", "Sonido real del elevador"),
+       ("11–18 s", "Dos: los repuestos. Uno común tarda [X] días.", "Estantería. Una mano saca una caja. Un almanaque marca los días.", "2 · REPUESTO EN [X] DÍAS", "Pop"),
+       ("18–28 s", "Y lo más importante: la garantía. Si algo falla, te lo arreglan sin pagar, por [5] años o 150.000 km, lo que pase primero.", "Un certificado gigante con un sello que cae. Un contador de años.", "3 · GARANTÍA [5] AÑOS* · *o 150.000 km, lo que pase primero", "Impacto"),
+       ("28–34 s", "Y la batería tiene su propia garantía: 8 años.", "Una batería dibujada con un candado.", "BATERÍA: 8 AÑOS*", "Pop"),
+       ("34–40 s", CTA + " Comentá TALLER y te cuento cómo es el service de tu modelo.", "El técnico y el vendedor a cámara. Logo chico.", "COMENTÁ TALLER", "")],
+      "Técnico trabajando (sin caras de clientes ni patentes) · repuestos · elevador · herramienta de diagnóstico · el certificado de garantía.",
+      "¿Auto chino? ¿Y si se rompe? 🔧 Te mostramos el taller de Valparaiso Motors en Córdoba, los repuestos y la garantía ([garantía exacta, 'lo que pase primero']). Comentá TALLER y te contamos cómo es el service de tu modelo.",
+      "#autoschinos #service #garantia #0km #AutosCordoba", "TALLER",
+      ojo="Garantías exactas por modelo (Eado Plus: 5 años o 150.000 km; batería 8 años o 150.000 km; ORA 03: verificar). El tiempo del repuesto lo da posventa. Ep. 2 (febrero): repuestos y tiempos reales de un service."),
+
+    g("G11", "¿Con el aguinaldo te alcanza para empezar?", "Educar", USADO,
+      "El aguinaldo puede ser lo que ponés al principio; después mirá cuánto pagás en total, no solo la cuota.",
+      "Reel 35–40 s · vendedor + placas", "Vendedor 2",
+      "'¿CON EL AGUINALDO TE ALCANZA PARA EMPEZAR?'", "'TU AGUINALDO PUEDE SER LA PRIMERA PARTE DE TU AUTO'",
+      [("0–2 s", "¿Con el aguinaldo te alcanza para empezar a pagar un auto?", "Un sobre (de utilería) que cae sobre el capó.", "¿CON EL AGUINALDO TE ALCANZA?", "Impacto suave"),
+       ("2–5 s", "Te muestro un ejemplo. Y al final, lo único que tenés que mirar.", "El vendedor abre el sobre.", "AL FINAL: LO QUE TENÉS QUE MIRAR", "Pop"),
+       ("5–12 s", "El aguinaldo puede ser el anticipo: la parte que ponés al principio.", "Billetes de utilería que van a un frasco que dice ANTICIPO.", "ANTICIPO = LO QUE PONÉS AL PRINCIPIO", "Pop"),
+       ("12–20 s", "Lo demás lo pagás en cuotas. Por ejemplo, [N] cuotas de [..].", "Bloques que se apilan, uno por cuota.", "EJEMPLO: [N] CUOTAS DE $[..]", "Pop por bloque"),
+       ("20–30 s", "Pero no mires solo la cuota. Mirá cuánto pagás en total, con todo incluido. Eso se llama CFT.", "La pila de bloques se convierte en una barra larga que dice TOTAL.", "CFT = LO QUE PAGÁS EN TOTAL", "Impacto"),
+       ("30–35 s", "", "Placa legal 5 segundos.", LEGAL, "Música baja"),
+       ("35–40 s", CTA + " Comentá AGUINALDO y te armamos el ejemplo con tu auto.", "Vendedor a cámara. Logo chico.", "COMENTÁ AGUINALDO", "")],
+      "Vendedor a cámara · sobre y billetes de utilería · frasco con etiqueta · placas (las arma el editor) · una unidad de fondo.",
+      "¿Con el aguinaldo te alcanza para empezar? 💸 Puede ser tu anticipo (lo que ponés al principio). Después, no mires solo la cuota: mirá cuánto pagás en total (CFT). Comentá AGUINALDO y te armamos el ejemplo con tu caso. Córdoba. [Legal completo.]",
+      "#aguinaldo #financiacion #0km #cuotas #AutosCordoba", "AGUINALDO",
+      ojo="Sin números confirmados por Administración no se publica: se cambia por G23. Si el crédito sube con la inflación (UVA), decirlo."),
+
+    g("G12", "Promo de apertura (enero)", "Vender", f"{USADO}; {SEG}",
+      "Si esperaste a enero, ahora hay [beneficio] por tiempo limitado en el local nuevo.",
+      "Reel 25 s con vendedor + placa animada de 6–8 s para anuncios", "Vendedor 1",
+      "'SI ESPERASTE A ENERO PARA CAMBIAR EL AUTO, ESTO ES PARA VOS'", "'[BENEFICIO] HASTA EL [FECHA]'",
+      [("0–2 s", "Si esperaste a enero para cambiar el auto, esto es para vos.", "El vendedor sale de atrás de un auto en el salón nuevo.", "¿ESPERASTE A ENERO?", "Whoosh"),
+       ("2–8 s", "Para arrancar el año en el local nuevo, tenemos [beneficio].", "El beneficio aparece como una etiqueta que se pega en el auto.", "[BENEFICIO]", "Impacto"),
+       ("8–15 s", "Es para [modelos], hasta el [fecha] o hasta que se terminen [N] unidades.", "Los modelos pasan uno por uno. Un reloj de arena.", "HASTA EL [FECHA] · [N] UNIDADES", "Tic-tac"),
+       ("15–20 s", "", "Placa legal 5 segundos.", LEGAL, "Música baja"),
+       ("20–25 s", CTA + " Comentá APERTURA.", "Logo chico.", "COMENTÁ APERTURA", "")],
+      "Vendedor junto a 2 o 3 unidades · detalle de la unidad · fachada del local nuevo.",
+      "Si esperaste a enero para cambiar el auto, esto es para vos. [Beneficio] para [modelos], del [..] al [..] o hasta agotar [N] unidades, en Valparaiso Motors Córdoba. Comentá APERTURA y te mandamos las condiciones. PARA MÁS INFORMACIÓN O LIMITACIONES APLICABLES CONSULTE EN www.valparaisomotors.com.ar/condiciones",
+      "#0km #financiacion #enero #concesionaria #AutosCordoba", "APERTURA",
+      ojo="Solo con la condición confirmada por escrito, con inicio, fin y stock (tarea T36). Si hay azar: 'Sin obligación de compra'."),
+
+    g("G13", "Placas de cuota por modelo (carrusel)", "Vender", f"{USADO}; {SEG}",
+      "Elegí el auto y mirá cuánto queda la cuota y cuánto pagás en total.",
+      "Carrusel 1080x1350 · 6–8 placas", "Fotos propias de las unidades",
+      "Portada: '¿CUÁNTO QUEDA LA CUOTA DE CADA UNO?'", "Portada B: 'ELEGÍ EL TUYO Y TE DECIMOS LA CUOTA'",
+      [("Placa 1", "", "3 autos recortados de fotos propias, fondo papel.", "¿CUÁNTO QUEDA LA CUOTA DE CADA UNO? · deslizá →", ""),
+       ("Placas 2–7", "", "Un modelo por placa: foto propia grande y un beneficio en una línea ('Se enchufa en tu casa').", "CONTADO $[..] · CUOTA DE EJEMPLO $[..] · TOTAL (CFT) [..] % · + legal completo", ""),
+       ("Placa final", "", "Logo chico.", "PEDINOS PRECIO Y FINANCIACIÓN · COMENTÁ CUOTA", "")],
+      "Fotos propias de cada unidad en el salón nuevo (frente 3/4, misma luz y altura).",
+      "¿Cuánto queda la cuota de cada uno? Deslizá y elegí 👉 Comentá CUOTA y te mandamos la cuenta de tu modelo. Córdoba. [Legal completo por modelo.]",
+      "#financiacion #0km #cuotas #concesionaria #AutosCordoba", "CUOTA",
+      ojo="Bordó solo como placa con letras blancas. 'deslizá →' en todas menos la última."),
+
+    g("G14", "¿Entra todo? (desafío del baúl y la cochera)", "Entretener", FAM,
+      "Probamos si entra todo lo de las vacaciones (o si el auto entra en una cochera chica) y te mostramos el resultado real.",
+      "Reel 25–30 s", "Vendedor 2 (y vendedor 1)",
+      "EP. 1: '¿ENTRA TODO PARA LAS VACACIONES?' · EP. 2: '¿ENTRA EN UNA COCHERA DE NUEVA CÓRDOBA?'", "'NADIE CREE QUE ENTRE TODO ESTO'",
+      [("0–2 s", "¿Entra todo para las vacaciones?", "Plano de arriba: la pila de cosas al lado del baúl abierto (2 valijas, conservadora, cochecito, bolso).", "¿ENTRA TODO?", "Whoosh"),
+       ("2–5 s", "Lo probamos. Al final ves si entró.", "El vendedor se arremanga.", "AL FINAL: ¿ENTRÓ?", "Pop"),
+       ("5–20 s", "", "Video acelerado: se carga cada cosa. Un contador sube con cada una. Cortes cada 1–2 s.", "1 · 2 · 3 · 4 · 5", "Pop por objeto"),
+       ("20–25 s", "[Entró todo / No entró la conservadora]. Es el [modelo].", "El baúl se cierra (o no). Plano del nombre del modelo.", "[RESULTADO REAL]", "Impacto"),
+       ("25–30 s", CTA + " Comentá VALIJAS.", "Logo chico. Vuelve a la pila (loop).", "COMENTÁ VALIJAS", "")],
+      "Plano fijo del baúl con trípode · plano de arriba de la pila · cada objeto entrando · reacción del vendedor.",
+      "¿Entra todo para las vacaciones? 🧳 Lo probamos en el salón de Córdoba con [lista]. Resultado: [real]. Comentá VALIJAS y te mandamos precio y financiación. Mandáselo a quien siempre lleva de más.",
+      "#vacaciones #baul #0km #familia #AutosCordoba", "VALIJAS",
+      ojo="Si no entra todo, se dice: da credibilidad. Ep. 2: medidas oficiales del auto contra una cochera real medida con cinta (mostrar la cinta)."),
+
+    g("G15", "Ida y vuelta medida", "Entretener", f"{KM}; {FAM}",
+      "Fuimos y volvimos de verdad y te mostramos cuánto gastamos.",
+      "Reel 40–50 s (o animado con Claude si no se puede grabar)", "Vendedor 1 con el celular en soporte",
+      "'¿CUÁNTO GASTÁS PARA IR A [DESTINO] Y VOLVER?'", "'FUIMOS A [DESTINO] Y VOLVIMOS. ESTO GASTAMOS'",
+      [("0–2 s", "¿Cuánto gastás para ir a [destino] y volver?", "El tablero al salir del salón (km y batería o nafta).", "¿CUÁNTO GASTÁS IDA Y VUELTA?", "Motor o pitido de arranque"),
+       ("2–6 s", "Lo medimos de verdad. Al final te muestro el número.", "El auto sale del salón (plano desde afuera).", "LO MEDIMOS · AL FINAL EL NÚMERO", "Whoosh"),
+       ("6–25 s", "", "Mapa plano dibujado con un punto que avanza. Tres paradas: salida, ruta, llegada. En cada una, el tablero.", "KM · BATERÍA · NAFTA en cada parada", "Pop en cada parada"),
+       ("25–35 s", "Pero ojo: si vas más rápido o con el aire al máximo, gasta más.", "Velocímetro y perilla del aire.", "MÁS RÁPIDO = GASTA MÁS", "Pop"),
+       ("35–45 s", "Ida y vuelta, gastamos [$..].", "La cuenta se arma en pantalla: km × lo que gastó × precio del litro o del kWh = $ total.", "TOTAL: $[..]", "Impacto"),
+       ("45–50 s", CTA + " Comentá RUTA. Y mandáselo a quien va a [destino] este verano.", "Logo chico.", "COMENTÁ RUTA", "")],
+      "Tablero al salir, en la ruta y al volver (con fecha y hora) · ruta desde el acompañante · cartel del destino (sin logos de festivales) · surtidor o cargador si se usó.",
+      "¿Cuánto gastás para ir a [destino] y volver? Lo medimos el [fecha]: [km] km, gastó [..] → $[..] (cuenta: [km] × [consumo] × $[precio] = $[..]). Mandáselo a quien va este verano. Comentá RUTA y te mandamos precio y financiación. Córdoba.",
+      "#ruta #consumo #hibrido #verano #AutosCordoba", "RUTA",
+      ojo="Nunca grabar manejando: graba el acompañante o el celular va en soporte fijo. Números medidos ese día. Destinos del calendario: Jesús María (8/1), Cosquín (22/1), un día entero sin nafta en Córdoba (15/2)."),
+
+    g("G16", "¿Enchufe o nafta? Dos vendedores, dos autos", "Educar", f"{KM}; {ELEC}",
+      "El eléctrico conviene si andás en la ciudad y tenés enchufe; el híbrido, si hacés ruta o no tenés enchufe.",
+      "Reel 45–55 s · dos vendedores", "Vendedor 1 y vendedor 2",
+      "'¿ENCHUFE O NAFTA? ELLOS NO SE PONEN DE ACUERDO'", "'NO TE COMPRES UN ELÉCTRICO SI…'",
+      [("0–2 s", "¿Enchufe o nafta?", "Pantalla partida: cada vendedor con su auto, mirándose.", "¿ENCHUFE O NAFTA?", "Whoosh"),
+       ("2–6 s", "Yo defiendo el eléctrico. — Yo, el híbrido. — Al final te decimos cuál te conviene a vos.", "Cada uno se presenta con su nombre (corte a cada uno).", "AL FINAL: CUÁL TE CONVIENE", "Pop"),
+       ("6–18 s", "Round 1, la ciudad.", "Cartel 'ROUND 1'. El del eléctrico enchufa; el del híbrido muestra el tablero. Dato: ORA 03, hasta 310 km (WLTP).", "ROUND 1 · CIUDAD", "Campana"),
+       ("18–30 s", "Round 2, la ruta.", "Mapa plano a las sierras. Dato: carga rápida del 20 al 80 % en 36 min (ORA 03) contra 5,1 litros cada 100 km (ORA 05, según la marca).", "ROUND 2 · RUTA", "Campana"),
+       ("30–40 s", "Round 3, la cochera.", "Un enchufe en la pared de una cochera contra una cochera sin enchufe.", "ROUND 3 · ¿TENÉS ENCHUFE?", "Campana"),
+       ("40–50 s", "Depende de tu vida: ciudad y cochera con enchufe, eléctrico. Ruta seguido o sin enchufe, híbrido.", "Los dos vendedores se dan la mano. Dos líneas grandes.", "CIUDAD + ENCHUFE → ELÉCTRICO · RUTA O SIN ENCHUFE → HÍBRIDO", "Impacto"),
+       ("50–55 s", CTA + " Comentá ENCHUFE.", "Logo chico.", "COMENTÁ ENCHUFE", "")],
+      "Plano de los dos con los autos · cada uno por separado (3 tomas de cada frase clave) · enchufe · surtidor (sin marca de petrolera) · tableros.",
+      "¿Enchufe o nafta? ⚡⛽ Dos vendedores, dos autos y una respuesta: depende de tu vida. Ciudad y cochera con enchufe → eléctrico. Ruta seguido o sin enchufe → híbrido. Comentá ENCHUFE y te ayudamos a elegir. Córdoba.",
+      "#autoelectrico #hibrido #0km #GWM #AutosCordoba", "ENCHUFE",
+      ojo="Discusión amable: los dos autos son de la casa, ninguno 'pierde'."),
+
+    g("G17", "Lo que ve este auto que vos no ves (con lluvia)", "Educar", FAM,
+      "Este auto trae ayudas que te avisan antes de un choque, sobre todo con lluvia.",
+      "Reel 35–40 s (vendedor o animado con Claude)", "Vendedor 1 o animado",
+      "'CON ESTA LLUVIA, ¿VOS VES ESTO?'", "'LO QUE VE ESTE AUTO Y VOS NO'",
+      [("0–2 s", "Con esta lluvia, ¿vos ves esto?", "Parabrisas con lluvia, auto quieto. Un círculo bordó marca algo que casi no se ve.", "CON LLUVIA, ¿VOS VES ESTO?", "Lluvia real"),
+       ("2–5 s", "Este auto sí. Te muestro tres ayudas. La tercera es la que más usás.", "El vendedor adentro del auto.", "3 AYUDAS", "Pop"),
+       ("5–14 s", "Uno: ve todo alrededor.", "La pantalla de la cámara 360 que se arma.", "1 · CÁMARA 360", "Pop"),
+       ("14–22 s", "Dos: si te acercás mucho al de adelante, te avisa.", "Alerta en la pantalla o el tablero (auto detenido).", "2 · TE AVISA ANTES DE CHOCAR", "Pitido real del auto"),
+       ("22–30 s", "Tres: si te distraés, frena solo.", "Gráfico simple: dos autitos que se acercan y uno frena.", "3 · FRENA SOLO", "Impacto"),
+       ("30–35 s", "No manejan por vos: te avisan antes. Es el [modelo].", "Nombre del modelo.", "NO REEMPLAZAN AL QUE MANEJA", ""),
+       ("35–40 s", CTA + " Comentá LLUVIA.", "Logo chico.", "COMENTÁ LLUVIA", "")],
+      "Lluvia sobre el parabrisas (manguera si no llueve, y se aclara) · pantalla de la cámara 360 · alerta en el tablero · vendedor explicando.",
+      "Con esta lluvia, ¿vos ves todo? 🌧️ Tres ayudas que te avisan antes: [las de la ficha]. No manejan por vos. Comentá LLUVIA y te mandamos precio y financiación. Córdoba.",
+      "#seguridadvial #lluvia #0km #autos #AutosCordoba", "LLUVIA",
+      ojo="Solo las ayudas que tenga la unidad según su ficha (el Eado Plus trae cámara 360, alerta de colisión y frenado autónomo). Nunca probar el frenado con personas ni en la calle. Publicar una semana de lluvia (el SMN anticipa un verano lluvioso)."),
+
+    g("G18", "El vendedor responde", "Educar", f"{USADO}; {SEG}",
+      "Respondemos en video la duda que más se repitió esta semana.",
+      "Reel 30–35 s con la función 'responder comentario'", "Vendedor 1 o 2",
+      "El comentario real en pantalla", "'ME PREGUNTARON ESTO Y LA RESPUESTA SORPRENDE'",
+      [("0–2 s", "[Lee el comentario].", "La burbuja del comentario entra con un 'pop'. El vendedor al lado de la unidad.", "[COMENTARIO]", "Pop"),
+       ("2–25 s", "[Respuesta corta, con una cosa que se ve].", "Lo que prueba la respuesta: la unidad, el taller, el cargador, un papel. Cortes cada 2 s.", "[DATO + FUENTE CHICA]", "Pop en el dato"),
+       ("25–32 s", CTA + " Dejame tu pregunta y te respondo en el próximo.", "Logo chico.", "COMENTÁ PREGUNTA", "")],
+      "Vendedor a cámara al lado de la unidad o en el taller.",
+      "Nos preguntaron: '[comentario]'. Te respondemos. Dejá tu pregunta y la contestamos en el próximo video. Comentá PREGUNTA y te escribimos por mensaje. Córdoba.",
+      "#preguntas #0km #autos #concesionaria #AutosCordoba", "PREGUNTA",
+      ojo="Elegir el comentario el lunes. Nunca responder un insulto ni burlarse del que pregunta."),
+
+    g("G19", "Entregas de la semana", "Vender", f"{SEG}; {TODOS}",
+      "Esta semana gente de Córdoba se llevó su auto: así es el momento.",
+      "Reel 15–20 s o historias", "Clientes que firmaron la autorización + vendedor",
+      "'ESTA SEMANA SE FUERON [N] AUTOS A [BARRIOS]'", "'EL MOMENTO QUE MÁS NOS GUSTA'",
+      [("0–2 s", "", "La entrega más linda de la semana.", "ESTA SEMANA SE FUERON [N] AUTOS A [BARRIOS]", "Impacto suave"),
+       ("2–15 s", "", "3 a 5 entregas cortas: la llave, la foto, el auto saliendo. Sin patentes legibles.", "[BARRIO] · [BARRIO] · [BARRIO]", "Pop en cada entrega"),
+       ("15–18 s", "(Si quiere) Lo que el cliente diga con sus palabras.", "El cliente.", "", ""),
+       ("18–20 s", CTA, "Logo chico.", "COMENTÁ ENTREGA", "")],
+      "Entrega de llaves · foto con el vendedor · auto saliendo · un detalle (moño, si se usa).",
+      "Esta semana se fueron [N] autos a [barrios]. Gracias por elegirnos 🙌 Comentá ENTREGA y te mandamos precio y financiación. Córdoba.",
+      "#entrega #0km #Cordoba #concesionaria #AutosCordoba", "ENTREGA",
+      ojo="Solo con la autorización firmada. El cliente nunca lee un texto escrito por la casa. Si revoca la autorización, se baja."),
+
+    g("G20", "Vivo del sábado desde el salón", "Vender", SEG,
+      "Una hora en vivo para preguntar lo que quieras de dos autos y verlos de cerca.",
+      "Vivo de 45–60 min en TikTok e Instagram (prueba de 4 sábados)", "Vendedor 1 en cámara + vendedor 2 en el chat y WhatsApp",
+      "Título: 'Preguntame lo que quieras de [2 modelos] · en vivo desde el salón'", "",
+      [("Antes", "", "Anunciarlo en historias el jueves y el viernes. Trípode, corbatero, wifi probado.", "", ""),
+       ("0–5 min", "Hola, hoy te muestro [2 modelos] y respondo todo.", "El vendedor en el salón.", "CÓDIGO VIVO-SAB · WHATSAPP [NÚMERO]", ""),
+       ("5–20 min", "", "Auto 1: por fuera, por dentro, cómo funciona, y una vuelta corta en el estacionamiento si el lugar lo permite.", "", ""),
+       ("20–35 min", "", "Auto 2, igual.", "", ""),
+       ("35–50 min", "", "Preguntas del chat. Precios y cuotas solo los publicados; el resto, 'te lo paso por WhatsApp'.", "", ""),
+       ("Cierre", "Escribinos por WhatsApp con el código VIVO-SAB.", "", "CÓDIGO VIVO-SAB", ""),
+       ("Después", "", "El vendedor 2 escribe ese mismo día a todos los que dejaron contacto.", "", "")],
+      "Plano general del vendedor con el auto · detalles a mano · estacionamiento.",
+      "", "", "VIVO-SAB",
+      ojo="Regla del 30/1: si en 4 vivos no hubo ni un turno con el código, se dejan. Caso de referencia: MG Chile vendió 30 autos en 8 semanas con vivos (dato de la marca).",
+      fijado="", mensaje="Hola, vengo del vivo del sábado (VIVO-SAB). Quiero precio y financiación."),
+
+    g("G21", "Video largo de YouTube: recorrido completo", "Educar", f"{KM}; {FAM}; {ELEC}",
+      "Todo lo que querés saber de un auto antes de ir al salón, en 8 minutos.",
+      "YouTube 6–10 min + 3 o 4 Shorts cortados de ahí", "Vendedor 1",
+      "Título: '[Modelo] en Córdoba: recorrido completo y cuánto gasta de verdad'", "Título B: '¿Vale la pena el [modelo]? Lo que tenés que saber'",
+      [("0:00", "¿Este auto es para vos? Fijate en estos 8 minutos.", "Lo mejor del video en 15 segundos.", "", ""),
+       ("0:40", "Por fuera.", "Medidas y llantas, con la ficha.", "", ""),
+       ("2:00", "Por dentro.", "Asientos, pantallas, baúl (con un objeto que da escala).", "", ""),
+       ("4:00", "Cómo funciona.", "Un dibujo simple del motor y la batería.", "", ""),
+       ("5:30", "Lo manejamos.", "Prueba en ruta desde el acompañante, con lo que gastó medido.", "", ""),
+       ("7:30", "Garantía y service.", "El taller. La garantía con su condición.", "", ""),
+       ("8:30", "Cómo pedir precio.", "El link de WhatsApp.", "", "")],
+      "Las mismas tomas del G02 en versión larga + prueba en ruta + 3 tomas del vendedor por capítulo.",
+      "Primera línea: 'Pedinos precio y financiación por WhatsApp: [link con el código YT-[MODELO]]'. Después: resumen, capítulos con sus tiempos, datos con su aclaración y 'Valparaiso Motors · Córdoba'.",
+      "#[modelo] #Cordoba #0km", "YT-[MODELO]",
+      ojo="Sin cuotas en el video largo, salvo con el legal completo.",
+      fijado="Pedinos precio y financiación: [link de WhatsApp con YT-[MODELO]]",
+      mensaje="Hola, vengo del video de YouTube del [modelo] (YT-[MODELO]). Quiero precio y financiación."),
+
+    g("G22", "Lo más vendido del mes (dato de ACARA)", "Entretener", TODOS,
+      "Un ranking de los autos que más se vendieron el mes pasado: adiviná el primero.",
+      "Reel 25–30 s animado (dueño + Claude)", "Sin personas (voz del dueño)",
+      "'¿ADIVINÁS CUÁL FUE EL N.º 1 DE [MES]?'", "'ESTOS FUERON LOS AUTOS MÁS VENDIDOS DE [MES]'",
+      [("0–2 s", "¿Adivinás cuál fue el número 1 de [mes]?", "El ranking tapado con 5 cortinas bordó.", "¿CUÁL FUE EL N.º 1?", "Redoble"),
+       ("2–20 s", "", "Se destapa del 5 al 2, una barra por puesto con su número.", "5 · 4 · 3 · 2 + patentamientos", "Pop por puesto"),
+       ("20–24 s", "Y el número 1…", "Se destapa el 1.", "N.º 1: [..]", "Impacto"),
+       ("24–28 s", "[Dato de Córdoba, si está publicado].", "Mapa plano de Córdoba.", "CÓRDOBA: [..] · fuente: ACARA/DNRPA", "Pop"),
+       ("28–30 s", CTA, "Logo chico.", "COMENTÁ DATO", "")],
+      "No hace falta grabar: se arma con el dato.",
+      "Estos fueron los más vendidos de [mes] según ACARA/DNRPA ([link]). ¿Cuál te sorprendió? Comentá DATO y te mandamos precio y financiación de cualquiera de nuestros autos. Córdoba.",
+      "#autos #0km #ranking #mercadoautomotor #AutosCordoba", "DATO",
+      ojo="Se publica el día que sale el dato (ACARA publica el último día hábil del mes). Si el ranking es de otras marcas, revisar con el dueño la regla de no nombrarlas en videos propios."),
+
+    g("G23", "Soy vendedor: haceme estas 3 preguntas", "Educar", USADO,
+      "Antes de comprar, hacele al vendedor 3 preguntas; la tercera es la que más plata te ahorra.",
+      "Reel 35–40 s", "Vendedor 2",
+      "'SOY VENDEDOR: ANTES DE COMPRAR, HACEME ESTAS 3 PREGUNTAS'", "'LA TERCERA ES LA QUE MÁS PLATA TE AHORRA'",
+      [("0–2 s", "Soy vendedor. Antes de comprar un auto, haceme estas 3 preguntas.", "El vendedor camina por el salón hacia la cámara.", "HACEME ESTAS 3 PREGUNTAS", "Whoosh"),
+       ("2–5 s", "La tercera es la que más plata te ahorra.", "Zoom en su cara.", "LA 3 TE AHORRA PLATA", "Pop"),
+       ("5–13 s", "Uno: ¿este auto está acá o hay que pedirlo?", "Señala una unidad. Aparece un tilde o un reloj.", "1 · ¿ESTÁ ACÁ?", "Pop"),
+       ("13–22 s", "Dos: ¿cuánto me tomás mi auto, y hasta cuándo vale ese precio?", "Las llaves de un auto usado que pasan de mano. Un almanaque.", "2 · ¿CUÁNTO ME TOMÁS MI AUTO?", "Pop"),
+       ("22–33 s", "Tres: ¿cuánto pago en total? No solo la cuota: el total, con todo. Se llama CFT.", "Bloques de cuotas que se juntan en una barra TOTAL.", "3 · ¿CUÁNTO PAGO EN TOTAL? (CFT)", "Impacto"),
+       ("33–38 s", CTA + " Comentá PREGUNTAS.", "Logo chico.", "COMENTÁ PREGUNTAS", "")],
+      "Vendedor a cámara caminando · una llave de auto usado · una carpeta de cotización (sin datos reales).",
+      "Soy vendedor: antes de comprar un 0 km, haceme estas 3 preguntas. 1) ¿Está en el salón? 2) ¿Cuánto me tomás mi auto y hasta cuándo vale? 3) ¿Cuánto pago en total (CFT)? Comentá PREGUNTAS y te respondemos por mensaje. Córdoba.",
+      "#0km #consejos #financiacion #usado #AutosCordoba", "PREGUNTAS"),
+
+    g("G24", "Auto para la familia: qué mirar si llevás chicos", "Educar", FAM,
+      "Si llevás chicos, mirá el espacio atrás, dónde se engancha la sillita y las ayudas de seguridad.",
+      "Reel 35–40 s", "Vendedor 1 (sin chicos en cámara salvo autorización de los padres)",
+      "'SI LLEVÁS CHICOS AL COLE, MIRÁ ESTO ANTES DE ELEGIR EL AUTO'", "'3 COSAS QUE NADIE MIRA EN EL SALÓN'",
+      [("0–2 s", "Si llevás chicos al cole, mirá esto antes de elegir el auto.", "Una sillita de bebé al lado de la puerta abierta.", "¿LLEVÁS CHICOS?", "Whoosh"),
+       ("2–5 s", "Son 3 cosas. La tercera es la más importante.", "", "3 COSAS", "Pop"),
+       ("5–14 s", "Uno: el espacio atrás y el baúl para el cochecito.", "El cochecito entra al baúl.", "1 · ESPACIO", "Pop"),
+       ("14–24 s", "Dos: los ganchos para la sillita, se llaman ISOFIX.", "Primer plano: la sillita hace clic en los ganchos.", "2 · GANCHOS ISOFIX", "Clic real"),
+       ("24–32 s", "Tres, lo más importante: airbags y ayudas que frenan solas.", "Pantalla de las ayudas; ícono de airbag.", "3 · AIRBAGS Y AYUDAS", "Impacto"),
+       ("32–40 s", "Es el [modelo]. " + CTA + " Comentá FAMILIA.", "Logo chico.", "COMENTÁ FAMILIA", "")],
+      "Sillita enganchándose al ISOFIX · asientos de atrás · baúl con cochecito · pantalla de las ayudas.",
+      "Si llevás chicos al cole, mirá esto antes de elegir el auto 👨‍👩‍👧 Espacio atrás, ganchos ISOFIX y [airbags y ayudas de la ficha]. Comentá FAMILIA y te mandamos precio y financiación. Córdoba.",
+      "#familia #seguridad #vueltaalcole #0km #AutosCordoba", "FAMILIA",
+      ojo="Datos de la ficha de la unidad (el Eado Plus trae 6 airbags e ISOFIX)."),
+
+    g("G25", "Para el campo: lo que tiene que tener una 4x4", "Educar", CAMPO,
+      "Una 4x4 para el campo tiene que salir del barro, ver lo que hay abajo y darte enchufe para herramientas.",
+      "Reel 35–40 s en un camino de tierra (con permiso)", "Vendedor 1",
+      "'¿TE QUEDASTE ENCAJADO ALGUNA VEZ EN EL CAMPO?'", "'LO QUE TIENE QUE TENER UNA 4X4 PARA EL CAMPO'",
+      [("0–2 s", "¿Te quedaste encajado alguna vez en el campo?", "Una rueda en el barro o la tierra.", "¿TE QUEDASTE ENCAJADO?", "Barro real"),
+       ("2–5 s", "Te muestro 3 cosas. Al final, lo que gasta, dicho de frente.", "El vendedor baja de la camioneta.", "AL FINAL: LO QUE GASTA", "Pop"),
+       ("5–14 s", "Uno: traba la rueda de atrás para salir del barro.", "Botón del bloqueo y la rueda que sale.", "1 · BLOQUEO", "Clic + motor"),
+       ("14–22 s", "Dos: una cámara que ve lo que hay debajo.", "La pantalla 've a través del piso'.", "2 · VE ABAJO", "Pop"),
+       ("22–30 s", "Tres: un enchufe para herramientas.", "Una herramienta enchufada a la toma de 220 V.", "3 · ENCHUFE 220 V", "Pop"),
+       ("30–35 s", "Gasta 8,1 litros cada 100 km, según la marca.", "El tablero.", "8,1 L CADA 100 KM* · *mixto, según la marca", "Impacto"),
+       ("35–40 s", CTA + " Comentá CAMPO.", "Logo chico.", "COMENTÁ CAMPO", "")],
+      "Camino de tierra · selector de modos · pantalla de la cámara · toma de 220 V con una herramienta · vendedor a cámara.",
+      "¿Te quedaste encajado alguna vez en el campo? [3 cosas de la ficha.] Gasta [dato] según la marca. Comentá CAMPO y te mandamos precio y financiación. Córdoba.",
+      "#4x4 #campo #agro #0km #AutosCordoba", "CAMPO",
+      ojo="Datos del Haval H7 a confirmar en la versión en stock: bloqueo, 8 modos, potencia de la toma de 220 V, consumo. Expoagro es del 9 al 12/3: sirve de referencia, sin usar su logo."),
+
+    g("G26", "Publicación semanal del Perfil de Google", "Vender", SEG,
+      "Una foto propia con una oferta o una novedad, para el que ya nos encontró en Google.",
+      "Publicación del Perfil de Empresa (oferta, novedad o evento)", "Foto propia",
+      "Título en minúsculas normales (nada todo en mayúsculas)", "",
+      [("Paso 1", "", "Elegir el tipo: Oferta (cuota o beneficio con su legal), Evento (inauguración, vivo) o Novedad (llegó un auto).", "", ""),
+       ("Paso 2", "", "Foto propia, de día, con una línea de texto en la imagen. Nada de fotos de internet.", "", ""),
+       ("Paso 3", "", "Texto de 2–3 líneas con 'Córdoba' y el modelo.", "", ""),
+       ("Paso 4", "", "Botón 'Llamar' o 'Más información' con el link de WhatsApp con el código GBP.", "", ""),
+       ("Paso 5", "", "Subir además 5 fotos nuevas de autos o del local.", "", "")],
+      "Foto horizontal 4:3 del auto o del local.",
+      "[2–3 líneas: qué es, para quién, hasta cuándo] + legal si hay precio o cuota.",
+      "", "GBP", ojo="Las ofertas tuvieron más clics que las novedades (Sterling Sky, datos de 2021). No mueven el ranking.",
+      fijado="", mensaje="Hola, los encontré en Google (GBP). Quiero precio y financiación."),
+
+    g("G27", "Estados de WhatsApp de la semana", "Vender", SEG,
+      "Todos los días, un auto o una novedad para los que tienen nuestro número.",
+      "Estados de WhatsApp Business, 1–3 por día hábil", "Fotos o videos propios",
+      "El auto del día", "",
+      [("Lunes", "", "Un auto que llegó.", "LLEGÓ: [MODELO]", ""),
+       ("Martes", "", "Un detalle que nadie mira (baúl, enchufe).", "", ""),
+       ("Miércoles", "", "Placa de cuota con su legal.", "", ""),
+       ("Jueves", "", "Una entrega (con autorización).", "", ""),
+       ("Viernes", "", "Horario del sábado + cómo llegar.", "", ""),
+       ("Sábado", "", "Lo que pasa en el salón.", "", "")],
+      "Fotos y videos verticales de 5–15 s.",
+      "Texto: 'Respondé este estado y te mando precio y cuota'.", "", "ESTADO",
+      ojo="Los ven los que guardaron el número (verificar). Con cuota, el legal completo en la imagen.", fijado="", mensaje=""),
+
+    g("G28", "Historias de la semana", "Vender", SEG,
+      "Las historias son para los que ya nos siguen: cada día, una razón para escribirnos.",
+      "Historias de Instagram y Facebook, 3–7 por día hábil", "Equipo",
+      "", "",
+      [("Lunes", "", "Autos que llegaron: foto + precio o cuota con legal.", "", ""),
+       ("Martes", "", "Detrás de escena de la grabación.", "", ""),
+       ("Miércoles", "", "Encuesta '¿cuál te llevás?' entre 2 autos.", "", ""),
+       ("Jueves", "", "Sticker de pregunta 'preguntale al vendedor'.", "", ""),
+       ("Viernes", "", "Entregas (con autorización).", "", ""),
+       ("Sábado", "", "'Hoy abrimos hasta las [..]' + cómo llegar o el vivo.", "", ""),
+       ("Siempre", "", "Sticker de enlace a WhatsApp con el código HISTORIA. Compartir cada reel nuevo.", "", "")],
+      "Celular, vertical, sin edición.",
+      "", "", "HISTORIA",
+      ojo="Responder cada respuesta en menos de 5 minutos en horario. Zona segura de historias: nada importante arriba de 250 px ni abajo de 340 px.",
+      fijado="", mensaje="Hola, vengo de las historias (HISTORIA). Quiero precio y financiación."),
+
+    g("G29", "Mensajes de WhatsApp de la inauguración", "Vender", f"{SEG} (clientes con permiso)",
+      "Avisar a los clientes del local nuevo, invitarlos y agradecerles.",
+      "Mensajes de difusión a clientes que aceptaron recibirlos", "",
+      "", "",
+      [("D-14", "", "Invitación a la noche VIP.", "Texto en la guía, sección 13", ""),
+       ("D-10", "", "Aviso de mudanza a clientes de taller: último turno en el local viejo y primero en el nuevo, con el mapa.", "", ""),
+       ("D-3", "", "Recordatorio a los que dijeron que sí.", "", ""),
+       ("D-1", "", "Ubicación, horario y estacionamiento.", "", ""),
+       ("D+2", "", "Gracias + turno de prueba (a los que vinieron) y pedido de reseña (a los que compraron o hicieron service).", "", "")],
+      "", "", "", "INAUGURACION-VIP",
+      ojo="Antes: cruzar la base con el Registro No Llame y mandar solo a quien aceptó.", fijado="", mensaje=""),
+
+    g("G30", "Saludo de fin de año del equipo", "Entretener", TODOS,
+      "El equipo te saluda desde el local nuevo.",
+      "Reel 12–15 s", "Todo el equipo",
+      "'FELICES FIESTAS DESDE EL NUEVO VALPARAISO'", "",
+      [("0–2 s", "", "El equipo completo en el salón nuevo, ya en cuadro (sin fundido desde negro).", "FELICES FIESTAS", "Música"),
+       ("2–10 s", "Soy [nombre], de [área].", "Un corte por persona, 1 segundo cada uno, mismo encuadre.", "[NOMBRE] · [ÁREA]", "Pop por persona"),
+       ("10–14 s", "Gracias, Córdoba.", "Plano grupal.", "HORARIO DE FIESTAS: [..]", "")],
+      "Un plano por persona, mismo encuadre · plano grupal.",
+      "Felices fiestas desde el nuevo Valparaiso Motors 🎄 Horario de fiestas: [..]. Córdoba.",
+      "#felicesfiestas #Cordoba #concesionaria #equipo #AutosCordoba", "",
+      fijado="Horario de fiestas: [..]"),
+
+    g("G31", "¿Cuánto dura la batería?", "Educar", f"{KM}; {ELEC}",
+      "La batería se cuida fácil y tiene su propia garantía larga.",
+      "Reel 35–40 s (vendedor o animado con Claude)", "Vendedor 2",
+      "'¿Y CUANDO LA BATERÍA SE GASTA, QUÉ?'", "'LA PREGUNTA QUE FRENA A TODOS LOS QUE QUIEREN UN HÍBRIDO'",
+      [("0–2 s", "¿Y cuando la batería se gasta, qué?", "La tapa de carga se abre. Una batería dibujada que se vacía.", "¿Y CUANDO SE GASTA?", "Whoosh"),
+       ("2–5 s", "Al final te digo lo que más importa: la garantía.", "", "AL FINAL: LA GARANTÍA", "Pop"),
+       ("5–15 s", "Primero: se cuida como la del celular. No hace falta cargarla al 100 % todos los días.", "Celular y auto cargando, lado a lado.", "SE CUIDA COMO LA DEL CELULAR", "Pop"),
+       ("15–24 s", "Segundo: el calor y el frío la cansan un poco. Mejor bajo techo.", "Una cochera techada.", "MEJOR BAJO TECHO", "Pop"),
+       ("24–32 s", "Y lo más importante: tiene su propia garantía. En el Eado Plus, 8 años o 150.000 km.", "Un candado sobre la batería y un contador de años.", "BATERÍA: 8 AÑOS* · *o 150.000 km, lo que pase primero", "Impacto"),
+       ("32–38 s", CTA + " Comentá BATERIA.", "Logo chico.", "COMENTÁ BATERIA", "")],
+      "Tapa de carga · cargador · pantalla de energía · vendedor a cámara.",
+      "¿Y cuando la batería se gasta, qué? 🔋 Se cuida fácil y tiene su propia garantía ([garantía exacta, 'lo que pase primero']). Comentá BATERIA y te mandamos precio y financiación. Córdoba.",
+      "#bateria #hibrido #autoelectrico #garantia #AutosCordoba", "BATERIA",
+      ojo="Los consejos de cuidado son generales: confirmarlos con el manual de cada modelo antes de grabar. Sin números que no tengan fuente."),
+
+    g("G32", "Un día en Valparaiso (detrás de escena)", "Entretener", TODOS,
+      "Te mostramos lo que nadie ve: cómo se prepara un auto antes de entregarlo (o el taller a la mañana).",
+      "Reel 25–30 s", "Equipo",
+      "EP. 1: 'ASÍ SE PREPARA UN AUTO ANTES DE ENTREGARLO' · EP. 2: 'LO QUE PASA EN EL TALLER A LAS 8 DE LA MAÑANA'", "'NADIE VE ESTA PARTE'",
+      [("0–2 s", "", "El momento más visual: la lona que se saca, el lavado, el elevador.", "NADIE VE ESTA PARTE", "Sonido real"),
+       ("2–24 s", "", "6 a 10 pasos reales, uno cada 2–3 s, con una etiqueta por paso ('control', 'carga de batería', 'te enseñamos la pantalla').", "PASO 1 · PASO 2 · …", "Pop por paso"),
+       ("24–28 s", "Mañana se entrega.", "El auto listo, brillando.", "LISTO", "Impacto"),
+       ("28–30 s", CTA, "Logo chico.", "COMENTÁ ENTREGA", "")],
+      "Cada paso de la preparación o del taller, 3–5 s, desde 2 ángulos.",
+      "Así se prepara un auto antes de entregarlo en Valparaiso Motors, Córdoba. [Pasos reales.] Comentá ENTREGA y te mandamos precio y financiación.",
+      "#detrasdeescena #entrega #0km #taller #AutosCordoba", "ENTREGA"),
+
+    g("G33", "Carrusel educativo (plantilla)", "Educar", "Según el tema",
+      "Una pregunta en la portada y una idea por placa, de la menos a la más importante.",
+      "Carrusel 1080x1350, 8 a 10 placas", "Fotos propias o placas de texto",
+      "Portada: una pregunta sobre la vida del que mira", "Portada B: el número o la promesa ('5 preguntas…')",
+      [("Placa 1", "", "Foto propia. 'deslizá →'.", "LA PREGUNTA, EN INTER BLACK", ""),
+       ("Placas 2–8", "", "Una idea y una foto por placa. Máximo 20 palabras.", "", ""),
+       ("Placa 9", "", "Resumen en 3 líneas (para guardar).", "", ""),
+       ("Placa 10", "", "Logo chico.", "PEDINOS PRECIO Y FINANCIACIÓN · COMENTÁ [PALABRA]", "")],
+      "Fotos propias de los autos y del local.",
+      "[Primera línea = la pregunta de la portada, sin adelantar el final] Guardalo para cuando cambies el auto. Comentá [PALABRA] y te mandamos precio y financiación. Córdoba.",
+      "#[tema] #0km #consejos #autos #AutosCordoba", "[PALABRA]",
+      mensaje="Hola, vengo del carrusel ([PALABRA]). Quiero precio y financiación."),
+
+    g("G34", "Antes de salir a la ruta: lo que revisa el taller", "Educar", f"{FAM}; {KM}",
+      "Antes de viajar, revisá 5 cosas; la quinta es la que todos se olvidan.",
+      "Reel 30–35 s con un técnico", "Técnico o jefe de taller",
+      "'¿SALÍS DE VACACIONES? ESTO REVISARÍA UN TÉCNICO'", "'5 COSAS ANTES DE IR A LAS SIERRAS'",
+      [("0–2 s", "¿Salís de vacaciones? Esto es lo que revisaría un técnico.", "El técnico abre el capó de un golpe.", "¿SALÍS DE VACACIONES?", "Whoosh"),
+       ("2–5 s", "Son 5 cosas. La quinta es la que todos se olvidan.", "", "5 COSAS", "Pop"),
+       ("5–25 s", "Uno, las cubiertas, también la de auxilio. Dos, las luces. Tres, los frenos. Cuatro, los líquidos.", "Un corte por cosa, la mano señalando: medidor de presión, luces que se prenden, disco de freno, varilla del aceite.", "1 · 2 · 3 · 4", "Pop por cada una"),
+       ("25–30 s", "Y cinco: [la que diga el técnico, por ejemplo las escobillas].", "Primer plano.", "5 · [..]", "Impacto"),
+       ("30–35 s", "Si tu auto es de la casa, pedí turno antes de viajar. " + CTA, "Logo chico.", "MANDÁSELO A QUIEN SALE A LA RUTA", "")],
+      "Medidor de presión en la cubierta · luces · disco de freno · varilla de aceite · el quinto control · técnico a cámara.",
+      "¿Salís de vacaciones? 5 cosas que revisaría un técnico antes de ir a las sierras: [lista]. Mandáselo a quien sale a la ruta. Si tu auto es de la casa, escribinos con el código RUTA y te damos turno de service. Córdoba.",
+      "#vacaciones #ruta #service #Cordoba #AutosCordoba", "RUTA",
+      fijado="Mandáselo a quien sale a la ruta. Turnos de service por WhatsApp (link en la bio).",
+      mensaje="Hola, vengo del video del taller (RUTA). Quiero un turno de service."),
+
+    # ----- carruseles con su texto placa por placa
+    g("G35", "Carrusel: las 5 preguntas que te hace un buen vendedor", "Educar", f"{USADO}; {TODOS}",
+      "Un buen vendedor te hace 5 preguntas para mostrarte el auto que te sirve; llevalas pensadas.",
+      "Carrusel 1080x1350, 9 placas", "Fotos propias",
+      "¿SABÉS QUÉ TE VA A PREGUNTAR EL VENDEDOR?", "5 PREGUNTAS ANTES DE CAMBIAR EL AUTO",
+      [("Placa 1", "", "El vendedor con una carpeta, en el salón.", "¿SABÉS QUÉ TE VA A PREGUNTAR EL VENDEDOR? · deslizá →", ""),
+       ("Placa 2", "", "", "Un buen vendedor te hace 5 preguntas antes de mostrarte un auto. Así vas directo al que te sirve.", ""),
+       ("Placa 3", "", "Un tablero con los km.", "1 · ¿Para qué lo usás y cuántos km hacés por día?", ""),
+       ("Placa 4", "", "Un enchufe en una cochera.", "2 · ¿Tenés cochera con enchufe? Define si te conviene uno que se enchufa.", ""),
+       ("Placa 5", "", "Unas llaves de auto.", "3 · ¿Entregás tu auto? Te lo toman como parte de pago.", ""),
+       ("Placa 6", "", "Bloques de cuotas.", "4 · ¿Vas a pagar en cuotas? ¿Cuánto ponés al principio?", ""),
+       ("Placa 7", "", "Un almanaque.", "5 · ¿Para cuándo lo necesitás? Así sabés qué autos hay hoy en el salón.", ""),
+       ("Placa 8", "", "", "Llevalas pensadas y la charla va directo a lo que te sirve.", ""),
+       ("Placa 9", "", "Logo chico.", "PEDINOS PRECIO Y FINANCIACIÓN · COMENTÁ PREGUNTAS", "")],
+      "Fotos propias: vendedor con carpeta, tablero, enchufe, llaves, almanaque.",
+      "¿Sabés qué te va a preguntar el vendedor? Estas son las 5 preguntas, y por qué te sirven. Guardalo para cuando cambies el auto. Comentá PREGUNTAS y te escribimos. Córdoba.",
+      "#0km #consejos #autos #comprarauto #AutosCordoba", "PREGUNTAS"),
+
+    g("G36", "Carrusel: ¿auto chino? 5 preguntas que todos hacen", "Educar", f"{USADO}; {KM}",
+      "Las 5 dudas más comunes sobre los autos chinos, respondidas con datos reales.",
+      "Carrusel 1080x1350, 8 placas", "Fotos propias del taller y de los autos",
+      "¿AUTO CHINO? 5 PREGUNTAS QUE TODOS HACEN", "LO QUE NADIE TE RESPONDE DE LOS AUTOS CHINOS",
+      [("Placa 1", "", "Un auto de la casa con el capó abierto.", "¿AUTO CHINO? 5 PREGUNTAS QUE TODOS HACEN · deslizá →", ""),
+       ("Placa 2", "", "Certificado de garantía.", "¿Y si se rompe? → Garantía de [5 o 7] años o 150.000 km, lo que pase primero (según el modelo).", ""),
+       ("Placa 3", "", "Estantería de repuestos.", "¿Hay repuestos? → Un repuesto común tarda [X] días (dato de nuestro taller).", ""),
+       ("Placa 4", "", "El taller.", "¿Dónde le hago el service? → Acá, en nuestro taller de Córdoba.", ""),
+       ("Placa 5", "", "La batería dibujada con un candado.", "¿Cuánto dura la batería? → Tiene garantía propia: 8 años (según el modelo).", ""),
+       ("Placa 6", "", "Un auto usado con un signo de pregunta.", "¿Cuánto vale cuando lo venda? → En la Argentina todavía no hay datos: son autos nuevos acá. Preguntá si la garantía pasa al próximo dueño.", ""),
+       ("Placa 7", "", "", "Resumen: garantía larga, taller en Córdoba y repuestos con tiempos reales.", ""),
+       ("Placa 8", "", "Logo chico.", "PEDINOS PRECIO Y FINANCIACIÓN · COMENTÁ TALLER", "")],
+      "Fotos propias del taller, repuestos y garantía.",
+      "¿Auto chino? Estas son las 5 preguntas que más nos hacen, respondidas con datos. Comentá TALLER y te contamos cómo es el service de tu modelo. Córdoba.",
+      "#autoschinos #garantia #service #0km #AutosCordoba", "TALLER",
+      ojo="Garantía exacta por modelo y si es transferible: verificar. El tiempo del repuesto lo da posventa. No hay datos de reventa de autos chinos en la Argentina: no inventarlos."),
+
+    g("G37", "Carrusel: eléctrico, que se enchufa o que se carga solo", "Educar", f"{FAM}; {KM}; {ELEC}",
+      "Hay 3 tipos de autos con batería y se diferencian en cómo se cargan; para las sierras, cada uno tiene su truco.",
+      "Carrusel 1080x1350, 10 placas", "Fotos propias de 3 autos",
+      "¿CON CUÁL TE VAS A LAS SIERRAS?", "3 AUTOS CON BATERÍA: ¿CUÁL ES PARA VOS?",
+      [("Placa 1", "", "Los 3 autos en fila.", "¿CON CUÁL TE VAS A LAS SIERRAS? · deslizá →", ""),
+       ("Placa 2", "", "", "Hay 3 tipos de autos con batería. Se diferencian en una cosa: cómo se cargan.", ""),
+       ("Placa 3", "", "ORA 03 con el cable.", "1 · ELÉCTRICO: solo se enchufa, no usa nafta. Ej.: ORA 03, hasta 310 km (medido en laboratorio, WLTP).", ""),
+       ("Placa 4", "", "Mapa plano a las sierras con un enchufe.", "Para las sierras: salí con la batería llena y fijate antes dónde cargar allá.", ""),
+       ("Placa 5", "", "Eado Plus con el cable y un surtidor.", "2 · SE ENCHUFA, PERO TAMBIÉN USA NAFTA. Ej.: Eado Plus, hasta 132 km sin nafta (NEDC) y después sigue a nafta.", ""),
+       ("Placa 6", "", "", "Para las sierras: vas tranquilo. Si se acaba la batería, sigue a nafta.", ""),
+       ("Placa 7", "", "ORA 05 o H6 frenando.", "3 · SE CARGA SOLO: nunca se enchufa, se carga al frenar. Ej.: ORA 05 HEV, Haval H6 PRO HEV.", ""),
+       ("Placa 8", "", "Un surtidor.", "Para las sierras: cargás nafta como siempre, y gastás menos.", ""),
+       ("Placa 9", "", "", "Resumen: ciudad + enchufe → eléctrico · enchufe en casa y ruta a veces → se enchufa · sin enchufe → se carga solo.", ""),
+       ("Placa 10", "", "Logo chico.", "PEDINOS PRECIO Y FINANCIACIÓN · COMENTÁ TIPO", "")],
+      "Fotos propias de un ORA 03, un Eado Plus y un ORA 05 o H6.",
+      "¿Con cuál te vas a las sierras? Eléctrico, que se enchufa o que se carga solo: la diferencia es cómo se cargan. Guardalo. Comentá TIPO y te ayudamos a elegir. Córdoba.",
+      "#hibrido #autoelectrico #sierras #0km #AutosCordoba", "TIPO",
+      ojo="Las siglas (EV, PHEV, HEV) solo en letra chica, si hace falta."),
+
+    g("G38", "Carrusel: cómo comparar créditos", "Educar", USADO,
+      "La cuota más baja puede ser la más cara: compará cuánto pagás en total.",
+      "Carrusel 1080x1350, 10 placas (fondo oscuro, como el reel de créditos)", "Placas de texto",
+      "LA CUOTA MÁS BAJA PUEDE SER LA MÁS CARA", "PRENDARIO, UVA, PLAN O MARCA: ¿CUÁL CONVIENE?",
+      [("Placa 1", "", "El Tetris de cuotas del reel de créditos.", "LA CUOTA MÁS BAJA PUEDE SER LA MÁS CARA · deslizá →", ""),
+       ("Placa 2", "", "", "Hay 4 formas muy usadas de pagar un auto en cuotas. Cada una funciona distinto.", ""),
+       ("Placa 3", "", "Un candado.", "1 · CRÉDITO CON EL AUTO DE GARANTÍA (prendario): con tasa fija, la cuota no cambia.", ""),
+       ("Placa 4", "", "Una cuota que sube.", "2 · CRÉDITO UVA: arranca con la cuota más baja, pero sube con la inflación.", ""),
+       ("Placa 5", "", "Un bolillero y un reloj.", "3 · PLAN DE AHORRO: no es un préstamo. Te dan el auto por sorteo o licitación: no sabés cuándo.", ""),
+       ("Placa 6", "", "Un '0 %' grande.", "4 · FINANCIACIÓN DE LA MARCA: a veces tasa 0 %, pero en menos cuotas y con más anticipo.", ""),
+       ("Placa 7", "", "Una barra TOTAL.", "¿Cómo comparar? No mires solo la tasa. Mirá cuánto pagás EN TOTAL: se llama CFT.", ""),
+       ("Placa 8", "", "", "En el UVA, sumale la inflación. En el plan, lo que pagás cuando te lo dan (adjudicación).", ""),
+       ("Placa 9", "", "", "Resumen: elegí la que tenga el total más bajo PARA TU CASO.", ""),
+       ("Placa 10", "", "Logo blanco chico.", "PEDINOS PRECIO Y FINANCIACIÓN · COMENTÁ CREDITO · Información general. No constituye oferta.", "")],
+      "No hace falta grabar: reusar los gráficos del reel de créditos.",
+      "La cuota más baja puede ser la más cara 👀 Las 4 formas más usadas de pagar un auto en cuotas, y cómo compararlas: mirá cuánto pagás en total (CFT). Guardalo. Comentá CREDITO y te mostramos el total de cada opción para tu caso. Información general. No constituye oferta.",
+      "#financiacion #creditoprendario #uva #plandeahorro #AutosCordoba", "CREDITO",
+      ojo="Sin nombrar bancos (regla del dueño). El seguro del prendario se paga aparte y puede subir: aclararlo en letra chica."),
+
+    g("G39", "Carrusel: ¿entendés el papel que te da el vendedor?", "Educar", USADO,
+      "Una cotización tiene 6 líneas que importan; la última, el total, es la que más plata te ahorra.",
+      "Carrusel 1080x1350, 9 placas", "Una cotización de ejemplo (sin datos reales)",
+      "¿ENTENDÉS EL PAPEL QUE TE DA EL VENDEDOR?", "6 LÍNEAS QUE TENÉS QUE MIRAR ANTES DE FIRMAR",
+      [("Placa 1", "", "Una cotización de ejemplo con 6 líneas marcadas.", "¿ENTENDÉS EL PAPEL QUE TE DA EL VENDEDOR? · deslizá →", ""),
+       ("Placa 2", "", "", "Tiene 6 líneas que importan. La 6 es la que más plata te ahorra.", ""),
+       ("Placa 3", "", "Línea 1 marcada en bordó.", "1 · PRECIO DE CONTADO: lo que sale si pagás todo junto. En pesos.", ""),
+       ("Placa 4", "", "Línea 2 marcada.", "2 · ANTICIPO: lo que ponés al principio.", ""),
+       ("Placa 5", "", "Línea 3 marcada.", "3 · CUOTAS: cuántas y de cuánto.", ""),
+       ("Placa 6", "", "Línea 4 marcada.", "4 · TASA (TNA): el interés por año. Sola no alcanza para comparar.", ""),
+       ("Placa 7", "", "Línea 5 marcada.", "5 · VIGENCIA: hasta cuándo vale ese precio.", ""),
+       ("Placa 8", "", "Línea 6 marcada.", "6 · CFT: lo que pagás EN TOTAL, con gastos, seguros e impuestos. Si no está, pedilo.", ""),
+       ("Placa 9", "", "Logo chico.", "PEDINOS PRECIO Y FINANCIACIÓN · COMENTÁ CREDITO", "")],
+      "La plantilla de cotización aprobada por el abogado, con datos de ejemplo.",
+      "¿Entendés el papel que te da el vendedor? Estas son las 6 líneas que tenés que mirar antes de firmar. La más importante: el CFT, lo que pagás en total. Guardalo. Comentá CREDITO. Córdoba.",
+      "#financiacion #0km #consejos #cuotas #AutosCordoba", "CREDITO"),
+
+    g("G40", "Carrusel: ¿qué cambia para vos con el local nuevo?", "Educar", TODOS,
+      "El local nuevo tiene más autos, pruebas de manejo, taller y entrega en un solo lugar.",
+      "Carrusel 1080x1350, 9 placas", "Fotos reales del local nuevo",
+      "¿QUÉ CAMBIA PARA VOS CON EL LOCAL NUEVO?", "ASÍ ES EL NUEVO VALPARAISO POR DENTRO",
+      [("Placa 1", "", "La fachada.", "¿QUÉ CAMBIA PARA VOS CON EL LOCAL NUEVO? · deslizá →", ""),
+       ("Placa 2", "", "El salón lleno.", "Más autos para ver: [N] en el salón.", ""),
+       ("Placa 3", "", "Una llave.", "Probás antes de decidir: prueba de manejo con turno.", ""),
+       ("Placa 4", "", "El taller.", "El taller, en el mismo lugar.", ""),
+       ("Placa 5", "", "La zona de entrega.", "Te lo entregamos acá, listo para salir.", ""),
+       ("Placa 6", "", "El estacionamiento.", "Estacionamiento: [..].", ""),
+       ("Placa 7", "", "Mapa plano.", "[Dirección] · [referencia].", ""),
+       ("Placa 8", "", "", "Horario: [..].", ""),
+       ("Placa 9", "", "Logo chico.", "PEDINOS PRECIO Y FINANCIACIÓN · COMENTÁ ABRIMOS", "")],
+      "Fotos reales del local: fachada, salón, taller, entrega, estacionamiento.",
+      "¿Qué cambia para vos con el local nuevo? Más autos para ver, prueba de manejo con turno, taller y entrega en el mismo lugar. [Dirección], Córdoba. Comentá ABRIMOS.",
+      "#Cordoba #concesionaria #0km #inauguracion #AutosCordoba", "ABRIMOS",
+      ojo="Solo lo que sea cierto del local."),
 ]
