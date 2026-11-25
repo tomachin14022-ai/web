@@ -1,3 +1,6 @@
 
 # Datos de contacto de prospectos: no se suben al repositorio
 fit-and-fun/prospectos/
+
+# Caché de Python
+__pycache__/

@@ -13,6 +13,7 @@
   - `valparaiso-motors-negro.png`: tinta #151415, para fondos claros.
   - `valparaiso-motors-blanco.png`: blanco cálido #F2EFE8, para fondos oscuros.
   - `-recortado.png` (831x110): las mismas versiones sin margen, para ubicarlas exacto en la zona segura. Las originales (980x284) tienen más margen abajo que arriba.
+- **Calendario de contenido dic. 2026 – feb. 2027** (con la inauguración del local nuevo a fin de diciembre), en `valparaiso-motors/contenido/`: planilla con calendario, tareas, guiones, códigos, anuncios, evento y tablero (se regenera desde `fuente/`), más la guía paso a paso en .md, .docx y .pdf. Objetivo de cada pieza: entretener, educar o vender.
 - **Otros proyectos:** este repositorio también tiene la web de **Fit & Fun** (`index_1.html`, `index_2.html`, `fitfun3d.html`), que es de otro cliente, y skills de animación en `.claude/skills/`. Las reglas de este archivo valen **solo para Valparaiso Motors**: no las apliques a Fit & Fun.
 
 ---
