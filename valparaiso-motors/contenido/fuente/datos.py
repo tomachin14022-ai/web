@@ -75,7 +75,7 @@ MEZCLA_NOTA = ("Meta de partida: ~40/35/25 en el feed (propuesta sin estudio que
 HOJAS = [
     ("Calendario", "Todas las piezas de contenido, día por día, con objetivo, canal, guion, responsable, materiales y métrica."),
     ("Tareas", "Todo lo que no es una publicación: permisos, Google, web, WhatsApp, prensa, evento, anuncios y revisiones."),
-    ("Guiones", "41 guiones: para quién es cada uno, la idea en una frase, gancho, tomas, descripción, hashtags, comentario fijado y código. El link de prueba abre WhatsApp con el mensaje."),
+    ("Guiones", "73 guiones (el banco completo, sin fechas): para quién es cada uno, la idea en una frase, gancho, tomas, descripción, hashtags, comentario fijado y código. El link de prueba abre WhatsApp con el mensaje."),
     ("Escenas", "Cada guion escena por escena: qué se dice, qué se ve, el texto en pantalla y el sonido. Es lo que usa el que graba y edita."),
     ("Público", "A quién le hablamos: 7 públicos con lo que quieren, lo que los frena, los modelos y las piezas para cada uno."),
     ("Cómo escribir", "La prueba de los 15 años, el diccionario de palabras difíciles y las reglas de ritmo y visuales."),
@@ -83,7 +83,7 @@ HOJAS = [
     ("Anuncios", "Campañas de Meta y Google con fechas, público, presupuesto diario y regla de corte."),
     ("Evento", "Minuto a minuto de la noche VIP y del día abierto, y el presupuesto con sus cotizaciones."),
     ("Carga", "Horas de cada semana de la persona de contenido contra su capacidad. En rojo, la semana que se pasa."),
-    ("Reserva", "Piezas para tener grabadas por si una del Calendario no puede salir."),
+    ("Reserva", "Las ideas del banco que no tienen fecha: para usar cuando una pieza no puede salir o cuando quieras sumar."),
     ("Pruebas", "Las 6 pruebas A/B del trimestre: qué se compara, cómo y cómo se mide."),
     ("Tablero", "Números de cada semana. Las tasas y los costos se calculan solos."),
     ("Fuentes", "La evidencia detrás de cada decisión, con su link y qué tan firme es."),
@@ -145,7 +145,7 @@ carrusel("S02-1", ("F", d(2026, 12, 9)), E1, "Educar", "¿Auto chino? 5 respuest
 # --- Semana del 14/12 (aguinaldo 18/12, terminan las clases)
 reel("S03-1", ("F", d(2026, 12, 15)), E1, "Educar", "¿Con el aguinaldo te alcanza para empezar?", "G11", "Vendedor 2",
      "¿CON EL AGUINALDO TE ALCANZA PARA EMPEZAR?", "AGUINALDO",
-     materiales=CONF + "Si no hay ejemplo confirmado, se reemplaza por G23.", evidencia="F26, F17")
+     materiales=CONF + "Si no hay ejemplo confirmado, se reemplaza por D12.", evidencia="F26, F17")
 
 # --- Semana del 21/12 (Navidad)
 reel("S04-1", ("F", d(2026, 12, 22)), E4, "Vender", "Entregas antes de Navidad", "G19", "Clientes con autorización + vendedor",
@@ -440,7 +440,7 @@ tarea("T03", ("F", d(2026, 11, 27)), "Decisiones", "Verificar Changan y Bancor a
       "1) Cómo se presenta Valparaiso para Changan (¿'concesionario oficial'?): pedirlo por escrito a la marca. 2) Si la casa está adherida a Bancor 'De Una!' y qué parte de las ventas sale por ahí. 3) Si la red exige un CRM o portal de leads propio.",
       "Dueño", "Alta", "Sección 3")
 tarea("T04", ("F", d(2026, 11, 27)), "Producción", "Primera sesión de grabación (para la semana del 30/11)",
-      "Grabar en 2–3 h: G01 (patentar), G02 con el Eado Plus, G03 ep. 1 (obra), tomas de apoyo de 3 unidades con las tomas fijas del G02 y fotos para el carrusel del 2/12. 3 tomas de cada gancho; el resto una vez.",
+      "Grabar en 2–3 h: D01 (¿ahora o en enero?), V01 (Eado Plus), E16 (obra), tomas de apoyo de 3 unidades y fotos para el carrusel C01. 3 tomas de cada gancho; el resto una vez.",
       "Contenido", "Alta", "Sección 5")
 tarea("T05", ("F", d(2026, 11, 26)), "Equipo", "Nombrar responsables y hacer la reunión de arranque",
       "1) Nombrar responsable de contenido, 2 vendedores en cámara y responsable de primer contacto; escribirlos en Inicio. 2) Reunión de 45 min con esta planilla y la guía: rutina semanal, reglas que no se negocian, qué no se dice en cámara (nada de bromas sobre precios, clientes ni autos de la casa).",
@@ -586,7 +586,7 @@ tarea("T49", ("F", d(2027, 2, 1)), "Anuncios", "Bajar el presupuesto de febrero"
       "Contenido", "Media", "Sección 11", "F25")
 for k, lunes in enumerate(SEMANAS):
     tarea(f"R{k + 1:02d}", ("F", FERIADOS.get(lunes, lunes)), "Rutina", "Rutina de la semana",
-          "Lunes: 30 min de planificación (stock que entró, promos confirmadas) y tablero de la semana anterior. Lunes: 30 min de escucha: leer desde el navegador Reddit (r/argentina, r/Cordoba, r/RepublicaArgentina: 'Haval', 'Changan', 'GWM', 'auto chino', 'patentar enero', 'gastos de entrega'), los grupos de Facebook de dueños de Haval y Changan y las preguntas de Mercado Libre; anotar las preguntas textuales (sirven para 'El vendedor responde', G18). Martes a la mañana: grabación de 2–3 h; el responsable de primer contacto no graba y sigue con WhatsApp. Martes a jueves: edición. Viernes: el dueño aprueba con la hoja de cuadros las piezas de la semana siguiente. Todos los días: historias, Estados y respuestas en menos de 5 minutos.",
+          "Lunes: 30 min de planificación (stock que entró, promos confirmadas) y tablero de la semana anterior. Lunes: 30 min de escucha: leer desde el navegador Reddit (r/argentina, r/Cordoba, r/RepublicaArgentina: 'Haval', 'Changan', 'GWM', 'auto chino', 'patentar enero', 'gastos de entrega'), los grupos de Facebook de dueños de Haval y Changan y las preguntas de Mercado Libre; anotar las preguntas textuales (sirven para 'El vendedor responde', D19). Martes a la mañana: grabación de 2–3 h; el responsable de primer contacto no graba y sigue con WhatsApp. Martes a jueves: edición. Viernes: el dueño aprueba con la hoja de cuadros las piezas de la semana siguiente. Todos los días: historias, Estados y respuestas en menos de 5 minutos.",
           "Contenido", "Media", "Sección 4")
 
 # ---------------------------------------------------------------- anuncios
@@ -607,7 +607,7 @@ ANUNCIOS = [
          usd_dia=10, desde=("D", -8), hasta=("D", 0), metrica="Turnos de prueba tomados · check-ins", regla="Se apaga el Día D a las 18 h."),
     dict(nombre="A3 · Retargeting de los que vieron los reels", objetivo="Mensajes (WhatsApp)",
          publico="Vieron el 50–95 % de los reels o interactuaron con la cuenta en 30–90 días, y viven a 50 km. Excluir compradores.",
-         creativos="Placas animadas de 6–8 s con precio, cuota y legal (G12, G13)", destino="WhatsApp", usd_dia=5,
+         creativos="Placas animadas de 6–8 s con precio, cuota y legal (V11, C07)", destino="WhatsApp", usd_dia=5,
          desde=("F", d(2027, 1, 4)), hasta=("F", d(2027, 2, 28)), metrica="Costo por conversación · % calificado",
          regla="Acá se puede nombrar el modelo: este público ya vio el video."),
     dict(nombre="A4 · Promoción del mejor reel de la semana", objetivo="Interacción o reproducciones",
@@ -638,7 +638,7 @@ EVENTO = [
     ("Día abierto", "", "", "", "", ""),
     ("Brief del equipo", "08:30", "Roles: recepción con QR; 1 asesor cada 3–4 autos; 2–3 personas coordinan las pruebas de manejo; guardia de WhatsApp; 1 supervisor.", "Dueño", "", "Proporciones de una guía de personal para eventos de concesionarias (proveedor)."),
     ("Apertura", "10:00", "Check-in con QR → WhatsApp 'Vengo a la inauguración (INAUGURACION-QR)' con casilla de consentimiento.", "Recepción", "Historias cada hora (INA-15).", "Permiso eventual, seguro, área protegida, matafuegos, baños, estacionamiento señalizado."),
-    ("Vivo", "11:00", "Vivo de 30–45 min recorriendo el salón (G07). Un segundo vendedor responde el chat y WhatsApp.", "Vendedor 1 + vendedor 2", "Vivo en Instagram y TikTok (INA-14).", "Trípode, corbatero, wifi probado."),
+    ("Vivo", "11:00", "Vivo de 30–45 min recorriendo el salón (O02). Un segundo vendedor responde el chat y WhatsApp.", "Vendedor 1 + vendedor 2", "Vivo en Instagram y TikTok (INA-14).", "Trípode, corbatero, wifi probado."),
     ("Pruebas de manejo", "11:00–17:00", "Solo con turno, en franjas de 30 min, recorrido fijo, licencia y alcoholemia cero. El que llega sin turno, se agenda para otro día.", "Coordinadores de pruebas", "Clips cortos de autos saliendo (sin patentes legibles).", "Seguro de las unidades, planilla de turnos."),
     ("Actividad familiar", "12:00–15:00", "Actividad para chicos y comida, sin alcohol. Música con licencia comercial o con SADAIC y AADI-CAPIF pagos (el día abierto es ejecución pública).", "Contenido", "Fotos generales; primeros planos de chicos solo con firma de los padres.", "Catering, sonido."),
     ("Cierre", "18:00", "Cierre al público.", "Dueño", "", ""),
@@ -679,9 +679,13 @@ CODIGOS = [
     ("ENCHUFE", "¿Enchufe o nafta?", "S06-2", "Hola, vengo del video ENCHUFE. Quiero precio y financiación."),
     ("JUEGO", "Serie 'Adiviná'", "S07-1, S09-1, S10-1, S11-4, S12-5", "Hola, vengo del juego del video (JUEGO). Quiero precio y financiación."),
     ("BATERIA", "¿Cuánto dura la batería?", "S07-2", "Hola, vengo del video BATERIA. Quiero precio y financiación."),
-    ("TIPO", "Carrusel EV, PHEV o HEV para las sierras", "S07-3", "Hola, vengo del carrusel TIPO. Quiero precio y financiación."),
+    ("CARGA", "Cargar en casa: qué hace falta y cuánto sale", "Reserva D05, D06", "Hola, vengo del video CARGA. Quiero saber cómo cargarlo en mi casa."),
+    ("USADO", "Así te tasamos tu auto", "Reserva D14", "Hola, vengo del video USADO. Quiero tasar mi auto."),
+    ("PROBAR", "Probalo vos (prueba de manejo)", "S08-4", "Hola, vengo del video PROBAR. Quiero un turno de prueba de manejo."),
+    ("H7", "Haval H7 4x4", "S13-4", "Hola, vengo del video H7. Quiero precio y financiación."),
+    ("TIPO", "Carrusel EV, PHEV o HEV para las sierras y mitos", "S07-3, reserva E23", "Hola, vengo del carrusel TIPO. Quiero precio y financiación."),
     ("LLUVIA", "Asistencias con lluvia", "S08-2", "Hola, vengo del video LLUVIA. Quiero precio y financiación."),
-    ("PREGUNTA", "El vendedor responde (plantilla G18, para cuando una pregunta se repite)", "Cualquier semana, en lugar de una pieza de Educar", "Hola, vengo del video PREGUNTA. Quiero precio y financiación."),
+    ("PREGUNTA", "El vendedor responde (guion D19, para cuando una pregunta se repite)", "Cualquier semana, en lugar de una pieza de Educar", "Hola, vengo del video PREGUNTA. Quiero precio y financiación."),
     ("TOTAL", "¿Cuánto pagás además del precio del auto?", "S09-2", "Hola, vengo del video TOTAL. Quiero el total por escrito."),
     ("CREDITO", "Carruseles de créditos y cotización", "S09-3, S11-2", "Hola, vengo del carrusel CREDITO. Quiero precio y financiación."),
     ("DATO", "Los autos más vendidos del mes", "S09-5, S13-5", "Hola, vengo del video DATO. Quiero precio y financiación."),
@@ -909,12 +913,22 @@ CARGA_FIJA_SEMANA = {d(2026, 12, 14): 2.0}  # la semana del Día D no hay grabac
 
 # ---------------------------------------------------------------- banco de reserva
 RESERVA = [
-    ("G23", "Soy vendedor: haceme estas 3 preguntas", "Educar", "Falta la confirmación de un precio o una promo", "Cualquier martes de diciembre"),
-    ("G31", "¿Cuánto dura la batería?", "Educar", "No llegó la unidad del 'Llegó al salón'", "Cualquier martes de diciembre"),
-    ("G34", "Antes de salir a la ruta", "Educar", "Una semana sin unidades nuevas", "Semana del 7/12"),
-    ("G35", "Carrusel: las 5 preguntas del vendedor", "Educar", "Falta un carrusel", "Ya está escrito: solo fotos"),
-    ("G04", "Adiviná (un episodio extra)", "Entretener", "Se cae una pieza de Entretener", "Cualquier martes"),
-    ("G18", "El vendedor responde", "Educar", "Una pregunta se repite mucho en la escucha del lunes", "La misma semana"),
+    ("D12", "Soy vendedor: haceme estas 3 preguntas", "Educar", "Falta la confirmación de un precio o una promo", "Cualquier martes"),
+    ("D07", "¿Cuánto dura la batería?", "Educar", "No llegó la unidad del 'Llegó al salón'", "Cualquier martes"),
+    ("D05", "¿Tenés que instalar algo en tu casa para cargarlo?", "Educar", "Semana sin unidades nuevas", "Cualquier martes"),
+    ("D06", "¿Cuánto sale cargarlo en tu casa por mes?", "Educar", "Se cae una pieza de Educar", "Cualquier martes (o animado con Claude)"),
+    ("D14", "Así te tasamos tu auto", "Educar", "Se cae una pieza de la serie 'Cómo se compra'", "Cualquier martes"),
+    ("D15", "El día que retirás tu 0 km", "Educar", "Hay una entrega programada", "El día de una entrega"),
+    ("D16", "Qué cubre la garantía (y qué no)", "Educar", "Muchas preguntas sobre la garantía en la escucha", "Cualquier martes"),
+    ("D17", "El primer service: qué se hace", "Educar", "Semana tranquila en el taller", "El día de un primer service"),
+    ("D19", "El vendedor responde", "Educar", "Una pregunta se repite mucho en la escucha del lunes", "La misma semana"),
+    ("E12", "Le hablamos en cordobés al auto", "Entretener", "Se cae una pieza de Entretener", "Cualquier martes"),
+    ("E13", "La prueba del silencio", "Entretener", "Se cae una pieza de Entretener", "Cualquier martes"),
+    ("E14", "Los sonidos de un 0 km", "Entretener", "Semana con poco tiempo (no necesita voz)", "Cualquier martes"),
+    ("E15", "Primera vez en un eléctrico", "Entretener", "Alguien del equipo nunca manejó uno", "Cualquier martes"),
+    ("E23", "Verdadero o falso: mitos del auto que se enchufa", "Entretener", "Se cae una pieza de Entretener", "Cualquier martes"),
+    ("E07", "¿Entra el asado del domingo?", "Entretener", "Fin de semana largo o verano", "Cualquier martes"),
+    ("E04", "Adiviná: ¿qué auto es? (otro modelo)", "Entretener", "Llegó un modelo nuevo", "Cualquier martes"),
 ]
 
 # ---------------------------------------------------------------- pruebas
@@ -938,4 +952,42 @@ PRESUPUESTO_EVENTO = [
 # Piezas que se graban o se arman la misma semana en que salen (no se pueden adelantar)
 MISMA_SEMANA = {"INA-18", "INA-21", "S09-5", "S13-5", "S04-1", "S07-4", "S10-4", "S13-4", "S06-5", "S08-5"}
 PRIMERA_GRABACION = d(2026, 11, 27)
+
+# ---------------------------------------------------------------- piezas → banco de guiones
+MAPA_GUIONES = {
+    "S01-1": "D01", "S01-2": "C01", "S01-3": "V01", "INA-01": "E16",
+    "S02-1": "C02", "S02-2": "V02", "INA-03": "E17", "INA-06": "V12",
+    "INA-07": "D03", "S03-1": "D18", "INA-09": "C06", "INA-11": "V13",
+    "INA-18": "E18", "INA-19": "D20", "S04-1": "V10", "S04-2": "E19", "INA-21": "C08",
+    "S05-1": "E06", "S05-2": "D11", "S05-3": "C08",
+    "S06-1": "V11", "S06-2": "D02", "S06-3": "C07", "S06-4": "V03", "S06-5": "E09", "S06-6": "O03", "S06-7": "O04",
+    "S07-1": "E01", "S07-2": "D07", "S07-3": "C03", "S07-4": "V10", "S07-5": "E20", "S07-6": "O03",
+    "S08-1": "E08", "S08-2": "D08", "S08-3": "C08", "S08-4": "V09", "S08-5": "E10", "S08-6": "O03", "S08-7": "O04",
+    "S09-1": "E02", "S09-2": "D13", "S09-3": "C04", "S09-4": "V04", "S09-5": "E22", "S09-6": "O03",
+    "S10-1": "E03", "S10-2": "D12", "S10-3": "C07", "S10-4": "V07", "S10-5": "E21", "S10-6": "O03", "S10-7": "O04",
+    "S11-1": "D04", "S11-2": "C05", "S11-3": "V06", "S11-4": "E04",
+    "S12-1": "E11", "S12-2": "D09", "S12-3": "C07", "S12-4": "V08", "S12-5": "E05", "S12-6": "O04",
+    "S13-1": "E24", "S13-2": "D10", "S13-3": "C08", "S13-4": "V05", "S13-5": "E22",
+}
+_EQ = {"G06": "O01", "G07": "O02", "G20": "O03", "G21": "O04", "G26": "O05", "G27": "O06", "G28": "O07", "G29": "O08", "G02": "V01", "G33": "C08"}
+_G = {g["id"]: g for g in GUIONES}
+for _p in PIEZAS:
+    nuevo = MAPA_GUIONES.get(_p["id"]) or _EQ.get(_p["guion"], _p["guion"])
+    _p["guion"] = nuevo
+    g = _G.get(nuevo)
+    if g and nuevo[0] in "EDV":
+        _p["pieza"] = g["pieza"]
+        _p["gancho"] = g["gancho"]
+        _p["objetivo"] = g["objetivo"]
+        _p["publico"] = g["publico"]
+        _p["aparece"] = g["aparece"]
+        if g.get("codigo"):
+            _p["cta"] = ("Pedinos precio y financiación · comentá " + g["codigo"]) if g["objetivo"] != "Entretener" else ("Mandáselo a… · en el fijado: comentá " + g["codigo"])
+        elif g["objetivo"] == "Entretener":
+            _p["cta"] = "Mandáselo a… (sin pedido comercial)"
+        if _p["id"] in ("S10-4", "S13-4", "S08-4"):
+            _p["serie"] = "Llegó al salón" if _p["id"] != "S08-4" else "Probalo vos"
+            _p["materiales"] = "Administración confirma precio, cuota, TNA, CFTEA, vigencia y stock el día de publicar. " + (g.get("ojo") or "")
+        if _p["id"] == "S10-4":
+            _p["evidencia"] = "F07"
 

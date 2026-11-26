@@ -45,15 +45,15 @@ lang: es-AR
 | Inicio | Datos a completar, roles, la mezcla entretener-educar-vender (se recalcula sola) y las palabras del plan explicadas |
 | Calendario | 135 filas: 46 reels, 13 carruseles, 4 videos largos de YouTube, 6 vivos, historias, Estados, Google y Mercado Libre de cada semana, y todos los mensajes de la inauguración. Cada pieza dice qué día se graba y qué día la aprueba el dueño |
 | Tareas | 68 tareas: permisos, Google, web, WhatsApp, prensa, evento, anuncios, revisiones y la rutina de cada semana |
-| Guiones | 41 guiones: para quién es cada uno, la idea en una frase, gancho, gancho B para probar, tomas, lo que hay que confirmar antes, descripción para pegar, hashtags, comentario fijado y link de WhatsApp con el código |
-| Escenas | Cada guion escena por escena (258 escenas): qué se dice, qué se ve, el texto en pantalla y el sonido. Es la hoja del que graba y edita |
+| Guiones | 73 guiones (el banco completo, sin fechas; también en el documento *Banco de ideas y guiones*): para quién es cada uno, la idea en una frase, gancho, gancho B para probar, tomas, lo que hay que confirmar antes, descripción para pegar, hashtags, comentario fijado y link de WhatsApp con el código |
+| Escenas | Cada guion escena por escena (468 escenas): qué se dice, qué se ve, el texto en pantalla y el sonido. Es la hoja del que graba y edita |
 | Público | Los 7 públicos: quiénes son, qué quieren, qué los frena, qué modelos y qué piezas les hablan |
 | Cómo escribir | La prueba de los 15 años, el diccionario de palabras difíciles y las reglas de ritmo y visuales |
 | Códigos | Un código por pieza o canal, con su mensaje ya escrito y su link. Los resultados se suman solos por objetivo (entretener, educar, vender) |
 | Anuncios | 8 campañas con fechas, público, presupuesto diario y regla de corte |
 | Evento | Minuto a minuto de la noche VIP y del día abierto, y el presupuesto con 3 cotizaciones por partida |
 | Carga | Horas de cada semana de la persona de contenido contra su capacidad; en rojo, la semana que se pasa |
-| Reserva | Piezas para tener grabadas por si una del Calendario no puede salir |
+| Reserva | Las ideas del banco sin fecha: para usar cuando una pieza no puede salir o cuando quieras sumar |
 | Pruebas | Las 6 pruebas A/B del trimestre, con qué se compara y cómo se mide |
 | Tablero | Números semanales; las tasas y los costos se calculan solos |
 | Fuentes | La evidencia de cada decisión, con su link y qué tan firme es |
@@ -222,7 +222,7 @@ Hay dos cambios contra el Plan de leads: las cuotas y el CFT van **dentro** de l
 - los grupos de Facebook de dueños de Haval y Changan;
 - las preguntas de Mercado Libre y de los comentarios.
 
-Las preguntas que se repiten se anotan textuales. Cuando una aparece muchas veces, una pieza de Educar de esa semana se cambia por "El vendedor responde" (guion G18).
+Las preguntas que se repiten se anotan textuales. Cuando una aparece muchas veces, una pieza de Educar de esa semana se cambia por "El vendedor responde" (guion D19).
 
 **Constancia antes que volumen.** Buffer midió 2,1 millones de publicaciones: 3 a 5 por semana duplican el crecimiento contra 1 o 2, y las semanas en cero penalizan. Si una semana no se llega, se publican menos piezas, pero nunca cero.
 
@@ -252,7 +252,7 @@ Las preguntas que se repiten se anotan textuales. Cuando una aparece muchas vece
 
 - **El gancho y el CTA se dicen palabra por palabra**, 3 tomas de cada uno. El medio se dice con palabras propias, siguiendo los puntos del guion.
 - Dejar 2 segundos quietos antes y después de cada toma.
-- **Tomas fijas de cada unidad**, siempre iguales para armar una plantilla (guion G02):
+- **Tomas fijas de cada unidad**, siempre iguales para armar una plantilla (guiones V01 a V08):
   - frente 3/4;
   - lateral con llanta;
   - interior desde la puerta;
@@ -320,14 +320,14 @@ La hoja **Escenas** dice, para cada guion, qué se ve en cada momento. Al grabar
 ## YouTube
 
 - **Shorts:** el mismo video final, con un título que lleve el modelo y "Córdoba".
-- **Video largo (G21):**
+- **Video largo (O04):**
   - título con el modelo, "Córdoba" y la intención ("recorrido completo y consumo real");
   - en la primera línea de la descripción, el link de WhatsApp con su código (YT-…);
   - capítulos con sus tiempos;
   - comentario fijado con el link;
   - de cada largo se cortan 3 o 4 Shorts.
 
-## Historias (G28)
+## Historias (O07)
 
 | Día | Qué va |
 |---|---|
@@ -340,12 +340,12 @@ La hoja **Escenas** dice, para cada guion, qué se ve en cada momento. Al grabar
 
 Siempre lleva un **sticker de enlace a WhatsApp** con el mensaje ya escrito y el código HISTORIA. Las historias no traen gente nueva (Mosseri): sirven para cerrar con los que ya siguen. Por eso venden.
 
-## Estados de WhatsApp (G27)
+## Estados de WhatsApp (O06)
 
 - De 1 a 3 por día hábil: la unidad del día, un detalle, una placa de cuota con su legal, una entrega.
 - El texto invita a responder el estado: la respuesta abre el chat con el contexto.
 
-## Perfil de Empresa de Google (G26)
+## Perfil de Empresa de Google (O05)
 
 **Una publicación por semana más 5 fotos nuevas.** Las publicaciones de oferta tuvieron unas cuatro veces más clics que las de novedades (Sterling Sky, con datos de pequeños negocios de EE. UU. de 2021). También rinden más con:
 
@@ -428,7 +428,7 @@ El contenido no vende si nadie contesta a tiempo. Este es el frente con la evide
 - **Vivos:** en Instagram, el mensaje automático solo funciona mientras dura el vivo. Un segundo vendedor contesta el chat y el WhatsApp en ese momento.
 - **ManyChat (u otra herramienta):** el disparador solo funciona con el **primer** comentario de cada persona en cada publicación.
 - **La palabra clave es siempre un pedido de precio:** "Si querés precio y cuota, comentá EADO". Nunca "comentá SÍ", "comentá un emoji" ni "comentá para que llegue a más gente". En 2024, Instagram dijo que no recomienda publicaciones que piden comentar una palabra para ganar alcance, pero que usarlo para generar contactos no es trampa. En los videos de Entretener, la palabra va en la descripción y en el comentario fijado, no en la voz.
-- **El total, por escrito y antes:** a quien pide precio se le manda el total con flete, patente y papeles, y preparación, antes de que venga. En la Argentina hay reclamos y un fallo judicial por esos gastos cobrados de más en otras concesionarias: darlo claro desde el principio genera confianza (guion G41).
+- **El total, por escrito y antes:** a quien pide precio se le manda el total con flete, patente y papeles, y preparación, antes de que venga. En la Argentina hay reclamos y un fallo judicial por esos gastos cobrados de más en otras concesionarias: darlo claro desde el principio genera confianza (guion D13).
 
 ## Cómo responder comentarios
 

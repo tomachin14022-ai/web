@@ -293,28 +293,35 @@ def armar():
     wt.conditional_formatting.add(f"J2:J{ultima}", FormulaRule(formula=['$J2="Alta"'], font=Font(name=F, bold=True, color=BORDO)))
 
     # ---------------- Guiones ----------------
+    en_calendario = {}
+    for p in D.PIEZAS:
+        en_calendario.setdefault(p["guion"], []).append(p["id"])
     wg = wb.create_sheet("Guiones")
-    cols = ["Guion", "Pieza", "Objetivo", "Para quién", "La idea en una frase", "Formato y duración", "Quién aparece",
-            "Gancho (texto del cuadro 0)", "Gancho B (para probar)", "Tomas a grabar", "Ojo: confirmar antes",
-            "Descripción lista para pegar", "Hashtags (5)", "Comentario fijado", "Código", "Mensaje de WhatsApp ya escrito", "Link de prueba"]
-    anchos = [8, 26, 11, 18, 36, 20, 18, 32, 28, 40, 40, 56, 28, 36, 12, 32, 14]
+    cols = ["Guion", "Pieza", "Objetivo", "Para quién", "Estructura", "La idea en una frase", "Por qué funciona", "Dificultad",
+            "En el Calendario", "Formato y duración", "Quién aparece", "Gancho (texto del cuadro 0)", "Gancho B (para probar)",
+            "Tomas a grabar", "Ojo: confirmar antes", "Descripción lista para pegar", "Hashtags (5)", "Comentario fijado", "Código",
+            "Mensaje de WhatsApp ya escrito", "Link de prueba"]
+    anchos = [7, 30, 11, 20, 20, 40, 40, 9, 16, 18, 18, 30, 26, 40, 40, 54, 26, 36, 11, 30, 14]
     encabezado(wg, 1, cols, anchos)
     for i, g in enumerate(D.GUIONES, start=2):
-        vals = [g["id"], g["pieza"], g["objetivo"], g["publico"], g["idea"], g["formato"], g["aparece"], g["gancho"],
-                g.get("gancho_b", ""), g["tomas"], g.get("ojo", ""), g["descripcion"], g.get("hashtags", ""),
-                g.get("fijado", ""), g.get("codigo", "")]
+        usos = en_calendario.get(g["id"], [])
+        vals = [g["id"], g["pieza"], g["objetivo"], g["publico"], g.get("estructura", ""), g["idea"], g.get("por_que", ""),
+                g.get("dificultad", ""), ", ".join(usos) if usos else "Sin fecha (banco)", g["formato"], g["aparece"], g["gancho"],
+                g.get("gancho_b", ""), g["tomas"], g.get("ojo", ""), g["descripcion"], g.get("hashtags", ""), g.get("fijado", ""),
+                g.get("codigo", "")]
         for k, v in enumerate(vals, start=1):
-            celda(wg, i, k, v, negrita=(k in (1, 2, 15)))
+            celda(wg, i, k, v, negrita=(k in (1, 2, 19)))
         msg = g.get("mensaje", "")
-        celda(wg, i, 16, msg)
-        celda(wg, i, 17, link_wa(msg) if msg else "", color="0563C1")
-        largo = max(len(g["descripcion"]) * 1.0, len(g["tomas"]) * 1.3, len(g.get("ojo", "")) * 1.3, len(g["idea"]) * 1.4)
+        celda(wg, i, 20, msg)
+        celda(wg, i, 21, link_wa(msg) if msg else "", color="0563C1")
+        largo = max(len(g["descripcion"]) * 1.0, len(g["tomas"]) * 1.3, len(g.get("ojo", "")) * 1.3, len(g["idea"]) * 1.4, len(g.get("por_que", "")) * 1.4)
         wg.row_dimensions[i].height = min(300, max(60, 13 * (largo // 50 + 1)))
     colores = {"Entretener": "E8EEF7", "Educar": "EEF5E9", "Vender": "F7E3E6"}
     ult = len(D.GUIONES) + 1
     for obj, color in colores.items():
         wg.conditional_formatting.add(f"C2:C{ult}", FormulaRule(formula=[f'$C2="{obj}"'], fill=PatternFill("solid", fgColor=color)))
-    wg.auto_filter.ref = f"A1:Q{ult}"
+    wg.conditional_formatting.add(f"I2:I{ult}", FormulaRule(formula=['$I2="Sin fecha (banco)"'], font=Font(name=F, bold=True, color=BORDO)))
+    wg.auto_filter.ref = f"A1:U{ult}"
 
     # ---------------- Escenas ----------------
     we2 = wb.create_sheet("Escenas")
