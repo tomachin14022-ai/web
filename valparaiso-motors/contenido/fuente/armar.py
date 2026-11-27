@@ -19,6 +19,7 @@ from openpyxl.worksheet.datavalidation import DataValidation
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import datos as D  # noqa: E402
+import datos_guiones as DG  # noqa: E402
 
 SALIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Calendario de contenido Valparaiso Motors.xlsx")
 
@@ -299,21 +300,22 @@ def armar():
     wg = wb.create_sheet("Guiones")
     cols = ["Guion", "Pieza", "Objetivo", "Para quién", "Estructura", "La idea en una frase", "Por qué funciona", "Dificultad",
             "En el Calendario", "Formato y duración", "Quién aparece", "Gancho (texto del cuadro 0)", "Gancho B (para probar)",
-            "Tomas a grabar", "Ojo: confirmar antes", "Descripción lista para pegar", "Hashtags (5)", "Comentario fijado", "Código",
+            "Tomas a grabar", "Ojo: confirmar antes", "Lo honesto (se dice en voz alta)", "Fuentes (hojas Datos y Cuentas)",
+            "Descripción lista para pegar", "Hashtags (5)", "Comentario fijado", "Código",
             "Mensaje de WhatsApp ya escrito", "Link de prueba"]
-    anchos = [7, 30, 11, 20, 20, 40, 40, 9, 16, 18, 18, 30, 26, 40, 40, 54, 26, 36, 11, 30, 14]
+    anchos = [7, 30, 11, 20, 20, 40, 40, 9, 16, 18, 18, 30, 26, 40, 40, 32, 28, 54, 26, 36, 11, 30, 14]
     encabezado(wg, 1, cols, anchos)
     for i, g in enumerate(D.GUIONES, start=2):
         usos = en_calendario.get(g["id"], [])
         vals = [g["id"], g["pieza"], g["objetivo"], g["publico"], g.get("estructura", ""), g["idea"], g.get("por_que", ""),
                 g.get("dificultad", ""), ", ".join(usos) if usos else "Sin fecha (banco)", g["formato"], g["aparece"], g["gancho"],
-                g.get("gancho_b", ""), g["tomas"], g.get("ojo", ""), g["descripcion"], g.get("hashtags", ""), g.get("fijado", ""),
-                g.get("codigo", "")]
+                g.get("gancho_b", ""), g["tomas"], g.get("ojo", ""), g.get("honesto", ""), g.get("fuentes", ""),
+                g["descripcion"], g.get("hashtags", ""), g.get("fijado", ""), g.get("codigo", "")]
         for k, v in enumerate(vals, start=1):
-            celda(wg, i, k, v, negrita=(k in (1, 2, 19)))
+            celda(wg, i, k, v, negrita=(k in (1, 2, 21)))
         msg = g.get("mensaje", "")
-        celda(wg, i, 20, msg)
-        celda(wg, i, 21, link_wa(msg) if msg else "", color="0563C1")
+        celda(wg, i, 22, msg)
+        celda(wg, i, 23, link_wa(msg) if msg else "", color="0563C1")
         largo = max(len(g["descripcion"]) * 1.0, len(g["tomas"]) * 1.3, len(g.get("ojo", "")) * 1.3, len(g["idea"]) * 1.4, len(g.get("por_que", "")) * 1.4)
         wg.row_dimensions[i].height = min(300, max(60, 13 * (largo // 50 + 1)))
     colores = {"Entretener": "E8EEF7", "Educar": "EEF5E9", "Vender": "F7E3E6"}
@@ -321,7 +323,8 @@ def armar():
     for obj, color in colores.items():
         wg.conditional_formatting.add(f"C2:C{ult}", FormulaRule(formula=[f'$C2="{obj}"'], fill=PatternFill("solid", fgColor=color)))
     wg.conditional_formatting.add(f"I2:I{ult}", FormulaRule(formula=['$I2="Sin fecha (banco)"'], font=Font(name=F, bold=True, color=BORDO)))
-    wg.auto_filter.ref = f"A1:U{ult}"
+    wg.auto_filter.ref = f"A1:W{ult}"
+    wg.freeze_panes = "C2"
 
     # ---------------- Escenas ----------------
     we2 = wb.create_sheet("Escenas")
@@ -339,6 +342,57 @@ def armar():
             fila += 1
     we2.auto_filter.ref = f"A1:G{fila - 1}"
     we2.freeze_panes = "D2"
+
+    # ---------------- Datos de los autos ----------------
+    wd = wb.create_sheet("Datos de los autos")
+    cols = ["ID", "Modelo", "Dato", "Frase para decir en cámara", "Tipo de dato", "Fuente", "Link", "Fecha de la fuente", "Ojo"]
+    anchos = [10, 22, 22, 56, 26, 28, 40, 14, 50]
+    encabezado(wd, 1, cols, anchos)
+    for i, fila_d in enumerate(DG.DATOS, start=2):
+        for k, val in enumerate(fila_d, start=1):
+            c = celda(wd, i, k, val, negrita=(k == 1), color=("0563C1" if k == 7 else TINTA))
+            if k == 7 and str(val).startswith("http"):
+                c.hyperlink = val
+        largo = max(len(fila_d[3]), len(fila_d[8]) * 0.9)
+        wd.row_dimensions[i].height = min(160, max(30, 13 * (largo // 50 + 1)))
+    ult_d = len(DG.DATOS) + 1
+    for tipo, color in ((DG.MEDIDO, "EEF5E9"), (DG.CUENTA, "FFF6D6"), (DG.PRECIO, "F7E3E6"), (DG.FALTA, "F4C7C3"), (DG.OTRO, "EDEDED")):
+        wd.conditional_formatting.add(f"E2:E{ult_d}", FormulaRule(formula=[f'$E2="{tipo}"'], fill=PatternFill("solid", fgColor=color)))
+    wd.auto_filter.ref = f"A1:I{ult_d}"
+    wd.freeze_panes = "C2"
+
+    # ---------------- Cuentas de Córdoba ----------------
+    wq = wb.create_sheet("Cuentas de Córdoba")
+    wq.sheet_view.showGridLines = False
+    for col, ancho in zip("ABCDEFGH", [3, 50, 16, 64, 3, 3, 3, 3]):
+        wq.column_dimensions[col].width = ancho
+    wq.cell(row=1, column=2, value="Cuentas de Córdoba para los guiones").font = fuente(size=16, bold=True, color=BORDO)
+    wq.cell(row=2, column=2, value="Cambiá las celdas amarillas el día que se publica (nafta y luz cambian cada mes) y todas las cuentas de abajo se recalculan. En pantalla siempre va 'estimado' y en la descripción, la cuenta.").font = fuente(size=10, color=GRIS)
+    wq.merge_cells("B2:D2")
+    wq.row_dimensions[2].height = 28
+    wq.cell(row=2, column=2).alignment = Alignment(wrap_text=True, vertical="top")
+    wq.cell(row=4, column=2, value="Supuestos (celdas amarillas)").font = fuente(size=12, bold=True)
+    fila = 5
+    for nombre, etiqueta, valor, fmt, nota in DG.SUPUESTOS:
+        celda(wq, fila, 2, etiqueta, negrita=True)
+        celda(wq, fila, 3, valor, fmt=fmt, relleno=AMARILLO, color="0000FF")
+        celda(wq, fila, 4, nota, color=GRIS)
+        wb.defined_names[nombre] = DefinedName(nombre, attr_text=f"'Cuentas de Córdoba'!$C${fila}")
+        wq.row_dimensions[fila].height = 28
+        fila += 1
+    fila += 1
+    wq.cell(row=fila, column=2, value="Cuentas (se recalculan solas)").font = fuente(size=12, bold=True)
+    fila += 1
+    cols = ["ID · Qué calcula", "Resultado", "Cómo se dice en el guion (reemplazá [resultado]) · Para qué guiones · Fórmula"]
+    for k, t in enumerate(cols, start=2):
+        celda(wq, fila, k, t, negrita=True, color="FFFFFF", relleno=BORDO)
+    fila += 1
+    for cid, para, que, formula, fmt, unidad, dice in DG.CUENTAS:
+        celda(wq, fila, 2, f"{cid} · {que}", negrita=True)
+        celda(wq, fila, 3, formula, fmt=fmt, negrita=True, color=BORDO)
+        celda(wq, fila, 4, f"{dice}\nGuiones: {para} · Unidad: {unidad} · Fórmula: {formula[1:]}")
+        wq.row_dimensions[fila].height = 44
+        fila += 1
 
     # ---------------- Público ----------------
     wp = wb.create_sheet("Público")
@@ -598,6 +652,23 @@ def armar():
         c.alignment = Alignment(wrap_text=True, vertical="top")
         wtb.row_dimensions[fila].height = 28
 
+    # ---------------- Errores a corregir ----------------
+    wz = wb.create_sheet("Errores a corregir")
+    cols = ["Dónde", "Qué dice hoy", "Qué tendría que decir", "Link", "¿Corregido?"]
+    anchos = [34, 44, 60, 46, 12]
+    encabezado(wz, 1, cols, anchos)
+    for i, (donde, dice, debe, url) in enumerate(DG.ERRORES, start=2):
+        celda(wz, i, 1, donde, negrita=True)
+        celda(wz, i, 2, dice)
+        celda(wz, i, 3, debe)
+        c = celda(wz, i, 4, url, color="0563C1")
+        if url.startswith("http"):
+            c.hyperlink = url
+        celda(wz, i, 5, "No", relleno=AMARILLO, color="0000FF")
+        wz.row_dimensions[i].height = max(30, 13 * (max(len(debe), len(dice)) // 50 + 1))
+    lista(wz, ["No", "Sí"], f"E2:E{len(DG.ERRORES) + 1}")
+    wz.conditional_formatting.add(f"A2:E{len(DG.ERRORES) + 1}", FormulaRule(formula=['$E2="Sí"'], fill=PatternFill("solid", fgColor="EEF5E9")))
+
     # ---------------- Fuentes ----------------
     wf = wb.create_sheet("Fuentes")
     cols = ["ID", "Qué respalda", "Dato", "Fuente", "Link", "Tipo de evidencia"]
@@ -615,7 +686,7 @@ def armar():
         wf.row_dimensions[i].height = max(30, 13 * (len(dato) // 55 + 1))
 
     for hoja in wb.worksheets:
-        hoja.sheet_properties.tabColor = BORDO if hoja.title in ("Inicio", "Calendario", "Tareas", "Escenas", "Carga") else "C9C2B8"
+        hoja.sheet_properties.tabColor = BORDO if hoja.title in ("Inicio", "Calendario", "Tareas", "Escenas", "Carga", "Datos de los autos", "Cuentas de Córdoba") else "C9C2B8"
         hoja.page_setup.orientation = "landscape"
         hoja.sheet_properties.pageSetUpPr.fitToPage = True
         hoja.page_setup.fitToWidth = 1

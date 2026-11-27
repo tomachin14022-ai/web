@@ -45,8 +45,10 @@ lang: es-AR
 | Inicio | Datos a completar, roles, la mezcla entretener-educar-vender (se recalcula sola) y las palabras del plan explicadas |
 | Calendario | 135 filas: 46 reels, 13 carruseles, 4 videos largos de YouTube, 6 vivos, historias, Estados, Google y Mercado Libre de cada semana, y todos los mensajes de la inauguración. Cada pieza dice qué día se graba y qué día la aprueba el dueño |
 | Tareas | 68 tareas: permisos, Google, web, WhatsApp, prensa, evento, anuncios, revisiones y la rutina de cada semana |
-| Guiones | 73 guiones (el banco completo, sin fechas; también en el documento *Banco de ideas y guiones*): para quién es cada uno, la idea en una frase, gancho, gancho B para probar, tomas, lo que hay que confirmar antes, descripción para pegar, hashtags, comentario fijado y link de WhatsApp con el código |
-| Escenas | Cada guion escena por escena (468 escenas): qué se dice, qué se ve, el texto en pantalla y el sonido. Es la hoja del que graba y edita |
+| Guiones | 95 guiones (el banco completo, sin fechas; también en el documento *Banco de ideas y guiones*): para quién es cada uno, la idea en una frase, gancho, gancho B para probar, tomas, lo que hay que confirmar antes, **lo honesto que dice en voz alta**, **las fuentes de cada dato**, descripción para pegar, hashtags, comentario fijado y link de WhatsApp con el código |
+| Escenas | Cada guion escena por escena (683 escenas): qué se dice, qué se ve, el texto en pantalla y el sonido. Es la hoja del que graba y edita |
+| Datos de los autos | 112 datos verificados, modelo por modelo: la frase para decir en cámara, si es de la marca, medido por la prensa o una cuenta nuestra, la fuente con su link y lo que hay que cuidar |
+| Cuentas de Córdoba | 36 cuentas de plata (nafta, luz, peajes, cochera) con fórmulas: se cambian el precio de la nafta y el de la luz en las celdas amarillas y todas se recalculan |
 | Público | Los 7 públicos: quiénes son, qué quieren, qué los frena, qué modelos y qué piezas les hablan |
 | Cómo escribir | La prueba de los 15 años, el diccionario de palabras difíciles y las reglas de ritmo y visuales |
 | Códigos | Un código por pieza o canal, con su mensaje ya escrito y su link. Los resultados se suman solos por objetivo (entretener, educar, vender) |
@@ -56,6 +58,7 @@ lang: es-AR
 | Reserva | Las ideas del banco sin fecha: para usar cuando una pieza no puede salir o cuando quieras sumar |
 | Pruebas | Las 6 pruebas A/B del trimestre, con qué se compara y cómo se mide |
 | Tablero | Números semanales; las tasas y los costos se calculan solos |
+| Errores a corregir | 17 errores encontrados en la web, Mercado Libre y los guiones anteriores, con lo que tendría que decir y una columna para marcarlos corregidos |
 | Fuentes | La evidencia de cada decisión, con su link y qué tan firme es |
 
 ## Quién hace qué
@@ -247,6 +250,8 @@ Las preguntas que se repiten se anotan textuales. Cuando una aparece muchas vece
 3. La luz entra de costado o de frente, nunca detrás del vendedor.
 4. Corbatero a un palmo de la boca. Probar 5 segundos y escuchar.
 5. Fondo ordenado: unidades limpias, sin cajas ni carteles viejos y **sin patentes legibles**.
+6. **Datos del día:** cada número del guion tiene su ID en la columna "Fuentes". Si es una cuenta (C1, C5…), se cambia el precio de la nafta y de la luz en la hoja "Cuentas de Córdoba" y se usa el resultado nuevo. Si es un dato (EADO-1, ORA03-2…), se mira la columna "Ojo" de la hoja "Datos de los autos". El precio y la cuota los confirma Administración ese día.
+7. **Lo honesto:** la limitación de la columna "Lo honesto" se dice entera, sin achicarla. Es lo que hace creíble al resto del video.
 
 ## Durante la grabación
 
@@ -789,7 +794,12 @@ Versión para menores: la firman madre, padre o tutor.
 | Fecha real del día abierto, dirección nueva y habilitación del local | Dueño y gestor | Ya (T01) | Todas las fechas relativas y la mudanza |
 | ¿El local viejo cierra o sigue como taller? | Dueño | Ya | Mudanza en Google o dos ubicaciones |
 | Qué pone la importadora: unidades, directivo, condición de lanzamiento, manual de imagen, bonificaciones, cupo 2027 | Dueño | 27/11 (T02) | La promo de apertura y el dato-noticia |
-| Cómo se presenta Valparaiso para Changan; adhesión a Bancor | Dueño | 27/11 (T03) | Lo que se puede decir en cámara |
+| Changan lista a Valparaiso como **concesionario oficial**, pero no como **taller oficial** (en Córdoba figura City Drive): ¿Valparaiso hace el service de Changan? ¿Adhesión a Bancor? | Dueño | 27/11 (T03) | Lo que se puede decir en cámara y en el aviso de Mercado Libre ("taller autorizado") |
+| ¿Se puede nombrar al rival en comparativas con vendedores (no en las de créditos)? Recomendación: probar una sola vez la comparación por categoría ("la SUV compacta a nafta") contra el promedio de la cuenta | Dueño | Enero | Los formatos de dúo y comparación (D02, V20) |
+| ¿Hay unidades de Tank 300, Outlander, H7 y Poer para filmar? | Dueño | Antes de cada "Llegó al salón" | V05, V07, V18, V19 |
+| ¿Se invita a un creador cordobés (por ejemplo, Mauro Osorio)? ¿Cobra? ¿Trabaja con otra concesionaria? ¿Se ofrece comisión por referido, como hacen algunos vendedores-creadores? | Dueño | Febrero | E28 y el pedido de compartir |
+| Exportar los 142 comentarios del explicador EV/PHEV/HEV (TikTok) y los de Instagram, y clasificarlos (precio, técnica, opinión, zona) | Contenido | Semana 1 | La serie "Respuesta a @" (D19) |
+| ¿Hay descuento en la patente por ser híbrido o eléctrico en Córdoba? (según dos fuentes, solo para autos fabricados en la provincia) | Administración con Rentas | Antes de decirlo | No se promete hasta confirmarlo |
 | Texto vigente de la Res. 446/2025 (simplificación de julio de 2026); si se puede publicar precio solo en dólares; si un sorteo gratuito necesita autorización provincial | Abogado | D-17 (T13) | El legal de todas las piezas con números |
 | Seguidores actuales y línea de base | Contenido | 30/11 (T06) | Contra qué se mide todo |
 | Si Mercado Libre deja derivar a WhatsApp y cuántos videos admite por aviso de autos | Contenido | Semana 1 | Las piezas de Mercado Libre |
@@ -904,9 +914,22 @@ El calendario se revisó con controles automáticos sobre la planilla: horas por
 | Campo y pyme tenía 2 piezas en tres meses, siendo Córdoba una provincia agropecuaria | 3 piezas más: la L200 para el campo, el Eado para empresas que hacen muchos km y "¿Cuánto carga esta camioneta?" |
 | Si la importadora no daba una condición, la promo de apertura del 4/1 se caía | Plan B: tasación del usado en el día y prueba de manejo con turno, sin descuento |
 | No había forma de saber qué objetivo traía más chats | La hoja Códigos suma consultas, leads, turnos y ventas por objetivo |
-| No había plan si una pieza no podía salir | Hoja Reserva con 6 piezas para tener grabadas |
+| No había plan si una pieza no podía salir | Hoja Reserva con las piezas para tener grabadas |
 | Las pruebas estaban sueltas en el texto | Hoja Pruebas con 6 pruebas A/B, una por vez |
 | El evento no tenía presupuesto | Partidas con 3 cotizaciones en la hoja Evento |
+
+## Revisión de los guiones con datos reales (26/11/2026)
+
+Se investigaron seis frentes (fichas oficiales y pruebas de la prensa de cada modelo, números de Córdoba, videos argentinos que funcionaron, voz del cliente y cómo se escribe un guion que vende) y se reescribió el banco entero. Las notas completas, con todos los links, están en `research_notes/Guiones con datos reales/`.
+
+| Problema | Cómo quedó |
+|---|---|
+| Datos sin fuente o mal en los guiones: "995 km" del Eado, "20 → 80 % en 36 min" y garantía "5 o 7 años" del ORA 03, "120 litros por mes" con 22 días | Sacados o corregidos (hoja Errores a corregir). Cada dato tiene su ID en la hoja Datos de los autos |
+| Las cuentas de plata estaban escritas a mano y se vencían cada mes | Hoja Cuentas de Córdoba con fórmulas: se cambian dos celdas y todo se recalcula |
+| Los guiones de producto solo decían virtudes | Cada uno dice una limitación real en voz alta (columna "Lo honesto") |
+| Los formatos no copiaban lo que funciona en Argentina (persona a cámara, plata en la primera frase, "te lo cuento", la objeción "auto chino") | Formatos nuevos con su video de referencia: V20, D02, D03, D19, D28, D29, D30, E27 y E28 |
+| Faltaban seis modelos que Valparaiso vende | V14 a V19: CS55 Plus, JMEV Easy 3, Deepal S05, Jolion HEV, Tank 300 y Outlander |
+| La web y los avisos tienen errores que un comentario puede marcar ("6 km/l" en la H6, "215 cv" y "cámara de retroceso" en el Eado, fotos llamadas "ChatGPT Image") | Hoja Errores a corregir, para arreglarlos antes de publicar los videos que hablan de esos datos |
 
 ## Riesgos que quedan
 

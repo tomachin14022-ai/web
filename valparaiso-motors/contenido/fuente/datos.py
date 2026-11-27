@@ -75,8 +75,10 @@ MEZCLA_NOTA = ("Meta de partida: ~40/35/25 en el feed (propuesta sin estudio que
 HOJAS = [
     ("Calendario", "Todas las piezas de contenido, día por día, con objetivo, canal, guion, responsable, materiales y métrica."),
     ("Tareas", "Todo lo que no es una publicación: permisos, Google, web, WhatsApp, prensa, evento, anuncios y revisiones."),
-    ("Guiones", "73 guiones (el banco completo, sin fechas): para quién es cada uno, la idea en una frase, gancho, tomas, descripción, hashtags, comentario fijado y código. El link de prueba abre WhatsApp con el mensaje."),
+    ("Guiones", f"{len(GUIONES)} guiones (el banco completo, sin fechas): para quién es cada uno, la idea en una frase, gancho, tomas, lo honesto que dice en voz alta, las fuentes de cada dato, descripción, hashtags, comentario fijado y código. El link de prueba abre WhatsApp con el mensaje."),
     ("Escenas", "Cada guion escena por escena: qué se dice, qué se ve, el texto en pantalla y el sonido. Es lo que usa el que graba y edita."),
+    ("Datos de los autos", "Cada dato que usan los guiones, modelo por modelo: la frase para decir en cámara, si es de la marca, medido por la prensa o una cuenta nuestra, la fuente con su link y lo que hay que cuidar. Los IDs (EADO-1, ORA03-2…) son los que aparecen en la columna 'Fuentes' de cada guion."),
+    ("Cuentas de Córdoba", "Las cuentas de plata de los guiones (nafta, luz, peajes, cochera) con fórmulas. Se cambia el precio de la nafta o de la luz en las celdas amarillas y todas se recalculan. Los IDs (C1, C5…) son los de la columna 'Fuentes' de cada guion."),
     ("Público", "A quién le hablamos: 7 públicos con lo que quieren, lo que los frena, los modelos y las piezas para cada uno."),
     ("Cómo escribir", "La prueba de los 15 años, el diccionario de palabras difíciles y las reglas de ritmo y visuales."),
     ("Códigos", "Un código por pieza o canal para saber qué trajo cada consulta. Se cargan los resultados y se suman solos por objetivo."),
@@ -86,6 +88,7 @@ HOJAS = [
     ("Reserva", "Las ideas del banco que no tienen fecha: para usar cuando una pieza no puede salir o cuando quieras sumar."),
     ("Pruebas", "Las 6 pruebas A/B del trimestre: qué se compara, cómo y cómo se mide."),
     ("Tablero", "Números de cada semana. Las tasas y los costos se calculan solos."),
+    ("Errores a corregir", "Lo que la investigación encontró mal en la web, en Mercado Libre y en los guiones anteriores, con lo que tendría que decir. Conviene corregirlo antes de publicar los videos que hablan de esos datos."),
     ("Fuentes", "La evidencia detrás de cada decisión, con su link y qué tan firme es."),
 ]
 
@@ -696,6 +699,17 @@ CODIGOS = [
     ("YT-H6", "YouTube: Haval H6 PRO HEV", "S08-7", "Hola, vengo del video de YouTube de la H6 (YT-H6). Quiero precio y financiación."),
     ("YT-ORA03", "YouTube: ORA 03", "S10-7", "Hola, vengo del video de YouTube del ORA 03 (YT-ORA03). Quiero precio y financiación."),
     ("YT-H7", "YouTube: Haval H7", "S12-6", "Hola, vengo del video de YouTube de la H7 (YT-H7). Quiero precio y financiación."),
+    ("AUXILIO", "¿Tu auto nuevo tiene rueda de auxilio?", "Banco D23", "Hola, vengo del video AUXILIO. Quiero saber qué trae para un pinchazo y el precio."),
+    ("RINDE", "La autonomía del folleto contra la real", "Banco D24", "Hola, vengo del video RINDE. Quiero precio y financiación."),
+    ("HIBRIDO", "Híbrido que gasta menos en la ciudad", "Banco D25", "Hola, vengo del video HIBRIDO. Quiero precio y financiación."),
+    ("PAPELES", "Antes de dejar una seña", "Banco D26", "Hola, vengo del video PAPELES. Quiero el precio final por escrito."),
+    ("PRECIO", "Serie '¿Cuánto vale? Te lo cuento' (cuando la pieza no usa el código del modelo)", "Banco V20", "Hola, vengo del video PRECIO. Quiero precio y financiación."),
+    ("CS55", "Stock del Changan CS55 Plus", "Banco V14", "Hola, vengo del video CS55. Quiero precio y financiación."),
+    ("EASY", "Stock del JMEV Easy 3", "Banco V15", "Hola, vengo del video EASY. Quiero precio y financiación."),
+    ("S05", "Stock del Deepal S05", "Banco V16", "Hola, vengo del video S05. Quiero precio y financiación."),
+    ("JOLION", "Stock de la Haval Jolion HEV", "Banco V17", "Hola, vengo del video JOLION. Quiero precio y financiación."),
+    ("TANK", "Stock de la GWM Tank 300", "Banco V18", "Hola, vengo del video TANK. Quiero precio y financiación."),
+    ("OUTLANDER", "Stock de la Mitsubishi Outlander", "Banco V19", "Hola, vengo del video OUTLANDER. Quiero precio y financiación."),
     ("ANUNCIO-WA", "Anuncios a WhatsApp (Meta pone el origen solo)", "A1, A2, A3", "(lo marca Meta: etiquetar ANUNCIO-WA)"),
     ("FORMULARIO", "Formularios de Meta", "A6", "(llega por el formulario: etiquetar FORMULARIO)"),
 ]
@@ -929,6 +943,17 @@ RESERVA = [
     ("E23", "Verdadero o falso: mitos del auto que se enchufa", "Entretener", "Se cae una pieza de Entretener", "Cualquier martes"),
     ("E07", "¿Entra el asado del domingo?", "Entretener", "Fin de semana largo o verano", "Cualquier martes"),
     ("E04", "Adiviná: ¿qué auto es? (otro modelo)", "Entretener", "Llegó un modelo nuevo", "Cualquier martes"),
+    ("D23", "", "Educar", "Antes de un fin de semana largo o de las vacaciones", "Cualquier martes"),
+    ("D21", "", "Educar", "Sale una financiación con 'tasa 0' y se puede mostrar su CFT", "La semana de la promo"),
+    ("D26", "", "Educar", "Una noticia de estafas o clausuras de agencias", "Dentro de las 48 h de la noticia"),
+    ("D22", "", "Educar", "Muchas preguntas sobre enchufables", "Cualquier martes"),
+    ("D24", "", "Educar", "Sale el resultado de E25 (autonomía medida)", "La semana siguiente a E25"),
+    ("D28", "", "Educar", "Se cae un 'Llegó al salón'", "Cualquier martes"),
+    ("D30", "", "Educar", "Sale una noticia de impuestos, créditos o precios", "Dentro de las 48 h de la noticia"),
+    ("E25", "", "Entretener", "Un día con tiempo para medir (lleva un día entero)", "Cualquier día de semana"),
+    ("E26", "", "Entretener", "Se cae una pieza de Entretener", "Cualquier martes"),
+    ("E27", "", "Entretener", "Cambia el precio de la nafta o de la luz (la cuenta se actualiza)", "La semana del aumento"),
+    ("V20", "", "Vender", "Hay un precio confirmado y una pieza de Vender sin unidad nueva", "Cualquier jueves"),
 ]
 
 # ---------------------------------------------------------------- pruebas
@@ -971,6 +996,7 @@ MAPA_GUIONES = {
 }
 _EQ = {"G06": "O01", "G07": "O02", "G20": "O03", "G21": "O04", "G26": "O05", "G27": "O06", "G28": "O07", "G29": "O08", "G02": "V01", "G33": "C08"}
 _G = {g["id"]: g for g in GUIONES}
+RESERVA = [(gid, _G[gid]["pieza"] if gid in _G else titulo, obj, cuando, dia) for gid, titulo, obj, cuando, dia in RESERVA]
 for _p in PIEZAS:
     nuevo = MAPA_GUIONES.get(_p["id"]) or _EQ.get(_p["guion"], _p["guion"])
     _p["guion"] = nuevo
