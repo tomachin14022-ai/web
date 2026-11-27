@@ -21,7 +21,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import calendario_plan as P  # noqa: E402
 import datos_guiones as DG  # noqa: E402
 import guiones as G  # noqa: E402
-from guiones_comun import LEGAL  # noqa: E402
+from guiones_comun import FIJADO, LEGAL, MSG  # noqa: E402
+import copy  # noqa: E402
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 SALIDA = os.path.join(AQUI, "..", "Calendario Valparaiso Motors.xlsx")
@@ -39,6 +40,72 @@ SUP = {x[0]: x[2] for x in DG.SUPUESTOS}
 ETIQ = {"PrecioKWhNoche": "kWh de noche (${})", "PrecioKWh": "kWh (${})", "PrecioNafta": "nafta (${})", "PrecioCafe": "café (${})",
         "KmDia": "{} km por día", "DiasMes": "{} días", "LNaftero": "{} L", "LHibrido": "{} L", "KWhElectrico": "{} kWh",
         "KWhEnchufable": "{} kWh", "KmEnchufable": "{} km", "PeajeCabina": "cabina (${})", "PeajeTele": "TelePEAJE (${})"}
+
+
+PALABRAS_POR_SEGUNDO = 2.7  # voz de ElevenLabs a ×1,15 o un vendedor hablando claro
+
+
+def palabras_habladas(dice):
+    """Palabras que se dicen de verdad: sin indicaciones entre paréntesis ni quién habla."""
+    if not dice or dice.startswith("["):
+        return len(re.findall(r"\w+", re.sub(r"\[.*?\]", "", dice or ""))) if dice and not dice.startswith("[") else 0
+    limpio = re.sub(r"\(.*?\)|\b(V\d|Vendedor \d[^:']*|Jefe de taller|Jefe|Los dos|'Cliente'|Vendedor real): ", "", dice)
+    return len(re.findall(r"\w+", limpio))
+
+
+def retimar(escenas):
+    """Los tiempos salen de lo que se dice: cada escena dura lo que tarda su voz (mínimo el tiempo pensado para la imagen)."""
+    nuevas, t = [], 0
+    for e in escenas:
+        m = re.match(r"(\d+)\s*[–-]\s*(\d+)\s*s", e[0])
+        if not m:
+            nuevas.append(e)
+            continue
+        orig = int(m.group(2)) - int(m.group(1))
+        necesita = math.ceil(palabras_habladas(e[1]) / PALABRAS_POR_SEGUNDO) if e[1] else 0
+        dur = max(orig, necesita) if t > 0 else max(2, necesita)
+        nuevas.append((f"{t}–{t + dur} s",) + tuple(e[1:]))
+        t += dur
+    return nuevas, t
+
+
+def pieza_del_dia(gid, extra):
+    """El guion del banco con lo que cambia ese día: la palabra clave única de la publicación."""
+    g = copy.deepcopy(GUION[gid])
+    if extra.get("escenas"):
+        g["escenas"] = extra["escenas"]
+    # cambios del día (fecha, feriado, festival): ya escritos en el guion y en la descripción, listos para pegar
+    for viejo, nuevo in extra.get("cambios", []):
+        antes = (list(g["escenas"]), g["descripcion"])
+        g["escenas"] = [tuple(x.replace(viejo, nuevo) if isinstance(x, str) else x for x in e) for e in g["escenas"]]
+        g["descripcion"] = g["descripcion"].replace(viejo, nuevo)
+        assert (g["escenas"], g["descripcion"]) != antes, f"{gid}: no se encontró «{viejo}»"
+    if not gid.startswith("CAR"):
+        g["escenas"], total = retimar(g["escenas"])
+        g["formato"] = re.sub(r"\d+\s*[–-]\s*\d+\s*s|\d+ s", f"~{total} s", g["formato"], count=1)
+    if extra.get("compartir"):
+        g["descripcion"] = g["descripcion"].rstrip() + " " + extra["compartir"]
+    # El pedido va encima del pago (CLAUDE.md, fórmula de retención): sin placa final aparte, botón 1,5 s
+    ult = g["escenas"][-1]
+    if not gid.startswith("CAR") and ("Pedinos precio" in (ult[1] or "") or "PEDINOS PRECIO" in (ult[3] or "")):
+        ve = re.sub(r"^Logo chico\.\s*", "", ult[2] or "").strip()
+        ve = "Encima del pago: sigue a la vista la imagen de la escena anterior; el botón bordó 'PEDINOS PRECIO Y FINANCIACIÓN' entra 1,5 s y el logo chico va dentro de la zona segura." + (" " + ve if ve else "")
+        g["escenas"][-1] = (ult[0], ult[1], ve, ult[3], ult[4])
+    nuevo = extra.get("codigo")
+    if nuevo and nuevo != g.get("codigo"):
+        viejo = g.get("codigo") or ""
+        rx = re.compile(rf"((?:comentá|Comentá|COMENTÁ|del video|DEL VIDEO) ){re.escape(viejo)}\b") if viejo else None
+
+        def sub(t):
+            return rx.sub(lambda m: m.group(1) + nuevo, t) if (rx and isinstance(t, str)) else t
+        g["escenas"] = [tuple(sub(x) for x in e) for e in g["escenas"]]
+        g["descripcion"] = sub(g["descripcion"])
+        g["codigo"] = nuevo
+        g["fijado"] = FIJADO.format(k=nuevo) if not extra.get("fijado") else extra["fijado"]
+        if not g.get("mensaje") or "vengo del video" in g.get("mensaje", "") or viejo in g.get("mensaje", ""):
+            base = g.get("mensaje") or MSG.format(k=nuevo)
+            g["mensaje"] = re.sub(rf"\b{re.escape(viejo)}\b", nuevo, base) if viejo else MSG.format(k=nuevo)
+    return g
 
 
 def num(x, dec=0):
@@ -77,14 +144,26 @@ def limpio_legal(t):
     return "PLACA LEGAL 5 s (el texto está en 'Antes de publicar')" if t == LEGAL else t
 
 
+def ganchos(g, extra):
+    """Lo que va en el cuadro 0 (el mismo texto de la primera escena) y la variante B para el reel de prueba."""
+    t, dice, ve, texto, sonido = g["escenas"][0]
+    if g["id"].startswith("CAR"):
+        a = f"placa 1: «{texto}»"
+    else:
+        a = f"en pantalla «{texto}»" + (f" + voz «{dice}»" if dice else " (sin voz: solo música)")
+    gb = extra.get("gancho_b") or g.get("gancho_b")
+    b = f"en pantalla «{gb}» (cambia solo el texto del cuadro 0; la voz y el resto del video quedan igual)" if gb else ""
+    return a, b
+
+
 def render_guion(g, extra, corto=False):
     out = [f"[{g['id']}] {g['pieza'].upper()}",
            f"{g['objetivo']} · Para: {g['publico']} · {g.get('estructura', '')} · {g['formato']} · Aparece: {g['aparece']}",
            f"LA IDEA: {g['idea']}",
-           f"GANCHO (escrito desde el cuadro 0): {g['gancho']}"]
-    gb = extra.get("gancho_b") or g.get("gancho_b")
+           f"GANCHO (cuadro 0): {ganchos(g, extra)[0]}"]
+    gb = ganchos(g, extra)[1]
     if gb:
-        out.append(f"GANCHO B (para probar): {gb}")
+        out.append(f"GANCHO B (para probar en un reel de prueba): {gb}")
     if extra.get("ajuste"):
         out.append(f"AJUSTE DE HOY: {extra['ajuste']}")
     out.append("ESCENAS (DICE = lo que se dice · VE = lo que se ve · PANTALLA = texto en pantalla · SONIDO)")
@@ -175,10 +254,20 @@ for fecha, hora, formato, gid, extra in P.PUBLICA:
         if not recs:
             continue
         r = max(recs)
-        candidatos = [x for x in (r + dt.timedelta(days=k) for k in range(1, (fecha - r).days)) if es_habil(x)]
+        candidatos = [x for x in (r + dt.timedelta(days=k) for k in range(1, (fecha - r).days)) if es_habil(x) and x not in (P.VIP, P.DIA_D)]
         pref = [x for x in candidatos if x <= fecha - dt.timedelta(days=2)]
         pref = [x for x in pref if x not in P.MEDIO_DIA] or pref
-        e = max(pref) if pref else (max(candidatos) if candidatos else r)  # nunca el mismo día de la grabación, salvo que no haya otro
+        opciones = pref or candidatos
+        # el día con menos ediciones ya asignadas; a igual carga, el más cercano a la publicación
+        if i.startswith("CAR"):
+            e = r  # el carrusel se arma y se revisa el mismo día
+        elif candidatos:
+            # 2 días antes si se puede; si ese día ya tiene 2 ediciones, el día anterior a la publicación
+            e = min(candidatos, key=lambda x: (len(EDITA.get(x, [])) >= 2, x not in opciones, len(EDITA.get(x, [])), -x.toordinal()))
+        elif es_habil(fecha) and r != fecha:
+            e = fecha  # se edita a la mañana y se publica a la noche (nunca el día de la inauguración)
+        else:
+            e = r
         EDITA.setdefault(e, []).append((i, fecha))
 
 PUBLICA_EN = {}
@@ -198,7 +287,9 @@ def semana_rutinas():
     for fs in semanas.values():
         if min(fs) != P.INICIO:  # el primer día (viernes 27/11) es de puesta a punto: no hay semana anterior que medir
             lunes.add(min(fs))
-        viernes.add(max(fs))
+        cierre = [x for x in fs if x not in (P.VIP, P.DIA_D, P.INICIO)]  # la noche VIP no lleva la rutina de cierre: se adelanta
+        if cierre:
+            viernes.add(max(cierre))
     return lunes, viernes
 
 
@@ -206,7 +297,7 @@ LUNES, VIERNES = semana_rutinas()
 
 
 def rutina_lunes(f):
-    t = ("Rutina del lunes (1 h): tablero de la semana anterior (alcance y % de Córdoba, salto a los 3 s, envíos por mensaje, comentarios con la palabra, "
+    t = ("Rutina de inicio de semana (1 h): tablero de la semana anterior (alcance y % de Córdoba, salto a los 3 s, envíos por mensaje, comentarios con la palabra, "
          "chats con código, turnos, ventas) · escucha de 30 min (comentarios, mensajes y preguntas de Mercado Libre: anotar las preguntas textuales para 'Respuesta a @') · "
          "cambiar a 'Escribinos por WhatsApp (link en la bio)' el comentario fijado de las piezas de hace más de 7 días")
     if f >= dt.date(2027, 1, 4):
@@ -217,8 +308,25 @@ def rutina_lunes(f):
     return t + "."
 
 
-RUTINA_VIERNES = ("Rutina del viernes: publicación en el Perfil de Google con la pieza de la semana · Mercado Libre: precio del día, video del modelo y preguntas pendientes · "
+RUTINA_VIERNES = ("Rutina de cierre de semana: publicación en el Perfil de Google con la pieza de la semana · Mercado Libre: precio del día, video del modelo y preguntas pendientes · "
                   "dejar listas las tomas y los autos de la próxima grabación.")
+
+
+def estado_whatsapp(gid):
+    """Lo que dice el estado de WhatsApp: ofrece lo que la pieza deja abierto para cada uno."""
+    g = GUION[gid]
+    texto = (g["pieza"] + " " + g["idea"]).lower()
+    if gid == "E08":
+        return "Si querés saber cuál entra en tu cochera, escribime"
+    if gid.startswith("CAR2") or re.search(r"cuota|financ|tasa|crédito|precio del aviso|aguinaldo", texto):
+        return "Si querés la cuota para tu caso, escribime"
+    if re.search(r"\bC\d", g.get("fuentes", "")):
+        return "Si querés la cuenta con tu caso, escribime"
+    if gid in ("E16", "E17", "E18", "E19", "V12"):
+        return "Te espero en el local nuevo: escribime y te paso la ubicación"
+    if g["objetivo"] == "Vender" or re.search(r"\b(eado|ora 0[35]|h6|h7|deepal|s05|cs55|jolion|outlander|l200|easy 3|tank)\b", texto + " " + g["aparece"].lower()):
+        return "Si querés verlo en persona, escribime y te paso un turno"
+    return "Si tenés una duda con tu caso, escribime"
 
 
 def todos_los_dias(f, pubs, idx):
@@ -226,12 +334,20 @@ def todos_los_dias(f, pubs, idx):
     if pubs:
         for hora, formato, gid, extra in pubs:
             out.append(f"Historias: a las {hora}, compartir la pieza de hoy. Después: {extra.get('historia', 'una pregunta sobre el tema del video')}")
-        out.append("Estado de WhatsApp: el mismo video + 'Si querés la cuenta con tu caso, escribime'.")
+        out.append(f"Estado de WhatsApp: el mismo video + '{estado_whatsapp(pubs[0][2])}'.")
     elif f not in (P.VIP, P.DIA_D):
         i = P.DATOS_HISTORIAS[idx % len(P.DATOS_HISTORIAS)]
         _, mod, dato, frase, tipo, fte, url, fecha, ojo = DATO[i]
         out.append(f"Historia del día: foto o video corto del {mod} con el dato \"{frase}\" ({fte}) y una encuesta. Más una del día a día del equipo.")
-    if f in P.FERIADOS or f.weekday() == 6:
+    if f == P.VIP:
+        out.append("Historias de la noche (solo personas con autorización): la llegada, un clip de 15 s de las palabras, el corte de cinta y el recorrido. Guardia de WhatsApp toda la noche.")
+        return "\n".join(out)
+    if f == P.DIA_D:
+        out.append("Historias cada hora: la apertura, las pruebas de manejo (sin patentes), la actividad de los chicos (con firma de los padres) y el aviso del vivo de las 11. Guardia de WhatsApp de 9 a 19 h.")
+        return "\n".join(out)
+    if f == P.DIA_D + dt.timedelta(days=1):
+        out.append("Guardia reforzada de WhatsApp de 10 a 13 h: las consultas de la inauguración no esperan al lunes.")
+    elif f in P.FERIADOS or f.weekday() == 6:
         out.append("Historias programadas; los mensajes se contestan a la mañana.")
     elif f.weekday() == 5:
         out.append("Guardia de WhatsApp de 9 a 13 h · responder comentarios.")
@@ -248,7 +364,7 @@ for f in dias():
     publica, guion, pegar, antes, link_msgs = [], [], [], [], []
     quien = set()
     for hora, formato, gid, extra in pubs:
-        g = GUION[gid]
+        g = pieza_del_dia(gid, extra)
         publica.append(f"{hora} · {formato}\n{g['objetivo'].upper()} · [{gid}] {g['pieza']}\n{g['formato']} · Aparece: {g['aparece']}")
         bloque = render_guion(g, extra)
         if extra.get("plan_b"):
@@ -273,17 +389,28 @@ for f in dias():
         g = GUION[gid]
         pub = PUBLICA_EN.get(gid)
         cuando = f" · sale el {DIAS[pub.weekday()].lower()} {pub.strftime('%d/%m')}" if pub else ""
-        graba.append(f"[{gid}] {g['pieza']}{cuando}\n   Aparece: {g['aparece']}\n   Tomas: {g['tomas']}" + (f"\n   Nota: {nota}" if nota else ""))
+        verbo = "SE ARMA" if gid.startswith("CAR") else "SE GRABA"
+        graba.append(f"{verbo} [{gid}] {g['pieza']}{cuando}\n   Aparece: {g['aparece']}\n   Tomas: {g['tomas']}" + (f"\n   Nota: {nota}" if nota else ""))
         quien.add("Contenido")
         for rol in ("Vendedor 1", "Vendedor 2", "Jefe de taller", "Técnico", "Dueño"):
             if rol.lower() in g["aparece"].lower():
                 quien.add(rol)
-    if graba and f.weekday() < 5:
+    ESPECIALES = {"E17", "E18", "E19", "E25", "E09", "E10", "D04", "D19a", "D19b", "E28", "V06"}
+    if graba and f.weekday() < 5 and any(gid not in ESPECIALES and not gid.startswith("CAR") and gid != "—" or gid == "—" for gid, _ in P.GRABA.get(f, [])):
         graba.insert(0, "Bloque de grabación 9 a 12 h (el de primer contacto no graba: sigue con WhatsApp). Vertical 4K, foco y exposición bloqueados, corbatero, 3 tomas de cada gancho.")
     edita = []
     for gid, pub in EDITA.get(f, []):
         g = GUION[gid]
-        edita.append(f"[{gid}] {g['pieza']} · sale el {DIAS[pub.weekday()].lower()} {pub.strftime('%d/%m')}: editar (subtítulos palabra por palabra, un cambio grande cada 2–3 s y algo que aparece cada 0,3 s, voz ×1,15, música 8 dB debajo de la voz, placa final con el logo dentro de la zona segura) y mandar al dueño la hoja de cuadros; se publica con su OK.")
+        cuando = f" · sale el {DIAS[pub.weekday()].lower()} {pub.strftime('%d/%m')}"
+        if gid.startswith("CAR"):
+            como = ("revisar las placas en el celular (1080x1350, texto legible, nada importante en el borde de abajo, 'deslizá →' chico abajo a la derecha en todas menos la última, "
+                    "logo sin caja en la última) y mandárselas al dueño; se publica con su OK.")
+        else:
+            animado = "elevenlabs" in g["aparece"].lower()  # 'animado con su voz' es la voz real del vendedor
+            voz = "voz de ElevenLabs ×1,15 sin cambiar el tono" if animado else "cortar silencios y respiraciones (sin acelerar la voz real)"
+            como = (f"editar (subtítulos palabra por palabra, {voz}, un cambio grande cada 2–3 s y algo que aparece cada 0,3 s, "
+                    "música 8 dB debajo de la voz, placa final con el logo dentro de la zona segura) y mandar al dueño la hoja de cuadros; se publica con su OK.")
+        edita.append(f"[{gid}] {g['pieza']}{cuando}: {como}")
         quien.add("Contenido")
     tareas = []
     if f in LUNES:
@@ -293,9 +420,11 @@ for f in dias():
         quien.update(x.strip() for x in resp.replace("+", ",").split(","))
     if f in VIERNES:
         tareas.append(RUTINA_VIERNES)
+    if f in LUNES or f in VIERNES:
+        quien.add("Contenido")
     fila.update(publica="\n\n".join(publica), guion="\n\n══════════\n\n".join(guion), pegar="\n\n".join(pegar),
                 antes="\n\n".join(antes), graba="\n\n".join(graba), edita="\n".join(edita), tareas="\n\n".join(tareas),
-                diario=todos_los_dias(f, pubs, idx_hist), quien=", ".join(sorted(quien)) or "Primer contacto (WhatsApp)",
+                diario=todos_los_dias(f, pubs, idx_hist), quien=", ".join(sorted(quien | {"Primer contacto"})),
                 mensaje=link_msgs[0] if link_msgs else "", gids=[p[2] for p in pubs])
     FILAS.append(fila)
 
@@ -429,17 +558,17 @@ def armar_md():
         titulo = f"{x['dia']} {f.strftime('%d/%m/%Y')}"
         w(f"## {titulo}" + (f" · {x['contexto']}" if x["contexto"] else "") + "\n")
         for (hora, formato, gid, extra) in PUB_POR_DIA.get(f, []):
-            g = GUION[gid]
+            g = pieza_del_dia(gid, extra)
             w(f"### Se publica: {hora} · [{gid}] {g['pieza']}\n")
             w(f"**{g['objetivo']}** · {formato} · {g['formato']} · Aparece: {g['aparece']}\n")
             w(f"**La idea:** {g['idea']}\n")
-            gb = extra.get("gancho_b") or g.get("gancho_b")
-            w(f"**Gancho (cuadro 0):** {g['gancho']}" + (f"  \n**Gancho B (para probar):** {gb}" if gb else "") + "\n")
+            ga, gb = ganchos(g, extra)
+            w(f"**Gancho (cuadro 0):** {ga}" + (f"  \n**Gancho B (para probar en un reel de prueba):** {gb}" if gb else "") + "\n")
             if extra.get("ajuste"):
                 w(f"**Ajuste de hoy:** {extra['ajuste']}\n")
             for gg in [g] + ([GUION[extra["plan_b"]]] if extra.get("plan_b") else []):
                 if gg is not g:
-                    w(f"**Plan B: [{gg['id']}] {gg['pieza']}** · {gg['formato']} · Aparece: {gg['aparece']}  \n**Gancho:** {gg['gancho']}\n")
+                    w(f"**Plan B: [{gg['id']}] {gg['pieza']}** · {gg['formato']} · Aparece: {gg['aparece']}  \n**Gancho (cuadro 0):** {ganchos(gg, {})[0]}\n")
                 w("| Momento | Qué se dice | Qué se ve | Texto en pantalla | Sonido |")
                 w("|---|---|---|---|---|")
                 for t, dice, ve, texto, sonido in gg["escenas"]:

@@ -29,7 +29,7 @@ CARRUSEL = "Carrusel (Instagram + Facebook)"
 # ---------------------------------------------------------------- piezas que no están en el banco
 CAR1 = v("CAR1", "¿Cuál se enchufa y cuál no? Los autos del salón", "Educar", TODOS, "Carrusel de clasificar",
          "Siete autos del salón en tres grupos: los que se enchufan, los que nunca se enchufan y los que solo se enchufan.",
-         "Carrusel 1080x1350 · 9 placas", "Sin personas (fotos propias del salón)",
+         "Carrusel 1080x1350 · 10 placas", "Sin personas (fotos propias del salón)",
          "¿CUÁL SE ENCHUFA? 7 AUTOS, 3 RESPUESTAS", "",
          [("Placa 1", "", "Los 7 autos en fila en el salón, foto propia, fondo limpio.", "¿CUÁL SE ENCHUFA? 7 AUTOS, 3 RESPUESTAS · deslizá →", ""),
           ("Placa 2", "", "Ícono de enchufe grande en bordó.", "SE ENCHUFAN (HÍBRIDOS ENCHUFABLES): EL DÍA A DÍA EN ELÉCTRICO Y, SI SE ACABA LA BATERÍA, SIGUEN A NAFTA", ""),
@@ -38,8 +38,9 @@ CAR1 = v("CAR1", "¿Cuál se enchufa y cuál no? Los autos del salón", "Educar"
           ("Placa 5", "", "Ícono de enchufe tachado.", "NUNCA SE ENCHUFAN (HÍBRIDOS): SE CARGAN SOLOS AL FRENAR · GWM ORA 05 · HAVAL H6 PRO HEV · HAVAL JOLION HEV", ""),
           ("Placa 6", "", "H6 en la ciudad.", "DATO: LA H6 GASTA 4,3 L CADA 100 KM EN CIUDAD Y 5,8 EN RUTA* · *según la marca", ""),
           ("Placa 7", "", "Ícono de rayo.", "SOLO SE ENCHUFAN (ELÉCTRICOS): CERO NAFTA · GWM ORA 03 · JMEV EASY 3 · LOS DOS HICIERON ~285 KM EN PRUEBAS DE LA PRENSA", ""),
-          ("Placa 8", "", "Tres íconos: cochera, ciudad, ruta.", "¿CUÁL TE CONVIENE? COCHERA + CIUDAD → ENCHUFABLE O ELÉCTRICO · SIN COCHERA → HÍBRIDO · LO HONESTO: SIN DÓNDE CARGAR, UN ENCHUFABLE NO CONVIENE", ""),
-          ("Placa 9", "", "Logo chico, fondo papel.", "PEDINOS PRECIO Y FINANCIACIÓN · COMENTÁ TIPO", "")],
+          ("Placa 8", "", "Tres íconos: cochera, ciudad, ruta.", "¿CUÁL TE CONVIENE? COCHERA + CIUDAD → ENCHUFABLE O ELÉCTRICO · SIN COCHERA → HÍBRIDO", ""),
+          ("Placa 9", "", "Fondo bordó, letras blancas.", "LO HONESTO: SI NO TENÉS DÓNDE CARGARLO, UN ENCHUFABLE NO TE CONVIENE", ""),
+          ("Placa 10", "", "Logo chico, fondo papel.", "PEDINOS PRECIO Y FINANCIACIÓN · COMENTÁ TIPO", "")],
          "Fotos propias de los 7 autos (mismo encuadre de 3/4 de frente, fondo limpio, sin patentes) · íconos simples.",
          "¿Cuál se enchufa y cuál no? Se enchufan (híbridos enchufables): Changan Eado Plus, CS55 Plus y Deepal S05. Nunca se enchufan (híbridos): GWM ORA 05, Haval H6 PRO HEV y Jolion HEV. Solo se enchufan (eléctricos): GWM ORA 03 y JMEV Easy 3. Datos según las marcas y pruebas de Parabrisas. Guardalo para cuando cambies el auto. Si querés precio y cuota, comentá TIPO. Córdoba.",
          "#hibrido #autoelectrico #hibridoenchufable #autos #AutosCordoba", "TIPO",
@@ -52,10 +53,10 @@ CAR2 = v("CAR2", "Precios de enero: un modelo por placa", "Vender", f"{KM}; {FAM
          "Carrusel 1080x1350 · 8–10 placas", "Sin personas (fotos propias)",
          "¿CUÁNTO SALE CADA UNO EN ENERO?", "",
          [("Placa 1", "", "4 autos del salón recortados, fondo papel.", "¿CUÁNTO SALE CADA UNO EN ENERO? · deslizá →", ""),
-          ("Placa 2", "", "JMEV Easy 3, foto propia.", "JMEV EASY 3 · CON LO QUE SALE UN TANQUE, LO CARGÁS ~8 VECES* · CONTADO $[..] · SIN IMP. NAC. $[..] · CUOTA DE EJEMPLO $[..] · CFTEA [..] %", ""),
+          ("Placa 2", "", "JMEV Easy 3, foto propia.", "JMEV EASY 3 · 1 TANQUE = ~8 CARGAS* · CONTADO $[..] · SIN IMP. NAC. $[..] · CUOTA $[..] · CFTEA [..] %", ""),
           ("Placa 3", "", "Changan Eado Plus.", "CHANGAN EADO PLUS · SE ENCHUFA: HASTA 132 KM SIN NAFTA* · CONTADO $[..] · SIN IMP. NAC. $[..] · CUOTA $[..] · CFTEA [..] %", ""),
           ("Placa 4", "", "Haval Jolion HEV.", "HAVAL JOLION HEV · HÍBRIDO, ~800 KM POR TANQUE* · CONTADO $[..] · SIN IMP. NAC. $[..] · CUOTA $[..] · CFTEA [..] %", ""),
-          ("Placa 5", "", "Changan CS55 Plus.", "CHANGAN CS55 PLUS · SUV QUE SE ENCHUFA: 21,7 KM/L EN CIUDAD SIN CARGARLA* · CONTADO $[..] · SIN IMP. NAC. $[..] · CUOTA $[..] · CFTEA [..] %", ""),
+          ("Placa 5", "", "Changan CS55 Plus.", "CHANGAN CS55 PLUS · 21,7 KM/L SIN CARGARLA* · CONTADO $[..] · SIN IMP. NAC. $[..] · CUOTA $[..] · CFTEA [..] %", ""),
           ("Placa 6", "", "GWM ORA 03.", "GWM ORA 03 · ELÉCTRICO, ~285 KM REALES* · CONTADO $[..] · SIN IMP. NAC. $[..] · CUOTA $[..] · CFTEA [..] %", ""),
           ("Placa 7", "", "Haval H6 PRO HEV.", "HAVAL H6 PRO HEV · NUNCA SE ENCHUFA · 7 AÑOS DE GARANTÍA* · CONTADO $[..] · SIN IMP. NAC. $[..] · CUOTA $[..] · CFTEA [..] %", ""),
           ("Placa 8", "", "Texto chico.", "*Datos según la marca o pruebas de la prensa (ver descripción). Placa legal completa en cada modelo.", ""),
@@ -67,22 +68,23 @@ CAR2 = v("CAR2", "Precios de enero: un modelo por placa", "Vender", f"{KM}; {FAM
          dificultad="Fácil", por_que="En el pico de enero, el que ya decidió busca precio: el carrusel se guarda, se comparte y alimenta el anuncio de retargeting.",
          honesto="Las cuotas de ejemplo dependen del anticipo y del día: el CFT de cada una está en la placa.", fuentes="C15V, EADO-1, JOLION-3, CS55-1, ORA03-2, H6-7")
 
-RESPUESTA_1 = v("D19a", "Respuesta a @: la pregunta que más se repitió en el video de los 3 autos", "Educar", f"{ELEC}; {KM}", "Respuesta a un comentario real",
-                "El vendedor contesta en video la pregunta más repetida de los 142 comentarios del explicador EV/PHEV/HEV (121.800 reproducciones), con el comentario arriba.",
-                "Reel o TikTok 25–40 s con la función 'responder con video'", "Vendedor 1",
-                "El comentario real en pantalla (lo pone la función de responder)", "ME PREGUNTARON ESTO 142 VECES",
-                [("0–2 s", "[Lee el comentario tal cual.]", "La burbuja del comentario real arriba.", "[COMENTARIO]", "Pop"),
-                 ("2–5 s", "Buena pregunta. Te lo muestro con el auto adelante.", "Camina hacia el auto que responde la pregunta.", "TE LO MUESTRO", "Whoosh"),
-                 ("5–22 s", "Respuesta lista según la pregunta: (a) '¿Cuánto dura la batería?' → 'La garantía de la batería es de 8 años o 150.000 kilómetros en el eléctrico y en el híbrido de esta marca.' (b) '¿Y si no tengo cochera?' → 'Entonces no te compres uno que se enchufa: comprate el híbrido que nunca se enchufa.' (c) '¿Cuánto sale?' → 'Hoy, [precio en pesos]. Abajo, la cuota con todos los datos.'",
-                  "(a) La tapa de carga y el papel de la garantía. (b) El híbrido sin cable al lado del enchufable. (c) La placa de precio con legal.", "(a) BATERÍA: 8 AÑOS* (b) SIN COCHERA → HÍBRIDO (c) $[PRECIO]", "Pop en el dato"),
-                 ("22–27 s", "Lo que depende: [dicho de frente, por ejemplo 'la garantía tiene condiciones: pedilas por escrito'].", "El vendedor a cámara.", "LO QUE DEPENDE", "Golpe"),
-                 ("27–32 s", CTA + " Dejame tu pregunta y te contesto en el próximo.", "Logo chico.", "¿TU PREGUNTA? COMENTALA", "")],
-                "Vendedor al lado del auto que responde · el comentario real (lo muestra la función de responder) · si es la (c), placa de precio.",
-                "Nos preguntaron: '[comentario]'. [Respuesta en una línea con su fuente.] Dejá tu pregunta y la contestamos en el próximo video. Córdoba.",
-                "#preguntas #autoelectrico #hibrido #autos #AutosCordoba", "PREGUNTA",
-                ojo="El sábado 28/11 se exportan y clasifican los 142 comentarios (precio, técnica, opinión, zona). Se contesta la pregunta más repetida, con las palabras del que la hizo. Si es (c), va la placa legal 5 s.",
-                dificultad="Fácil", por_que="Convierte la duda real de un video que ya funcionó en otro video, con contexto desde el cuadro 0 (en Perú, un 'Respuesta a @' sobre Changan pasó las 750.000).",
-                honesto="Si la respuesta es 'depende', se dice de qué depende.", fuentes="ORA03-4, ORA05-7, GEN-2")
+RESPUESTA_1 = v("D19a", "Respuesta a @: '¿y cuánto dura la batería?'", "Educar", f"{ELEC}; {KM}", "Respuesta a un comentario real",
+                "El vendedor contesta en video, con el comentario arriba, la duda que más aparece en los videos de autos que se enchufan: cuánto dura la batería. La respuesta está en la garantía.",
+                "Reel o TikTok con la función 'responder con video'", "Vendedor 1",
+                "El comentario real en pantalla (lo pone la función de responder)", "¿CUÁNTO DURA LA BATERÍA? ME LO PREGUNTARON ACÁ",
+                [("0–2 s", "Me preguntaron cuánto dura la batería.", "La burbuja del comentario real arriba; el vendedor al lado de la tapa de carga.", "[COMENTARIO REAL]", "Pop"),
+                 ("2–5 s", "Te lo muestro en un papel. Al final, lo que tenés que pedir.", "El vendedor levanta el papel de la garantía.", "AL FINAL: QUÉ PEDIR", "Pop"),
+                 ("5–11 s", "No es como la del celular: está hecha para durar más, y tiene refrigeración propia.", "Un celular viejo al 40 % contra el dibujo de la batería del auto con líneas de frío.", "NO ES LA DEL CELULAR", "Pop"),
+                 ("11–18 s", "Por eso la garantía de la batería es de 8 años o 150.000 kilómetros. Lo que pase primero.", "El papel de la garantía en primer plano; '8 AÑOS' se marca en bordó.", "BATERÍA: 8 AÑOS O 150.000 KM*", "Impacto"),
+                 ("18–23 s", "Ocho años es más de lo que mucha gente se queda con un auto.", "Un almanaque que pasa 8 años de golpe.", "8 AÑOS", "Tic"),
+                 ("23–28 s", "Lo honesto: la garantía tiene condiciones. Pedilas por escrito antes de comprar.", "El vendedor a cámara.", "PEDÍ LAS CONDICIONES POR ESCRITO", "Golpe"),
+                 ("28–33 s", CTA + " Dejame tu pregunta y te contesto en el próximo.", "Logo chico.", "¿TU PREGUNTA? COMENTALA", "")],
+                "Vendedor al lado del auto que se enchufa · papel de garantía real del modelo · celular viejo · el comentario real (lo muestra la función de responder).",
+                "Nos preguntaron cuánto dura la batería. La respuesta está en la garantía: 8 años o 150.000 km en la batería del GWM ORA 03, del ORA 05 y del Deepal S05, y en el sistema híbrido del Changan Eado Plus (lo que ocurra primero, según cada marca). Pedí las condiciones por escrito. Mandáselo a quien tiene miedo de que la batería se gaste. Dejá tu pregunta y la contestamos en el próximo video. Córdoba.",
+                "#bateria #autoelectrico #hibridoenchufable #garantia #AutosCordoba", "PREGUNTA",
+                ojo="El 28/11 se exportan y clasifican los 142 comentarios del video EV/PHEV/HEV. Si la pregunta más repetida no es la de la batería, se responde esa con las mismas escenas y una de estas respuestas: '¿Y si no tengo cochera?' → 'Entonces no te compres uno que se enchufa: comprate el híbrido que nunca se enchufa' (D22); '¿Cuánto sale?' → precio del día con la placa legal 5 s; '¿Y en la ruta?' → la del video de la batería en la ruta (D29). Usar un comentario real, con las palabras de quien lo hizo.",
+                dificultad="Fácil", por_que="Convierte la duda real de un video que ya funcionó en otro video, con contexto desde el cuadro 0 (en Perú, un 'Respuesta a @' sobre Changan pasó las 750.000 reproducciones).",
+                honesto="La garantía de la batería tiene condiciones: pedilas por escrito.", fuentes="ORA03-4, ORA05-7, DEEPAL-4, EADO-12")
 
 RESPUESTA_2 = v("D19b", "Respuesta a @: la duda del verano", "Educar", f"{KM}; {FAM}", "Respuesta a un comentario real",
                 "La pregunta que más se repitió en los comentarios de enero y febrero, contestada en video por el vendedor.",
@@ -90,13 +92,13 @@ RESPUESTA_2 = v("D19b", "Respuesta a @: la duda del verano", "Educar", f"{KM}; {
                 "El comentario real en pantalla", "ME PREGUNTARON ESTO",
                 [("0–2 s", "[Lee el comentario tal cual.]", "La burbuja del comentario real arriba.", "[COMENTARIO]", "Pop"),
                  ("2–5 s", "Te lo muestro, no te lo cuento.", "Camina hacia la prueba (auto, taller, cargador o papel).", "TE LO MUESTRO", "Whoosh"),
-                 ("5–22 s", "[Respuesta corta con un dato de la ficha oficial o de una prueba de la prensa, con su fuente.] Si la pregunta es de autonomía, usar el número medido en el video de los 132 km. Si es de repuestos, el video de los días que tardó el repuesto.", "Un corte cada 2 s sobre lo que prueba la respuesta.", "[DATO + FUENTE CHICA]", "Pop en el dato"),
+                 ("5–22 s", "[Respuesta corta, con un dato con fuente y mostrando la prueba.]", "Un corte cada 2 s sobre lo que prueba la respuesta.", "[DATO + FUENTE CHICA]", "Pop en el dato"),
                  ("22–27 s", "[Lo que no sabemos o depende.]", "El vendedor a cámara.", "LO QUE DEPENDE", "Golpe"),
                  ("27–32 s", CTA + " Dejame tu pregunta y te contesto en el próximo.", "Logo chico.", "¿TU PREGUNTA? COMENTALA", "")],
                 "Vendedor al lado de la prueba de la respuesta.",
                 "Nos preguntaron: '[comentario]'. [Respuesta con su fuente.] Dejá tu pregunta y la contestamos en el próximo video. Córdoba.",
                 "#preguntas #0km #autos #concesionaria #AutosCordoba", "PREGUNTA",
-                ojo="Solo preguntas reales. Elegir la que más se repitió en la escucha de los lunes de enero y febrero.",
+                ojo="Solo preguntas reales. Elegir la que más se repitió en la escucha de los lunes de enero y febrero. Si es de autonomía, usar el número medido el 6/1 (E25); si es de repuestos, los días que tardó el repuesto (D04); si es de precio, la placa legal 5 s.",
                 dificultad="Fácil", por_que="Cada pregunta real repetida es un video que ya tiene público esperando la respuesta.",
                 honesto="Si la respuesta es 'depende', se dice de qué depende.", fuentes="Comentarios reales de la cuenta")
 
@@ -107,63 +109,63 @@ EXTRA = {g["id"]: g for g in (CAR1, CAR2, RESPUESTA_1, RESPUESTA_2)}
 PRECIO_PRIMERO = "Formato 'te lo cuento': el precio del día en la primera frase. Probarlo como reel de prueba (Instagram lo muestra a no seguidores) contra el gancho A y quedarse con el de menos salto a los 3 s."
 PUBLICA = [
     (d(2026, 11, 30), "12:30", CARRUSEL, "CAR1", dict(historia="Encuesta: '¿Tu próximo auto: se enchufa o no?' (Sí / No / No sé). A los que digan 'No sé', mandarles el carrusel por mensaje.")),
-    (d(2026, 12, 1), "19:30", REEL, "D26", dict(ajuste="Las clausuras de agencias en Córdoba fueron noticia en noviembre: decir 'este mes' en vez de 'en noviembre' si se publica antes del 5/12.",
-                                                 historia="Quiz: '¿Qué tenés que pedir por escrito antes de la seña? Fecha de entrega / Precio final / Las dos' (la correcta: las dos).")),
-    (d(2026, 12, 2), "19:30", REEL, "D28", dict(historia="Encuesta: '¿Que no tenga rueda de auxilio te cambia la decisión?' (Sí / No). Responder a cada 'Sí' por mensaje con lo que trae en su lugar.")),
-    (d(2026, 12, 3), "19:30", REEL, "V01", dict(gancho_b="[PRECIO EN PESOS]: ESO SALE HOY UN AUTO QUE SE ENCHUFA. ¿CUÁL ES? TE LO CUENTO",
+    (d(2026, 12, 1), "19:30", REEL, "D26", dict(historia="Quiz: '¿Qué tenés que pedir por escrito antes de la seña? Fecha de entrega / Precio final / Las dos' (la correcta: las dos).")),
+    (d(2026, 12, 9), "19:30", REEL, "D28", dict(historia="Encuesta: '¿Que no tenga rueda de auxilio te cambia la decisión?' (Sí / No). Responder a cada 'Sí' por mensaje con lo que trae en su lugar.")),
+    (d(2026, 12, 3), "19:30", REEL, "V01", dict(gancho_b="[PRECIO EN PESOS]: UN AUTO QUE SE ENCHUFA. ¿CUÁL ES?",
                                                  historia="Pregunta: '¿Cuántos km hacés por día? Te hago la cuenta de la nafta' → contestar a cada uno por mensaje con su cuenta (km × 22 × 8 ÷ 100 × precio de la nafta).")),
     (d(2026, 12, 5), "19:30", REEL, "E16", dict(historia="Caja de preguntas: '¿Dónde creés que queda el nuevo Valparaiso?' + cuenta regresiva al sábado 19/12.")),
-    (d(2026, 12, 7), "19:30", REEL, "D01", dict(ajuste="Es fin de semana largo: mucha gente piensa compras grandes. Mantener el guion.",
+    (d(2026, 12, 7), "19:30", REEL, "D01", dict(
                                                  historia="Encuesta: '¿Cambiás el auto ahora o en enero?'")),
-    (d(2026, 12, 9), "19:30", REEL, "D06", dict(historia="Pregunta: '¿Cuántos km hacés por mes? Te digo cuánto gastarías de luz' → responder por mensaje con la cuenta (km × 16,7 ÷ 100 × precio del kWh).")),
+    (d(2026, 12, 2), "19:30", REEL, "D06", dict(historia="Pregunta: '¿Cuántos km hacés por mes? Te digo cuánto gastarías de luz' → responder por mensaje con la cuenta (km × 16,7 ÷ 100 × precio del kWh).")),
     (d(2026, 12, 10), "19:30", REEL, "V12", dict(ajuste="Faltan 9 días. Si la fachada todavía no está lista, se graba el equipo con el cartel y la calle, nunca imágenes generadas.",
                                                   historia="Sticker de cuenta regresiva al sábado 19/12 + sticker de enlace 'Pedí tu turno de prueba' (código TURNO).")),
     (d(2026, 12, 12), "19:30", REEL, "E08", dict(historia="Pregunta: '¿Cuánto mide tu cochera?' → responder qué auto entra.")),
     (d(2026, 12, 14), "19:30", REEL, "E17", dict(ajuste="Faltan 5 días: cerrar con 'el sábado te lo mostramos'. Plan B si el salón no está listo el fin de semana: se publica una cuenta regresiva con el equipo y el cartel, y el acelerado de vacío a lleno se filma el 19 a la mañana y va dentro de 'Así fue' (21/12).", historia="Cuenta regresiva + historias del armado (con el equipo, sin clientes).")),
     (d(2026, 12, 16), "19:30", REEL, "V13", dict(ajuste="Faltan 3 días: decir el día y el horario reales.", historia="Sticker de enlace 'Turno de prueba para el sábado' (código TURNO). Mostrar cuántos turnos quedan, si es real.")),
-    (d(2026, 12, 17), "19:30", REEL, "D18", dict(ajuste="El aguinaldo vence mañana (18/12): 'si cobrás el aguinaldo esta semana'.",
+    (d(2026, 12, 17), "19:30", REEL, "D18", dict(cambios=[("Te adelanto: solo, no. Pero al final te muestro con qué sí.", "Te adelanto: solo, no. Pero si lo cobrás esta semana, al final te muestro con qué sí.")],
                                                   historia="Encuesta: '¿El aguinaldo va a: vacaciones / auto / ahorro?' A los que digan 'auto', mensaje con un ejemplo de anticipo y cuota con CFT.")),
     (d(2026, 12, 21), "19:30", REEL, "E18", dict(historia="Las mejores fotos del día abierto (solo con autorización) + 'Gracias, Córdoba'.")),
-    (d(2026, 12, 23), "19:30", REEL, "D23", dict(ajuste="Se publica justo antes de que la gente salga de vacaciones: cerrar con 'antes de salir a la ruta'.",
+    (d(2026, 12, 23), "19:30", REEL, "D23", dict(cambios=[("Antes de viajar: aprendé a usar el kit", "Antes de salir a la ruta: aprendé a usar el kit")],
                                                   historia="Encuesta: '¿Sabés si tu auto tiene rueda de auxilio o kit? Sí / No sé'. A los 'No sé': 'pasá y te lo mostramos'.")),
     (d(2026, 12, 24), "10:00", REEL, "E19", dict(historia="Horario de fiestas fijo en una historia destacada.")),
     (d(2026, 12, 26), "19:30", REEL, "E06", dict(historia="Pregunta: '¿A dónde te vas de vacaciones?' (sirve para el próximo 'Respuesta a @').")),
     (d(2026, 12, 28), "19:30", REEL, "D11", dict(historia="Quiz: '¿Cuánto más pagás por pasada en la cabina que con TelePEAJE? $500 / $1.068 / $2.000' (la correcta: $1.068).")),
     (d(2026, 12, 30), "19:30", REEL, "E27", dict(historia="Encuesta: '¿Cuánto creés que gastás cada 100 km?' (menos de $10.000 / entre 10 y 17 mil / más).")),
-    (d(2027, 1, 2), "19:30", REEL, "D29", dict(ajuste="Mucha gente está en la ruta este fin de semana. Cerrar con 'mandáselo a quien se va de vacaciones'.",
+    (d(2027, 1, 2), "19:30", REEL, "D29", dict(cambios=[("¿Conocés a alguien con miedo a quedarse tirado? Mandáselo.", "¿Conocés a alguien que se va de vacaciones con miedo a quedarse tirado? Mandáselo.")],
                                                 historia="Encuesta: '¿Te da miedo quedarte sin batería en la ruta?' (Sí / No).")),
     (d(2027, 1, 4), "19:30", REEL, "V11", dict(ajuste="Primera semana del pico de enero. PLAN B si el 28/12 no hay condición confirmada por escrito (sin placa legal de promo): gancho 'SI ESPERASTE A ENERO PARA CAMBIAR EL AUTO' · 'Esta semana, en el local nuevo: te tasamos tu auto en el día, por escrito y con fecha' · 'y lo manejás antes de decidir, con turno de 30 minutos' · 'Pedinos precio y financiación de cualquiera de nuestros autos. Comentá APERTURA.'", historia="Sticker de enlace con APERTURA + cuenta regresiva al último día de la promo.")),
-    (d(2027, 1, 6), "19:30", REEL, "E09", dict(ajuste="El festival de Jesús María arranca mañana (del 7 al 17/1): sumar 'si vas al festival' en la primera frase y en la descripción. No usar el nombre ni el logo del festival como si fueran socios.",
+    (d(2027, 1, 6), "19:30", REEL, "E09", dict(ajuste="El festival de Jesús María arranca mañana (del 7 al 17/1): por eso el cuadro 0 y la descripción dicen 'si vas al festival' (la voz del gancho no cambia). No usar el nombre ni el logo del festival como si fueran socios.",
+             cambios=[("¿CUÁNTO GASTÁS?", "SI VAS AL FESTIVAL: ¿CUÁNTO GASTÁS?"), ("¿Cuánto gastás para ir a Jesús María y volver?", "Si vas al festival: ¿cuánto gastás para ir a Jesús María y volver?")],
                                                 historia="Quiz: '¿Cuánto sale ir a Jesús María y volver a nafta? $8.000 / $19.400 / $30.000'.")),
     (d(2027, 1, 7), "19:30", REEL, "V14", dict(gancho_b="[PRECIO EN PESOS]: UNA SUV FAMILIAR QUE SE ENCHUFA. ¿CUÁL ES? TE LO CUENTO",
                                                 historia="Caja de preguntas: '¿Qué querés saber de esta SUV?' → las respuestas van a 'Respuesta a @'.")),
     (d(2027, 1, 8), "12:30", CARRUSEL, "CAR2", dict(historia="Sticker de enlace 'Tu cuota por WhatsApp' (código CUOTA).")),
-    (d(2027, 1, 9), "19:30", REEL, "E02", dict(ajuste="Usar el precio del ticket real del café del video y rehacer las tres cuentas con ese número.", historia="Quiz: '¿Cuántos km hace un eléctrico con lo que sale un café? 23 / 36 / 65' (la correcta: 65).")),
+    (d(2027, 1, 16), "19:30", REEL, "E02", dict(ajuste="Usar el precio del ticket real del café del video y rehacer las tres cuentas con ese número.", historia="Quiz: '¿Cuántos km hace un eléctrico con lo que sale un café? 23 / 36 / 65' (la correcta: 65).")),
     (d(2027, 1, 11), "19:30", REEL, "D19a", dict(historia="Caja de preguntas: 'Preguntame lo que quieras del auto que se enchufa'.")),
     (d(2027, 1, 13), "19:30", REEL, "D02", dict(historia="Encuesta: '¿Enchufe o nafta?' y después, en otra historia, el veredicto del video.")),
-    (d(2027, 1, 14), "19:30", REEL, "V15", dict(gancho_b="$[PRECIO EN PESOS]: UNO DE LOS 0 KM ELÉCTRICOS MÁS BARATOS. TE LO MUESTRO",
+    (d(2027, 1, 14), "19:30", REEL, "V15", dict(gancho_b="[PRECIO EN PESOS]: UN 0 KM ELÉCTRICO PARA LA CIUDAD. TE LO MUESTRO",
                                                  historia="Encuesta: '¿Lo usarías solo para la ciudad?' (Sí / No).")),
-    (d(2027, 1, 16), "19:30", REEL, "E25", dict(historia="Quiz antes de verlo: '¿Cuántos km eléctricos creés que hizo?' (3 opciones alrededor del número real). Al otro día, la respuesta.")),
+    (d(2027, 1, 9), "19:30", REEL, "E25", dict(historia="Quiz antes de verlo: '¿Cuántos km eléctricos creés que hizo?' (3 opciones alrededor del número real). Al otro día, la respuesta.")),
     (d(2027, 1, 18), "19:30", REEL, "D21", dict(ajuste="Actualizar el ejemplo de CFT con una financiación vigente ese día (la del 26/11 ya venció).",
                                                  historia="Quiz: 'Tasa 0 %: ¿el costo total puede pasar el 40 %? Sí / No' (la correcta: sí).")),
-    (d(2027, 1, 20), "19:30", REEL, "D24", dict(ajuste="Sumar el número que medimos del Eado (video del 16/1) como cuarto par: '132 dice la ficha, [N] medimos nosotros'.",
-                                                 historia="Encuesta: '¿Creías que el número del folleto era el real?'")),
-    (d(2027, 1, 21), "19:30", REEL, "E10", dict(ajuste="El festival de Cosquín arranca el sábado 23 (hasta el 31/1). Sumar 'si vas a Cosquín este finde' en la primera frase. Sin usar nombre ni logo del festival como socio.",
+    (d(2027, 1, 27), "19:30", REEL, "D24", dict(historia="Encuesta: '¿Creías que el número del folleto era el real?'")),
+    (d(2027, 1, 21), "19:30", REEL, "E10", dict(ajuste="El festival de Cosquín arranca el sábado 23 (hasta el 31/1): por eso el cuadro 0 y la descripción dicen 'si vas este finde' (la voz del gancho no cambia). Sin usar el nombre ni el logo del festival como si fueran socios.",
+             cambios=[("¿SIN NAFTA A COSQUÍN?", "SI VAS ESTE FINDE: ¿SIN NAFTA A COSQUÍN?"), ("¿Se puede ir a Cosquín y volver sin gastar nafta?", "Si vas este finde: ¿se puede ir a Cosquín y volver sin gastar nafta?")],
                                                  historia="Cuenta regresiva al sábado 23/1 + 'en Cosquín hay un cargador público de la provincia'.")),
     (d(2027, 1, 23), "19:30", REEL, "V19", dict(gancho_b="[PRECIO EN PESOS]: 7 ASIENTOS, HECHA EN JAPÓN. TE LA MUESTRO",
                                                  historia="Pregunta: '¿Cuántos son en tu familia?' → a los de 5 o más, mensaje con la Outlander.")),
     (d(2027, 1, 25), "19:30", REEL, "D13", dict(historia="Caja de preguntas: '¿Qué te cobraron aparte la última vez que compraste un auto?'")),
-    (d(2027, 1, 27), "19:30", REEL, "D22", dict(historia="Encuesta: '¿Tenés cochera con enchufe?' (Sí / No). Sirve para saber a quién ofrecerle enchufable y a quién híbrido.")),
+    (d(2027, 1, 20), "19:30", REEL, "D22", dict(historia="Encuesta: '¿Tenés cochera con enchufe?' (Sí / No). Sirve para saber a quién ofrecerle enchufable y a quién híbrido.")),
     (d(2027, 1, 28), "19:30", REEL, "V16", dict(gancho_b="[PRECIO EN PESOS]: UNA SUV QUE SE ENCHUFA Y TIENE PUERTAS SIN MARCO",
                                                  historia="Encuesta: '¿Puertas sin marco: te gustan?' (Sí / No).")),
     (d(2027, 1, 30), "19:30", REEL, "E01", dict(historia="Quiz: '¿En cuántos segundos llega a 100 este híbrido? 12 / 10 / menos de 8'.")),
-    (d(2027, 2, 1), "19:30", REEL, "E12", dict(ajuste="Febrero arranca liviano: identidad cordobesa y humor que sale de la prueba, sin promo.",
+    (d(2027, 2, 1), "19:30", REEL, "E12", dict(
                                                 historia="Encuesta: '¿Le entendió al cordobés?' (Sí / No) y la toma del pedido que falló.")),
     (d(2027, 2, 3), "19:30", REEL, "D03", dict(historia="Caja de preguntas: '¿Qué te preocupa de comprar un auto chino?' → las respuestas van a 'Respuesta a @'.")),
     (d(2027, 2, 4), "19:30", REEL, "V21", dict(ajuste="Usar la financiación en pesos vigente ese día.", historia="Pregunta: '¿Cuánto podés poner de anticipo?' → responder por mensaje con un ejemplo con CFT.")),
-    (d(2027, 2, 6), "19:30", REEL, "E07", dict(ajuste="Fin de semana largo de Carnaval: '¿entra el asado del finde largo para 15?'.", historia="Pregunta: '¿Qué no puede faltar en tu asado?'")),
+    (d(2027, 2, 6), "19:30", REEL, "E07", dict(cambios=[("¿ENTRA EL ASADO PARA 15?", "FINDE LARGO: ¿ENTRA EL ASADO PARA 15?"), ("¿Entra el asado del domingo para 15?", "Finde largo: ¿entra el asado del domingo para 15?")], historia="Pregunta: '¿Qué no puede faltar en tu asado?'")),
     (d(2027, 2, 10), "19:30", REEL, "D04", dict(historia="Quiz: '¿Cuántos días creés que tardó el repuesto? 3 / 10 / 30' (al otro día, la respuesta real).")),
-    (d(2027, 2, 11), "19:30", REEL, "V02", dict(gancho_b="[PRECIO EN PESOS]: UN SUV HÍBRIDO QUE NUNCA SE ENCHUFA. TE LO MUESTRO",
+    (d(2027, 2, 11), "19:30", REEL, "V02", dict(gancho_b="[PRECIO EN PESOS]: UNA SUV HÍBRIDA QUE NUNCA SE ENCHUFA. TE LO MUESTRO",
                                                  historia="Encuesta: '¿Manejás más en ciudad o en ruta?'")),
     (d(2027, 2, 13), "19:30", REEL, "E03", dict(historia="Quiz: '¿Qué había debajo del auto?' (piedra / juguete / nada).")),
     (d(2027, 2, 15), "19:30", REEL, "D19b", dict(historia="Caja de preguntas nueva para el próximo 'Respuesta a @'.")),
@@ -173,41 +175,45 @@ PUBLICA = [
                                                  historia="Pregunta: '¿Qué cargás en la chata?'")),
     (d(2027, 2, 20), "19:30", REEL, "E28", dict(plan_b="E15", ajuste="Si no se cerró la colaboración con el creador, sale el plan B (E15, 'Primera vez en un eléctrico').",
                                                  historia="Compartir la publicación en colaboración (o el plan B) con una encuesta: '¿Lo probarías?'")),
-    (d(2027, 2, 22), "19:30", REEL, "V17", dict(gancho_b="[PRECIO EN PESOS]: EL HÍBRIDO MÁS ACCESIBLE DE LA MARCA. TE LO MUESTRO",
+    (d(2027, 2, 22), "19:30", REEL, "V17", dict(gancho_b="[PRECIO EN PESOS]: ¿A BUENOS AIRES CON UN SOLO TANQUE? TE LO MUESTRO",
                                                  historia="Encuesta: '¿Ciudad o ruta?'")),
     (d(2027, 2, 24), "19:30", REEL, "D27", dict(historia="Encuesta: '¿Te frena pensar que la marca se puede ir?' (Sí / No).")),
-    (d(2027, 2, 25), "19:30", REEL, "V08", dict(ajuste="La gente vuelve de vacaciones y las empresas planean el año.", historia="Pregunta: '¿Cuántos autos tiene tu empresa?' → mensaje con la cuenta de su flota.")),
-    (d(2027, 2, 27), "19:30", REEL, "E23", dict(ajuste="Cierra los tres meses: cada mito ya tuvo su video (la batería, la trifásica, el folleto); sumar al final 'todos los videos están en el perfil'.", historia="Quiz con uno de los mitos del video y link a los videos destacados.")),
+    (d(2027, 2, 25), "19:30", REEL, "V08", dict(historia="Pregunta: '¿Cuántos autos tiene tu empresa?' → mensaje con la cuenta de su flota.")),
+    (d(2027, 2, 27), "19:30", REEL, "E23", dict(ajuste="Cierra los tres meses: antes de publicar, armar en el perfil la historia destacada 'Mitos' con los videos de la batería (2/1), el folleto (27/1) y la trifásica (17/2).",
+             cambios=[("¿Cuántas acertaste? Mandáselo", "¿Cuántas acertaste? Cada mito tiene su video en el perfil. Mandáselo"), ("¿Cuántas acertaste? Córdoba.", "¿Cuántas acertaste? Cada mito tiene su video en el perfil. Córdoba.")], historia="Quiz con uno de los mitos del video y link a los videos destacados.")),
 ]
+
+PUBLICA.sort(key=lambda x: x[0])
 
 # ---------------------------------------------------------------- qué se graba o se arma (fecha → [(id, nota)])
 GRABA = {
-    d(2026, 11, 28): [("CAR1", "Fotos de los 7 autos (mismo encuadre de 3/4 de frente, fondo limpio, sin patentes) y armado de las 9 placas en Canva.")],
-    d(2026, 11, 30): [("D26", ""), ("D28", ""), ("V01", "Además, 10 min de mapa: el recorrido Mendiolaza → centro para la animación.")],
-    d(2026, 12, 1): [("D01", ""), ("D06", "Pedir una factura de EPEC de muestra (sin datos personales)."), ("E08", "Cochera real medida con cinta, con los tres autos (o los de largo conocido).")],
+    d(2026, 11, 28): [("CAR1", "Armado de las 10 placas en Canva, con las fotos de la mañana.")],
+    d(2026, 11, 30): [("D26", ""), ("D06", "Pedir una factura de EPEC de muestra (sin datos personales)."), ("V01", "Además, 10 min de mapa: el recorrido Mendiolaza → centro para la animación.")],
+    d(2026, 12, 1): [("D01", ""), ("D28", ""), ("E08", "Cochera real medida con cinta, con los tres autos (o los de largo conocido).")],
     d(2026, 12, 2): [("E16", "20 minutos en la obra: tomas con pistas reales, sin mostrar la dirección.")],
     d(2026, 12, 9): [("V12", "Fachada, salón y taller del local nuevo, de día."), ("V13", ""), ("D18", "")],
     d(2026, 12, 10): [("D23", "Abrir el baúl de cada auto del salón y anotar qué trae para un pinchazo."), ("E06", "")],
     d(2026, 12, 12): [("E17", "Cámara fija en trípode durante el armado del salón (sábado y domingo): de vacío a lleno.")],
-    d(2026, 12, 18): [("E18", "Noche VIP: clips de 3–5 s de cada persona del equipo + los del fotógrafo.")],
-    d(2026, 12, 19): [("E19", "A las 8:30, antes de abrir: un plano de 1 s por persona del equipo, mismo encuadre, y un plano grupal."),
-                      ("E18", "Día abierto: clips de 3–5 s cada hora (solo personas con autorización).")],
+    d(2026, 12, 18): [("E18", "Noche VIP: la llegada, las palabras, el corte de cinta y el recorrido (solo personas con autorización firmada).")],
+    d(2026, 12, 19): [("E19", "A las 8:15, antes del brief: un plano de 1 s por persona del equipo, mismo encuadre, y un plano grupal."),
+                      ("E18", "Día abierto: la apertura, las pruebas de manejo y la actividad de los chicos, un clip por hora (solo personas con autorización; chicos con firma de los padres).")],
     d(2026, 12, 22): [("D11", ""), ("E27", ""), ("D29", "El dueño graba la voz en ElevenLabs con el guion de 'Qué se dice' (sin números de línea). Se anima entre el 23 y el 30/12 con Claude Code y HyperFrames, en el estilo del explicador EV/PHEV/HEV.")],
     d(2026, 12, 29): [("V11", "Solo con la promo confirmada por escrito (28/12)."), ("V14", ""), ("E02", "Comprar el café antes y guardar el ticket: el precio del ticket manda."), ("D02", "")],
     d(2027, 1, 4): [("E09", "Viaje medido a Jesús María por la mañana: tablero en 0 al salir y foto del tablero al llegar, mismo encuadre.")],
     d(2027, 1, 5): [("V15", ""), ("D21", "Pedir a Administración una financiación con 'tasa 0' vigente y su CFT."), ("V19", "")],
     d(2027, 1, 7): [("CAR2", "Con las listas de precios de enero que confirma Administración.")],
-    d(2027, 1, 8): [("E25", "Todo el día: Eado cargado al 100 % la noche anterior, recorrido mixto definido antes, foto del tablero cada 20 km y el momento exacto en que prende la nafta. Anotar temperatura y uso del aire.")],
+    d(2027, 1, 6): [("E25", "Todo el día: Eado cargado al 100 % la noche anterior, recorrido mixto definido antes, foto del tablero cada 20 km y el momento exacto en que prende la nafta. Anotar temperatura y uso del aire.")],
     d(2027, 1, 11): [("D19a", "Se graba el mismo día, en una toma.")],
     d(2027, 1, 12): [("D24", ""), ("D13", "Administración arma el ticket real de un auto con todos los costos del día."), ("D22", "")],
     d(2027, 1, 19): [("E10", "Viaje a Cosquín con el Eado cargado al 100 % la noche anterior."), ("V16", ""), ("E01", "")],
     d(2027, 1, 26): [("D03", ""), ("V21", ""), ("E12", "Vendedor con tonada al volante del Eado; grabar 8 pedidos y usar los 4 mejores, incluido uno que falle.")],
     d(2027, 1, 27): [("D04", "Pedir el repuesto hoy y filmar 5 s del taller cada día hasta que llegue.")],
     d(2027, 2, 2): [("V02", ""), ("E03", ""), ("E07", "Los dos vendedores, la L200 y las cosas reales de un asado para 15 (sin fuego ni comida en el salón)."), ("D04", "Si ya llegó el repuesto: la caja que se abre y la etiqueta con la fecha.")],
-    d(2027, 2, 10): [("D05", "Con un electricista matriculado (matrícula a la vista) en una cochera real."), ("V06", "En un campo o corralón con permiso."), ("V17", ""), ("E15", "Plan B de la colaboración del 20/2.")],
+    d(2027, 2, 10): [("D05", "Con un electricista matriculado (matrícula a la vista) en una cochera real."), ("V17", ""), ("E15", "Plan B de la colaboración del 20/2.")],
+    d(2027, 2, 11): [("V06", "Salida aparte, por la mañana: un campo o corralón con permiso (no entra en el bloque del salón).")],
     d(2027, 2, 15): [("D19b", "Se graba el mismo día, en una toma.")],
     d(2027, 2, 16): [("D27", ""), ("V08", ""), ("E23", "Vendedor 2 con los carteles VERDADERO y FALSO; cortes cortos de los videos anteriores de cada mito.")],
-    d(2027, 2, 23): [("—", "Grabación de banco para marzo (5 piezas): D25 'En la ciudad gasta poquito', V03 ORA 05, V04 ORA 03, E12 'Le hablamos en cordobés' y D10 'La prueba de la tierra'.")],
+    d(2027, 2, 23): [("—", "Grabación de banco para marzo (4 piezas, en el salón y el estacionamiento): D25 'En la ciudad gasta poquito' (se reusan las tomas de la H6 en el centro y en ruta grabadas el 2/2), V03 ORA 05, V04 ORA 03 y E13 'La prueba del silencio'. D10 'La prueba de la tierra' necesita un camino de tierra: va en una salida aparte en marzo.")],
 }
 
 # ---------------------------------------------------------------- tareas por día (fecha → [(responsable, tarea)])
@@ -226,7 +232,6 @@ tarea(d(2026, 11, 27), "Contenido", "Corregir lo que un comentario puede marcar:
 tarea(d(2026, 11, 27), "Contenido", "Comprar el kit: micrófono corbatero inalámbrico doble, trípode, luz LED con difusor y soporte de celular para auto.")
 tarea(d(2026, 11, 28), "Primer contacto", "WhatsApp Business: catálogo con un producto por modelo, bienvenida y ausencia, respuestas rápidas (cuota con legal, turno de prueba, usado, cómo llegar, horario) y una etiqueta por palabra clave.")
 tarea(d(2026, 11, 30), "Contenido", "Línea de base: seguidores, alcance de los últimos 30 días y % de Córdoba en Instagram y TikTok, y consultas por semana. Contra eso se mide todo.")
-tarea(d(2026, 11, 28), "Contenido", "Palabra clave → mensaje automático (ManyChat u otra): cada palabra del calendario manda un mensaje con 2 botones que abren WhatsApp con el mensaje ya escrito. Probarlo desde una cuenta que no sigue (llega a Solicitudes).")
 tarea(d(2026, 11, 28), "Contenido", "Exportar y clasificar los 142 comentarios del video EV/PHEV/HEV de TikTok y los de Instagram: precio, técnica, opinión, de Córdoba o no. La pregunta más repetida es el 'Respuesta a @' del 11/1.")
 tarea(d(2026, 11, 28), "Contenido", "Perfil de Instagram: bio con 'Concesionario oficial en Córdoba', link de WhatsApp con el código BIO, historias destacadas (Modelos, Cómo comprar, Taller, Ubicación).")
 tarea(d(2026, 11, 28), "Administración", "Planilla de consultas: fecha, nombre, palabra clave, modelo, A/B/C (A = quiere comprar en 30 días), vendedor, turno, venta.")
@@ -253,7 +258,7 @@ tarea(d(2026, 12, 18), "Todos", "NOCHE VIP (lista cerrada): 14:00 armado, autos 
 tarea(d(2026, 12, 18), "Primer contacto", "Recordatorio a los invitados por WhatsApp a las 10:00, con la dirección y un mapa.")
 tarea(d(2026, 12, 19), "Contenido", "8:00 Mudanza digital, en este orden: web (contacto, pie, mapa y 'nos mudamos'), Perfil de Google (editar la dirección del perfil existente, NO crear otro, y reverificar), publicación 'nos mudamos' con fotos reales, bio y ubicación de Instagram y Facebook, dirección de los avisos de Mercado Libre.")
 tarea(d(2026, 12, 19), "Todos", "DÍA ABIERTO: 8:30 brief (1 asesor cada 3–4 autos, 2–3 personas en las pruebas, guardia de WhatsApp, 1 supervisor) · 10:00 apertura con check-in por QR · 11:00 vivo de 30–45 min por el salón en Instagram y TikTok (otro vendedor contesta el chat) · 11 a 17 pruebas de manejo SOLO con turno, en franjas de 30 min; el que llega sin turno se agenda para otro día · 12 a 15 actividad para chicos y comida · 18:00 cierre · 18:30 cargar check-ins y consultas con su letra A/B/C y mandar un gracias a todos.")
-tarea(d(2026, 12, 20), "Primer contacto + vendedores", "Inauguración: seguimiento de todas las consultas del evento en 72 horas (hasta el martes 22).")
+tarea(d(2026, 12, 21), "Primer contacto + Vendedores", "Inauguración: seguimiento de cada consulta del evento (check-ins, turnos y mensajes), por teléfono o WhatsApp, hoy y mañana: que ninguna pase de 72 horas sin respuesta.")
 tarea(d(2026, 12, 21), "Contenido", "Inauguración: actualizar directorios, Mercado Libre y WhatsApp Business con la dirección nueva.")
 tarea(d(2026, 12, 21), "Vendedores", "Desde hoy, en cada entrega y service: QR para dejar una reseña en Google + WhatsApp a las 48 h con el link directo, a todos los clientes y sin premio. Responder todas en 48 h.")
 tarea(d(2026, 12, 22), "Contenido", "Inauguración: juntar las notas de prensa publicadas y compartirlas en historias.")
@@ -272,7 +277,7 @@ tarea(d(2027, 2, 1), "Dueño", "Colaboración con un creador cordobés (por ejem
 tarea(d(2027, 2, 10), "Contenido", "Anuncios: cerrar la prueba A6 y quedarse con el canal ganador.")
 tarea(d(2027, 2, 15), "Dueño", "Expoagro (9 al 12/3): decidir si se va con la L200 y la H7.")
 tarea(d(2027, 2, 17), "Dueño + Contenido", "Revisión de 60 días y plan de marzo: qué palabra clave trajo más ventas, qué formato retuvo más a 3 s y qué se repite en marzo.")
-tarea(d(2027, 2, 26), "Contenido", "Dejar 5 piezas editadas para la primera semana de marzo (las grabadas el 23/2).")
+tarea(d(2027, 2, 26), "Contenido", "Dejar editadas las 4 piezas grabadas el 23/2, para la primera semana de marzo.")
 
 # ---------------------------------------------------------------- lo que pasa en Córdoba
 EVENTOS = {
@@ -297,7 +302,7 @@ def contexto(f):
         partes.append(f"Inauguración: faltan {(DIA_D - f).days} días")
     if d(2027, 1, 7) <= f <= d(2027, 1, 17):
         partes.append("Festival de Jesús María")
-    if d(2027, 1, 23) <= f <= d(2027, 1, 31):
+    if d(2027, 1, 24) <= f <= d(2027, 1, 31):  # el 23 ya dice 'Arranca el Festival de Cosquín'
         partes.append("Festival de Cosquín")
     if f.weekday() == 0 or f == INICIO or f.day == 1:  # la nota del mes, solo al empezar la semana o el mes
         if f.month in (11, 12) and f < DIA_D:
@@ -314,3 +319,41 @@ def contexto(f):
 # Datos para las historias de los días sin publicación (se rotan)
 DATOS_HISTORIAS = ["EADO-3", "ORA05-4", "H7-1", "DEEPAL-6", "JMEV-1", "CS55-1", "H6-1", "ORA03-5", "TANK-1", "L200-1",
                    "EADO-7", "ORA05-6", "H7-7", "DEEPAL-1", "OUT-1", "JOLION-3", "EADO-9", "H6-4", "CS55-5", "JMEV-4"]
+
+
+# ---------------------------------------------------------------- una palabra clave por publicación y su pedido de compartir
+# (así se sabe qué video trajo cada consulta; el mensaje automático de la palabra se carga el 28/11)
+CODIGO = {"CAR1": "TIPO", "D26": "PAPELES", "D28": "PLUS", "V01": "EADO", "D01": "ENERO", "D06": "LUZ", "V12": "ABRIMOS",
+          "E08": "COCHERA", "V13": "TURNO", "D18": "AGUINALDO", "E18": "FIESTA", "D23": "AUXILIO", "E06": "VALIJAS", "D11": "RUTA",
+          "E27": "COSTO", "D29": "BATERIA", "V11": "APERTURA", "E09": "JESUSMARIA", "V14": "CS55", "CAR2": "PRECIOS", "E02": "CAFE",
+          "D19a": "PREGUNTA", "D02": "ENCHUFE", "V15": "EASY", "E25": "MEDIMOS", "D21": "TASA", "D24": "RINDE", "E10": "COSQUIN",
+          "V19": "OUTLANDER", "D13": "TOTAL", "D22": "HIBRIDO", "V16": "S05", "E01": "ORA05", "E12": "CORDOBES", "D03": "CHINO",
+          "V21": "PESOS", "E07": "ASADO", "D04": "REPUESTO", "V02": "H6", "E03": "H7", "D19b": "DUDA", "D05": "CARGA", "V06": "L200",
+          "E28": "SIERRAS", "V17": "JOLION", "D27": "MARCA", "V08": "EMPRESA", "E23": "MITOS"}
+COMPARTIR = {
+    "D26": "Mandáselo a quien está por dejar una seña.",
+    "D28": "Mandáselo a quien está mirando este auto.",
+    "D01": "Mandáselo a quien no sabe si cambiar el auto ahora o en enero.",
+    "D06": "Mandáselo a quien dice que la luz le va a salir más cara que la nafta.",
+    "E08": "Mandáselo a quien vive en un departamento con cochera.",
+    "D18": "Mandáselo a quien está por cobrar el aguinaldo.",
+    "D23": "Mandáselo a quien sale de vacaciones con un auto nuevo.",
+    "D11": "Mandáselo a quien sale a la ruta este verano.",
+    "D02": "Mandáselo a quien no se decide entre enchufe y nafta.",
+    "D21": "Mandáselo a quien está por sacar un crédito 'tasa 0'.",
+    "D24": "Mandáselo a quien cree que va a hacer los kilómetros del folleto.",
+    "D13": "Mandáselo a quien está comparando avisos de autos.",
+    "D22": "Mandáselo a quien quiere un enchufable y no tiene cochera.",
+    "D03": "Mandáselo a quien todavía dice '¿un auto chino?'.",
+    "D04": "Mandáselo a quien tiene miedo de quedarse sin repuestos.",
+    "D05": "Mandáselo a quien cree que para cargar un auto hay que hacer una obra.",
+    "D27": "Mandáselo a quien tiene esta duda antes de comprar.",
+}
+for _i, (_f, _h, _fmt, _gid, _ex) in enumerate(PUBLICA):
+    if _gid in CODIGO:
+        _ex.setdefault("codigo", CODIGO[_gid])
+    if _gid in COMPARTIR:
+        _ex.setdefault("compartir", COMPARTIR[_gid])
+
+PALABRAS_DEL_CALENDARIO = " · ".join(f"{_ex['codigo']} ({_f.strftime('%d/%m')})" for _f, _h, _fmt, _gid, _ex in PUBLICA if _ex.get("codigo"))
+T.setdefault(d(2026, 11, 28), []).insert(0, ("Contenido", "Palabra clave → mensaje automático (ManyChat u otra): cada palabra del calendario manda un mensaje con 2 botones que abren WhatsApp con el mensaje ya escrito. Probarlo desde una cuenta que no sigue (llega a Solicitudes). Hay una palabra por publicación (la lista completa está al final de esta celda), así se sabe qué video trajo cada consulta. Cargar cada una antes de su día. PALABRAS: " + PALABRAS_DEL_CALENDARIO + "."))
