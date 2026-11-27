@@ -11,7 +11,7 @@ import datos as D  # noqa: E402
 import datos_guiones as DG  # noqa: E402
 from guiones_comun import LEGAL  # noqa: E402
 
-SALIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Banco de ideas y guiones.md")
+SALIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "versiones anteriores", "Banco de ideas y guiones.md")
 GRUPOS = [("E", "Entretener a las masas", "Juegos, desafíos, pruebas y detrás de escena. Buscan alcance y que lo manden por mensaje. La palabra clave va en la descripción y en el comentario fijado, no en la voz."),
           ("D", "Educar a los interesados", "Comparar, sacar dudas y responder objeciones. Buscan que lo guarden, que pregunten y que escriban con el código."),
           ("V", "Vender a los comprometidos", "El auto real, su precio y su cuota con el legal, la prueba de manejo y las entregas. Buscan chats de WhatsApp y turnos."),

@@ -148,7 +148,7 @@ ENTRETENER = [
       "Cochera real (de un cliente o el depósito del local) marcada a 5 × 2,50 m · los 3 autos · cinta métrica · sin maniobras riesgosas.",
       "¿Cuál entra en una cochera de Nueva Córdoba? El Código de Edificación pide 5 × 2,50 m. JMEV Easy 3 (3,72 m): sobra más de un metro. Eado Plus (4,77 m): sobran 23 cm. L200 (5,32 m): faltan 32 cm. Medí tu cochera antes de elegir 📏 Contanos cuánto mide la tuya 👇 Córdoba.",
       "#cochera #NuevaCordoba #Cordoba #autos #AutosCordoba", "VALIJAS",
-      ojo="Medir la cochera real y usar esos números (cada cochera es distinta). Si un auto no está en stock, reemplazarlo por otro de largo conocido (ver Datos de los autos).",
+      ojo="Medir la cochera real y usar esos números (cada cochera es distinta). Si un auto no está en stock, reemplazarlo por otro de largo conocido: CS55 Plus 4,54 m, Deepal S05 4,62 m, Haval H7 4,80 m.",
       dificultad="Media", por_que="Tres resultados distintos y el último que no entra: la sorpresa está al final. Útil para quien vive en departamento.",
       honesto="La pickup no entra en una cochera de edificio.", fuentes="GEN-12, C11, C11L, JMEV-4, EADO-5, L200-8"),
 

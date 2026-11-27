@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import datos as D  # noqa: E402
 import datos_guiones as DG  # noqa: E402
 
-SALIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Calendario de contenido Valparaiso Motors.xlsx")
+SALIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "versiones anteriores", "Calendario de contenido Valparaiso Motors.xlsx")
 
 BORDO = "801628"
 TINTA = "151415"

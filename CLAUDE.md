@@ -13,7 +13,7 @@
   - `valparaiso-motors-negro.png`: tinta #151415, para fondos claros.
   - `valparaiso-motors-blanco.png`: blanco cálido #F2EFE8, para fondos oscuros.
   - `-recortado.png` (831x110): las mismas versiones sin margen, para ubicarlas exacto en la zona segura. Las originales (980x284) tienen más margen abajo que arriba.
-- **Calendario de contenido dic. 2026 – feb. 2027** (con la inauguración del local nuevo a fin de diciembre), en `valparaiso-motors/contenido/`: planilla con calendario, tareas, guiones, códigos, anuncios, evento y tablero (se regenera desde `fuente/`), más la guía paso a paso en .md, .docx y .pdf. Objetivo de cada pieza: entretener, educar o vender.
+- **Calendario de contenido 27/11/2026 – 28/02/2027** (versión final, con la inauguración del local nuevo el sábado 19/12 y la noche VIP el 18/12), en `valparaiso-motors/contenido/`: `Calendario Valparaiso Motors.xlsx` es **una sola hoja**, una fila por día con todo lo de ese día (qué se publica con su guion completo, qué se pega, qué se confirma antes, qué se graba, qué se edita y las tareas); el PDF "para leer" es lo mismo día por día. Se regenera desde `fuente/` (`calendario_plan.py` y `calendario.py`, ver `fuente/LEEME.md`). Las versiones anteriores (planilla de 18 hojas, banco de 95 guiones y guía) están en `contenido/versiones anteriores/`.
 - **Otros proyectos:** este repositorio también tiene la web de **Fit & Fun** (`index_1.html`, `index_2.html`, `fitfun3d.html`), que es de otro cliente, y skills de animación en `.claude/skills/`. Las reglas de este archivo valen **solo para Valparaiso Motors**: no las apliques a Fit & Fun.
 
 ---

@@ -6,7 +6,7 @@ LEGAL = _base.LEGAL
 FIJADO = "Si querés precio y cuota, comentá {k} y te escribimos por mensaje 📩 (si no nos seguís, te llega a Solicitudes)."
 MSG = "Hola, vengo del video {k}. Quiero precio y financiación."
 FIN_ENT = "PEDINOS PRECIO Y FINANCIACIÓN"
-REC = "Rehacer la cuenta en la hoja 'Cuentas de Córdoba' el día que se publica (nafta y luz cambian cada mes)."
+REC = "Rehacer la cuenta con el precio de la nafta y de la luz del día (cambian cada mes); la cuenta está en 'Cuentas a rehacer'."
 
 TODOS, KM, FAM, USADO, CAMPO, ELEC, SEG = (_base.TODOS, _base.KM, _base.FAM, _base.USADO, _base.CAMPO, _base.ELEC, _base.SEG)
 

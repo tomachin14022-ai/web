@@ -1,21 +1,27 @@
 # Cómo se regenera el calendario
 
-- `datos.py`: piezas, tareas, anuncios, evento, códigos, tablero y fuentes. El Día D de ejemplo es el sábado 19/12/2026.
-- `guiones.py`: junta el banco de guiones (ver abajo).
-- `datos_guiones.py`: los datos verificados de cada modelo (hoja Datos de los autos), las cuentas de Córdoba con sus supuestos (hoja Cuentas de Córdoba, con fórmulas) y los errores encontrados (hoja Errores a corregir). Las notas de la investigación, con todos los links, están en `research_notes/Guiones con datos reales/`.
-- `armar.py`: arma `../Calendario de contenido Valparaiso Motors.xlsx` con openpyxl.
+## El calendario final (lo que se usa)
+
+`../Calendario Valparaiso Motors.xlsx`: **una sola hoja**, una fila por día del 27/11/2026 al 28/02/2027, con todo lo de ese día:
+qué se publica con su guion completo, qué se pega, qué se confirma antes, qué se graba, qué se edita, las tareas y lo de todos los días.
+`../Calendario Valparaiso Motors (para leer).pdf` es lo mismo, día por día, para leer en el celular o imprimir.
+
+- `calendario_plan.py`: qué pasa cada día (publicaciones, grabaciones, tareas de la inauguración y de anuncios, contexto de Córdoba).
+  La inauguración está el sábado 19/12 (noche VIP el 18/12): si cambia, se cambian `DIA_D`, `VIP` y las fechas de las tareas que dicen "Inauguración".
+- `calendario.py`: arma la planilla y el Markdown de la versión para leer. Toma los guiones del banco (`guiones_ent.py`, `guiones_edu.py`,
+  `guiones_ven.py`, más los carruseles y las respuestas que están en `calendario_plan.py`) y los datos y cuentas de `datos_guiones.py`.
 
 ```sh
-python3 armar.py
-python3 <skill xlsx>/scripts/recalc.py "../Calendario de contenido Valparaiso Motors.xlsx" 90   # recalcula y verifica que no haya errores
+python3 calendario.py /tmp/cal                      # escribe la planilla y /tmp/cal/Calendario Valparaiso Motors.md
+pandoc "/tmp/cal/Calendario Valparaiso Motors.md" -o "/tmp/cal/Calendario Valparaiso Motors (para leer).docx" --reference-doc ref_horizontal.docx
+soffice --headless --convert-to pdf --outdir /tmp/cal "/tmp/cal/Calendario Valparaiso Motors (para leer).docx"
+cp "/tmp/cal/Calendario Valparaiso Motors (para leer).pdf" ..
 ```
 
-La guía se edita en `../Guía paso a paso del calendario de contenido.md` y se convierte con
-`pandoc "<guía>.md" -o "<guía>.docx" --reference-doc ref.docx` (después, LibreOffice a PDF).
+Si cambia el precio de la nafta o de la luz: se cambian `SUPUESTOS` en `datos_guiones.py` y se vuelve a correr (las cuentas de "Antes de publicar" se recalculan).
+Las notas de la investigación, con todos los links, están en `research_notes/Guiones con datos reales/` y `research_notes/Calendario de contenido Valparaiso Motors/`.
 
-## Banco de ideas y guiones
+## Versiones anteriores (archivo)
 
-- Los guiones viven en `guiones_ent.py` (E, entretener), `guiones_edu.py` (D, educar) y `guiones_ven.py` (V, vender). Los carruseles (C) y las piezas de todos los días (O) salen de `guiones_base.py`; `guiones.py` los junta.
-- `python3 banco.py` escribe `../Banco de ideas y guiones.md`; después `pandoc … --reference-doc ref_horizontal.docx` y LibreOffice a PDF.
-- `MAPA_GUIONES` en `datos.py` dice qué guion usa cada pieza del calendario.
-- Cada guion lleva `honesto` (la limitación que dice en voz alta) y `fuentes` (IDs de `datos_guiones.DATOS` y `CUENTAS`). Si cambia un dato, se cambia en `datos_guiones.py` y en el texto de los guiones que lo citan (buscar el ID).
+`../versiones anteriores/` guarda la planilla de 18 hojas, el banco de 95 guiones y la guía paso a paso. Se regeneran con `armar.py` y `banco.py`
+(`datos.py`, `guiones.py`, `guiones_base.py`). El banco completo sigue siendo la fuente de los guiones que usa el calendario.
