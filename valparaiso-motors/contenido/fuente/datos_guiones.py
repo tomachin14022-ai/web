@@ -74,6 +74,7 @@ DATOS = [
     ("EADO-11", "Changan Eado Plus PHEV", "Carga", "Acepta carga en corriente alterna hasta 7,4 kW.", MARCA, "Ficha técnica oficial", FT_EADO, "03/08/2026", "La ficha no da el tiempo de carga ni si trae cargador para enchufe común: verificar con la unidad."),
     ("EADO-12", "Changan Eado Plus PHEV", "Garantía", "5 años o 150.000 km el auto, y 8 años o 150.000 km el sistema híbrido.", PRENSA, "16 Válvulas (preventa)", "https://www.16valvulas.com.ar/nuevo-changan-eado-plus-phev-preventa-en-argentina-desde-us-29-990/", "14/08/2026", "Confirmar con Changan antes de decirlo: no se reverificó en la web oficial."),
     ("EADO-13", "Changan Eado Plus PHEV", "Precio de lista", "Precio sugerido de la marca: USD 29.990.", PRECIO, "changan.com.ar y La Nación", "https://changan.com.ar/modelos/eado-plus", "26/11/2026", "Valparaiso lo publica a US$27.800 en Mercado Libre. En la placa va el precio en pesos del día."),
+    ("EADO-14", "Changan Eado Plus PHEV", "Tiempo de carga", "Con 220 V se carga al 100 % en unas 6 horas.", OTRO, "Autocosmos México (Eado Plus iDD)", "https://noticias.autocosmos.com.mx/2025/05/12/changan-eado-plus-idd-2026-llega-a-mexico-conoce-el-precio-de-este-nuevo-hibrido-enchufable", "12/05/2025", "Dato de México: en Argentina la ficha no da el tiempo. Decir 'entre 6 y 8 horas' y confirmarlo con la unidad."),
     ("EADO-X", "Changan Eado Plus PHEV", "Autonomía total '995 km'", "—", FALTA, "No aparece en la web ni en la ficha oficial argentina", "https://changan.com.ar/modelos/eado-plus", "26/11/2026", "Sacar '995 km' de todos los guiones. Si hace falta: 'si se acaba la batería, sigue a nafta como un híbrido'."),
     # ---------------- Deepal S05 ----------------
     ("DEEPAL-1", "Deepal S05 PHEV", "Cámara 540°", "Su cámara te muestra lo que hay debajo del auto, como si el piso fuera transparente.", MARCA, "Ficha técnica oficial", FT_DEEPAL, "30/09/2026", ""),
@@ -85,6 +86,7 @@ DATOS = [
     ("DEEPAL-7", "Deepal S05 PHEV", "Auxilio", "Trae kit de reparación de pinchazos, no rueda de auxilio.", MARCA, "Ficha técnica oficial", FT_DEEPAL, "30/09/2026", "Limitación honesta del S05."),
     ("DEEPAL-8", "Deepal S05 PHEV", "Financiación de ejemplo", "La financiación dice 0 % de tasa, pero el costo financiero total arranca en 43,72 %, porque incluye el seguro.", PRECIO, "deepal.com.ar/financiacion", FIN_DEEPAL, "26/11/2026", "Válido 'para las operaciones solicitadas en el día de hoy'. Para el video D21, sin nombrar el banco; mostrar el legal."),
     ("DEEPAL-9", "Deepal S05 PHEV", "Tapizado", "El tapizado es de tela y el climatizador es de una zona.", MARCA, "Ficha técnica oficial", FT_DEEPAL, "30/09/2026", "Dato honesto para la reseña: no es cuero."),
+    ("DEEPAL-10", "Deepal S05 PHEV", "Ejemplo de cuota UVA", "En la línea UVA a 48 meses, por cada $10.000.000 la primera cuota fue de $267.856 + $200.000 de seguro, y después se ajusta por CER; CFTEA de 45,44 % a 57,95 %.", PRECIO, "deepal.com.ar/financiacion", FIN_DEEPAL, "25–26/11/2026", "Ejemplo publicado para ese día: Administración lo actualiza con la línea vigente. No nombrar el banco."),
     # ---------------- Changan CS55 Plus PHEV ----------------
     ("CS55-1", "Changan CS55 Plus PHEV", "Consumo medido sin cargar", "En ciudad, Parabrisas midió casi 22 km por litro sin cargarlo nunca.", MEDIDO, "Parabrisas", PB_CS55, "26/02/2026", "21,7 km/l en ciudad sin recargar."),
     ("CS55-2", "Changan CS55 Plus PHEV", "Aceleración medida", "Es una SUV familiar que llegó a 100 en 7,6 segundos.", MEDIDO, "Parabrisas", PB_CS55, "26/02/2026", "En modo Sport. Autotest midió 8,1–8,2 s."),
@@ -145,6 +147,7 @@ DATOS = [
     ("JOLION-4", "Haval Jolion HEV", "Equipamiento", "Trae 6 airbags, cámara 360 y un crucero que frena y acelera solo según el auto de adelante.", MARCA, "Autotest", AT_JOLION, "18/11/2026", ""),
     ("JOLION-5", "Haval Jolion HEV", "Ciudad contra ruta", "En ciudad gastó 7 litros cada 100 km, más que en la ruta.", MEDIDO, "Autotest", AT_JOLION, "18/11/2026", "Limitación honesta: en otra prueba (16 Válvulas) dio 6,1 en ciudad y 6,6 a 100 km/h."),
     ("JOLION-6", "Haval Jolion HEV", "Auxilio", "No trae rueda de auxilio, ni siquiera temporal: trae kit de pinchaduras.", MEDIDO, "16 Válvulas", V16_JOLION, "20/10/2026", ""),
+    ("JOLION-7", "Haval Jolion HEV", "Distancia a Buenos Aires", "Córdoba–Buenos Aires son unos 697 km por ruta.", CUENTA, "OpenStreetMap (OSRM), desde la Plaza San Martín", "https://router.project-osrm.org", "27/11/2026", "Otras distancias: Rosario 407 km, Mendoza 687 km, Río Cuarto 213 km, Mina Clavero 142 km."),
     # ---------------- Tank 300 y Poer ----------------
     ("TANK-1", "GWM Tank 300", "Garantía de motor y caja", "El motor y la caja tienen garantía por 10 años o un millón de kilómetros.", MARCA, "16 Válvulas y La Nación", V16_TANK, "09/2025", "Decir 'motor y caja', no 'el auto'. Confirmar que siga vigente."),
     ("TANK-2", "GWM Tank 300", "Todoterreno", "Tiene caja reductora y bloqueo de diferencial.", MARCA, "16 Válvulas", V16_TANK, "09/2025", ""),
@@ -184,6 +187,8 @@ DATOS = [
     ("GEN-13", "Córdoba", "Carga pública", "EPEC tiene 30 puntos de carga públicos, por ahora gratis: 11 en la ciudad y otros en Carlos Paz, Cosquín, La Falda, Villa Allende, Alta Gracia y más.", MARCA, "GEF Informa / EPEC", GEF, "08/09/2026", "No hay en Jesús María, Villa General Belgrano ni Mina Clavero. 'Gratis' puede cambiar: confirmar."),
     ("GEN-14", "Córdoba", "Granizo", "El granizo en Córdoba cae sobre todo de octubre a marzo, entre las 16 y las 20 h.", PRENSA, "Notas de clima (ver numeros-de-cordoba.md, sección 8)", "", "2026", "Sin estadística oficial de días por año."),
     ("GEN-15", "Córdoba", "Patente de híbridos", "Pagás la mitad de patente por ser híbrido.", FALTA, "Ley Impositiva 2026: según dos fuentes, solo para autos fabricados en la provincia", "", "2026", "NO prometerlo hasta confirmarlo con Rentas."),
+    ("GEN-16", "Argentina", "Sueldo promedio registrado", "El sueldo promedio en blanco del país fue de unos $1.982.000 brutos en agosto de 2026 (RIPTE).", MARCA, "Secretaría de Trabajo (RIPTE), vía Elonce", "https://www.elonce.com/uid-889291", "14/10/2026", "Es el promedio del país, no de Córdoba: decir 'el promedio en blanco del país'. El aguinaldo es la mitad del mejor sueldo bruto del semestre, menos los descuentos."),
+    ("GEN-17", "Argentina", "Dólar oficial", "El dólar oficial del Banco Nación estaba en $1.580 para la venta el 18/11/2026.", PRECIO, "Prensa financiera (resumen del buscador)", "https://www.iprofesional.com/finanzas/468108-el-dolar-minorista-anota-un-nuevo-maximo-pero-sube-menos-que-la-inflacion", "18/11/2026", "Solo como referencia para estimar: el precio en pesos lo da Administración el día."),
 ]
 
 # Supuestos de las cuentas: (nombre definido, etiqueta, valor, formato, fuente)
@@ -241,6 +246,10 @@ CUENTAS = [
     ("C18", "V08", "Nafta por mes de un auto de empresa que hace 100 km por día (naftero)", "=100*DiasMes*LNaftero/100*PrecioNafta", '"$"#,##0', "$ por mes", "Un auto de tu empresa que hace 100 km por día gasta unos [resultado] de nafta por mes (estimado)."),
     ("C18E", "V08", "Luz por mes del mismo auto en un enchufable andando en eléctrico (cuenta conservadora)", "=100*DiasMes*KWhEnchufable/100*PrecioKWh", '"$"#,##0', "$ por mes", "Andando en eléctrico, hasta unos [resultado] de luz (estimado, con la tarifa residencial: la de la empresa es otra)."),
     ("C18A", "V08", "Ahorro por auto por mes (cuenta conservadora)", "=100*DiasMes*(LNaftero/100*PrecioNafta-KWhEnchufable/100*PrecioKWh)", '"$"#,##0', "$ por mes", "Te ahorrás más de [resultado] por auto por mes (estimado)."),
+    ("C19", "V17", "Km con un tanque de la Jolion HEV al consumo medido a 100 km/h (55 L ÷ 6,5 L cada 100 km)", "=55/6.5*100", "0", "km", "Con 55 litros son unos [resultado] kilómetros (estimado con el consumo medido por la prensa a 100 km/h)."),
+    ("C20", "D18", "Aguinaldo en mano con el sueldo promedio en blanco (mitad del bruto, menos ~17 % de descuentos)", "=1982518/2*0.83", '"$"#,##0', "$", "Con el sueldo promedio, el aguinaldo son unos [resultado] en mano (estimado)."),
+    ("C21", "V21", "Cuota de $20.000.000 a tasa 0 % en 18 cuotas (sin el seguro)", "=20000000/18", '"$"#,##0', "$ por mes", "Unos [resultado] por mes, fijos, más el seguro."),
+    ("C22", "V21", "Primera cuota UVA por $20.000.000 a 48 meses (el ejemplo publicado era por $10.000.000: $267.856,37)", "=2*267856.37", '"$"#,##0', "$ por mes", "Arranca en unos [resultado] más el seguro, y después sube con la inflación."),
 ]
 
 # Errores encontrados (dónde, qué dice, qué tendría que decir, fuente)
